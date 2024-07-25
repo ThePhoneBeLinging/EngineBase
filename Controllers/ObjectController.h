@@ -18,14 +18,19 @@ class ObjectController
 {
 public:
     static void addDrawAbleObject(DrawAbleObject* drawAble);
+    static void removeObject(DrawAbleObject* drawAble);
+    static void removeButton(Button* button);
     static void addButton(Button* button);
     static void keepDrawingObjects();
 
 private:
     static std::list<DrawAbleObject*> drawAbles;
     static std::list<Button*> buttons;
+    static std::list<DrawAbleObject*> toBeDeleted;
+    static std::list<Button*> buttonsToBeDeleted;
     static void drawAllObjects();
     static void handleClicks();
+    static void handleDeletions();
 };
 
 

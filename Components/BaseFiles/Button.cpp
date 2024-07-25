@@ -12,3 +12,9 @@ Button::Button(int x, int y, int height, int width,
 {
     ObjectController::addButton(this);
 }
+
+void Button::deleteObject()
+{
+    PointCheckerObject::deleteObject();
+    ObjectController::removeButton(this);
+}

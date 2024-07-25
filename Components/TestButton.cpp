@@ -14,5 +14,5 @@ TestButton::TestButton(int x, int y, int height, int width,
 
 void TestButton::onClick()
 {
-    std::cout << "Test button pressed";
+    this->deleteObject();
 }

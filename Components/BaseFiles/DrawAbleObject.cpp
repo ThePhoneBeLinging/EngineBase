@@ -33,6 +33,11 @@ void DrawAbleObject::draw()
     }
 }
 
+void DrawAbleObject::deleteObject()
+{
+    ObjectController::removeObject(this);
+}
+
 void DrawAbleObject::setX(int x)
 {
     this->x = x;

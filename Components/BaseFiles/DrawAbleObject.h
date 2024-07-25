@@ -14,6 +14,9 @@ public:
     virtual ~DrawAbleObject() = default;
     DrawAbleObject(int x, int y, int height, int width, const std::shared_ptr<TextureController>& textureController);
     void draw();
+    virtual void deleteObject();
+
+
     void setX(int x);
     void setY(int y);
     void setTextureIndex(int textureIndex);

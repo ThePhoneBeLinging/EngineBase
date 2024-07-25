@@ -12,6 +12,7 @@ class Button : public PointCheckerObject
 public:
 	Button(int x, int y, int height, int width, std::shared_ptr<TextureController>& textureController);
 	virtual void onClick() = 0;
+	void deleteObject() override;
 };
 
 
