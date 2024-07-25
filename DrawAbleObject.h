@@ -38,9 +38,6 @@ private:
     int mWidth;
     bool mIsVisible;
     std::shared_ptr<TextureController> mTextureController;
-
-
-    // Getters and setters
 };
 
 
