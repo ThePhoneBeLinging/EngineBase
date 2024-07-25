@@ -16,6 +16,7 @@ public:
     TextureController();
     void addTexture(const std::string& texturePath, int firstIndex, int secondIndex);
     Texture2D getTexture(int firstIndex, int secondIndex);
+    void startGUI();
 
 private:
     std::vector<std::vector<Texture2D>> mTextures;

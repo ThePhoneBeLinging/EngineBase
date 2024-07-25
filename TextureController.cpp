@@ -13,7 +13,6 @@ TextureController::TextureController()
 {
     InitWindow(800, 600, "M3");
     this->mTextures.resize(spacesPerResize);
-    mThread = std::thread(ObjectController::keepDrawingObjects);
 }
 
 //TODO Check this function, something seems off with the increments in size;
@@ -35,4 +34,9 @@ void TextureController::addTexture(const std::string& texturePath, int firstInde
 Texture2D TextureController::getTexture(int firstIndex, int secondIndex)
 {
     return this->mTextures[firstIndex][secondIndex];
+}
+
+void TextureController::startGUI()
+{
+    ObjectController::keepDrawingObjects();
 }

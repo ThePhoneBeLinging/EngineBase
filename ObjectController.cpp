@@ -4,6 +4,8 @@
 
 #include "ObjectController.h"
 
+#include <iostream>
+
 std::list<DrawAbleObject*> ObjectController::drawAbles;
 
 void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
