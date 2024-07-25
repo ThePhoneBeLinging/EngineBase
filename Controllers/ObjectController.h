@@ -6,7 +6,7 @@
 #define OBJECTCONTROLLER_H
 #include <list>
 #include <thread>
-
+#include <raylib.h>
 #include "DrawAbleObject.h"
 
 

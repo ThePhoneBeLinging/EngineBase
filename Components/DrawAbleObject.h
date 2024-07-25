@@ -5,7 +5,6 @@
 #ifndef DRAWABLEOBJECT_H
 #define DRAWABLEOBJECT_H
 #include <memory>
-
 #include "TextureController.h"
 
 

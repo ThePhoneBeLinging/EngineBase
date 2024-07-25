@@ -9,9 +9,6 @@ int main()
     textureController->addTexture("../BBishop.png", 0, 0);
     auto object = new DrawAbleObject(50, 50, 50, 50, textureController);
     textureController->startGUI();
-    while (true)
-    {
-        //std::cout << "Hello, Main loop!" << std::endl;
-    }
+
     return 0;
 }

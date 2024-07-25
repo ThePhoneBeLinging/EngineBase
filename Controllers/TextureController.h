@@ -7,7 +7,7 @@
 #include <vector>
 #include <thread>
 
-#include "cmake-build-debug/_deps/raylib-src/src/raylib.h"
+#include "raylib.h"
 
 
 class TextureController

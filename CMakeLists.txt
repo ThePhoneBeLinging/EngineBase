@@ -24,14 +24,14 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
 endif ()
 
 ###
-
+include_directories(Controllers)
+include_directories(Components)
 
 add_executable(EngineBase main.cpp
-        TextureController.cpp
-        TextureController.h
-        DrawAbleObject.cpp
-        DrawAbleObject.h
-        ObjectController.cpp
-        ObjectController.h
+        Controllers/TextureController.cpp
+        Components/DrawAbleObject.cpp
+        Controllers/ObjectController.cpp
 )
+
+
 target_link_libraries(${PROJECT_NAME} raylib)
