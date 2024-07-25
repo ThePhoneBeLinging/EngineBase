@@ -10,6 +10,3 @@ RectangleButton::RectangleButton(int x, int y, int height, int width,
 {
 }
 
-void RectangleButton::onClick()
-{
-}

@@ -10,6 +10,7 @@
 
 class RectangleButton : public RectangleObject, public Button
 {
+public:
     RectangleButton(int x, int y, int height, int width, std::shared_ptr<TextureController>& textureController);
 };
 

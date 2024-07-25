@@ -37,9 +37,8 @@ add_executable(EngineBase main.cpp
         Components/Shapes/RectangleObject.cpp
         Components/Shapes/RectangleObject.h
         Components/RectangleButton.cpp
-        Components/RectangleButton.h
-        Components/BaseFiles/Button.cpp
-        Components/BaseFiles/Button.h
+        Components/TestButton.cpp
+        Components/TestButton.h
 )
 
 

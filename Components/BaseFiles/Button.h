@@ -8,6 +8,7 @@
 
 class Button
 {
+public:
     Button() = default;
     virtual void onClick() = 0;
 };
