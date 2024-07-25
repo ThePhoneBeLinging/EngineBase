@@ -7,10 +7,13 @@
 
 #include <iostream>
 
+#include "ObjectController.h"
+
 TextureController::TextureController()
 {
     InitWindow(800, 600, "M3");
     this->mTextures.resize(spacesPerResize);
+    mThread = std::thread(ObjectController::keepDrawingObjects);
 }
 
 //TODO Check this function, something seems off with the increments in size;

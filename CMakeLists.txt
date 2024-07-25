@@ -31,5 +31,7 @@ add_executable(EngineBase main.cpp
         TextureController.h
         DrawAbleObject.cpp
         DrawAbleObject.h
+        ObjectController.cpp
+        ObjectController.h
 )
 target_link_libraries(${PROJECT_NAME} raylib)

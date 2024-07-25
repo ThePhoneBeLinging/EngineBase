@@ -3,6 +3,8 @@
 //
 
 #include "DrawAbleObject.h"
+
+#include "ObjectController.h"
 #include "TextureController.h"
 
 DrawAbleObject::DrawAbleObject(int x, int y, int height, int width,
@@ -16,6 +18,7 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width,
     this->mWidth = width;
     this->mIsVisible = true;
     this->mTextureController = textureController;
+    ObjectController::addDrawAbleObject(this);
 }
 
 void DrawAbleObject::draw()

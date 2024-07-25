@@ -5,6 +5,7 @@
 #ifndef TEXTURECONTROLLER_H
 #define TEXTURECONTROLLER_H
 #include <vector>
+#include <thread>
 
 #include "cmake-build-debug/_deps/raylib-src/src/raylib.h"
 
@@ -19,6 +20,7 @@ public:
 private:
     std::vector<std::vector<Texture2D>> mTextures;
     int spacesPerResize = 50;
+    std::thread mThread;
 };
 
 
