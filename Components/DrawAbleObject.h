@@ -11,6 +11,7 @@
 class DrawAbleObject
 {
 public:
+    virtual ~DrawAbleObject() = default;
     DrawAbleObject(int x, int y, int height, int width, const std::shared_ptr<TextureController>& textureController);
     void draw();
     void setX(int x);
@@ -28,7 +29,7 @@ public:
     int getWidth() const;
     bool isVisible() const;
 
-private:
+protected:
     int x;
     int y;
     int mTextureIndex;
