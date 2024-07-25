@@ -9,7 +9,7 @@
 class Button
 {
 public:
-    Button() = default;
+    Button();
     virtual void onClick() = 0;
 };
 

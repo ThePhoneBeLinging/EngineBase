@@ -7,10 +7,16 @@
 #include <iostream>
 
 std::list<DrawAbleObject*> ObjectController::drawAbles;
+std::list<Button*> ObjectController::buttons;
 
 void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
 {
     drawAbles.push_back(drawAble);
+}
+
+void ObjectController::addButton(Button* button)
+{
+    buttons.push_back(button);
 }
 
 void ObjectController::keepDrawingObjects()
