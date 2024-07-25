@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "DrawAbleObject.h"
+#include "RectangleButton.h"
 #include "TextureController.h"
 
 int main()
