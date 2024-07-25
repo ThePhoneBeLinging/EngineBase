@@ -20,8 +20,11 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width,
 
 void DrawAbleObject::draw()
 {
-    DrawTexture(mTextureController->getTexture(this->mTextureIndex, this->mTextureSecondIndex), this->x, this->y,
-                WHITE);
+    if (this->mIsVisible)
+    {
+        DrawTexture(mTextureController->getTexture(this->mTextureIndex, this->mTextureSecondIndex), this->x, this->y,
+                    WHITE);
+    }
 }
 
 void DrawAbleObject::setX(int x)
