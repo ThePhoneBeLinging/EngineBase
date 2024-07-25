@@ -27,12 +27,13 @@ endif ()
 include_directories(Controllers)
 include_directories(Components)
 include_directories(Components/Shapes)
+include_directories(Components/BaseFiles)
 
 add_executable(EngineBase main.cpp
         Controllers/TextureController.cpp
-        Components/DrawAbleObject.cpp
+        Components/BaseFiles/DrawAbleObject.cpp
         Controllers/ObjectController.cpp
-        Components/PointCheckerObject.cpp
+        Components/BaseFiles/PointCheckerObject.cpp
         Components/Shapes/RectangleObject.cpp
         Components/Shapes/RectangleObject.h
 )
