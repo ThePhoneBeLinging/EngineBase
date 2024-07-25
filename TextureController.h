@@ -13,7 +13,7 @@ class TextureController
 {
 public:
     TextureController();
-    void addTexture(Texture2D texture, int firstIndex, int secondIndex);
+    void addTexture(const std::string& texturePath, int firstIndex, int secondIndex);
     Texture2D getTexture(int firstIndex, int secondIndex);
 
 private:

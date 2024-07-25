@@ -14,8 +14,9 @@ TextureController::TextureController()
 }
 
 //TODO Check this function, something seems off with the increments in size;
-void TextureController::addTexture(Texture2D texture, int firstIndex, int secondIndex)
+void TextureController::addTexture(const std::string& texturePath, int firstIndex, int secondIndex)
 {
+    Texture2D texture = LoadTexture(texturePath.c_str());
     while (mTextures.capacity() <= firstIndex)
     {
         mTextures.resize(mTextures.capacity() + spacesPerResize);
