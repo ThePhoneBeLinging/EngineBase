@@ -46,7 +46,6 @@ void ObjectController::handleClicks()
         int y = GetMouseY();
         for (auto button : buttons)
         {
-            button->onClick();
             if (button->isVisible() && button->isPointInside(x, y))
             {
                 button->onClick();
