@@ -4,9 +4,16 @@
 
 #include "RectangleButton.h"
 
+#include "ShapesPointChecker.h"
+
 RectangleButton::RectangleButton(int x, int y, int height, int width,
-                                 std::shared_ptr<TextureController>& textureController) : RectangleObject(
-        x, y, height, width, textureController), Button()
+                                 std::shared_ptr<TextureController>& textureController) : Button(
+    x, y, height, width, textureController)
 {
+}
+
+bool RectangleButton::isPointInside(int xToCheck, int yToCheck)
+{
+    return ShapesPointChecker::rectanglePointInsideChecker(this, xToCheck, yToCheck);
 }
 

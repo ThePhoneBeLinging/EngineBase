@@ -4,8 +4,6 @@
 
 #include "ObjectController.h"
 
-#include <iostream>
-
 std::list<DrawAbleObject*> ObjectController::drawAbles;
 std::list<Button*> ObjectController::buttons;
 
@@ -23,6 +21,7 @@ void ObjectController::keepDrawingObjects()
 {
     while (!WindowShouldClose())
     {
+        handleClicks();
         drawAllObjects();
     }
 }
@@ -37,4 +36,21 @@ void ObjectController::drawAllObjects()
         drawAble->draw();
     }
     EndDrawing();
+}
+
+void ObjectController::handleClicks()
+{
+    if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
+    {
+        int x = GetMouseX();
+        int y = GetMouseY();
+        for (auto button : buttons)
+        {
+            button->onClick();
+            if (button->isVisible() && button->isPointInside(x, y))
+            {
+                button->onClick();
+            }
+        }
+    }
 }

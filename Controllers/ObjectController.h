@@ -4,10 +4,13 @@
 
 #ifndef OBJECTCONTROLLER_H
 #define OBJECTCONTROLLER_H
-#include <Button.h>
+
 #include <list>
+#include <PointCheckerObject.h>
 #include <thread>
 #include <raylib.h>
+
+#include "Button.h"
 #include "DrawAbleObject.h"
 
 
@@ -22,6 +25,7 @@ private:
     static std::list<DrawAbleObject*> drawAbles;
     static std::list<Button*> buttons;
     static void drawAllObjects();
+    static void handleClicks();
 };
 
 

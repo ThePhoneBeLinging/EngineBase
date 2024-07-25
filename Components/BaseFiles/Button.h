@@ -4,13 +4,14 @@
 
 #ifndef BUTTON_H
 #define BUTTON_H
+#include <PointCheckerObject.h>
 
 
-class Button
+class Button : public PointCheckerObject
 {
 public:
-    Button();
-    virtual void onClick() = 0;
+	Button(int x, int y, int height, int width, std::shared_ptr<TextureController>& textureController);
+	virtual void onClick() = 0;
 };
 
 

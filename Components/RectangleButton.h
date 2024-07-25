@@ -4,14 +4,18 @@
 
 #ifndef RECTANGLEBUTTON_H
 #define RECTANGLEBUTTON_H
+#include <MacTypes.h>
+#include <memory>
+#include <PointCheckerObject.h>
+
 #include "Button.h"
-#include "RectangleObject.h"
 
 
-class RectangleButton : public RectangleObject, public Button
+class RectangleButton : public Button
 {
 public:
     RectangleButton(int x, int y, int height, int width, std::shared_ptr<TextureController>& textureController);
+    bool isPointInside(int xToCheck, int yToCheck) override;
 };
 
 
