@@ -22,5 +22,4 @@ private:
 };
 
 
-
 #endif //TEXTURECONTROLLER_H

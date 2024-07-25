@@ -9,9 +9,10 @@
 
 TextureController::TextureController()
 {
-    InitWindow(800,600,"M3");
+    InitWindow(800, 600, "M3");
     this->mTextures.resize(spacesPerResize);
 }
+
 //TODO Check this function, something seems off with the increments in size;
 void TextureController::addTexture(Texture2D texture, int firstIndex, int secondIndex)
 {
