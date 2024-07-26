@@ -4,29 +4,32 @@
 
 #include "ObjectController.h"
 
+#include <iostream>
+
 std::vector<std::list<DrawAbleObject*>> ObjectController::mDrawAbles;
-std::list<DrawAbleObject*> ObjectController::toBeDeleted;
+std::list<DrawAbleObject*> ObjectController::mToBeDeleted;
 std::vector<std::list<Button*>> ObjectController::mButtons;
-std::list<Button*> ObjectController::buttonsToBeDeleted;
+std::list<Button*> ObjectController::mButtonsToBeDeleted;
 int ObjectController::mScene = 0;
 
 void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
 {
     while (drawAble->getScene() >= mDrawAbles.capacity())
     {
-        mDrawAbles.resize(mDrawAbles.capacity() + 2);
+        mDrawAbles.resize(mDrawAbles.size() + 1);
     }
     mDrawAbles[drawAble->getScene()].push_back(drawAble);
+    auto test = mDrawAbles;
 }
 
 void ObjectController::removeObject(DrawAbleObject* drawAble)
 {
-    toBeDeleted.push_back(drawAble);
+    mToBeDeleted.push_back(drawAble);
 }
 
 void ObjectController::removeButton(Button* button)
 {
-    buttonsToBeDeleted.push_back(button);
+    mButtonsToBeDeleted.push_back(button);
 }
 
 void ObjectController::addButton(Button* button)
@@ -63,8 +66,8 @@ void ObjectController::drawAllObjects()
     auto localDrawAbles = mDrawAbles;
     BeginDrawing();
     ClearBackground(WHITE);
-
-    for (auto drawAble : localDrawAbles[mScene])
+    int scene = mScene;
+    for (auto drawAble : localDrawAbles[scene])
     {
         if (drawAble->isVisible())
         {
@@ -94,8 +97,8 @@ void ObjectController::handleClicks()
 
 void ObjectController::handleDeletions()
 {
-    std::list<DrawAbleObject*> toDelete = toBeDeleted;
-    std::list<Button*> buttonsToDelete = buttonsToBeDeleted;
+    std::list<DrawAbleObject*> toDelete = mToBeDeleted;
+    std::list<Button*> buttonsToDelete = mButtonsToBeDeleted;
     for (auto drawAble : toDelete)
     {
         mDrawAbles[drawAble->getScene()].remove(drawAble);
@@ -104,4 +107,6 @@ void ObjectController::handleDeletions()
     {
         mButtons[button->getScene()].remove(button);
     }
+    mToBeDeleted.clear();
+    mButtonsToBeDeleted.clear();
 }

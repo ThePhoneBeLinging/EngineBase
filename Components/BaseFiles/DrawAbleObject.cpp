@@ -115,11 +115,11 @@ int DrawAbleObject::getScene() const
     return mScene;
 }
 
-void DrawAbleObject::setScene(int m_scene)
+void DrawAbleObject::setScene(int scene)
 {
     ObjectController::removeObject(this);
     ObjectController::handleDeletions();
-    mScene = m_scene;
+    this->mScene = scene;
     ObjectController::addDrawAbleObject(this);
 }
 

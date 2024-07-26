@@ -29,8 +29,8 @@ public:
 private:
     static std::vector<std::list<DrawAbleObject*>> mDrawAbles;
     static std::vector<std::list<Button*>> mButtons;
-    static std::list<DrawAbleObject*> toBeDeleted;
-    static std::list<Button*> buttonsToBeDeleted;
+    static std::list<DrawAbleObject*> mToBeDeleted;
+    static std::list<Button*> mButtonsToBeDeleted;
     static void drawAllObjects();
     static void handleClicks();
 
