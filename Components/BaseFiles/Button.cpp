@@ -35,7 +35,7 @@ void Button::setOnClick(std::function<void(Button*)> function)
 
 void Button::addToScene(int scene)
 {
-    ObjectController::addButton(this);
     PointCheckerObject::setScene(scene);
+    ObjectController::addButton(this);
     PointCheckerObject::addToScene(scene);
 }
