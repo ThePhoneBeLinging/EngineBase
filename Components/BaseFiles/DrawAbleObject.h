@@ -15,10 +15,14 @@ public:
     DrawAbleObject(int x, int y, int height, int width, const std::shared_ptr<TextureController>& textureController);
     void draw();
     virtual void deleteObject();
+    virtual void addToScene(int scene);
+    virtual void removeFromScene();
 
 
     void setX(int x);
     void setY(int y);
+    int getZ() const;
+    void setZ(int z);
     void setTextureIndex(int textureIndex);
     void setTextureSecondIndex(int secondIndex);
     void setHeight(int height);
@@ -39,6 +43,7 @@ public:
 protected:
     int x;
     int y;
+    int z;
     int mTextureIndex;
     int mTextureSecondIndex;
     int mHeight;

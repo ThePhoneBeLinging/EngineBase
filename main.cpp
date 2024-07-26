@@ -12,10 +12,10 @@ int main()
     auto object = new RectangleButton(50, 50, 50, 50, textureController);
     auto otherObject = new RectangleButton(50, 50, 50, 50, textureController);
     auto boom = new RectangleButton(50, 50, 50, 50, textureController);
-    object->setLayer(1);
     boom->setTextureIndex(1);
     otherObject->setTextureIndex(1);
-    otherObject->setScene(1);
+    otherObject->addToScene(1);
+    object->addToScene(0);
     auto toDoOnClick = [&textureController](Button* button)
     {
         textureController->setScene(1);

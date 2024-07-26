@@ -20,7 +20,6 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width,
     this->mTextureController = textureController;
     this->mScene = 0;
     this->mLayer = 0;
-    ObjectController::addDrawAbleObject(this);
 }
 
 void DrawAbleObject::draw()
@@ -40,6 +39,17 @@ void DrawAbleObject::deleteObject()
     ObjectController::removeObject(this);
 }
 
+void DrawAbleObject::addToScene(int scene)
+{
+    this->setScene(scene);
+    ObjectController::addDrawAbleObject(this);
+}
+
+void DrawAbleObject::removeFromScene()
+{
+    ObjectController::removeObject(this);
+}
+
 void DrawAbleObject::setX(int x)
 {
     this->x = x;
@@ -48,6 +58,16 @@ void DrawAbleObject::setX(int x)
 void DrawAbleObject::setY(int y)
 {
     this->y = y;
+}
+
+int DrawAbleObject::getZ() const
+{
+    return z;
+}
+
+void DrawAbleObject::setZ(int z)
+{
+    this->z = z;
 }
 
 void DrawAbleObject::setTextureIndex(int textureIndex)
@@ -117,10 +137,7 @@ int DrawAbleObject::getScene() const
 
 void DrawAbleObject::setScene(int scene)
 {
-    ObjectController::removeObject(this);
-    ObjectController::handleDeletions();
     this->mScene = scene;
-    ObjectController::addDrawAbleObject(this);
 }
 
 int DrawAbleObject::getLayer() const

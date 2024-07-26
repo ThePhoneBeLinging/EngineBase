@@ -12,7 +12,6 @@ Button::Button(int x, int y, int height, int width,
                std::shared_ptr<TextureController>& textureController) : PointCheckerObject(
     x, y, height, width, textureController)
 {
-    ObjectController::addButton(this);
 }
 
 void Button::onClick()
@@ -34,10 +33,9 @@ void Button::setOnClick(std::function<void(Button*)> function)
     this->mFunction = std::move(function);
 }
 
-void Button::setScene(int scene)
+void Button::addToScene(int scene)
 {
-    ObjectController::removeButton(this);
-    ObjectController::handleDeletions();
     PointCheckerObject::setScene(scene);
+    PointCheckerObject::addToScene(scene);
     ObjectController::addButton(this);
 }
