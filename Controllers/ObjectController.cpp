@@ -6,7 +6,7 @@
 
 #include <iostream>
 
-std::vector<std::vector<std::list<DrawAbleObject*>>> ObjectController::mAllDrawables;
+std::vector<std::list<DrawAbleObject*>> ObjectController::mAllDrawables;
 
 std::list<DrawAbleObject*> ObjectController::mToBeDeleted;
 std::vector<std::list<Button*>> ObjectController::mButtons;
@@ -19,11 +19,7 @@ void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
     {
         mAllDrawables.resize(mAllDrawables.size() + 1);
     }
-    while (drawAble->getLayer() >= mAllDrawables[drawAble->getScene()].capacity())
-    {
-        mAllDrawables[drawAble->getScene()].resize(mAllDrawables[drawAble->getScene()].size() + 1);
-    }
-    mAllDrawables[drawAble->getScene()][drawAble->getLayer()].push_back(drawAble);
+    mAllDrawables[drawAble->getScene()].push_back(drawAble);
 }
 
 void ObjectController::removeObject(DrawAbleObject* drawAble)
@@ -71,14 +67,11 @@ void ObjectController::drawAllObjects()
     BeginDrawing();
     ClearBackground(WHITE);
     int scene = mScene;
-    for (auto layers : localDrawAbles[scene])
+    for (auto drawAble : localDrawAbles[scene])
     {
-        for (auto drawAble : layers)
+        if (drawAble->isVisible())
         {
-            if (drawAble->isVisible())
-            {
-                drawAble->draw();
-            }
+            drawAble->draw();
         }
     }
 
@@ -109,7 +102,7 @@ void ObjectController::handleDeletions()
     std::list<Button*> buttonsToDelete = mButtonsToBeDeleted;
     for (auto drawAble : toDelete)
     {
-        mAllDrawables[drawAble->getScene()][drawAble->getLayer()].remove(drawAble);
+        mAllDrawables[drawAble->getScene()].remove(drawAble);
     }
     for (auto button : buttonsToDelete)
     {

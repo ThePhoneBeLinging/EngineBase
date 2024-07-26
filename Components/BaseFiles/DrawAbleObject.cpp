@@ -12,6 +12,7 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width,
 {
     this->x = x;
     this->y = y;
+    this->z = 0;
     this->mTextureIndex = 0;
     this->mTextureSecondIndex = 0;
     this->mHeight = height;
@@ -19,7 +20,6 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width,
     this->mIsVisible = true;
     this->mTextureController = textureController;
     this->mScene = 0;
-    this->mLayer = 0;
 }
 
 void DrawAbleObject::draw()
@@ -140,15 +140,6 @@ void DrawAbleObject::setScene(int scene)
     this->mScene = scene;
 }
 
-int DrawAbleObject::getLayer() const
-{
-    return mLayer;
-}
 
-void DrawAbleObject::setLayer(int layer)
-{
-    ObjectController::removeObject(this);
-    ObjectController::handleDeletions();
-    mLayer = layer;
-    ObjectController::addDrawAbleObject(this);
-}
+
+

@@ -37,8 +37,6 @@ public:
     bool isVisible() const;
     int getScene() const;
     virtual void setScene(int scene);
-    int getLayer() const;
-    void setLayer(int layer);
 
 protected:
     int x;
@@ -51,7 +49,6 @@ protected:
     bool mIsVisible;
     std::shared_ptr<TextureController> mTextureController;
     int mScene;
-    int mLayer;
 };
 
 
