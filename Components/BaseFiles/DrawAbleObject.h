@@ -41,6 +41,8 @@ protected:
     int mWidth;
     bool mIsVisible;
     std::shared_ptr<TextureController> mTextureController;
+    int mScene;
+    int mLayer;
 };
 
 

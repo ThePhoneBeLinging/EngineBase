@@ -18,6 +18,8 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width,
     this->mWidth = width;
     this->mIsVisible = true;
     this->mTextureController = textureController;
+    this->mScene = 0;
+    this->mLayer = 0;
     ObjectController::addDrawAbleObject(this);
 }
 

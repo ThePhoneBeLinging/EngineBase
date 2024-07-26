@@ -21,7 +21,7 @@ public:
 private:
     std::vector<std::vector<Texture2D>> mTextures;
     int spacesPerResize = 50;
-    std::thread mThread;
+    int mScene;
 };
 
 
