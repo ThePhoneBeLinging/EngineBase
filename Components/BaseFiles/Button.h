@@ -4,6 +4,7 @@
 
 #ifndef BUTTON_H
 #define BUTTON_H
+#include <functional>
 #include <PointCheckerObject.h>
 
 
@@ -11,8 +12,12 @@ class Button : public PointCheckerObject
 {
 public:
 	Button(int x, int y, int height, int width, std::shared_ptr<TextureController>& textureController);
-	virtual void onClick() = 0;
+	virtual void onClick();
 	void deleteObject() override;
+	void setOnClick(std::function<void()> function);
+
+private:
+	std::function<void()> mFunction;
 };
 
 

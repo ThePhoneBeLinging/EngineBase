@@ -6,6 +6,8 @@
 
 #include <ObjectController.h>
 
+#include <utility>
+
 Button::Button(int x, int y, int height, int width,
                std::shared_ptr<TextureController>& textureController) : PointCheckerObject(
     x, y, height, width, textureController)
@@ -13,8 +15,21 @@ Button::Button(int x, int y, int height, int width,
     ObjectController::addButton(this);
 }
 
+void Button::onClick()
+{
+    if (mFunction != nullptr)
+    {
+        mFunction();
+    }
+}
+
 void Button::deleteObject()
 {
     PointCheckerObject::deleteObject();
     ObjectController::removeButton(this);
+}
+
+void Button::setOnClick(std::function<void()> function)
+{
+    this->mFunction = std::move(function);
 }

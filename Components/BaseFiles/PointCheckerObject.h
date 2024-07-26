@@ -12,10 +12,6 @@ class PointCheckerObject : public DrawAbleObject
 public:
     PointCheckerObject(int x, int y, int height, int width, std::shared_ptr<TextureController>& textureController);
     virtual bool isPointInside(int xToCheck, int yToCheck) = 0;
-
-    virtual void onClick()
-    {
-    };
 };
 
 
