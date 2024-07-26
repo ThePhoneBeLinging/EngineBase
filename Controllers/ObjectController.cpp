@@ -16,7 +16,7 @@ void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
 
 void ObjectController::removeObject(DrawAbleObject* drawAble)
 {
-    ObjectController::toBeDeleted.push_back(drawAble);
+    toBeDeleted.push_back(drawAble);
 }
 
 void ObjectController::removeButton(Button* button)
