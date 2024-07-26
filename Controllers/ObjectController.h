@@ -26,8 +26,8 @@ public:
     static int getScene();
 
 private:
-    static std::list<DrawAbleObject*> drawAbles;
-    static std::list<Button*> buttons;
+    static std::vector<std::list<DrawAbleObject*>> mDrawAbles;
+    static std::vector<std::list<Button*>> mButtons;
     static std::list<DrawAbleObject*> toBeDeleted;
     static std::list<Button*> buttonsToBeDeleted;
     static void drawAllObjects();

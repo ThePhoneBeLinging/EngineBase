@@ -4,15 +4,19 @@
 
 #include "ObjectController.h"
 
-std::list<DrawAbleObject*> ObjectController::drawAbles;
+std::vector<std::list<DrawAbleObject*>> ObjectController::mDrawAbles;
 std::list<DrawAbleObject*> ObjectController::toBeDeleted;
-std::list<Button*> ObjectController::buttons;
+std::vector<std::list<Button*>> ObjectController::mButtons;
 std::list<Button*> ObjectController::buttonsToBeDeleted;
 int ObjectController::mScene = 0;
 
 void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
 {
-    drawAbles.push_back(drawAble);
+    while (drawAble->getScene() >= mDrawAbles.capacity())
+    {
+        mDrawAbles.resize(mDrawAbles.capacity() + 2);
+    }
+    mDrawAbles[drawAble->getScene()].push_back(drawAble);
 }
 
 void ObjectController::removeObject(DrawAbleObject* drawAble)
@@ -27,7 +31,11 @@ void ObjectController::removeButton(Button* button)
 
 void ObjectController::addButton(Button* button)
 {
-    buttons.push_back(button);
+    while (button->getScene() >= mButtons.capacity())
+    {
+        mButtons.resize(mButtons.capacity() + 2);
+    }
+    mButtons[button->getScene()].push_back(button);
 }
 
 void ObjectController::keepDrawingObjects()
@@ -52,16 +60,18 @@ int ObjectController::getScene()
 
 void ObjectController::drawAllObjects()
 {
-    auto localDrawAbles = drawAbles;
+    auto localDrawAbles = mDrawAbles;
     BeginDrawing();
     ClearBackground(WHITE);
-    for (auto drawAble : localDrawAbles)
+
+    for (auto drawAble : localDrawAbles[mScene])
     {
-        if (drawAble->getScene() == mScene)
+        if (drawAble->isVisible())
         {
             drawAble->draw();
         }
     }
+
     EndDrawing();
 }
 
@@ -71,8 +81,8 @@ void ObjectController::handleClicks()
     {
         int x = GetMouseX();
         int y = GetMouseY();
-        std::list<Button*> buttonList = buttons;
-        for (auto button : buttonList)
+        std::vector<std::list<Button*>> buttonList = mButtons;
+        for (auto button : buttonList[mScene])
         {
             if (button->isVisible() && button->isPointInside(x, y))
             {
@@ -88,10 +98,10 @@ void ObjectController::handleDeletions()
     std::list<Button*> buttonsToDelete = buttonsToBeDeleted;
     for (auto drawAble : toDelete)
     {
-        drawAbles.remove(drawAble);
+        mDrawAbles[drawAble->getScene()].remove(drawAble);
     }
     for (auto button : buttonsToDelete)
     {
-        buttons.remove(button);
+        mButtons[button->getScene()].remove(button);
     }
 }

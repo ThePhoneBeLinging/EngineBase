@@ -12,6 +12,7 @@ int main()
     auto object = new RectangleButton(50, 50, 50, 50, textureController);
     auto otherObject = new RectangleButton(50, 50, 50, 50, textureController);
     otherObject->setTextureIndex(1);
+    otherObject->setScene(1);
     auto toDoOnClick = [](Button* button)
     {
         ObjectController::setScene(1);
