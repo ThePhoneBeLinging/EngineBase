@@ -36,9 +36,6 @@ add_executable(EngineBase main.cpp
         Components/BaseFiles/Button.cpp
         Components/RectangleButton.cpp
         Components/BaseFiles/ShapesPointChecker.cpp
-        Components/BaseFiles/ShapesPointChecker.h
-        Components/BaseFiles/DropDownMenu.cpp
-        Components/BaseFiles/DropDownMenu.h
 )
 
 
