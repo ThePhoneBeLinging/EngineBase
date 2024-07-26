@@ -8,6 +8,7 @@ std::list<DrawAbleObject*> ObjectController::drawAbles;
 std::list<DrawAbleObject*> ObjectController::toBeDeleted;
 std::list<Button*> ObjectController::buttons;
 std::list<Button*> ObjectController::buttonsToBeDeleted;
+int ObjectController::mScene = 0;
 
 void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
 {
@@ -39,6 +40,16 @@ void ObjectController::keepDrawingObjects()
     }
 }
 
+void ObjectController::setScene(int scene)
+{
+    mScene = scene;
+}
+
+int ObjectController::getScene()
+{
+    return mScene;
+}
+
 void ObjectController::drawAllObjects()
 {
     auto localDrawAbles = drawAbles;
@@ -46,7 +57,10 @@ void ObjectController::drawAllObjects()
     ClearBackground(WHITE);
     for (auto drawAble : localDrawAbles)
     {
-        drawAble->draw();
+        if (drawAble->getScene() == mScene)
+        {
+            drawAble->draw();
+        }
     }
     EndDrawing();
 }

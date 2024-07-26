@@ -14,10 +14,10 @@ public:
 	Button(int x, int y, int height, int width, std::shared_ptr<TextureController>& textureController);
 	virtual void onClick();
 	void deleteObject() override;
-	void setOnClick(std::function<void()> function);
+	void setOnClick(std::function<void(Button*)> function);
 
 private:
-	std::function<void()> mFunction;
+	std::function<void(Button*)> mFunction;
 };
 
 

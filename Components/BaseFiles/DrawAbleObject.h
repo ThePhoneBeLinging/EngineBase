@@ -31,6 +31,10 @@ public:
     int getHeight() const;
     int getWidth() const;
     bool isVisible() const;
+    int getScene() const;
+    void setScene(int m_scene);
+    int getLayer() const;
+    void setLayer(int m_layer);
 
 protected:
     int x;

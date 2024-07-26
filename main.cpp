@@ -1,6 +1,5 @@
 #include <iostream>
 #include <ObjectController.h>
-
 #include "DrawAbleObject.h"
 #include "RectangleButton.h"
 #include "TextureController.h"
@@ -13,9 +12,9 @@ int main()
     auto object = new RectangleButton(50, 50, 50, 50, textureController);
     auto otherObject = new RectangleButton(50, 50, 50, 50, textureController);
     otherObject->setTextureIndex(1);
-    auto toDoOnClick = []()
+    auto toDoOnClick = [](Button* button)
     {
-        std::cout << "DEAN";
+        button->deleteObject();
     };
     object->setOnClick(toDoOnClick);
     textureController->startGUI();

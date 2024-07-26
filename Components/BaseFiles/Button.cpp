@@ -19,7 +19,7 @@ void Button::onClick()
 {
     if (mFunction != nullptr)
     {
-        mFunction();
+        mFunction(this);
     }
 }
 
@@ -29,7 +29,7 @@ void Button::deleteObject()
     ObjectController::removeButton(this);
 }
 
-void Button::setOnClick(std::function<void()> function)
+void Button::setOnClick(std::function<void(Button*)> function)
 {
     this->mFunction = std::move(function);
 }

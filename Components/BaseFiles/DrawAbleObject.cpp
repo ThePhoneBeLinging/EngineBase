@@ -109,3 +109,23 @@ bool DrawAbleObject::isVisible() const
 {
     return mIsVisible;
 }
+
+int DrawAbleObject::getScene() const
+{
+    return mScene;
+}
+
+void DrawAbleObject::setScene(int m_scene)
+{
+    mScene = m_scene;
+}
+
+int DrawAbleObject::getLayer() const
+{
+    return mLayer;
+}
+
+void DrawAbleObject::setLayer(int m_layer)
+{
+    mLayer = m_layer;
+}
