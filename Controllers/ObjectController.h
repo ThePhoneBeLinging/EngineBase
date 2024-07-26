@@ -24,6 +24,7 @@ public:
     static void keepDrawingObjects();
     static void setScene(int scene);
     static int getScene();
+    static void handleDeletions();
 
 private:
     static std::vector<std::list<DrawAbleObject*>> mDrawAbles;
@@ -32,7 +33,7 @@ private:
     static std::list<Button*> buttonsToBeDeleted;
     static void drawAllObjects();
     static void handleClicks();
-    static void handleDeletions();
+
     static int mScene;
 };
 

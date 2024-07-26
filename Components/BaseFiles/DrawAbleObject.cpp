@@ -117,7 +117,10 @@ int DrawAbleObject::getScene() const
 
 void DrawAbleObject::setScene(int m_scene)
 {
+    ObjectController::removeObject(this);
+    ObjectController::handleDeletions();
     mScene = m_scene;
+    ObjectController::addDrawAbleObject(this);
 }
 
 int DrawAbleObject::getLayer() const

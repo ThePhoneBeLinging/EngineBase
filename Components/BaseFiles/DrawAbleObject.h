@@ -32,9 +32,9 @@ public:
     int getWidth() const;
     bool isVisible() const;
     int getScene() const;
-    void setScene(int m_scene);
+    virtual void setScene(int scene);
     int getLayer() const;
-    void setLayer(int m_layer);
+    void setLayer(int layer);
 
 protected:
     int x;
