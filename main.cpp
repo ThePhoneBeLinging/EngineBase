@@ -17,7 +17,12 @@ int main()
     {
         textureController->setScene(1);
     };
+    auto otherthing = [&textureController](Button* button)
+    {
+        textureController->setScene(0);
+    };
     object->setOnClick(toDoOnClick);
+    otherObject->setOnClick(otherthing);
     textureController->startGUI();
 
     return 0;

@@ -90,6 +90,7 @@ void ObjectController::handleClicks()
             if (button->isVisible() && button->isPointInside(x, y))
             {
                 button->onClick();
+                break;
             }
         }
     }

@@ -15,6 +15,7 @@ public:
 	virtual void onClick();
 	void deleteObject() override;
 	void setOnClick(std::function<void(Button*)> function);
+	void setScene(int scene) override;
 
 private:
 	std::function<void(Button*)> mFunction;

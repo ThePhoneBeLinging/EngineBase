@@ -4,7 +4,7 @@
 
 #include "RectangleButton.h"
 
-#include "ShapesPointChecker.h"
+#include "BaseFiles/ShapesPointChecker.h"
 
 RectangleButton::RectangleButton(int x, int y, int height, int width,
                                  std::shared_ptr<TextureController>& textureController) : Button(

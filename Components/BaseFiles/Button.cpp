@@ -33,3 +33,11 @@ void Button::setOnClick(std::function<void(Button*)> function)
 {
     this->mFunction = std::move(function);
 }
+
+void Button::setScene(int scene)
+{
+    ObjectController::removeButton(this);
+    ObjectController::handleDeletions();
+    PointCheckerObject::setScene(scene);
+    ObjectController::addButton(this);
+}

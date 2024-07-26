@@ -35,8 +35,8 @@ add_executable(EngineBase main.cpp
         Components/BaseFiles/PointCheckerObject.cpp
         Components/BaseFiles/Button.cpp
         Components/RectangleButton.cpp
-        Components/ShapesPointChecker.cpp
-        Components/ShapesPointChecker.h
+        Components/BaseFiles/ShapesPointChecker.cpp
+        Components/BaseFiles/ShapesPointChecker.h
 )
 
 

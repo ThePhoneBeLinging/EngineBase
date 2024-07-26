@@ -3,6 +3,7 @@
 //
 
 #include "ShapesPointChecker.h"
+#include "ShapesPointChecker.h"
 
 bool ShapesPointChecker::rectanglePointInsideChecker(DrawAbleObject* object, int x, int y)
 {
