@@ -27,7 +27,7 @@ public:
     static void handleDeletions();
 
 private:
-    static std::vector<std::list<DrawAbleObject*>> mDrawAbles;
+    static std::vector<std::vector<std::list<DrawAbleObject*>>> mAllDrawables;
     static std::vector<std::list<Button*>> mButtons;
     static std::list<DrawAbleObject*> mToBeDeleted;
     static std::list<Button*> mButtonsToBeDeleted;

@@ -6,7 +6,8 @@
 
 #include <iostream>
 
-std::vector<std::list<DrawAbleObject*>> ObjectController::mDrawAbles;
+std::vector<std::vector<std::list<DrawAbleObject*>>> ObjectController::mAllDrawables;
+
 std::list<DrawAbleObject*> ObjectController::mToBeDeleted;
 std::vector<std::list<Button*>> ObjectController::mButtons;
 std::list<Button*> ObjectController::mButtonsToBeDeleted;
@@ -14,12 +15,15 @@ int ObjectController::mScene = 0;
 
 void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
 {
-    while (drawAble->getScene() >= mDrawAbles.capacity())
+    while (drawAble->getScene() >= mAllDrawables.capacity())
     {
-        mDrawAbles.resize(mDrawAbles.size() + 1);
+        mAllDrawables.resize(mAllDrawables.size() + 1);
     }
-    mDrawAbles[drawAble->getScene()].push_back(drawAble);
-    auto test = mDrawAbles;
+    while (drawAble->getLayer() >= mAllDrawables[drawAble->getScene()].capacity())
+    {
+        mAllDrawables[drawAble->getScene()].resize(mAllDrawables[drawAble->getScene()].size() + 1);
+    }
+    mAllDrawables[drawAble->getScene()][drawAble->getLayer()].push_back(drawAble);
 }
 
 void ObjectController::removeObject(DrawAbleObject* drawAble)
@@ -63,15 +67,18 @@ int ObjectController::getScene()
 
 void ObjectController::drawAllObjects()
 {
-    auto localDrawAbles = mDrawAbles;
+    auto localDrawAbles = mAllDrawables;
     BeginDrawing();
     ClearBackground(WHITE);
     int scene = mScene;
-    for (auto drawAble : localDrawAbles[scene])
+    for (auto layers : localDrawAbles[scene])
     {
-        if (drawAble->isVisible())
+        for (auto drawAble : layers)
         {
-            drawAble->draw();
+            if (drawAble->isVisible())
+            {
+                drawAble->draw();
+            }
         }
     }
 
@@ -102,7 +109,7 @@ void ObjectController::handleDeletions()
     std::list<Button*> buttonsToDelete = mButtonsToBeDeleted;
     for (auto drawAble : toDelete)
     {
-        mDrawAbles[drawAble->getScene()].remove(drawAble);
+        mAllDrawables[drawAble->getScene()][drawAble->getLayer()].remove(drawAble);
     }
     for (auto button : buttonsToDelete)
     {

@@ -128,7 +128,10 @@ int DrawAbleObject::getLayer() const
     return mLayer;
 }
 
-void DrawAbleObject::setLayer(int m_layer)
+void DrawAbleObject::setLayer(int layer)
 {
-    mLayer = m_layer;
+    ObjectController::removeObject(this);
+    ObjectController::handleDeletions();
+    mLayer = layer;
+    ObjectController::addDrawAbleObject(this);
 }
