@@ -116,6 +116,8 @@ void ObjectController::handleDeletions()
 
 void ObjectController::sortScene(int scene)
 {
+    //TODO Currently sorts everything again upon any change to z value of any object.
+    // TLDR ineffecient
     mAllDrawables[scene].sort([](const DrawAbleObject* a, const DrawAbleObject* b)
     {
         return a->getZ() < b->getZ();
