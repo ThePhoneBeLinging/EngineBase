@@ -26,8 +26,13 @@ int main()
     {
         textureController->setScene(0);
     };
+    auto thirdThind = [&textureController](Button* button)
+    {
+        std::cout << "BOOM Pressed" << std::endl;
+    };
     object->setOnClick(toDoOnClick);
     otherObject->setOnClick(otherthing);
+    boom->setOnClick(thirdThind);
     textureController->startGUI();
 
     return 0;

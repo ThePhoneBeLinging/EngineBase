@@ -86,12 +86,13 @@ void ObjectController::handleClicks()
     {
         int x = GetMouseX();
         int y = GetMouseY();
-        std::vector<std::list<Button*>> buttonList = mButtons;
-        for (auto button : buttonList[mScene])
+        std::list<Button*> buttonList = mButtons[mScene];
+        for (auto button = buttonList.rbegin(); button != buttonList.rend(); ++button)
         {
-            if (button->isVisible() && button->isPointInside(x, y))
+            Button* btn = *button;
+            if (btn->isVisible() && btn->isPointInside(x, y))
             {
-                button->onClick();
+                btn->onClick();
                 break;
             }
         }
