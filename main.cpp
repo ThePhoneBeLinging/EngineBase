@@ -14,7 +14,7 @@ int main()
     otherObject->setTextureIndex(1);
     auto toDoOnClick = [](Button* button)
     {
-        button->deleteObject();
+        ObjectController::setScene(1);
     };
     object->setOnClick(toDoOnClick);
     textureController->startGUI();

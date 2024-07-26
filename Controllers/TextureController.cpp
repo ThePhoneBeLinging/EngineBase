@@ -26,7 +26,7 @@ void TextureController::addTexture(const std::string& texturePath, int firstInde
 
     while (mTextures[firstIndex].capacity() <= secondIndex)
     {
-        mTextures[firstIndex].resize(mTextures.capacity() + spacesPerResize);
+        mTextures[firstIndex].resize(mTextures[firstIndex].capacity() + spacesPerResize);
     }
     this->mTextures[firstIndex][secondIndex] = texture;
 }
