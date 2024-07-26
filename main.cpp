@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ObjectController.h>
 #include "DrawAbleObject.h"
+#include "EngineBase.h"
 #include "RectangleButton.h"
 #include "TextureController.h"
 
@@ -18,13 +19,13 @@ int main()
     object->addToScene(0);
     boom->addToScene(0);
     object->setZ(1);
-    auto toDoOnClick = [&textureController](Button* button)
+    auto toDoOnClick = [](Button* button)
     {
-        textureController->setScene(1);
+        EngineBase::setScene(1);
     };
-    auto otherthing = [&textureController](Button* button)
+    auto otherthing = [](Button* button)
     {
-        textureController->setScene(0);
+        EngineBase::setScene(0);
     };
     auto thirdThind = [&textureController](Button* button)
     {
@@ -33,7 +34,7 @@ int main()
     object->setOnClick(toDoOnClick);
     otherObject->setOnClick(otherthing);
     boom->setOnClick(thirdThind);
-    textureController->startGUI();
+    EngineBase::startGUI();
 
     return 0;
 }

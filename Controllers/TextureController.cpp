@@ -34,13 +34,3 @@ Texture2D TextureController::getTexture(int firstIndex, int secondIndex)
 {
     return this->mTextures[firstIndex][secondIndex];
 }
-
-void TextureController::setScene(int scene)
-{
-    ObjectController::setScene(scene);
-}
-
-void TextureController::startGUI()
-{
-    ObjectController::keepDrawingObjects();
-}
