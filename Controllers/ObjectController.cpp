@@ -120,4 +120,8 @@ void ObjectController::sortScene(int scene)
     {
         return a->getZ() < b->getZ();
     });
+    mButtons[scene].sort([](const Button* a, const Button* b)
+    {
+        return a->getZ() < b->getZ();
+    });
 }
