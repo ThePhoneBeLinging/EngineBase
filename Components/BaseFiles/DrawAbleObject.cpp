@@ -68,6 +68,7 @@ int DrawAbleObject::getZ() const
 void DrawAbleObject::setZ(int z)
 {
     this->z = z;
+    ObjectController::sortScene(this->getScene());
 }
 
 void DrawAbleObject::setTextureIndex(int textureIndex)

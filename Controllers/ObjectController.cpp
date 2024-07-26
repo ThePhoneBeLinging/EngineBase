@@ -4,6 +4,7 @@
 
 #include "ObjectController.h"
 
+#include <algorithm>
 #include <iostream>
 
 std::vector<std::list<DrawAbleObject*>> ObjectController::mAllDrawables;
@@ -20,6 +21,7 @@ void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
         mAllDrawables.resize(mAllDrawables.size() + 1);
     }
     mAllDrawables[drawAble->getScene()].push_back(drawAble);
+    sortScene(drawAble->getScene());
 }
 
 void ObjectController::removeObject(DrawAbleObject* drawAble)
@@ -110,4 +112,12 @@ void ObjectController::handleDeletions()
     }
     mToBeDeleted.clear();
     mButtonsToBeDeleted.clear();
+}
+
+void ObjectController::sortScene(int scene)
+{
+    mAllDrawables[scene].sort([](const DrawAbleObject* a, const DrawAbleObject* b)
+    {
+        return a->getZ() < b->getZ();
+    });
 }

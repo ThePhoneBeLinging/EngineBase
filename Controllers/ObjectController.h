@@ -25,6 +25,7 @@ public:
     static void setScene(int scene);
     static int getScene();
     static void handleDeletions();
+    static void sortScene(int scene);
 
 private:
     static std::vector<std::list<DrawAbleObject*>> mAllDrawables;

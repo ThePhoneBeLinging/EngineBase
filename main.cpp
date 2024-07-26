@@ -16,6 +16,8 @@ int main()
     otherObject->setTextureIndex(1);
     otherObject->addToScene(1);
     object->addToScene(0);
+    boom->addToScene(0);
+    object->setZ(1);
     auto toDoOnClick = [&textureController](Button* button)
     {
         textureController->setScene(1);
