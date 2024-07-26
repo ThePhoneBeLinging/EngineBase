@@ -5,7 +5,6 @@
 
 #include "TextureController.h"
 
-#include <iostream>
 
 #include "ObjectController.h"
 

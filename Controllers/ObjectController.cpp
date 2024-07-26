@@ -5,7 +5,6 @@
 #include "ObjectController.h"
 
 #include <algorithm>
-#include <iostream>
 
 std::vector<std::list<DrawAbleObject*>> ObjectController::mAllDrawables;
 
