@@ -4,7 +4,6 @@
 
 #ifndef RECTANGLEBUTTON_H
 #define RECTANGLEBUTTON_H
-#include <MacTypes.h>
 #include <memory>
 #include <PointCheckerObject.h>
 
