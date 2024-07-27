@@ -18,6 +18,11 @@ void EngineBase::setScene(int scene)
     ObjectController::mSceneManager.setScene(scene);
 }
 
+int EngineBase::getScene()
+{
+    return ObjectController::mSceneManager.getScene();
+}
+
 void EngineBase::startGUI()
 {
     ObjectController::keepDrawingObjects();
