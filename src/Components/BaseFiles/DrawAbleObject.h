@@ -4,6 +4,7 @@
 
 #ifndef DRAWABLEOBJECT_H
 #define DRAWABLEOBJECT_H
+#include <list>
 #include <memory>
 
 #include "Object.h"
@@ -19,7 +20,6 @@ public:
     virtual void deleteObject();
     virtual void addToScene(int scene);
     virtual void removeFromScene();
-    virtual bool isPointInside(int x, int y) = 0;
 
 
     int getZ() const;
@@ -47,6 +47,7 @@ protected:
     bool mIsDragAble;
     std::shared_ptr<TextureController> mTextureController;
     int mScene;
+    std::list<DrawAbleObject*> connectedObjects;
 };
 
 
