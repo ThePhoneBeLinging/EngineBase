@@ -85,8 +85,13 @@ void ObjectController::handleClicks()
 {
     if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
     {
+        int x = GetMouseX();
+        int y = GetMouseY();
         for (auto drawAble : mAllDrawables[mScene])
         {
+            if (drawAble->isPointInside(x, y))
+            {
+            }
         }
     }
     if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))

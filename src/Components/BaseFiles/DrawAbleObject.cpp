@@ -8,7 +8,8 @@
 #include "TextureController.h"
 
 DrawAbleObject::DrawAbleObject(int x, int y, int height, int width,
-                               const std::shared_ptr<TextureController>& textureController)
+                               const std::shared_ptr<TextureController>& textureController) : Object(
+    x, y, height, width)
 {
     this->x = x;
     this->y = y;
@@ -51,15 +52,6 @@ void DrawAbleObject::removeFromScene()
     ObjectController::removeObject(this);
 }
 
-void DrawAbleObject::setX(int x)
-{
-    this->x = x;
-}
-
-void DrawAbleObject::setY(int y)
-{
-    this->y = y;
-}
 
 int DrawAbleObject::getZ() const
 {
@@ -82,29 +74,10 @@ void DrawAbleObject::setTextureSecondIndex(int secondIndex)
     this->mTextureSecondIndex = secondIndex;
 }
 
-void DrawAbleObject::setHeight(int height)
-{
-    this->mHeight = height;
-}
-
-void DrawAbleObject::setWidth(int width)
-{
-    this->mWidth = width;
-}
 
 void DrawAbleObject::setVisible(bool isVisible)
 {
     this->mIsVisible = isVisible;
-}
-
-int DrawAbleObject::getX() const
-{
-    return x;
-}
-
-int DrawAbleObject::getY() const
-{
-    return y;
 }
 
 int DrawAbleObject::getTextureIndex() const
@@ -115,16 +88,6 @@ int DrawAbleObject::getTextureIndex() const
 int DrawAbleObject::getSecondTextureIndex() const
 {
     return mTextureSecondIndex;
-}
-
-int DrawAbleObject::getHeight() const
-{
-    return mHeight;
-}
-
-int DrawAbleObject::getWidth() const
-{
-    return mWidth;
 }
 
 bool DrawAbleObject::isVisible() const

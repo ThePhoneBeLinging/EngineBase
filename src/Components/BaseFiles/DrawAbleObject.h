@@ -5,10 +5,12 @@
 #ifndef DRAWABLEOBJECT_H
 #define DRAWABLEOBJECT_H
 #include <memory>
+
+#include "Object.h"
 #include "TextureController.h"
 
 
-class DrawAbleObject
+class DrawAbleObject : public Object
 {
 public:
     virtual ~DrawAbleObject() = default;
@@ -19,21 +21,14 @@ public:
     virtual void removeFromScene();
     virtual bool isPointInside(int x, int y) = 0;
 
-    void setX(int x);
-    void setY(int y);
+
     int getZ() const;
     void setZ(int z);
     void setTextureIndex(int textureIndex);
     void setTextureSecondIndex(int secondIndex);
-    void setHeight(int height);
-    void setWidth(int width);
     void setVisible(bool isVisible);
-    int getX() const;
-    int getY() const;
     int getTextureIndex() const;
     int getSecondTextureIndex() const;
-    int getHeight() const;
-    int getWidth() const;
     bool isVisible() const;
     int getScene() const;
     virtual void setScene(int scene);

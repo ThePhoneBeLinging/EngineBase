@@ -38,6 +38,8 @@ add_executable(EngineBase main.cpp
         src/Components/RectangleButton.cpp
         src/Components/BaseFiles/ShapesPointChecker.cpp
         include/EngineBase.cpp
+        src/Components/BaseFiles/Object.cpp
+        src/Components/BaseFiles/Object.h
 )
 
 
