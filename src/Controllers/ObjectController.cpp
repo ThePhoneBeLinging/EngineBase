@@ -5,12 +5,14 @@
 #include "ObjectController.h"
 
 #include <algorithm>
+#include <iostream>
 
 std::vector<std::list<DrawAbleObject*>> ObjectController::mAllDrawables;
 
 std::list<DrawAbleObject*> ObjectController::mToBeDeleted;
 std::vector<std::list<Button*>> ObjectController::mButtons;
 std::list<Button*> ObjectController::mButtonsToBeDeleted;
+DrawAbleObject* ObjectController::mDraggedDrawAble;
 int ObjectController::mScene = 0;
 
 void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
@@ -81,6 +83,16 @@ void ObjectController::drawAllObjects()
 
 void ObjectController::handleClicks()
 {
+    if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
+    {
+        for (auto drawAble : mAllDrawables[mScene])
+        {
+            if ()
+
+
+
+        }
+    }
     if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
     {
         int x = GetMouseX();
