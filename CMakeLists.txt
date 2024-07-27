@@ -28,6 +28,7 @@ endif ()
 include_directories(src/Controllers)
 include_directories(src/Components)
 include_directories(src/Components/BaseFiles)
+include_directories(src/Components/BaseFiles/ObjectFiles)
 include_directories(include)
 
 add_executable(EngineBase main.cpp
@@ -39,7 +40,7 @@ add_executable(EngineBase main.cpp
         src/Components/BaseFiles/ShapesPointChecker.cpp
         include/EngineBase.cpp
         src/Components/BaseFiles/Object.cpp
-        src/Components/BaseFiles/Object.h
+        src/Components/BaseFiles/ObjectFiles/Visibility.cpp
 )
 
 

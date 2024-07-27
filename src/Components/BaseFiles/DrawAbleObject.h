@@ -9,6 +9,7 @@
 
 #include "Object.h"
 #include "TextureController.h"
+#include "Visibility.h"
 
 
 class DrawAbleObject : public Object
@@ -26,26 +27,22 @@ public:
     void setZ(int z);
     void setTextureIndex(int textureIndex);
     void setTextureSecondIndex(int secondIndex);
-    void setVisible(bool isVisible);
     int getTextureIndex() const;
     int getSecondTextureIndex() const;
-    bool isVisible() const;
     int getScene() const;
     virtual void setScene(int scene);
     bool isDragAble() const;
     void setDragAble(bool dragAble);
+    Visibility mVisibility;
 
 protected:
-    int x;
-    int y;
     int z;
     int mTextureIndex;
     int mTextureSecondIndex;
-    int mHeight;
-    int mWidth;
-    bool mIsVisible;
-    bool mIsDragAble;
     std::shared_ptr<TextureController> mTextureController;
+
+
+    bool mIsDragAble;
     int mScene;
     std::list<DrawAbleObject*> connectedObjects;
 };

@@ -16,7 +16,7 @@ Button::Button(int x, int y, int height, int width,
 
 void Button::onClick()
 {
-    if (mFunction != nullptr)
+    if (mFunction != nullptr && this->mVisibility.isVisisble())
     {
         mFunction(this);
     }

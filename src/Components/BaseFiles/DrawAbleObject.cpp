@@ -18,7 +18,7 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width,
     this->mTextureSecondIndex = 0;
     this->mHeight = height;
     this->mWidth = width;
-    this->mIsVisible = true;
+    this->mVisibility = Visibility();
     this->mIsDragAble = true;
     this->mTextureController = textureController;
     this->mScene = 0;
@@ -26,7 +26,7 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width,
 
 void DrawAbleObject::draw()
 {
-    if (this->mIsVisible)
+    if (this->mVisibility.isVisisble())
     {
         mTextureController->draw(x, y, mHeight, mWidth, mTextureIndex, mTextureSecondIndex);
     }
@@ -71,11 +71,6 @@ void DrawAbleObject::setTextureSecondIndex(int secondIndex)
 }
 
 
-void DrawAbleObject::setVisible(bool isVisible)
-{
-    this->mIsVisible = isVisible;
-}
-
 int DrawAbleObject::getTextureIndex() const
 {
     return mTextureIndex;
@@ -84,11 +79,6 @@ int DrawAbleObject::getTextureIndex() const
 int DrawAbleObject::getSecondTextureIndex() const
 {
     return mTextureSecondIndex;
-}
-
-bool DrawAbleObject::isVisible() const
-{
-    return mIsVisible;
 }
 
 int DrawAbleObject::getScene() const

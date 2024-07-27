@@ -72,10 +72,7 @@ void ObjectController::drawAllObjects()
     int scene = mScene;
     for (auto drawAble : localDrawAbles[scene])
     {
-        if (drawAble->isVisible())
-        {
-            drawAble->draw();
-        }
+        drawAble->draw();
     }
 
     EndDrawing();
@@ -102,7 +99,7 @@ void ObjectController::handleClicks()
         for (auto button = buttonList.rbegin(); button != buttonList.rend(); ++button)
         {
             Button* btn = *button;
-            if (btn->isVisible() && btn->isPointInside(x, y))
+            if (btn->isPointInside(x, y))
             {
                 btn->onClick();
                 break;
