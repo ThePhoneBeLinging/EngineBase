@@ -17,12 +17,12 @@ int ObjectController::mScene = 0;
 
 void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
 {
-    while (drawAble->getScene() >= mAllDrawables.capacity())
+    while (drawAble->mSceneManager.getScene() >= mAllDrawables.capacity())
     {
         mAllDrawables.resize(mAllDrawables.size() + 1);
     }
-    mAllDrawables[drawAble->getScene()].push_back(drawAble);
-    sortScene(drawAble->getScene());
+    mAllDrawables[drawAble->mSceneManager.getScene()].push_back(drawAble);
+    sortScene(drawAble->mSceneManager.getScene());
 }
 
 void ObjectController::removeObject(DrawAbleObject* drawAble)
@@ -37,11 +37,11 @@ void ObjectController::removeButton(Button* button)
 
 void ObjectController::addButton(Button* button)
 {
-    while (button->getScene() >= mButtons.capacity())
+    while (button->mSceneManager.getScene() >= mButtons.capacity())
     {
         mButtons.resize(mButtons.capacity() + 2);
     }
-    mButtons[button->getScene()].push_back(button);
+    mButtons[button->mSceneManager.getScene()].push_back(button);
 }
 
 void ObjectController::keepDrawingObjects()
@@ -114,11 +114,11 @@ void ObjectController::handleDeletions()
     std::list<Button*> buttonsToDelete = mButtonsToBeDeleted;
     for (auto drawAble : toDelete)
     {
-        mAllDrawables[drawAble->getScene()].remove(drawAble);
+        mAllDrawables[drawAble->mSceneManager.getScene()].remove(drawAble);
     }
     for (auto button : buttonsToDelete)
     {
-        mButtons[button->getScene()].remove(button);
+        mButtons[button->mSceneManager.getScene()].remove(button);
     }
     mToBeDeleted.clear();
     mButtonsToBeDeleted.clear();

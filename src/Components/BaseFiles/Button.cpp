@@ -35,7 +35,7 @@ void Button::setOnClick(std::function<void(Button*)> function)
 
 void Button::addToScene(int scene)
 {
-    DrawAbleObject::setScene(scene);
+    this->mSceneManager.setScene(scene);
     ObjectController::addButton(this);
     DrawAbleObject::addToScene(scene);
 }

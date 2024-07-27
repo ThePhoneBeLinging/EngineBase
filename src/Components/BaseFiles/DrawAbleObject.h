@@ -9,6 +9,7 @@
 
 #include "DragAble.h"
 #include "Object.h"
+#include "SceneManager.h"
 #include "TextureController.h"
 #include "Visibility.h"
 
@@ -30,10 +31,10 @@ public:
     void setTextureSecondIndex(int secondIndex);
     int getTextureIndex() const;
     int getSecondTextureIndex() const;
-    int getScene() const;
-    virtual void setScene(int scene);
+
     Visibility mVisibility;
     DragAble mDragAble;
+    SceneManager mSceneManager;
 
 protected:
     int z;
@@ -41,8 +42,6 @@ protected:
     int mTextureSecondIndex;
     std::shared_ptr<TextureController> mTextureController;
 
-
-    int mScene;
     std::list<DrawAbleObject*> connectedObjects;
 };
 

@@ -20,8 +20,8 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width,
     this->mWidth = width;
     this->mVisibility = Visibility();
     this->mDragAble = DragAble();
+    this->mSceneManager = SceneManager();
     this->mTextureController = textureController;
-    this->mScene = 0;
 }
 
 void DrawAbleObject::draw()
@@ -39,7 +39,7 @@ void DrawAbleObject::deleteObject()
 
 void DrawAbleObject::addToScene(int scene)
 {
-    this->setScene(scene);
+    this->mSceneManager.setScene(scene);
     ObjectController::addDrawAbleObject(this);
 }
 
@@ -57,7 +57,7 @@ int DrawAbleObject::getZ() const
 void DrawAbleObject::setZ(int z)
 {
     this->z = z;
-    ObjectController::sortScene(this->getScene());
+    ObjectController::sortScene(this->mSceneManager.getScene());
 }
 
 void DrawAbleObject::setTextureIndex(int textureIndex)
@@ -79,16 +79,6 @@ int DrawAbleObject::getTextureIndex() const
 int DrawAbleObject::getSecondTextureIndex() const
 {
     return mTextureSecondIndex;
-}
-
-int DrawAbleObject::getScene() const
-{
-    return mScene;
-}
-
-void DrawAbleObject::setScene(int scene)
-{
-    this->mScene = scene;
 }
 
 
