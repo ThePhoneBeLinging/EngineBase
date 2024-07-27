@@ -18,6 +18,7 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width,
     this->mHeight = height;
     this->mWidth = width;
     this->mIsVisible = true;
+    this->mIsDragAble = true;
     this->mTextureController = textureController;
     this->mScene = 0;
 }
@@ -139,6 +140,16 @@ int DrawAbleObject::getScene() const
 void DrawAbleObject::setScene(int scene)
 {
     this->mScene = scene;
+}
+
+bool DrawAbleObject::isDragAble() const
+{
+    return this->mIsDragAble;
+}
+
+void DrawAbleObject::setDragAble(bool dragAble)
+{
+    this->mIsDragAble = dragAble;
 }
 
 

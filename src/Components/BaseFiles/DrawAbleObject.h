@@ -37,6 +37,8 @@ public:
     bool isVisible() const;
     int getScene() const;
     virtual void setScene(int scene);
+    bool isDragAble() const;
+    void setDragAble(bool dragAble);
 
 protected:
     int x;
@@ -47,6 +49,7 @@ protected:
     int mHeight;
     int mWidth;
     bool mIsVisible;
+    bool mIsDragAble;
     std::shared_ptr<TextureController> mTextureController;
     int mScene;
 };
