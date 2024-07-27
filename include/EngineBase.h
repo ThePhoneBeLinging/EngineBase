@@ -10,7 +10,7 @@
 class EngineBase
 {
 public:
-    static void addTexture(const std::string&, int firstIndex, int secondIndex);
+    static void addTexture(const std::string& texturePath, int firstIndex, int secondIndex);
     static void setScene(int scene);
     static void startGUI();
 

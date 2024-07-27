@@ -8,8 +8,8 @@
 int main()
 {
     std::shared_ptr<TextureController> textureController = std::make_shared<TextureController>();
-    textureController->addTexture("../BBishop.png", 0, 0);
-    textureController->addTexture("../BKnight.png", 1, 0);
+    textureController->addTexture("../src/BBishop.png", 0, 0);
+    textureController->addTexture("../src/BKnight.png", 1, 0);
     auto object = new RectangleButton(50, 50, 50, 50, textureController);
     auto otherObject = new RectangleButton(50, 50, 50, 50, textureController);
     auto boom = new RectangleButton(50, 50, 50, 50, textureController);

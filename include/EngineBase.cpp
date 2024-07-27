@@ -8,8 +8,9 @@
 
 TextureController EngineBase::mTextureController = TextureController();
 
-void EngineBase::addTexture(const std::string&, int firstIndex, int secondIndex)
+void EngineBase::addTexture(const std::string& texturePath, int firstIndex, int secondIndex)
 {
+    mTextureController.addTexture(texturePath, firstIndex, secondIndex);
 }
 
 void EngineBase::setScene(int scene)

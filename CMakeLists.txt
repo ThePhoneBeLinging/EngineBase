@@ -24,19 +24,21 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
 endif ()
 
 ###
-include_directories(Controllers)
-include_directories(Components)
-include_directories(Components/BaseFiles)
+
+include_directories(src/Controllers)
+include_directories(src/Components)
+include_directories(src/Components/BaseFiles)
+include_directories(include)
 
 add_executable(EngineBase main.cpp
-        Controllers/TextureController.cpp
-        Components/BaseFiles/DrawAbleObject.cpp
-        Controllers/ObjectController.cpp
-        Components/BaseFiles/PointCheckerObject.cpp
-        Components/BaseFiles/Button.cpp
-        Components/RectangleButton.cpp
-        Components/BaseFiles/ShapesPointChecker.cpp
-        Controllers/EngineBase.cpp
+        src/Controllers/TextureController.cpp
+        src/Components/BaseFiles/DrawAbleObject.cpp
+        src/Controllers/ObjectController.cpp
+        src/Components/BaseFiles/PointCheckerObject.cpp
+        src/Components/BaseFiles/Button.cpp
+        src/Components/RectangleButton.cpp
+        src/Components/BaseFiles/ShapesPointChecker.cpp
+        include/EngineBase.cpp
 )
 
 
