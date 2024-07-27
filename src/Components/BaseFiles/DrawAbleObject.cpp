@@ -28,11 +28,7 @@ void DrawAbleObject::draw()
 {
     if (this->mIsVisible)
     {
-        Texture2D textureToDraw = mTextureController->getTexture(this->mTextureIndex, this->mTextureSecondIndex);
-        textureToDraw.width = mWidth;
-        textureToDraw.height = mHeight;
-        DrawTexture(textureToDraw, this->x, this->y,
-                    WHITE);
+        mTextureController->draw(x, y, mHeight, mWidth, mTextureIndex, mTextureSecondIndex);
     }
 }
 

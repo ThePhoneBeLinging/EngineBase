@@ -30,7 +30,10 @@ void TextureController::addTexture(const std::string& texturePath, int firstInde
     this->mTextures[firstIndex][secondIndex] = texture;
 }
 
-Texture2D TextureController::getTexture(int firstIndex, int secondIndex)
+void TextureController::draw(int x, int y, int height, int width, int firstIndex, int secondIndex)
 {
-    return this->mTextures[firstIndex][secondIndex];
+    Texture2D texture = mTextures[firstIndex][secondIndex];
+    texture.height = height;
+    texture.width = width;
+    DrawTexture(texture, x, y,WHITE);
 }
