@@ -21,10 +21,9 @@ public:
     static void removeButton(Button* button);
     static void addButton(Button* button);
     static void keepDrawingObjects();
-    static void setScene(int scene);
-    static int getScene();
     static void handleDeletions();
     static void sortScene(int scene);
+    static SceneManager mSceneManager;
 
 private:
     static std::vector<std::list<DrawAbleObject*>> mAllDrawables;
@@ -34,8 +33,6 @@ private:
     static DrawAbleObject* mDraggedDrawAble;
     static void drawAllObjects();
     static void handleClicks();
-
-    static int mScene;
 };
 
 

@@ -13,7 +13,7 @@ std::list<DrawAbleObject*> ObjectController::mToBeDeleted;
 std::vector<std::list<Button*>> ObjectController::mButtons;
 std::list<Button*> ObjectController::mButtonsToBeDeleted;
 DrawAbleObject* ObjectController::mDraggedDrawAble;
-int ObjectController::mScene = 0;
+SceneManager ObjectController::mSceneManager = SceneManager();
 
 void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
 {
@@ -54,22 +54,12 @@ void ObjectController::keepDrawingObjects()
     }
 }
 
-void ObjectController::setScene(int scene)
-{
-    mScene = scene;
-}
-
-int ObjectController::getScene()
-{
-    return mScene;
-}
-
 void ObjectController::drawAllObjects()
 {
     auto localDrawAbles = mAllDrawables;
     BeginDrawing();
     ClearBackground(WHITE);
-    int scene = mScene;
+    int scene = mSceneManager.getScene();
     for (auto drawAble : localDrawAbles[scene])
     {
         drawAble->draw();
@@ -84,7 +74,7 @@ void ObjectController::handleClicks()
     {
         int x = GetMouseX();
         int y = GetMouseY();
-        for (auto drawAble : mAllDrawables[mScene])
+        for (auto drawAble : mAllDrawables[mSceneManager.getScene()])
         {
             if (drawAble->isPointInside(x, y))
             {
@@ -95,7 +85,7 @@ void ObjectController::handleClicks()
     {
         int x = GetMouseX();
         int y = GetMouseY();
-        std::list<Button*> buttonList = mButtons[mScene];
+        std::list<Button*> buttonList = mButtons[mSceneManager.getScene()];
         for (auto button = buttonList.rbegin(); button != buttonList.rend(); ++button)
         {
             Button* btn = *button;

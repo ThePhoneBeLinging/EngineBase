@@ -38,7 +38,7 @@ add_executable(EngineBase main.cpp
         src/Components/BaseFiles/Button.cpp
         src/Components/RectangleButton.cpp
         src/Components/BaseFiles/ShapesPointChecker.cpp
-        include/EngineBase.cpp
+        src/Controllers/EngineBase.cpp
         src/Components/BaseFiles/Object.cpp
         src/Components/BaseFiles/ObjectFiles/Visibility.cpp
         src/Components/BaseFiles/ObjectFiles/DragAble.cpp

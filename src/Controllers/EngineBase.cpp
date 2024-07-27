@@ -15,7 +15,7 @@ void EngineBase::addTexture(const std::string& texturePath, int firstIndex, int 
 
 void EngineBase::setScene(int scene)
 {
-    ObjectController::setScene(scene);
+    ObjectController::mSceneManager.setScene(scene);
 }
 
 void EngineBase::startGUI()
