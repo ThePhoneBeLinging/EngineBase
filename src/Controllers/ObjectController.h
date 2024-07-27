@@ -6,7 +6,6 @@
 #define OBJECTCONTROLLER_H
 
 #include <list>
-#include <PointCheckerObject.h>
 #include <thread>
 #include <raylib.h>
 
@@ -32,7 +31,7 @@ private:
     static std::vector<std::list<Button*>> mButtons;
     static std::list<DrawAbleObject*> mToBeDeleted;
     static std::list<Button*> mButtonsToBeDeleted;
-	static DrawAbleObject* mDraggedDrawAble;
+    static DrawAbleObject* mDraggedDrawAble;
     static void drawAllObjects();
     static void handleClicks();
 

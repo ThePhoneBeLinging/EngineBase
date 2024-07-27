@@ -87,10 +87,6 @@ void ObjectController::handleClicks()
     {
         for (auto drawAble : mAllDrawables[mScene])
         {
-            if ()
-
-
-
         }
     }
     if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))

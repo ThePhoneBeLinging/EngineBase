@@ -4,11 +4,11 @@
 
 #ifndef BUTTON_H
 #define BUTTON_H
+#include <DrawAbleObject.h>
 #include <functional>
-#include <PointCheckerObject.h>
 
 
-class Button : public PointCheckerObject
+class Button : public DrawAbleObject
 {
 public:
 	Button(int x, int y, int height, int width, std::shared_ptr<TextureController>& textureController);

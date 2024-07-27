@@ -17,7 +17,7 @@ public:
     virtual void deleteObject();
     virtual void addToScene(int scene);
     virtual void removeFromScene();
-
+    virtual bool isPointInside(int x, int y) = 0;
 
     void setX(int x);
     void setY(int y);

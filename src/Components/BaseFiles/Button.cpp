@@ -9,7 +9,7 @@
 #include <utility>
 
 Button::Button(int x, int y, int height, int width,
-               std::shared_ptr<TextureController>& textureController) : PointCheckerObject(
+               std::shared_ptr<TextureController>& textureController) : DrawAbleObject(
     x, y, height, width, textureController)
 {
 }
@@ -24,7 +24,7 @@ void Button::onClick()
 
 void Button::deleteObject()
 {
-    PointCheckerObject::deleteObject();
+    DrawAbleObject::deleteObject();
     ObjectController::removeButton(this);
 }
 
@@ -35,7 +35,7 @@ void Button::setOnClick(std::function<void(Button*)> function)
 
 void Button::addToScene(int scene)
 {
-    PointCheckerObject::setScene(scene);
+    DrawAbleObject::setScene(scene);
     ObjectController::addButton(this);
-    PointCheckerObject::addToScene(scene);
+    DrawAbleObject::addToScene(scene);
 }
