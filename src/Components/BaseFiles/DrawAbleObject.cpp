@@ -7,8 +7,7 @@
 #include "ObjectController.h"
 #include "TextureController.h"
 
-DrawAbleObject::DrawAbleObject(int x, int y, int height, int width,
-                               const std::shared_ptr<TextureController>& textureController) : Object(
+DrawAbleObject::DrawAbleObject(int x, int y, int height, int width) : Object(
     x, y, height, width)
 {
     this->x = x;
@@ -21,14 +20,13 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width,
     this->mVisibility = Visibility();
     this->mDragAble = DragAble();
     this->mSceneManager = SceneManager();
-    this->mTextureController = textureController;
 }
 
 void DrawAbleObject::draw()
 {
     if (this->mVisibility.isVisisble())
     {
-        mTextureController->draw(x, y, mHeight, mWidth, mTextureIndex, mTextureSecondIndex);
+        TextureController::draw(x, y, mHeight, mWidth, mTextureIndex, mTextureSecondIndex);
     }
 }
 

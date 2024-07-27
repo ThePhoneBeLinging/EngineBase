@@ -11,7 +11,7 @@
 class Button : public DrawAbleObject
 {
 public:
-	Button(int x, int y, int height, int width, std::shared_ptr<TextureController>& textureController);
+	Button(int x, int y, int height, int width);
 	virtual void onClick();
 	void deleteObject() override;
 	void setOnClick(std::function<void(Button*)> function);

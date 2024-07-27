@@ -6,9 +6,8 @@
 
 #include "ShapesPointChecker.h"
 
-RectangleButton::RectangleButton(int x, int y, int height, int width,
-                                 std::shared_ptr<TextureController>& textureController) : Button(
-    x, y, height, width, textureController)
+RectangleButton::RectangleButton(int x, int y, int height, int width) : Button(
+    x, y, height, width)
 {
 }
 

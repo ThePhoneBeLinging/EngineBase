@@ -8,9 +8,8 @@
 
 #include <utility>
 
-Button::Button(int x, int y, int height, int width,
-               std::shared_ptr<TextureController>& textureController) : DrawAbleObject(
-    x, y, height, width, textureController)
+Button::Button(int x, int y, int height, int width) : DrawAbleObject(
+    x, y, height, width)
 {
 }
 

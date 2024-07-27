@@ -15,9 +15,6 @@ public:
     static int getScene();
     static void startGUI();
 
-private:
-    static TextureController mTextureController;
-
     // Key to ints stolen from RayLib
     typedef enum
     {

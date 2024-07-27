@@ -4,14 +4,15 @@
 
 
 #include "TextureController.h"
-
-
 #include "ObjectController.h"
 
-TextureController::TextureController()
+std::vector<std::vector<Texture2D>> TextureController::mTextures;
+int TextureController::spacesPerResize = 50;
+
+void TextureController::initialize()
 {
     InitWindow(800, 600, "M3");
-    this->mTextures.resize(spacesPerResize);
+    mTextures.resize(spacesPerResize);
 }
 
 //TODO Check this function, something seems off with the increments in size;
@@ -27,7 +28,7 @@ void TextureController::addTexture(const std::string& texturePath, int firstInde
     {
         mTextures[firstIndex].resize(mTextures[firstIndex].capacity() + spacesPerResize);
     }
-    this->mTextures[firstIndex][secondIndex] = texture;
+    mTextures[firstIndex][secondIndex] = texture;
 }
 
 void TextureController::draw(int x, int y, int height, int width, int firstIndex, int secondIndex)

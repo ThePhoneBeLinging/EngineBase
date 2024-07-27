@@ -13,7 +13,7 @@
 class RectangleButton : public Button
 {
 public:
-    RectangleButton(int x, int y, int height, int width, std::shared_ptr<TextureController>& textureController);
+    RectangleButton(int x, int y, int height, int width);
     bool isPointInside(int xToCheck, int yToCheck) override;
 };
 

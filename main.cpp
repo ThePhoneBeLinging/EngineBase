@@ -7,12 +7,12 @@
 
 int main()
 {
-    std::shared_ptr<TextureController> textureController = std::make_shared<TextureController>();
-    textureController->addTexture("../src/BBishop.png", 0, 0);
-    textureController->addTexture("../src/BKnight.png", 1, 0);
-    auto object = new RectangleButton(50, 50, 50, 50, textureController);
-    auto otherObject = new RectangleButton(50, 50, 50, 50, textureController);
-    auto boom = new RectangleButton(50, 50, 50, 50, textureController);
+    TextureController::initialize();
+    TextureController::addTexture("../src/BBishop.png", 0, 0);
+    TextureController::addTexture("../src/BKnight.png", 1, 0);
+    auto object = new RectangleButton(50, 50, 50, 50);
+    auto otherObject = new RectangleButton(50, 50, 50, 50);
+    auto boom = new RectangleButton(50, 50, 50, 50);
     boom->setTextureIndex(1);
     otherObject->setTextureIndex(1);
     otherObject->addToScene(1);
@@ -27,7 +27,7 @@ int main()
     {
         EngineBase::setScene(0);
     };
-    auto thirdThind = [&textureController](Button* button)
+    auto thirdThind = [](Button* button)
     {
         std::cout << "BOOM Pressed" << std::endl;
     };

@@ -13,13 +13,13 @@
 class TextureController
 {
 public:
-    TextureController();
-    void addTexture(const std::string& texturePath, int firstIndex, int secondIndex);
-    void draw(int x, int y, int height, int width, int firstIndex, int secondIndex);
+    static void initialize();
+    static void addTexture(const std::string& texturePath, int firstIndex, int secondIndex);
+    static void draw(int x, int y, int height, int width, int firstIndex, int secondIndex);
 
 private:
-    std::vector<std::vector<Texture2D>> mTextures;
-    int spacesPerResize = 50;
+    static std::vector<std::vector<Texture2D>> mTextures;
+    static int spacesPerResize;
 };
 
 

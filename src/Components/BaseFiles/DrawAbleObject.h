@@ -18,7 +18,7 @@ class DrawAbleObject : public Object
 {
 public:
     virtual ~DrawAbleObject() = default;
-    DrawAbleObject(int x, int y, int height, int width, const std::shared_ptr<TextureController>& textureController);
+    DrawAbleObject(int x, int y, int height, int width);
     void draw();
     virtual void deleteObject();
     virtual void addToScene(int scene);
@@ -40,7 +40,6 @@ protected:
     int z;
     int mTextureIndex;
     int mTextureSecondIndex;
-    std::shared_ptr<TextureController> mTextureController;
 
     std::list<DrawAbleObject*> connectedObjects;
 };

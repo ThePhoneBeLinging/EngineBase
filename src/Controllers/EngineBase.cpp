@@ -6,11 +6,9 @@
 
 #include <ObjectController.h>
 
-TextureController EngineBase::mTextureController = TextureController();
-
 void EngineBase::addTexture(const std::string& texturePath, int firstIndex, int secondIndex)
 {
-    mTextureController.addTexture(texturePath, firstIndex, secondIndex);
+    TextureController::addTexture(texturePath, firstIndex, secondIndex);
 }
 
 void EngineBase::setScene(int scene)
