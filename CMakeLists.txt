@@ -41,6 +41,8 @@ add_executable(EngineBase main.cpp
         include/EngineBase.cpp
         src/Components/BaseFiles/Object.cpp
         src/Components/BaseFiles/ObjectFiles/Visibility.cpp
+        src/Components/BaseFiles/ObjectFiles/DragAble.cpp
+        src/Components/BaseFiles/ObjectFiles/DragAble.h
 )
 
 
