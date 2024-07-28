@@ -4,6 +4,8 @@
 
 #include "Object.h"
 
+#include <ShapesPointChecker.h>
+
 Object::Object(int x, int y, int height, int width)
 {
     this->x = x;
@@ -51,4 +53,9 @@ int Object::getHeight() const
 int Object::getWidth() const
 {
     return mWidth;
+}
+
+bool Object::isPointInside(int x, int y)
+{
+    return ShapesPointChecker::rectanglePointInsideChecker(this, x, y);
 }

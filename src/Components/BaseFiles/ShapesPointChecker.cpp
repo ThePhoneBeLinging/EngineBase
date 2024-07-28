@@ -5,7 +5,7 @@
 #include "ShapesPointChecker.h"
 
 
-bool ShapesPointChecker::rectanglePointInsideChecker(DrawAbleObject* object, int x, int y)
+bool ShapesPointChecker::rectanglePointInsideChecker(Object* object, int x, int y)
 {
     return object->getX() < x && x < (object->getX() + object->getWidth()) && object->getY() < y && y < object->getY() +
         object->getHeight();

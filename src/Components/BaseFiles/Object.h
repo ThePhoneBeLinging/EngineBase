@@ -18,7 +18,7 @@ public:
     int getY() const;
     int getHeight() const;
     int getWidth() const;
-    virtual bool isPointInside(int x, int y) = 0;
+    virtual bool isPointInside(int x, int y);
 
 protected:
     int x;

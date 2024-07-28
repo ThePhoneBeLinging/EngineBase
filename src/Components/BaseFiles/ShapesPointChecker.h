@@ -10,7 +10,7 @@
 class ShapesPointChecker
 {
 public:
-    static bool rectanglePointInsideChecker(DrawAbleObject* object, int x, int y);
+    static bool rectanglePointInsideChecker(Object* object, int x, int y);
 };
 
 
