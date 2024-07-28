@@ -7,7 +7,6 @@
 
 int main()
 {
-    TextureController::initialize();
     TextureController::addTexture("../src/BBishop.png", 0, 0);
     TextureController::addTexture("../src/BKnight.png", 1, 0);
     auto object = new RectangleButton(50, 50, 50, 50);

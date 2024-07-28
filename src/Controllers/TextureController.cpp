@@ -8,16 +8,16 @@
 
 std::vector<std::vector<Texture2D>> TextureController::mTextures;
 int TextureController::spacesPerResize = 50;
-
-void TextureController::initialize()
-{
-    InitWindow(800, 600, "M3");
-    mTextures.resize(spacesPerResize);
-}
+bool TextureController::mWindowInitialized = false;
 
 //TODO Check this function, something seems off with the increments in size;
 void TextureController::addTexture(const std::string& texturePath, int firstIndex, int secondIndex)
 {
+    if (!mWindowInitialized)
+    {
+        InitWindow(800, 600, "M3");
+        mWindowInitialized = true;
+    }
     Texture2D texture = LoadTexture(texturePath.c_str());
     while (mTextures.capacity() <= firstIndex)
     {
