@@ -23,7 +23,8 @@ public:
     virtual void deleteObject();
     virtual void addToScene(int scene);
     virtual void removeFromScene();
-
+    void connectDrawAble(DrawAbleObject* drawAble);
+    void disconnectDrawAble(DrawAbleObject* drawAble);
 
     int getZ() const;
     void setZ(int z);
@@ -41,7 +42,7 @@ protected:
     int mTextureIndex;
     int mTextureSecondIndex;
 
-    std::list<DrawAbleObject*> connectedObjects;
+    std::list<DrawAbleObject*> mConnectedObjects;
 };
 
 
