@@ -7,6 +7,7 @@
 #include <list>
 #include <memory>
 
+#include "ConnectionManager.h"
 #include "DragAble.h"
 #include "Object.h"
 #include "SceneManager.h"
@@ -23,8 +24,7 @@ public:
     virtual void deleteObject();
     virtual void addToScene(int scene);
     virtual void removeFromScene();
-    void connectDrawAble(DrawAbleObject* drawAble);
-    void disconnectDrawAble(DrawAbleObject* drawAble);
+
 
     int getZ() const;
     void setZ(int z);
@@ -36,13 +36,12 @@ public:
     Visibility mVisibility;
     DragAble mDragAble;
     SceneManager mSceneManager;
+    ConnectionManager mConnectionManager;
 
 protected:
     int z;
     int mTextureIndex;
     int mTextureSecondIndex;
-
-    std::list<DrawAbleObject*> mConnectedObjects;
 };
 
 

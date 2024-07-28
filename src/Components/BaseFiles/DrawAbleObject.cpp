@@ -20,12 +20,13 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width) : Object(
     this->mVisibility = Visibility();
     this->mDragAble = DragAble();
     this->mSceneManager = SceneManager();
-    this->connectDrawAble(this);
+    this->mConnectionManager = ConnectionManager();
+    mConnectionManager.connectDrawAble(this);
 }
 
 void DrawAbleObject::draw()
 {
-    for (auto drawAble : mConnectedObjects)
+    for (auto drawAble : mConnectionManager.getConnectedObjects())
     {
         if (drawAble->mVisibility.isVisisble())
         {
@@ -49,21 +50,6 @@ void DrawAbleObject::addToScene(int scene)
 void DrawAbleObject::removeFromScene()
 {
     ObjectController::removeObject(this);
-}
-
-void DrawAbleObject::connectDrawAble(DrawAbleObject* drawAble)
-{
-    this->mConnectedObjects.push_back(drawAble);
-    mConnectedObjects.sort([](const DrawAbleObject* a, const DrawAbleObject* b)
-    {
-        return a->getZ() < b->getZ();
-    });
-}
-
-void DrawAbleObject::disconnectDrawAble(DrawAbleObject* drawAble)
-{
-    this->mConnectedObjects.remove(drawAble);
-    ObjectController::addDrawAbleObject(drawAble);
 }
 
 

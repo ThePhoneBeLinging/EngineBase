@@ -45,6 +45,8 @@ add_executable(EngineBase main.cpp
         src/Components/BaseFiles/ObjectFiles/DragAble.h
         src/Components/BaseFiles/ObjectFiles/SceneManager.cpp
         src/Components/BaseFiles/ObjectFiles/SceneManager.h
+        src/Components/BaseFiles/ObjectFiles/ConnectionManager.cpp
+        src/Components/BaseFiles/ObjectFiles/ConnectionManager.h
 )
 
 
