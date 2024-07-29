@@ -1,18 +1,15 @@
 #include <iostream>
-#include <ObjectController.h>
 #include "DrawAbleObject.h"
-#include "DropDownMenu.h"
 #include "EngineBase.h"
-#include "RectangleButton.h"
 #include "TextureController.h"
 
 int main()
 {
     TextureController::addTexture("../src/BBishop.png", 0, 0);
     TextureController::addTexture("../src/BKnight.png", 1, 0);
-    auto object = new RectangleButton(50, 50, 50, 50);
-    auto otherObject = new RectangleButton(50, 50, 50, 50);
-    auto boom = new RectangleButton(50, 50, 50, 50);
+    auto object = new DrawAbleObject(50, 50, 50, 50);
+    auto otherObject = new DrawAbleObject(150, 50, 50, 50);
+    auto boom = new DrawAbleObject(50, 50, 50, 50);
     boom->setTextureIndex(1);
     otherObject->setTextureIndex(1);
     otherObject->addToScene(1);
@@ -31,9 +28,10 @@ int main()
     {
         std::cout << "BOOM Pressed" << std::endl;
     };
-    object->setOnClick(toDoOnClick);
-    otherObject->setOnClick(otherthing);
-    boom->setOnClick(thirdThind);
+    object->mButton.setOnClick(toDoOnClick);
+    otherObject->mButton.setOnClick(otherthing);
+
+
     EngineBase::startGUI();
 
     return 0;

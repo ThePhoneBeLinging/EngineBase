@@ -4,18 +4,16 @@
 
 #ifndef BUTTON_H
 #define BUTTON_H
-#include <DrawAbleObject.h>
 #include <functional>
 
 
-class Button : public DrawAbleObject
+class Button
 {
 public:
-	Button(int x, int y, int height, int width);
+	virtual ~Button() = default;
+	Button() = default;
 	virtual void onClick();
-	void deleteObject() override;
 	void setOnClick(std::function<void(Button*)> function);
-	void addToScene(int scene) override;
 
 private:
 	std::function<void(Button*)> mFunction;

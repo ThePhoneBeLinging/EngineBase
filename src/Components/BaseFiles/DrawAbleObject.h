@@ -4,6 +4,7 @@
 
 #ifndef DRAWABLEOBJECT_H
 #define DRAWABLEOBJECT_H
+#include <Button.h>
 #include <list>
 #include <memory>
 
@@ -37,6 +38,7 @@ public:
     DragAble mDragAble;
     SceneManager mSceneManager;
     ConnectionManager mConnectionManager;
+    Button mButton;
 
 protected:
     int z;
