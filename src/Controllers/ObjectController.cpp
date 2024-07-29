@@ -59,7 +59,14 @@ void ObjectController::handleClicks()
     int x = GetMouseX();
     int y = GetMouseY();
     auto drawAbleList = mAllDrawables[mSceneManager.getScene()];
-
+    if (mDraggedDrawAble != nullptr)
+    {
+        SetMouseCursor(MOUSE_CURSOR_RESIZE_ALL);
+    }
+    else
+    {
+        SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+    }
 
     for (auto drawAble = drawAbleList.rbegin(); drawAble != drawAbleList.rend(); ++drawAble)
     {

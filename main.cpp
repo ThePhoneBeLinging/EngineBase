@@ -36,8 +36,6 @@ int main()
     };
     object->mButton.setOnClick(toDoOnClick);
     otherObject->mButton.setOnClick(otherthing);
-
-
     EngineBase::startGUI();
 
     return 0;
