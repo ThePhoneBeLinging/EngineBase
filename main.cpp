@@ -8,14 +8,17 @@ int main()
     TextureController::addTexture("../src/BBishop.png", 0, 0);
     TextureController::addTexture("../src/BKnight.png", 1, 0);
     auto object = new DrawAbleObject(50, 50, 50, 50);
+    object->setZ(1);
+    object->addToScene(0);
+
     auto otherObject = new DrawAbleObject(150, 50, 50, 50);
-    auto boom = new DrawAbleObject(50, 50, 50, 50);
-    boom->setTextureIndex(1);
     otherObject->setTextureIndex(1);
     otherObject->addToScene(1);
-    object->addToScene(0);
+
+    auto boom = new DrawAbleObject(50, 50, 50, 50);
+    boom->setTextureIndex(1);
     boom->addToScene(0);
-    object->setZ(1);
+
     auto toDoOnClick = [](Button* button)
     {
         EngineBase::setScene(1);

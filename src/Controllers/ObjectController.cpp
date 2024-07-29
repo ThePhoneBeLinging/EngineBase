@@ -92,8 +92,11 @@ void ObjectController::sortScene(int scene)
 {
     //TODO Currently sorts everything again upon any change to z value of any object.
     // TLDR ineffecient
-    mAllDrawables[scene].sort([](const DrawAbleObject* a, const DrawAbleObject* b)
+    if (mAllDrawables.capacity() != 0 && mAllDrawables[scene].size() >= 2)
     {
-        return a->getZ() < b->getZ();
-    });
+        mAllDrawables[scene].sort([](const DrawAbleObject* a, const DrawAbleObject* b)
+        {
+            return a->getZ() < b->getZ();
+        });
+    }
 }
