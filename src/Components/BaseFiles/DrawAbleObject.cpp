@@ -12,11 +12,10 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width) : Object(
 {
     this->x = x;
     this->y = y;
-    this->z = 0;
-    this->mTextureIndex = 0;
-    this->mTextureSecondIndex = 0;
     this->mHeight = height;
     this->mWidth = width;
+    this->mTextureManager = TextureManager();
+    this->mTextureManager.setDrawAble(this);
     this->mVisibility = Visibility();
     this->mDragAble = DragAble();
     this->mSceneManager = SceneManager();
@@ -32,7 +31,8 @@ void DrawAbleObject::draw()
         if (drawAble->mVisibility.isVisisble())
         {
             TextureController::draw(drawAble->x, drawAble->y, drawAble->mHeight, drawAble->mWidth,
-                                    drawAble->mTextureIndex, drawAble->mTextureSecondIndex);
+                                    drawAble->mTextureManager.getTextureIndex(),
+                                    drawAble->mTextureManager.getSecondTextureIndex());
         }
     }
 }
@@ -54,37 +54,6 @@ void DrawAbleObject::removeFromScene()
 }
 
 
-int DrawAbleObject::getZ() const
-{
-    return z;
-}
-
-void DrawAbleObject::setZ(int z)
-{
-    this->z = z;
-    ObjectController::sortScene(this->mSceneManager.getScene());
-}
-
-void DrawAbleObject::setTextureIndex(int textureIndex)
-{
-    this->mTextureIndex = textureIndex;
-}
-
-void DrawAbleObject::setTextureSecondIndex(int secondIndex)
-{
-    this->mTextureSecondIndex = secondIndex;
-}
-
-
-int DrawAbleObject::getTextureIndex() const
-{
-    return mTextureIndex;
-}
-
-int DrawAbleObject::getSecondTextureIndex() const
-{
-    return mTextureSecondIndex;
-}
 
 
 

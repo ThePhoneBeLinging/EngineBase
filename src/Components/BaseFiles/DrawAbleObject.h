@@ -13,6 +13,7 @@
 #include "Object.h"
 #include "SceneManager.h"
 #include "TextureController.h"
+#include "TextureManager.h"
 #include "Visibility.h"
 
 
@@ -27,23 +28,12 @@ public:
     virtual void removeFromScene();
 
 
-    int getZ() const;
-    void setZ(int z);
-    void setTextureIndex(int textureIndex);
-    void setTextureSecondIndex(int secondIndex);
-    int getTextureIndex() const;
-    int getSecondTextureIndex() const;
-
+    TextureManager mTextureManager;
     Visibility mVisibility;
     DragAble mDragAble;
     SceneManager mSceneManager;
     ConnectionManager mConnectionManager;
     Button mButton;
-
-protected:
-    int z;
-    int mTextureIndex;
-    int mTextureSecondIndex;
 };
 
 

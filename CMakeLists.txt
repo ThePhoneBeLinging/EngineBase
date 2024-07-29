@@ -43,6 +43,8 @@ add_executable(EngineBase main.cpp
         src/Components/BaseFiles/ObjectFiles/DragAble.cpp
         src/Components/BaseFiles/ObjectFiles/SceneManager.cpp
         src/Components/BaseFiles/ObjectFiles/ConnectionManager.cpp
+        src/Components/BaseFiles/ObjectFiles/TextureManager.cpp
+        src/Components/BaseFiles/ObjectFiles/TextureManager.h
 )
 
 

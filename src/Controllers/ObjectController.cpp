@@ -113,7 +113,7 @@ void ObjectController::sortScene(int scene)
     {
         mAllDrawables[scene].sort([](const DrawAbleObject* a, const DrawAbleObject* b)
         {
-            return a->getZ() < b->getZ();
+            return a->mTextureManager.getZ() < b->mTextureManager.getZ();
         });
     }
 }
