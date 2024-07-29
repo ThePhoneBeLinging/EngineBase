@@ -21,11 +21,19 @@ bool DragAble::isBeingDragged()
     return this->mIsBeingDragged;
 }
 
-void DragAble::startDrag(DrawAbleObject* drawAble)
+void DragAble::startDrag(DrawAbleObject* drawAble, int x, int y)
 {
     this->oldX = drawAble->getX();
     this->oldY = drawAble->getY();
+    this->mTransformX = oldX - x;
+    this->mTransformY = oldY - y;
     this->mIsBeingDragged = true;
+}
+
+void DragAble::updateDragPos(DrawAbleObject* drawAble, int x, int y)
+{
+    drawAble->setX(x + mTransformX);
+    drawAble->setY(y + mTransformY);
 }
 
 void DragAble::cancelDrag(DrawAbleObject* drawAble)

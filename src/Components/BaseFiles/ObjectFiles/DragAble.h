@@ -14,7 +14,8 @@ public:
     void setDragable(bool isDragable);
     bool isDragable() const;
     bool isBeingDragged();
-    void startDrag(DrawAbleObject* drawAble);
+    void startDrag(DrawAbleObject* drawAble, int x, int y);
+    void updateDragPos(DrawAbleObject* drawAble, int x, int y);
     void cancelDrag(DrawAbleObject* drawAble);
     void stopDrag();
 
@@ -23,6 +24,8 @@ private:
     bool mIsBeingDragged = false;
     int oldX;
     int oldY;
+    int mTransformX;
+    int mTransformY;
 };
 
 

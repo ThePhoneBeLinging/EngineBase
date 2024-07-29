@@ -59,16 +59,7 @@ void ObjectController::handleClicks()
     int x = GetMouseX();
     int y = GetMouseY();
     auto drawAbleList = mAllDrawables[mSceneManager.getScene()];
-    if (mDraggedDrawAble != nullptr)
-    {
-        mDraggedDrawAble->setX(x);
-        mDraggedDrawAble->setY(y);
-        if (!IsMouseButtonDown(MOUSE_BUTTON_LEFT))
-        {
-            mDraggedDrawAble->mDragAble.stopDrag();
-            mDraggedDrawAble = nullptr;
-        }
-    }
+
 
     for (auto drawAble = drawAbleList.rbegin(); drawAble != drawAbleList.rend(); ++drawAble)
     {
@@ -87,10 +78,19 @@ void ObjectController::handleClicks()
                 if (drawAbleObject->mDragAble.isDragable())
                 {
                     mDraggedDrawAble = drawAbleObject;
-                    drawAbleObject->mDragAble.startDrag(drawAbleObject);
+                    drawAbleObject->mDragAble.startDrag(drawAbleObject, x, y);
                 }
             }
             break;
+        }
+    }
+    if (mDraggedDrawAble != nullptr)
+    {
+        mDraggedDrawAble->mDragAble.updateDragPos(mDraggedDrawAble, x, y);
+        if (!IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+        {
+            mDraggedDrawAble->mDragAble.stopDrag();
+            mDraggedDrawAble = nullptr;
         }
     }
 }
