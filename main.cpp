@@ -8,7 +8,7 @@ int main()
     TextureController::addTexture("../src/BBishop.png", 0, 0);
     TextureController::addTexture("../src/BKnight.png", 1, 0);
     auto object = new DrawAbleObject(50, 50, 50, 50);
-    object->setZ(1);
+    object->setZ(-1);
     object->addToScene(0);
 
     auto otherObject = new DrawAbleObject(150, 50, 50, 50);
@@ -18,6 +18,8 @@ int main()
     auto boom = new DrawAbleObject(50, 50, 50, 50);
     boom->setTextureIndex(1);
     boom->addToScene(0);
+    boom->mDragAble.setDragable(true);
+    object->mDragAble.setDragable(false);
 
     auto toDoOnClick = [](Button* button)
     {
