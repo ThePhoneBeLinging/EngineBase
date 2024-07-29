@@ -69,11 +69,6 @@ void ObjectController::handleClicks()
                 drawAbleObject->mButton.onClick();
                 break;
             }
-            if (drawAbleObject->isPointInside(x, y))
-            {
-                break;
-            }
-            drawAble++;
         }
     }
 }
