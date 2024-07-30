@@ -38,7 +38,10 @@ int main()
     };
     object->mButton.setOnClick(toDoOnClick);
     otherObject->mButton.setOnClick(otherthing);
-    auto onKey = OnKeyPress(KEY_K, thirdThind, "dean");
+    std::list<int> keysPressed;
+    keysPressed.push_back(KEY_LEFT_CONTROL);
+    keysPressed.push_back(KEY_F);
+    OnKeyPress give_me_a_name(KEY_F, thirdThind, TriggerOnce);
     EngineBase::startGUI();
 
     return 0;

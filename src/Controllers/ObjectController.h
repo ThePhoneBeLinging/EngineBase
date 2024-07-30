@@ -21,6 +21,10 @@ public:
     static void keepDrawingObjects();
     static void handleDeletions();
     static void sortScene(int scene);
+    static bool isKeyPressed(int key);
+    static bool isKeyDown(int key);
+    static bool isKeyUp(int key);
+    static bool isKeyReleased(int key);
     static SceneManager mSceneManager;
 
 private:

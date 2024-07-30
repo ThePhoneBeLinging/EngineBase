@@ -3,21 +3,22 @@
 //
 
 #include "OnKeyPress.h"
+#include "HotKeyManager.h"
 
 #include <utility>
 
-OnKeyPress::OnKeyPress(int key, std::function<void()> function, std::string activationMethod)
+OnKeyPress::OnKeyPress(int key, std::function<void()> function, ActivationMethod activationMethod)
 {
     this->mKeys.push_back(key);
     this->mFunction = std::move(function);
-    this->mActivationMethod = std::move(activationMethod);
+    this->mActivationMethod = activationMethod;
+    HotKeyManager::addOnKeyPress(this);
 }
 
-OnKeyPress::OnKeyPress(std::list<int> keys, std::function<void()> function, std::string activationMethod)
+OnKeyPress::OnKeyPress(std::list<int> keys, std::function<void()> function, ActivationMethod activationMethod) :
+        OnKeyPress(*(keys.begin()),std::move(function),activationMethod)
 {
     this->mKeys = std::move(keys);
-    this->mFunction = std::move(function);
-    this->mActivationMethod = std::move(activationMethod);
 }
 
 std::list<int> OnKeyPress::getKeys() const
@@ -40,12 +41,28 @@ void OnKeyPress::setFunction(const std::function<void()>& function)
     mFunction = function;
 }
 
-std::string OnKeyPress::getActivationMethod() const
+ActivationMethod OnKeyPress::getActivationMethod() const
 {
     return mActivationMethod;
 }
 
-void OnKeyPress::setActivationMethod(const std::string& activationMethod)
+void OnKeyPress::setActivationMethod(ActivationMethod activationMethod)
 {
     mActivationMethod = activationMethod;
+}
+
+void OnKeyPress::executeFunction()
+{
+    this->mHasActivatedFunction = true;
+    this->mFunction();
+}
+
+bool OnKeyPress::hasActivatedFunction() const
+{
+    return this->mHasActivatedFunction;
+}
+
+void OnKeyPress::setHasActivatedFunction(bool hasActivatedFunction)
+{
+    this->mHasActivatedFunction = hasActivatedFunction;
 }

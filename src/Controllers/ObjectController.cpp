@@ -3,7 +3,7 @@
 //
 
 #include "ObjectController.h"
-
+#include "HotKeyManager.h"
 #include <algorithm>
 #include <iostream>
 
@@ -36,6 +36,7 @@ void ObjectController::keepDrawingObjects()
     {
         handleDeletions();
         handleClicks();
+        HotKeyManager::handleHotKeys();
         drawAllObjects();
     }
 }
@@ -123,4 +124,24 @@ void ObjectController::sortScene(int scene)
             return a->mTextureManager.getZ() < b->mTextureManager.getZ();
         });
     }
+}
+
+bool ObjectController::isKeyPressed(int key)
+{
+    return IsKeyPressed(key);
+}
+
+bool ObjectController::isKeyDown(int key)
+{
+    return IsKeyDown(key);
+}
+
+bool ObjectController::isKeyUp(int key)
+{
+    return IsKeyUp(key);
+}
+
+bool ObjectController::isKeyReleased(int key)
+{
+    return IsKeyReleased(key);
 }
