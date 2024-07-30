@@ -26,6 +26,7 @@ public:
     virtual void deleteObject();
     virtual void addToScene(int scene);
     virtual void removeFromScene();
+    bool isPointInside(int x, int y) override;
 
 
     TextureManager mTextureManager;

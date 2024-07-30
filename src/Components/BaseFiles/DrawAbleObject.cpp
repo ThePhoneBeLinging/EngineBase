@@ -53,6 +53,19 @@ void DrawAbleObject::removeFromScene()
     ObjectController::removeObject(this);
 }
 
+bool DrawAbleObject::isPointInside(int x, int y)
+{
+    if (Object::isPointInside(x, y)) return true;
+    for (auto connectedTexture : this->mConnectionManager.getConnectedObjects())
+    {
+        if (connectedTexture == this) continue;
+        if (connectedTexture->isPointInside(x, y))
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
 
 
