@@ -85,7 +85,7 @@ void ObjectController::handleClicks()
                 if (drawAbleObject->mDragAble.isDragable())
                 {
                     mDraggedDrawAble = drawAbleObject;
-                    drawAbleObject->mDragAble.startDrag(drawAbleObject, x, y);
+                    mDraggedDrawAble->mDragAble.startDrag(mDraggedDrawAble, x, y);
                 }
             }
             break;

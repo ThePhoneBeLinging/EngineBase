@@ -21,7 +21,8 @@ int main()
     boom->addToScene(0);
     boom->mDragAble.setDragable(true);
     object->mDragAble.setDragable(false);
-
+    auto dean = new DrawAbleObject(0, 50, 50, 50);
+    boom->mConnectionManager.connectDrawAble(dean);
     auto toDoOnClick = [](Button* button)
     {
         EngineBase::setScene(1);
