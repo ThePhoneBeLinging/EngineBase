@@ -45,6 +45,10 @@ add_executable(EngineBase main.cpp
         src/Components/BaseFiles/ObjectFiles/ConnectionManager.cpp
         src/Components/BaseFiles/ObjectFiles/TextureManager.cpp
         src/Components/BaseFiles/ObjectFiles/TextureManager.h
+        src/Components/BaseFiles/OnKeyPress.cpp
+        src/Components/BaseFiles/OnKeyPress.h
+        src/Components/BaseFiles/ObjectFiles/HotKeyManager.cpp
+        src/Components/BaseFiles/ObjectFiles/HotKeyManager.h
 )
 
 

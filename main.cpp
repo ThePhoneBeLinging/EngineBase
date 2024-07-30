@@ -1,6 +1,7 @@
 #include <iostream>
 #include "DrawAbleObject.h"
 #include "EngineBase.h"
+#include "OnKeyPress.h"
 #include "TextureController.h"
 
 int main()
@@ -31,12 +32,13 @@ int main()
     {
         EngineBase::setScene(0);
     };
-    auto thirdThind = [](Button* button)
+    auto thirdThind = []()
     {
         std::cout << "BOOM Pressed" << std::endl;
     };
     object->mButton.setOnClick(toDoOnClick);
     otherObject->mButton.setOnClick(otherthing);
+    auto onKey = OnKeyPress(KEY_K, thirdThind, "dean");
     EngineBase::startGUI();
 
     return 0;
