@@ -46,6 +46,11 @@ void ObjectController::drawAllObjects()
     auto localDrawAbles = mAllDrawables;
     BeginDrawing();
     ClearBackground(WHITE);
+    if (mSceneManager.getScene() >= mAllDrawables.size())
+    {
+        EndDrawing();
+        return;
+    }
     int scene = mSceneManager.getScene();
     for (auto drawAble : localDrawAbles[scene])
     {
@@ -59,6 +64,10 @@ void ObjectController::handleClicks()
 {
     int x = GetMouseX();
     int y = GetMouseY();
+    if (mSceneManager.getScene() >= mAllDrawables.size())
+    {
+        return;
+    }
     auto drawAbleList = mAllDrawables[mSceneManager.getScene()];
     if (mDraggedDrawAble != nullptr)
     {
