@@ -31,7 +31,7 @@ include_directories(src/Components/BaseFiles)
 include_directories(src/Components/BaseFiles/ObjectFiles)
 include_directories(include)
 
-add_executable(EngineBase main.cpp
+add_library(EngineBase
         src/Controllers/TextureController.cpp
         src/Components/BaseFiles/ObjectFiles/DrawAbleObject.cpp
         src/Controllers/ObjectController.cpp
@@ -46,7 +46,6 @@ add_executable(EngineBase main.cpp
         src/Components/BaseFiles/ObjectFiles/TextureManager.cpp
         src/Components/BaseFiles/OnKeyPress.cpp
         src/Components/BaseFiles/HotKeyManager.cpp
-
 )
 
 
