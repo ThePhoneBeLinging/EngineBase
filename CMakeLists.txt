@@ -33,12 +33,12 @@ include_directories(include)
 
 add_executable(EngineBase main.cpp
         src/Controllers/TextureController.cpp
-        src/Components/BaseFiles/DrawAbleObject.cpp
+        src/Components/BaseFiles/ObjectFiles/DrawAbleObject.cpp
         src/Controllers/ObjectController.cpp
         src/Components/BaseFiles/Button.cpp
         src/Components/BaseFiles/ShapesPointChecker.cpp
         src/Controllers/EngineBase.cpp
-        src/Components/BaseFiles/Object.cpp
+        src/Components/BaseFiles/ObjectFiles/Object.cpp
         src/Components/BaseFiles/ObjectFiles/Visibility.cpp
         src/Components/BaseFiles/ObjectFiles/DragAble.cpp
         src/Components/BaseFiles/ObjectFiles/SceneManager.cpp
