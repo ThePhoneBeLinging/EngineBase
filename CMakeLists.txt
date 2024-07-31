@@ -25,11 +25,7 @@ endif ()
 
 ###
 
-include_directories(src/Controllers)
-include_directories(src/Components)
-include_directories(src/Components/BaseFiles)
-include_directories(src/Components/BaseFiles/ObjectFiles)
-include_directories(include)
+
 
 add_library(EngineBase
         src/Controllers/TextureController.cpp
@@ -48,5 +44,9 @@ add_library(EngineBase
         src/Components/BaseFiles/HotKeyManager.cpp
 )
 
-
+target_include_directories(EngineBase PRIVATE src/Controllers)
+target_include_directories(EngineBase PRIVATE src/Components)
+target_include_directories(EngineBase PRIVATE src/Components/BaseFiles)
+target_include_directories(EngineBase PRIVATE src/Components/BaseFiles/ObjectFiles)
+target_include_directories(EngineBase PUBLIC include)
 target_link_libraries(${PROJECT_NAME} raylib)
