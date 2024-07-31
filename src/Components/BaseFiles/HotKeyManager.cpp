@@ -19,20 +19,38 @@ void HotKeyManager::handleHotKeys()
     {
         if (onKeyPress->getActivationMethod() == TriggerOnce)
         {
-            bool areKeysPressed = true;
-            for (int key : onKeyPress->getKeys())
+            if (areAllNeededKeysDown(onKeyPress))
             {
-                if (!ObjectController::isKeyDown(key))
+                if (!onKeyPress->hasActivatedFunction())
                 {
-                    areKeysPressed = false;
-                    onKeyPress->setHasActivatedFunction(false);
-                    break;
+                    onKeyPress->executeFunction();
                 }
             }
-            if (!onKeyPress->hasActivatedFunction() && areKeysPressed)
+            else
+            {
+                onKeyPress->setHasActivatedFunction(false);
+            }
+        }
+        else if (onKeyPress->getActivationMethod() == TriggerContinuously)
+        {
+            if (areAllNeededKeysDown(onKeyPress))
             {
                 onKeyPress->executeFunction();
             }
         }
     }
 }
+
+bool HotKeyManager::areAllNeededKeysDown(OnKeyPress* onKeyPress)
+{
+    for (int key : onKeyPress->getKeys())
+    {
+        if (!ObjectController::isKeyDown(key))
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+
