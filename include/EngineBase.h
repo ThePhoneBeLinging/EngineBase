@@ -14,7 +14,12 @@ public:
     static void setScene(int scene);
     static int getScene();
     static void startGUI();
+    static bool shouldAppClose();
 
+private:
+    static bool mShouldAppClose;
+
+public:
     // Key to ints stolen from RayLib
     typedef enum
     {

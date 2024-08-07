@@ -6,6 +6,8 @@
 
 #include <ObjectController.h>
 
+bool EngineBase::mShouldAppClose = false;
+
 void EngineBase::addTexture(const std::string& texturePath, int firstIndex, int secondIndex)
 {
     TextureController::addTexture(texturePath, firstIndex, secondIndex);
@@ -25,4 +27,10 @@ void EngineBase::startGUI()
 {
     TextureController::initWindow();
     ObjectController::keepDrawingObjects();
+    mShouldAppClose = true;
+}
+
+bool EngineBase::shouldAppClose()
+{
+    return mShouldAppClose;
 }
