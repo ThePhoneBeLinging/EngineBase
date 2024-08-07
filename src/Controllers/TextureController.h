@@ -15,6 +15,8 @@ class TextureController
 public:
     static void addTexture(const std::string& texturePath, int firstIndex, int secondIndex);
     static void draw(int x, int y, int height, int width, int firstIndex, int secondIndex);
+    static bool isWindowInitialized();
+    static void initWindow();
 
 private:
     static std::vector<std::vector<Texture2D>> mTextures;

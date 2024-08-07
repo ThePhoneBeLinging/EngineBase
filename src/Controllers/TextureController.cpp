@@ -15,8 +15,7 @@ void TextureController::addTexture(const std::string& texturePath, int firstInde
 {
     if (!mWindowInitialized)
     {
-        InitWindow(800, 600, "M3");
-        mWindowInitialized = true;
+        initWindow();
     }
     Texture2D texture = LoadTexture(texturePath.c_str());
     while (mTextures.capacity() <= firstIndex)
@@ -37,4 +36,18 @@ void TextureController::draw(int x, int y, int height, int width, int firstIndex
     texture.height = height;
     texture.width = width;
     DrawTexture(texture, x, y,WHITE);
+}
+
+bool TextureController::isWindowInitialized()
+{
+    return mWindowInitialized;
+}
+
+void TextureController::initWindow()
+{
+    int height = 600;
+    int width = 800;
+    std::string title = "M3";
+    InitWindow(width, height, title.c_str());
+    mWindowInitialized = true;
 }

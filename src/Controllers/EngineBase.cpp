@@ -23,5 +23,8 @@ int EngineBase::getScene()
 
 void EngineBase::startGUI()
 {
+    if (!TextureController::isWindowInitialized())
+    {
+    }
     ObjectController::keepDrawingObjects();
 }
