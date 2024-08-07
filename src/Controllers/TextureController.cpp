@@ -13,10 +13,7 @@ bool TextureController::mWindowInitialized = false;
 //TODO Check this function, something seems off with the increments in size;
 void TextureController::addTexture(const std::string& texturePath, int firstIndex, int secondIndex)
 {
-    if (!mWindowInitialized)
-    {
-        initWindow();
-    }
+    initWindow();
     Texture2D texture = LoadTexture(texturePath.c_str());
     while (mTextures.capacity() <= firstIndex)
     {
@@ -38,16 +35,14 @@ void TextureController::draw(int x, int y, int height, int width, int firstIndex
     DrawTexture(texture, x, y,WHITE);
 }
 
-bool TextureController::isWindowInitialized()
-{
-    return mWindowInitialized;
-}
-
 void TextureController::initWindow()
 {
-    int height = 600;
-    int width = 800;
-    std::string title = "M3";
-    InitWindow(width, height, title.c_str());
-    mWindowInitialized = true;
+    if (!mWindowInitialized)
+    {
+        int height = 600;
+        int width = 800;
+        std::string title = "M3";
+        InitWindow(width, height, title.c_str());
+        mWindowInitialized = true;
+    }
 }
