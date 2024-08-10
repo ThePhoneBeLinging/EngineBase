@@ -22,7 +22,7 @@ class DrawAbleObject : public Object
 public:
     virtual ~DrawAbleObject() = default;
     DrawAbleObject(int x, int y, int height, int width);
-    void draw();
+    virtual void draw();
     virtual void deleteObject();
     virtual void addToScene(int scene);
     virtual void removeFromScene();
