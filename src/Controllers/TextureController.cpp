@@ -42,6 +42,7 @@ void TextureController::initWindow()
         int height = 600;
         int width = 800;
         std::string title = "M3";
+        SetConfigFlags(FLAG_WINDOW_RESIZABLE);
         InitWindow(width, height, title.c_str());
         mWindowInitialized = true;
     }
