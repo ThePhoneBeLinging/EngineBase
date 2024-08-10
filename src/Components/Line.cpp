@@ -10,5 +10,5 @@ Line::Line(int x, int y, int height, int width) : DrawAbleObject(x, y, height, w
 
 void Line::draw()
 {
-    DrawRectangle(x, y, mWidth * (1000 / GetScreenWidth()), mHeight * (1000 / GetScreenHeight()), BLACK);
+    DrawRectangle(x, y, mWidth * (GetScreenWidth() / 1000), mHeight * (GetScreenHeight() / 600), BLACK);
 }
