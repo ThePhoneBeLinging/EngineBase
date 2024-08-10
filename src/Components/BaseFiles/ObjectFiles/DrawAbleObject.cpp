@@ -20,6 +20,7 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width) : Object(
     this->mDragAble = DragAble();
     this->mSceneManager = SceneManager();
     this->mButton = Button();
+    mButton.setDrawAbleObject(this);
     this->mConnectionManager = ConnectionManager();
     mConnectionManager.connectDrawAble(this);
 }
