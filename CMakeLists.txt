@@ -26,7 +26,7 @@ endif ()
 ###
 
 
-add_library(EngineBase
+add_library(EngineBase SHARED
         src/Controllers/TextureController.cpp
         src/Components/BaseFiles/ObjectFiles/DrawAbleObject.cpp
         src/Controllers/ObjectController.cpp
