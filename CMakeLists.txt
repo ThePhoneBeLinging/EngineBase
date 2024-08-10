@@ -41,8 +41,6 @@ add_library(EngineBase SHARED
         src/Components/BaseFiles/ObjectFiles/TextureManager.cpp
         src/Components/BaseFiles/OnKeyPress.cpp
         src/Components/BaseFiles/HotKeyManager.cpp
-        src/Components/Line.cpp
-        src/Components/Line.h
 )
 
 target_include_directories(EngineBase PUBLIC src/Controllers)
