@@ -17,12 +17,13 @@ std::mutex ObjectController::mMutex;
 
 void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
 {
-    std::lock_guard<std::mutex> lock(mMutex);
+    mMutex.lock();
     while (drawAble->mSceneManager.getScene() >= mAllDrawables.capacity())
     {
         mAllDrawables.resize(mAllDrawables.size() + 1);
     }
     mAllDrawables[drawAble->mSceneManager.getScene()].push_back(drawAble);
+    mMutex.unlock();
     sortScene(drawAble->mSceneManager.getScene());
 }
 
@@ -129,6 +130,7 @@ void ObjectController::handleDeletions()
 
 void ObjectController::sortScene(int scene)
 {
+    std::lock_guard<std::mutex> lock(mMutex);
     //TODO Currently sorts everything again upon any change to z value of any object.
     // TLDR ineffecient
     if (mAllDrawables.capacity() != 0 && mAllDrawables[scene].size() >= 2)
