@@ -33,6 +33,7 @@ private:
     static DrawAbleObject* mDraggedDrawAble;
     static void drawAllObjects();
     static void handleClicks();
+    static std::mutex mMutex;
 };
 
 

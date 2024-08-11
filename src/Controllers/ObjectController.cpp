@@ -16,6 +16,7 @@ SceneManager ObjectController::mSceneManager = SceneManager();
 
 void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
 {
+    std::lock_guard<std::mutex> lock(mMutex);
     while (drawAble->mSceneManager.getScene() >= mAllDrawables.capacity())
     {
         mAllDrawables.resize(mAllDrawables.size() + 1);
@@ -26,6 +27,7 @@ void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
 
 void ObjectController::removeObject(DrawAbleObject* drawAble)
 {
+    std::lock_guard<std::mutex> lock(mMutex);
     mToBeDeleted.push_back(drawAble);
 }
 
@@ -43,6 +45,7 @@ void ObjectController::keepDrawingObjects()
 
 void ObjectController::drawAllObjects()
 {
+    std::lock_guard<std::mutex> lock(mMutex);
     auto localDrawAbles = mAllDrawables;
     BeginDrawing();
     ClearBackground(WHITE);
@@ -62,6 +65,7 @@ void ObjectController::drawAllObjects()
 
 void ObjectController::handleClicks()
 {
+    std::lock_guard<std::mutex> lock(mMutex);
     int x = GetMouseX();
     int y = GetMouseY();
     if (mSceneManager.getScene() >= mAllDrawables.size())
@@ -114,6 +118,7 @@ void ObjectController::handleClicks()
 
 void ObjectController::handleDeletions()
 {
+    std::lock_guard<std::mutex> lock(mMutex);
     std::list<DrawAbleObject*> toDelete = mToBeDeleted;
     for (auto drawAble : toDelete)
     {
