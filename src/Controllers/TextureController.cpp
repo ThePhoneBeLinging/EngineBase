@@ -42,7 +42,9 @@ void TextureController::addTexture(const std::string& texturePath, int firstInde
 void TextureController::draw(int x, int y, int height, int width, int firstIndex, int secondIndex)
 {
     Texture2D texture = mTextures[firstIndex][secondIndex];
-    float scaleFactor = width * (GetScreenWidth() / 1000);
+    texture.height = height;
+    texture.width = width;
+    float scaleFactor = (GetScreenWidth() / 1000);
     Vector2 pos = {(float)x, (float)y};
     DrawTextureEx(texture, pos, 0, scaleFactor,WHITE);
 }
