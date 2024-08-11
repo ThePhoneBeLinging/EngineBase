@@ -17,13 +17,13 @@ std::mutex ObjectController::mMutex;
 
 void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
 {
-    mMutex.lock();
+    std::unique_lock<std::mutex> lock(mMutex);
     while (drawAble->mSceneManager.getScene() >= mAllDrawables.capacity())
     {
         mAllDrawables.resize(mAllDrawables.size() + 1);
     }
     mAllDrawables[drawAble->mSceneManager.getScene()].push_back(drawAble);
-    mMutex.unlock();
+    lock.unlock();
     sortScene(drawAble->mSceneManager.getScene());
 }
 
