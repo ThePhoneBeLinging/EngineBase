@@ -44,7 +44,7 @@ void TextureController::draw(int x, int y, int height, int width, int firstIndex
     Texture2D texture = mTextures[firstIndex][secondIndex];
     texture.height = height;
     texture.width = width;
-    float scaleFactor = (GetScreenWidth() / 1000);
+    float scaleFactor = (GetScreenWidth() / 1280);
     Vector2 pos = {(float)x, (float)y};
     DrawTextureEx(texture, pos, 0, scaleFactor,WHITE);
 }
@@ -53,8 +53,8 @@ void TextureController::initWindow()
 {
     if (!mWindowInitialized)
     {
-        int height = 600;
-        int width = 800;
+        int height = 720;
+        int width = 1280;
         std::string title = "M3";
         SetConfigFlags(FLAG_WINDOW_RESIZABLE);
         InitWindow(width, height, title.c_str());
