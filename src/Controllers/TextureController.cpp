@@ -14,24 +14,20 @@ bool TextureController::mWindowInitialized = false;
 void TextureController::addTexture(const std::string& texturePath, int firstIndex, int secondIndex)
 {
     initWindow();
-    Texture2D texture = LoadTexture(texturePath.c_str());
-    switch (texturePath)
+
+    if (texturePath == "BLACK")
     {
-    case "BLACK":
-        {
-            Image image = GenImageColor(50, 50,BLACK);
-            texture = LoadTextureFromImage(image);
-            break;
-        }
-
-    case "WHITE":
-        {
-            Image image = GenImageColor(50, 50,WHITE);
-            texture = LoadTextureFromImage(image);
-            break;
-        }
-
-    default:
+        Image image = GenImageColor(50, 50,BLACK);
+        mTextures[firstIndex][secondIndex] = LoadTextureFromImage(image);
+    }
+    else if (texturePath == "WHITE")
+    {
+        Image image = GenImageColor(50, 50,WHITE);
+        mTextures[firstIndex][secondIndex] = LoadTextureFromImage(image);
+    }
+    else
+    {
+        Texture2D texture = LoadTexture(texturePath.c_str());
         while (mTextures.capacity() <= firstIndex)
         {
             mTextures.resize(mTextures.capacity() + spacesPerResize);
@@ -41,8 +37,8 @@ void TextureController::addTexture(const std::string& texturePath, int firstInde
         {
             mTextures[firstIndex].resize(mTextures[firstIndex].capacity() + spacesPerResize);
         }
+        mTextures[firstIndex][secondIndex] = texture;
     }
-    mTextures[firstIndex][secondIndex] = texture;
 }
 
 void TextureController::draw(int x, int y, int height, int width, int firstIndex, int secondIndex)
