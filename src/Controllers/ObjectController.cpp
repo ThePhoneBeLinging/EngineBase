@@ -28,7 +28,6 @@ void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
 
 void ObjectController::removeObject(DrawAbleObject* drawAble)
 {
-    std::lock_guard<std::mutex> lock(mMutex);
     mToBeDeleted.push_back(drawAble);
 }
 
@@ -130,6 +129,7 @@ void ObjectController::handleDeletions()
 
 void ObjectController::sortScene(int scene)
 {
+    std::lock_guard<std::mutex> lock(mMutex);
     //TODO Currently sorts everything again upon any change to z value of any object.
     // TLDR ineffecient
     if (mAllDrawables.capacity() != 0 && mAllDrawables[scene].size() >= 2)
