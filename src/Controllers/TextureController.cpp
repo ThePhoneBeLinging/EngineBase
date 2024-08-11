@@ -43,7 +43,6 @@ void TextureController::draw(int x, int y, int height, int width, int firstIndex
 {
     Texture2D texture = mTextures[firstIndex][secondIndex];
     float scaleFactor = width * (GetScreenWidth() / 1000);
-    DrawTexture(texture, x, y,WHITE);
     Vector2 pos = {(float)x, (float)y};
     DrawTextureEx(texture, pos, 0, scaleFactor,WHITE);
 }
