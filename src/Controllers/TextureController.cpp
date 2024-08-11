@@ -15,14 +15,32 @@ void TextureController::addTexture(const std::string& texturePath, int firstInde
 {
     initWindow();
     Texture2D texture = LoadTexture(texturePath.c_str());
-    while (mTextures.capacity() <= firstIndex)
+    switch (texturePath)
     {
-        mTextures.resize(mTextures.capacity() + spacesPerResize);
-    }
+    case "BLACK":
+        {
+            Image image = GenImageColor(50, 50,BLACK);
+            texture = LoadTextureFromImage(image);
+            break;
+        }
 
-    while (mTextures[firstIndex].capacity() <= secondIndex)
-    {
-        mTextures[firstIndex].resize(mTextures[firstIndex].capacity() + spacesPerResize);
+    case "WHITE":
+        {
+            Image image = GenImageColor(50, 50,WHITE);
+            texture = LoadTextureFromImage(image);
+            break;
+        }
+
+    default:
+        while (mTextures.capacity() <= firstIndex)
+        {
+            mTextures.resize(mTextures.capacity() + spacesPerResize);
+        }
+
+        while (mTextures[firstIndex].capacity() <= secondIndex)
+        {
+            mTextures[firstIndex].resize(mTextures[firstIndex].capacity() + spacesPerResize);
+        }
     }
     mTextures[firstIndex][secondIndex] = texture;
 }
