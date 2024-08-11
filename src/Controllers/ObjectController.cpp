@@ -13,6 +13,7 @@ std::list<DrawAbleObject*> ObjectController::mToBeDeleted;
 
 DrawAbleObject* ObjectController::mDraggedDrawAble;
 SceneManager ObjectController::mSceneManager = SceneManager();
+std::mutex ObjectController::mMutex;
 
 void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
 {
