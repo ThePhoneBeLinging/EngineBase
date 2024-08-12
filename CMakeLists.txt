@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.28)
 project(EngineBase)
 
-set(CMAKE_CXX_STANDARD 26)
+set(CMAKE_CXX_STANDARD 20)
 
 ### Add Raylib
 
@@ -43,5 +43,5 @@ add_library(EngineBase SHARED
         src/Components/BaseFiles/HotKeyManager.cpp
 )
 target_include_directories(EngineBase PUBLIC src/include)
-target_include_directories(EngineBase PRIVATE src)
+target_include_directories(EngineBase PUBLIC src)
 target_link_libraries(${PROJECT_NAME} raylib)
