@@ -3,7 +3,7 @@
 //
 
 #include "ObjectController.h"
-#include "HotKeyManager.h"
+#include "Components/BaseFiles/HotKeyManager.h"
 #include <algorithm>
 #include <iostream>
 

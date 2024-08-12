@@ -2,9 +2,10 @@
 // Created by Elias Aggergaard Larsen on 27/07/2024.
 //
 
-#include "EngineBase.h"
+#include "EngineBase/EngineBase.h"
 
-#include <ObjectController.h>
+#include "TextureController.h"
+#include "ObjectController.h"
 
 bool EngineBase::mShouldAppClose = false;
 

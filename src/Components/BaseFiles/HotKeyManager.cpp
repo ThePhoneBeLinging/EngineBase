@@ -4,11 +4,11 @@
 
 #include <iostream>
 #include "HotKeyManager.h"
-#include "ObjectController.h"
+#include "Controllers/ObjectController.h"
 
 std::list<OnKeyPress*> HotKeyManager::mOnKeyPresses;
 
-void HotKeyManager::addOnKeyPress(OnKeyPress *onKeyPress)
+void HotKeyManager::addOnKeyPress(OnKeyPress* onKeyPress)
 {
     mOnKeyPresses.push_back(onKeyPress);
 }

@@ -4,7 +4,7 @@
 
 #include "Object.h"
 
-#include "BaseFiles/ShapesPointChecker.h"
+#include "../ShapesPointChecker.h"
 
 Object::Object(int x, int y, int height, int width)
 {

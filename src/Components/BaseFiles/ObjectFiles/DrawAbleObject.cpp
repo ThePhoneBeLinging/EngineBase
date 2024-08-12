@@ -2,10 +2,10 @@
 // Created by Elias Aggergaard Larsen on 25/07/2024.
 //
 
-#include "DrawAbleObject.h"
+#include "EngineBase/DrawAbleObject.h"
 
-#include "ObjectController.h"
-#include "TextureController.h"
+#include "../Controllers/ObjectController.h"
+#include "../Controllers/TextureController.h"
 
 DrawAbleObject::DrawAbleObject(int x, int y, int height, int width) : Object(
     x, y, height, width)

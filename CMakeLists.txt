@@ -42,10 +42,6 @@ add_library(EngineBase SHARED
         src/Components/BaseFiles/OnKeyPress.cpp
         src/Components/BaseFiles/HotKeyManager.cpp
 )
-
-target_include_directories(EngineBase PUBLIC src/Controllers)
-target_include_directories(EngineBase PUBLIC src/Components)
-target_include_directories(EngineBase PUBLIC src/Components/BaseFiles)
-target_include_directories(EngineBase PUBLIC src/Components/BaseFiles/ObjectFiles)
-target_include_directories(EngineBase PUBLIC include)
+target_include_directories(EngineBase PUBLIC src/include)
+target_include_directories(EngineBase PRIVATE src)
 target_link_libraries(${PROJECT_NAME} raylib)

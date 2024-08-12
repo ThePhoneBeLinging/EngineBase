@@ -9,8 +9,8 @@
 #include <thread>
 #include <raylib.h>
 
-#include "Button.h"
-#include "DrawAbleObject.h"
+#include "Components/BaseFiles/Button.h"
+#include "EngineBase/DrawAbleObject.h"
 
 
 class ObjectController

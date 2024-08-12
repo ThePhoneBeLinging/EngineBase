@@ -4,7 +4,7 @@
 
 #ifndef SHAPESPOINTCHECKER_H
 #define SHAPESPOINTCHECKER_H
-#include "DrawAbleObject.h"
+#include "EngineBase/DrawAbleObject.h"
 
 
 class ShapesPointChecker

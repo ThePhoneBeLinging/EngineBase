@@ -4,17 +4,17 @@
 
 #ifndef DRAWABLEOBJECT_H
 #define DRAWABLEOBJECT_H
-#include "Button.h"
+#include "../Components/BaseFiles/Button.h"
 #include <list>
 #include <memory>
 
-#include "ConnectionManager.h"
-#include "DragAble.h"
-#include "Object.h"
-#include "SceneManager.h"
-#include "TextureController.h"
-#include "TextureManager.h"
-#include "Visibility.h"
+#include "Components/BaseFiles/ObjectFiles/ConnectionManager.h"
+#include "Components/BaseFiles/ObjectFiles/DragAble.h"
+#include "Components/BaseFiles/ObjectFiles/Object.h"
+#include "Components/BaseFiles/ObjectFiles/SceneManager.h"
+#include "Controllers/TextureController.h"
+#include "Components/BaseFiles/ObjectFiles/TextureManager.h"
+#include "Components/BaseFiles/ObjectFiles/Visibility.h"
 
 
 class DrawAbleObject : public Object

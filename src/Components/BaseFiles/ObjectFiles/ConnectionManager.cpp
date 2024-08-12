@@ -4,7 +4,7 @@
 
 #include "ConnectionManager.h"
 
-#include <ObjectController.h>
+#include "Controllers/ObjectController.h"
 
 
 void ConnectionManager::connectDrawAble(DrawAbleObject* drawAble)
