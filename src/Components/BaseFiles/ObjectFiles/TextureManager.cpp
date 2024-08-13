@@ -54,6 +54,26 @@ int TextureManager::getSecondTextureIndex() const
     return mTextureSecondIndex;
 }
 
+int TextureManager::getAnimationEndIndex() const
+{
+    return mAnimationFinalIndex;
+}
+
+void TextureManager::setAnimationEndIndex(int animationFinalIndex)
+{
+    this->mAnimationFinalIndex = animationFinalIndex;
+}
+
+int TextureManager::getFramesPerAnimationFrame() const
+{
+    return mFramesPerAnimationFrame;
+}
+
+void TextureManager::setFramePerAnimationFrame(int framesPerUpdate)
+{
+    this->mFramesPerAnimationFrame = framesPerUpdate;
+}
+
 int TextureManager::getCurrentFrames() const
 {
     return mCurrentFrames;
