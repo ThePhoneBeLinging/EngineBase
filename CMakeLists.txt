@@ -25,6 +25,14 @@ endif ()
 
 ###
 
+include(FetchContent)
+FetchContent_Declare(
+        Utility
+        GIT_REPOSITORY https://github.com/ThePhoneBeLinging/Utility.git
+        GIT_TAG main
+)
+FetchContent_MakeAvailable(Utility)
+
 
 add_library(EngineBase
         src/Controllers/TextureController.cpp
@@ -44,4 +52,7 @@ add_library(EngineBase
 )
 target_include_directories(EngineBase PUBLIC src/include)
 target_include_directories(EngineBase PUBLIC src)
-target_link_libraries(${PROJECT_NAME} PUBLIC raylib)
+target_link_libraries(${PROJECT_NAME} PUBLIC
+        raylib
+        Utility
+)
