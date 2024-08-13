@@ -3,7 +3,7 @@
 //
 
 #include <iostream>
-#include "HotKeyManager.h"
+#include "EngineBase/HotKeyManager.h"
 #include "Controllers/ObjectController.h"
 
 std::list<OnKeyPress*> HotKeyManager::mOnKeyPresses;
