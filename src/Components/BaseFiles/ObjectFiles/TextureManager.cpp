@@ -8,13 +8,18 @@
 
 void TextureManager::advanceAnimation()
 {
+    this->mCurrentFrames++;
     if (this->mTextureSecondIndex == this->mAnimationFinalIndex)
     {
-        this->mTextureSecondIndex -= this->mCurrentFrames;
-        this->mCurrentFrames = 0;
+        this->mTextureSecondIndex -= this->mFramesShown;
+        this->mFramesShown = 0;
     }
-    this->mCurrentFrames++;
-    this->mTextureSecondIndex++;
+    if (mCurrentFrames == mFramesPerAnimationFrame)
+    {
+        this->mCurrentFrames = 0;
+        this->mFramesShown++;
+        this->mTextureSecondIndex++;
+    }
 }
 
 void TextureManager::setDrawAble(DrawAbleObject* drawAble)

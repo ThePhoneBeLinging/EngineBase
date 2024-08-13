@@ -34,6 +34,7 @@ private:
     int mAnimationFinalIndex = 0;
     int mFramesPerAnimationFrame = 0;
     int mCurrentFrames = 0;
+    int mFramesShown = 0;
     DrawAbleObject* mDrawAble;
 };
 
