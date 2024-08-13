@@ -26,7 +26,7 @@ endif ()
 ###
 
 
-add_library(EngineBase SHARED
+add_library(EngineBase
         src/Controllers/TextureController.cpp
         src/Components/BaseFiles/ObjectFiles/DrawAbleObject.cpp
         src/Controllers/ObjectController.cpp
@@ -44,4 +44,4 @@ add_library(EngineBase SHARED
 )
 target_include_directories(EngineBase PUBLIC src/include)
 target_include_directories(EngineBase PUBLIC src)
-target_link_libraries(${PROJECT_NAME} raylib)
+target_link_libraries(${PROJECT_NAME} PUBLIC raylib)
