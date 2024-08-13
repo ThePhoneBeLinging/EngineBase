@@ -39,7 +39,6 @@ void ObjectController::keepDrawingObjects()
     {
         handleDeletions();
         handleClicks();
-        HotKeyManager::handleHotKeys();
         drawAllObjects();
     }
 }
