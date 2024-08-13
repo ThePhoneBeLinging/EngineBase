@@ -6,6 +6,17 @@
 
 #include "Controllers/ObjectController.h"
 
+void TextureManager::advanceAnimation()
+{
+    if (this->mTextureSecondIndex == this->mAnimationFinalIndex)
+    {
+        this->mTextureSecondIndex -= this->mCurrentFrames;
+        this->mCurrentFrames = 0;
+    }
+    this->mCurrentFrames++;
+    this->mTextureSecondIndex++;
+}
+
 void TextureManager::setDrawAble(DrawAbleObject* drawAble)
 {
     this->mDrawAble = drawAble;
@@ -41,4 +52,14 @@ int TextureManager::getTextureIndex() const
 int TextureManager::getSecondTextureIndex() const
 {
     return mTextureSecondIndex;
+}
+
+int TextureManager::getCurrentFrames() const
+{
+    return mCurrentFrames;
+}
+
+void TextureManager::setCurrentFrames(int currentFrames)
+{
+    mCurrentFrames = currentFrames;
 }

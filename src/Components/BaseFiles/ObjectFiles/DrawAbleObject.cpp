@@ -35,6 +35,7 @@ void DrawAbleObject::draw()
                                     drawAble->mTextureManager.getTextureIndex(),
                                     drawAble->mTextureManager.getSecondTextureIndex());
         }
+        drawAble->mTextureManager.advanceAnimation();
     }
 }
 
