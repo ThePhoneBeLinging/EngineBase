@@ -6,6 +6,7 @@
 #define ENGINEBASE_H
 #include "Controllers/TextureController.h"
 
+class DrawAbleObject;
 
 class EngineBase
 {
@@ -17,12 +18,14 @@ public:
     static bool shouldAppClose();
     static void toggleFPSCounter();
     static bool getShowFPS();
-
+    static void setObjectToFollow(DrawAbleObject* drawAble);
+    static DrawAbleObject* getObjectToFollow();
 private:
     static bool mShouldAppClose;
     static bool mShowFPS;
     static std::mutex mFPSLock;
     static std::mutex mAppCloseLock;
+    static DrawAbleObject* mObjectToFollow;
 
 public:
     // Key to ints stolen from RayLib

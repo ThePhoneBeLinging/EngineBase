@@ -53,3 +53,14 @@ bool EngineBase::getShowFPS()
     std::lock_guard<std::mutex> lock(mFPSLock);
     return mShowFPS;
 }
+
+void EngineBase::setObjectToFollow(DrawAbleObject *drawAble)
+{
+    mObjectToFollow = drawAble;
+}
+
+DrawAbleObject *EngineBase::getObjectToFollow()
+{
+    return mObjectToFollow;
+}
+
