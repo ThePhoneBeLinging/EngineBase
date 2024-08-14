@@ -25,6 +25,7 @@ private:
     static bool mShowFPS;
     static std::mutex mFPSLock;
     static std::mutex mAppCloseLock;
+    static std::mutex mObjectToFollowLock;
     static DrawAbleObject* mObjectToFollow;
 
 public:

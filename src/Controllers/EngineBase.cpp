@@ -11,6 +11,7 @@ bool EngineBase::mShouldAppClose = false;
 bool EngineBase::mShowFPS = false;
 std::mutex EngineBase::mAppCloseLock;
 std::mutex EngineBase::mFPSLock;
+std::mutex EngineBase::mObjectToFollowLock;
 
 
 void EngineBase::addTexture(const std::string& texturePath, int firstIndex, int secondIndex)
@@ -56,11 +57,15 @@ bool EngineBase::getShowFPS()
 
 void EngineBase::setObjectToFollow(DrawAbleObject *drawAble)
 {
+    std::lock_guard<std::mutex> lock(mObjectToFollowLock);
+
     mObjectToFollow = drawAble;
 }
 
 DrawAbleObject *EngineBase::getObjectToFollow()
 {
+    std::lock_guard<std::mutex> lock(mObjectToFollowLock);
+
     return mObjectToFollow;
 }
 
