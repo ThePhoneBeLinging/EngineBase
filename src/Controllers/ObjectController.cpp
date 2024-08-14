@@ -36,6 +36,7 @@ void ObjectController::removeObject(DrawAbleObject* drawAble)
 
 void ObjectController::keepDrawingObjects()
 {
+    int runThrough = 0;
     while (!WindowShouldClose())
     {
         handleDeletions();
@@ -45,6 +46,16 @@ void ObjectController::keepDrawingObjects()
         {
             DrawFPS(0, 0);
         }
+        if (runThrough == 0)
+        {
+            TextureController::initializeQueuedTextures();
+        }
+
+        if (runThrough == 100)
+        {
+            runThrough = 0;
+        }
+        runThrough++;
     }
 }
 

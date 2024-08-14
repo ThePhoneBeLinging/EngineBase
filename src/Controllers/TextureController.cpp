@@ -43,6 +43,14 @@ void TextureController::addTexture(const std::string& texturePath, int firstInde
 
 void TextureController::draw(int x, int y, int height, int width, int firstIndex, int secondIndex)
 {
+    if (mTextures.size() <= firstIndex)
+    {
+        return;
+    }
+    if (mTextures[firstIndex].size() <= secondIndex)
+    {
+        return;
+    }
     Texture2D texture = mTextures[firstIndex][secondIndex];
     texture.height = height;
     texture.width = width;
