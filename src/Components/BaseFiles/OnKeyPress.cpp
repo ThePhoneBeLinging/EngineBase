@@ -2,7 +2,7 @@
 // Created by Elias Aggergaard Larsen on 30/07/2024.
 //
 
-#include "EngineBase/OnKeyPress.h"
+#include "OnKeyPress.h"
 #include "EngineBase/HotKeyManager.h"
 
 #include <utility>
@@ -12,11 +12,10 @@ OnKeyPress::OnKeyPress(int key, std::function<void()> function, ActivationMethod
     this->mKeys.push_back(key);
     this->mFunction = std::move(function);
     this->mActivationMethod = activationMethod;
-    HotKeyManager::addOnKeyPress(this);
 }
 
 OnKeyPress::OnKeyPress(std::list<int> keys, std::function<void()> function, ActivationMethod activationMethod) :
-    OnKeyPress(*(keys.begin()), std::move(function), activationMethod)
+        OnKeyPress(*(keys.begin()), std::move(function), activationMethod)
 {
     this->mKeys = std::move(keys);
 }
@@ -36,7 +35,7 @@ std::function<void()> OnKeyPress::getFunction() const
     return mFunction;
 }
 
-void OnKeyPress::setFunction(const std::function<void()>& function)
+void OnKeyPress::setFunction(const std::function<void()> &function)
 {
     mFunction = function;
 }

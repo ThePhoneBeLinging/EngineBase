@@ -6,18 +6,21 @@
 #define HOTKEYMANAGER_H
 
 #include <vector>
-#include "EngineBase/OnKeyPress.h"
+#include "Components/BaseFiles/OnKeyPress.h"
 
 
-class HotKeyManager
-{
+class HotKeyManager {
 public:
-    static void addOnKeyPress(OnKeyPress* onKeyPress);
+    static void addOnKeyPress(int key, std::function<void()> function, ActivationMethod activationMethod);
+
+    static void addOnKeyPress(std::list<int> keys, std::function<void()> function, ActivationMethod activationMethod);
+
     static void handleHotKeys();
-    static bool areAllNeededKeysDown(OnKeyPress* onKeyPress);
+
+    static bool areAllNeededKeysDown(OnKeyPress *onKeyPress);
 
 private:
-    static std::list<OnKeyPress*> mOnKeyPresses;
+    static std::list<OnKeyPress *> mOnKeyPresses;
 };
 
 

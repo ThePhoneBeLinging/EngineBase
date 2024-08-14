@@ -6,51 +6,46 @@
 #include "EngineBase/HotKeyManager.h"
 #include "Controllers/ObjectController.h"
 
-std::list<OnKeyPress*> HotKeyManager::mOnKeyPresses;
+std::list<OnKeyPress *> HotKeyManager::mOnKeyPresses;
 
-void HotKeyManager::addOnKeyPress(OnKeyPress* onKeyPress)
+void HotKeyManager::addOnKeyPress(int key, std::function<void()> function, ActivationMethod activationMethod)
 {
-    mOnKeyPresses.push_back(onKeyPress);
+    mOnKeyPresses.push_back(new OnKeyPress(key, function, activationMethod));
 }
 
 void HotKeyManager::handleHotKeys()
 {
-    for (auto onKeyPress : mOnKeyPresses)
-    {
-        if (onKeyPress->getActivationMethod() == TriggerOnce)
-        {
-            if (areAllNeededKeysDown(onKeyPress))
-            {
-                if (!onKeyPress->hasActivatedFunction())
-                {
+    for (auto onKeyPress: mOnKeyPresses) {
+        if (onKeyPress->getActivationMethod() == TriggerOnce) {
+            if (areAllNeededKeysDown(onKeyPress)) {
+                if (!onKeyPress->hasActivatedFunction()) {
                     onKeyPress->executeFunction();
                 }
-            }
-            else
-            {
+            } else {
                 onKeyPress->setHasActivatedFunction(false);
             }
-        }
-        else if (onKeyPress->getActivationMethod() == TriggerContinuously)
-        {
-            if (areAllNeededKeysDown(onKeyPress))
-            {
+        } else if (onKeyPress->getActivationMethod() == TriggerContinuously) {
+            if (areAllNeededKeysDown(onKeyPress)) {
                 onKeyPress->executeFunction();
             }
         }
     }
 }
 
-bool HotKeyManager::areAllNeededKeysDown(OnKeyPress* onKeyPress)
+bool HotKeyManager::areAllNeededKeysDown(OnKeyPress *onKeyPress)
 {
-    for (int key : onKeyPress->getKeys())
-    {
-        if (!ObjectController::isKeyDown(key))
-        {
+    for (int key: onKeyPress->getKeys()) {
+        if (!ObjectController::isKeyDown(key)) {
             return false;
         }
     }
     return true;
+}
+
+void
+HotKeyManager::addOnKeyPress(std::list<int> keys, std::function<void()> function, ActivationMethod activationMethod)
+{
+    mOnKeyPresses.push_back(new OnKeyPress(std::move(keys), std::move(function), activationMethod));
 }
 
 
