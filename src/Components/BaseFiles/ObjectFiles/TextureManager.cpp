@@ -74,7 +74,7 @@ int TextureManager::getFramesPerAnimationFrame() const
     return mFramesPerAnimationFrame;
 }
 
-void TextureManager::setFramePerAnimationFrame(int framesPerUpdate)
+void TextureManager::setFramesPerAnimationFrame(int framesPerUpdate)
 {
     this->mFramesPerAnimationFrame = framesPerUpdate;
 }

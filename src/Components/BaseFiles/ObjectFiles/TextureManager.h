@@ -23,7 +23,7 @@ public:
     int getAnimationEndIndex() const;
     void setAnimationEndIndex(int animationFinalIndex);
     int getFramesPerAnimationFrame() const;
-    void setFramePerAnimationFrame(int framesPerUpdate);
+    void setFramesPerAnimationFrame(int framesPerUpdate);
     int getCurrentFrames() const;
     void setCurrentFrames(int currentFrames);
 
