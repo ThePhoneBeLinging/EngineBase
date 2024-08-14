@@ -32,11 +32,12 @@ void DrawAbleObject::draw()
     auto drawAbleToFollow = EngineBase::getObjectToFollow();
     for (auto drawAble: mConnectionManager.getConnectedObjects()) {
         if (drawAble == drawAbleToFollow) {
-            TextureController::draw((GetScreenWidth() / 2) + (mWidth / 2),
-                                    (GetScreenHeight() / 2) + (GetScreenWidth() / 2) + (drawAbleToFollow->mWidth / 2),
+            TextureController::draw((GetScreenWidth() / 2) - (mWidth / 2),
+                                    (GetScreenHeight() / 2) - (mHeight / 2),
                                     drawAbleToFollow->mHeight, drawAbleToFollow->mWidth,
                                     drawAbleToFollow->mTextureManager.getTextureIndex(),
                                     drawAbleToFollow->mTextureManager.getSecondTextureIndex());
+            drawAbleToFollow->mTextureManager.advanceAnimation();
             continue;
         }
         if (drawAble->mVisibility.isVisisble()) {
