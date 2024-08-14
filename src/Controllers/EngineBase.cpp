@@ -13,6 +13,8 @@ std::mutex EngineBase::mAppCloseLock;
 std::mutex EngineBase::mFPSLock;
 std::mutex EngineBase::mObjectToFollowLock;
 
+DrawAbleObject* EngineBase::mObjectToFollow = nullptr;
+
 
 void EngineBase::addTexture(const std::string& texturePath, int firstIndex, int secondIndex)
 {
