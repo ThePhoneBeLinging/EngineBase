@@ -6,6 +6,7 @@
 #include "EngineBase/HotKeyManager.h"
 #include <algorithm>
 #include <iostream>
+#include <EngineBase/EngineBase.h>
 
 std::vector<std::list<DrawAbleObject*>> ObjectController::mAllDrawables;
 
@@ -40,6 +41,10 @@ void ObjectController::keepDrawingObjects()
         handleDeletions();
         handleClicks();
         drawAllObjects();
+        if (EngineBase::getShowFPS())
+        {
+            DrawFPS(0, 0);
+        }
     }
 }
 

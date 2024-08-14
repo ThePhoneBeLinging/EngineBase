@@ -15,9 +15,14 @@ public:
     static int getScene();
     static void startGUI();
     static bool shouldAppClose();
+    static void toggleFPSCounter();
+    static bool getShowFPS();
 
 private:
     static bool mShouldAppClose;
+    static bool mShowFPS;
+    static std::mutex mFPSLock;
+    static std::mutex mAppCloseLock;
 
 public:
     // Key to ints stolen from RayLib

@@ -8,6 +8,10 @@
 #include "ObjectController.h"
 
 bool EngineBase::mShouldAppClose = false;
+bool EngineBase::mShowFPS = false;
+std::mutex EngineBase::mAppCloseLock;
+std::mutex EngineBase::mFPSLock;
+
 
 void EngineBase::addTexture(const std::string& texturePath, int firstIndex, int secondIndex)
 {
@@ -28,10 +32,24 @@ void EngineBase::startGUI()
 {
     TextureController::initWindow();
     ObjectController::keepDrawingObjects();
+    std::lock_guard<std::mutex> lock(mAppCloseLock);
     mShouldAppClose = true;
 }
 
 bool EngineBase::shouldAppClose()
 {
+    std::lock_guard<std::mutex> lock(mAppCloseLock);
     return mShouldAppClose;
+}
+
+void EngineBase::toggleFPSCounter()
+{
+    std::lock_guard<std::mutex> lock(mFPSLock);
+    mShowFPS = !mShowFPS;
+}
+
+bool EngineBase::getShowFPS()
+{
+    std::lock_guard<std::mutex> lock(mFPSLock);
+    return mShowFPS;
 }
