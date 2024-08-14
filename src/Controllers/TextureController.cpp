@@ -9,6 +9,8 @@
 std::vector<std::vector<Texture2D>> TextureController::mTextures;
 int TextureController::spacesPerResize = 50;
 bool TextureController::mWindowInitialized = false;
+std::list<TextureToLoad> TextureController::mTexturesToLoad;
+std::mutex TextureController::mTextureQueueLock;
 
 //TODO Check this function, something seems off with the increments in size;
 void TextureController::addTexture(const std::string& texturePath, int firstIndex, int secondIndex)
@@ -60,4 +62,21 @@ void TextureController::initWindow()
         InitWindow(width, height, title.c_str());
         mWindowInitialized = true;
     }
+}
+
+void TextureController::addTextureToLoad(const std::string& texturePath, int firstIndex, int secondIndex)
+{
+    std::lock_guard<std::mutex> lock(mTextureQueueLock);
+    mTexturesToLoad.emplace_back(texturePath, firstIndex, secondIndex);
+}
+
+void TextureController::initializeQueuedTextures()
+{
+    std::lock_guard<std::mutex> lock(mTextureQueueLock);
+
+    for (const auto& textureToLoad : mTexturesToLoad)
+    {
+        addTexture(textureToLoad.mTexturePath, textureToLoad.mPrimaryIndex, textureToLoad.mSecondaryIndex);
+    }
+    mTexturesToLoad.clear();
 }

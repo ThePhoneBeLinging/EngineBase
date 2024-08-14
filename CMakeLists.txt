@@ -49,6 +49,8 @@ add_library(EngineBase
         src/Components/BaseFiles/ObjectFiles/TextureManager.cpp
         src/Components/BaseFiles/OnKeyPress.cpp
         src/Components/BaseFiles/HotKeyManager.cpp
+        src/Components/TextureToLoad.cpp
+        src/Components/TextureToLoad.h
 )
 target_include_directories(EngineBase PUBLIC src/include)
 target_include_directories(EngineBase PUBLIC src)

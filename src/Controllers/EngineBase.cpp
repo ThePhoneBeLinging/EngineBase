@@ -15,7 +15,7 @@ std::mutex EngineBase::mFPSLock;
 
 void EngineBase::addTexture(const std::string& texturePath, int firstIndex, int secondIndex)
 {
-    TextureController::addTexture(texturePath, firstIndex, secondIndex);
+    TextureController::addTextureToLoad(texturePath, firstIndex, secondIndex);
 }
 
 void EngineBase::setScene(int scene)
