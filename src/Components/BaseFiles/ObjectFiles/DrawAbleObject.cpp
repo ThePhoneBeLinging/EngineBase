@@ -8,8 +8,9 @@
 #include "Controllers/TextureController.h"
 #include "EngineBase/EngineBase.h"
 
-DrawAbleObject::DrawAbleObject(int x, int y, int height, int width) : Object(
-    x, y, height, width)
+DrawAbleObject::DrawAbleObject(int x, int y, int height, int width) :
+        Object(
+                x, y, height, width)
 {
     this->x = x;
     this->y = y;
@@ -29,18 +30,26 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width) : Object(
 void DrawAbleObject::draw()
 {
     auto drawAbleToFollow = EngineBase::getObjectToFollow();
-    for (auto drawAble : mConnectionManager.getConnectedObjects())
-    {
-        if (drawAble == drawAbleToFollow)
-        {
-            TextureController::draw((GetScreenWidth() / 2) + (mWidth/2),(GetScreenHeight() / 2) + (GetScreenWidth() / 2) + (drawAbleToFollow->mWidth / 2),drawAbleToFollow->mHeight, drawAbleToFollow->mWidth,drawAbleToFollow->mTextureManager.getTextureIndex(),drawAbleToFollow->mTextureManager.getSecondTextureIndex());
+    for (auto drawAble: mConnectionManager.getConnectedObjects()) {
+        if (drawAble == drawAbleToFollow) {
+            TextureController::draw((GetScreenWidth() / 2) + (mWidth / 2),
+                                    (GetScreenHeight() / 2) + (GetScreenWidth() / 2) + (drawAbleToFollow->mWidth / 2),
+                                    drawAbleToFollow->mHeight, drawAbleToFollow->mWidth,
+                                    drawAbleToFollow->mTextureManager.getTextureIndex(),
+                                    drawAbleToFollow->mTextureManager.getSecondTextureIndex());
             continue;
         }
-        if (drawAble->mVisibility.isVisisble())
-        {
-            TextureController::draw(drawAble->x - drawAbleToFollow->x, drawAble->y - drawAbleToFollow->y, drawAble->mHeight, drawAble->mWidth,
-                                    drawAble->mTextureManager.getTextureIndex(),
-                                    drawAble->mTextureManager.getSecondTextureIndex());
+        if (drawAble->mVisibility.isVisisble()) {
+            if (drawAbleToFollow != nullptr) {
+                TextureController::draw(drawAble->x - drawAbleToFollow->x, drawAble->y - drawAbleToFollow->y,
+                                        drawAble->mHeight, drawAble->mWidth,
+                                        drawAble->mTextureManager.getTextureIndex(),
+                                        drawAble->mTextureManager.getSecondTextureIndex());
+            } else {
+                TextureController::draw(drawAble->x, drawAble->y, drawAble->mHeight, drawAble->mWidth,
+                                        drawAble->mTextureManager.getTextureIndex(),
+                                        drawAble->mTextureManager.getSecondTextureIndex());
+            }
         }
         drawAble->mTextureManager.advanceAnimation();
     }
@@ -65,11 +74,9 @@ void DrawAbleObject::removeFromScene()
 bool DrawAbleObject::isPointInside(int x, int y)
 {
     if (Object::isPointInside(x, y)) return true;
-    for (auto connectedTexture : this->mConnectionManager.getConnectedObjects())
-    {
+    for (auto connectedTexture: this->mConnectionManager.getConnectedObjects()) {
         if (connectedTexture == this) continue;
-        if (connectedTexture->isPointInside(x, y))
-        {
+        if (connectedTexture->isPointInside(x, y)) {
             return true;
         }
     }
