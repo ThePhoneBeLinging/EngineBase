@@ -4,13 +4,15 @@
 
 #ifndef SHAPESPOINTCHECKER_H
 #define SHAPESPOINTCHECKER_H
+
 #include "EngineBase/DrawAbleObject.h"
 
 
-class ShapesPointChecker
-{
+class ShapesPointChecker {
 public:
-    static bool rectanglePointInsideChecker(Object* object, int x, int y);
+    static bool rectanglePointInsideChecker(Object *object, int x, int y);
+
+    static bool rectangleCollisionChecker(DrawAbleObject *drawAbleObject, DrawAbleObject *otherObject);
 };
 
 
