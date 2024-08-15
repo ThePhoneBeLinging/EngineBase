@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 ### Add Raylib
 
-set(RESOURCE_FOLDER ${CMAKE_SOURCE_DIR}/Textures)
+set(RESOURCE_FOLDER ${CMAKE_SOURCE_DIR}/dependencies/EngineBase/Textures)
 
 # Copy the resource folder
 file(COPY ${RESOURCE_FOLDER} DESTINATION ${CMAKE_BINARY_DIR})
@@ -29,14 +29,6 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
 endif ()
 
 ###
-
-include(FetchContent)
-FetchContent_Declare(
-        Utility
-        GIT_REPOSITORY https://github.com/ThePhoneBeLinging/Utility.git
-        GIT_TAG main
-)
-FetchContent_MakeAvailable(Utility)
 
 
 add_library(EngineBase
