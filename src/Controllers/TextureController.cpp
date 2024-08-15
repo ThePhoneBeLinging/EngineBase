@@ -61,8 +61,6 @@ void TextureController::initWindow()
         InitWindow(width, height, title.c_str());
         mWindowInitialized = true;
         loadTexture("Textures/MissingTexture.png", 0, 0);
-        loadTexture("BLACK", 0, black);
-        loadTexture("WHITE", 0, white);
     }
 }
 

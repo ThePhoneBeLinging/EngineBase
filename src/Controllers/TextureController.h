@@ -23,11 +23,6 @@ public:
     static void genColorFromHex(unsigned int hexValue, int primaryIndex, int secondaryIndex);
     static void initializeQueuedTextures();
 
-    typedef enum
-    {
-        black = 1,
-        white = 2
-    } color;
 
 private:
     static std::vector<std::vector<Texture2D>> mTextures;
