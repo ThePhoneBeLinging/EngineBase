@@ -14,9 +14,10 @@ std::mutex TextureController::mTextureQueueLock;
 std::mutex TextureController::mHexColorsQueueLock;
 std::list<HexColorToLoad> TextureController::mHexColorsToLoad;
 
+//Used for loading a texture now
 void TextureController::loadTexture(const std::string& texturePath, int firstIndex, int secondIndex)
 {
-    addTexture(LoadTexture(texturePath.c_str()),firstIndex,secondIndex);
+    addTexture(LoadTexture(texturePath.c_str()), firstIndex, secondIndex);
 }
 
 void TextureController::addTexture(Texture2D texture, int primaryIndex, int secondaryIndex)
@@ -73,7 +74,7 @@ void TextureController::addTextureToLoad(const std::string& texturePath, int fir
 void TextureController::genColorFromHex(unsigned int hexValue, int primaryIndex, int secondaryIndex)
 {
     std::lock_guard<std::mutex> lock(mHexColorsQueueLock);
-    mHexColorsToLoad.emplace_back(hexValue,primaryIndex,secondaryIndex);
+    mHexColorsToLoad.emplace_back(hexValue, primaryIndex, secondaryIndex);
 }
 
 void TextureController::initializeQueuedTextures()
@@ -86,7 +87,8 @@ void TextureController::initializeQueuedTextures()
     }
     for (auto hexToLoad : mHexColorsToLoad)
     {
-        addTexture(LoadTextureFromImage(GenImageColor(1,1,GetColor(hexToLoad.hex))),hexToLoad.primaryIndex,hexToLoad.secondaryIndex);
+        addTexture(LoadTextureFromImage(GenImageColor(1, 1, GetColor(hexToLoad.hex))), hexToLoad.primaryIndex,
+                   hexToLoad.secondaryIndex);
     }
     mTexturesToLoad.clear();
     mHexColorsToLoad.clear();
