@@ -5,6 +5,11 @@ set(CMAKE_CXX_STANDARD 20)
 
 ### Add Raylib
 
+set(RESOURCE_FOLDER ${CMAKE_SOURCE_DIR}/Textures)
+
+# Copy the resource folder
+file(COPY ${RESOURCE_FOLDER} DESTINATION ${CMAKE_BINARY_DIR})
+
 set(RAYLIB_VERSION 5.0)
 find_package(raylib ${RAYLIB_VERSION} QUIET) # QUIET or REQUIRED
 if (NOT raylib_FOUND) # If there's none, fetch and build raylib

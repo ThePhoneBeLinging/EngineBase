@@ -21,6 +21,12 @@ public:
     static void addTextureToLoad(const std::string& texturePath, int firstIndex, int secondIndex);
     static void initializeQueuedTextures();
 
+    typedef enum
+    {
+        black = 1,
+        white = 2
+    } color;
+
 private:
     static std::vector<std::vector<Texture2D>> mTextures;
     static int spacesPerResize;

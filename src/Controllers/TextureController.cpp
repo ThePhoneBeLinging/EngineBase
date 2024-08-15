@@ -15,7 +15,6 @@ std::mutex TextureController::mTextureQueueLock;
 //TODO Check this function, something seems off with the increments in size;
 void TextureController::addTexture(const std::string& texturePath, int firstIndex, int secondIndex)
 {
-    initWindow();
     while (mTextures.capacity() <= firstIndex)
     {
         mTextures.resize(mTextures.capacity() + spacesPerResize);
@@ -69,6 +68,9 @@ void TextureController::initWindow()
         SetConfigFlags(FLAG_WINDOW_RESIZABLE);
         InitWindow(width, height, title.c_str());
         mWindowInitialized = true;
+        addTexture("Textures/MissingTexture.png", 0, 0);
+        addTexture("BLACK", 0, black);
+        addTexture("WHITE", 0, white);
     }
 }
 
