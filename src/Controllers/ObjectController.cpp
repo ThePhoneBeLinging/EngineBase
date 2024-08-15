@@ -51,7 +51,7 @@ void ObjectController::keepDrawingObjects()
             TextureController::initializeQueuedTextures();
         }
 
-        if (runThrough == 100)
+        if (runThrough == 1000)
         {
             runThrough = 0;
         }

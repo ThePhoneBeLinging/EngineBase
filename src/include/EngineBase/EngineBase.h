@@ -11,7 +11,8 @@ class DrawAbleObject;
 class EngineBase
 {
 public:
-    static void addTexture(const std::string& texturePath, int firstIndex, int secondIndex);
+    static void addTexture(const std::string& texturePath, int primaryIndex, int secondaryIndex);
+    static void addHexColor(unsigned int hexValue, int primaryIndex, int secondaryIndex);
     static void setScene(int scene);
     static int getScene();
     static void startGUI();

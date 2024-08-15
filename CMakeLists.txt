@@ -48,6 +48,8 @@ add_library(EngineBase
         src/Components/BaseFiles/HotKeyManager.cpp
         src/Components/TextureToLoad.cpp
         src/Components/TextureToLoad.h
+        src/Components/HexColorToLoad.cpp
+        src/Components/HexColorToLoad.h
 )
 target_include_directories(EngineBase PUBLIC src/include)
 target_include_directories(EngineBase PUBLIC src)

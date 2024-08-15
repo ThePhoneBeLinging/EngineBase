@@ -11,33 +11,25 @@ int TextureController::spacesPerResize = 50;
 bool TextureController::mWindowInitialized = false;
 std::list<TextureToLoad> TextureController::mTexturesToLoad;
 std::mutex TextureController::mTextureQueueLock;
+std::mutex TextureController::mHexColorsQueueLock;
+std::list<HexColorToLoad> TextureController::mHexColorsToLoad;
 
-//TODO Check this function, something seems off with the increments in size;
-void TextureController::addTexture(const std::string& texturePath, int firstIndex, int secondIndex)
+void TextureController::loadTexture(const std::string& texturePath, int firstIndex, int secondIndex)
 {
-    while (mTextures.capacity() <= firstIndex)
+    addTexture(LoadTexture(texturePath.c_str()),firstIndex,secondIndex);
+}
+
+void TextureController::addTexture(Texture2D texture, int primaryIndex, int secondaryIndex)
+{
+    while (mTextures.capacity() <= primaryIndex)
     {
         mTextures.resize(mTextures.capacity() + spacesPerResize);
     }
-
-    while (mTextures[firstIndex].capacity() <= secondIndex)
+    while (mTextures[primaryIndex].capacity() <= secondaryIndex)
     {
-        mTextures[firstIndex].resize(mTextures[firstIndex].capacity() + spacesPerResize);
+        mTextures[primaryIndex].resize(mTextures[primaryIndex].capacity() + spacesPerResize);
     }
-    if (texturePath == "BLACK")
-    {
-        Image image = GenImageColor(50, 50,BLACK);
-        mTextures[firstIndex][secondIndex] = LoadTextureFromImage(image);
-    }
-    else if (texturePath == "WHITE")
-    {
-        Image image = GenImageColor(50, 50,WHITE);
-        mTextures[firstIndex][secondIndex] = LoadTextureFromImage(image);
-    }
-    else
-    {
-        mTextures[firstIndex][secondIndex] = LoadTexture(texturePath.c_str());
-    }
+    mTextures[primaryIndex][secondaryIndex] = texture;
 }
 
 void TextureController::draw(int x, int y, int height, int width, int firstIndex, int secondIndex)
@@ -68,9 +60,9 @@ void TextureController::initWindow()
         SetConfigFlags(FLAG_WINDOW_RESIZABLE);
         InitWindow(width, height, title.c_str());
         mWindowInitialized = true;
-        addTexture("Textures/MissingTexture.png", 0, 0);
-        addTexture("BLACK", 0, black);
-        addTexture("WHITE", 0, white);
+        loadTexture("Textures/MissingTexture.png", 0, 0);
+        loadTexture("BLACK", 0, black);
+        loadTexture("WHITE", 0, white);
     }
 }
 
@@ -80,13 +72,24 @@ void TextureController::addTextureToLoad(const std::string& texturePath, int fir
     mTexturesToLoad.emplace_back(texturePath, firstIndex, secondIndex);
 }
 
+void TextureController::genColorFromHex(unsigned int hexValue, int primaryIndex, int secondaryIndex)
+{
+    std::lock_guard<std::mutex> lock(mHexColorsQueueLock);
+    mHexColorsToLoad.emplace_back(hexValue,primaryIndex,secondaryIndex);
+}
+
 void TextureController::initializeQueuedTextures()
 {
     std::lock_guard<std::mutex> lock(mTextureQueueLock);
-
+    std::lock_guard<std::mutex> otherLock(mHexColorsQueueLock);
     for (const auto& textureToLoad : mTexturesToLoad)
     {
-        addTexture(textureToLoad.mTexturePath, textureToLoad.mPrimaryIndex, textureToLoad.mSecondaryIndex);
+        loadTexture(textureToLoad.mTexturePath, textureToLoad.mPrimaryIndex, textureToLoad.mSecondaryIndex);
+    }
+    for (auto hexToLoad : mHexColorsToLoad)
+    {
+        addTexture(LoadTextureFromImage(GenImageColor(1,1,GetColor(hexToLoad.hex))),hexToLoad.primaryIndex,hexToLoad.secondaryIndex);
     }
     mTexturesToLoad.clear();
+    mHexColorsToLoad.clear();
 }

@@ -21,6 +21,11 @@ void EngineBase::addTexture(const std::string& texturePath, int firstIndex, int 
     TextureController::addTextureToLoad(texturePath, firstIndex, secondIndex);
 }
 
+void EngineBase::addHexColor(unsigned int hexValue, int primaryIndex, int secondaryIndex)
+{
+    TextureController::genColorFromHex(hexValue,primaryIndex,secondaryIndex);
+}
+
 void EngineBase::setScene(int scene)
 {
     ObjectController::mSceneManager.setScene(scene);
