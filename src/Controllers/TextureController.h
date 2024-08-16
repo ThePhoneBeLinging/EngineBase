@@ -23,6 +23,7 @@ public:
     static void addTextureToLoad(const std::string& texturePath, int firstIndex, int secondIndex);
     static void genColorFromHex(unsigned int hexValue, int primaryIndex, int secondaryIndex);
     static void initializeQueuedTextures();
+    static void setObjectToFollow(DrawAbleObject* drawAbleToFollow);
 
 private:
     static std::vector<std::vector<Texture2D>> mTextures;

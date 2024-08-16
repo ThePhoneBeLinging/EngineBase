@@ -23,7 +23,7 @@ void EngineBase::addTexture(const std::string& texturePath, int firstIndex, int 
 
 void EngineBase::addHexColor(unsigned int hexValue, int primaryIndex, int secondaryIndex)
 {
-    TextureController::genColorFromHex(hexValue,primaryIndex,secondaryIndex);
+    TextureController::genColorFromHex(hexValue, primaryIndex, secondaryIndex);
 }
 
 void EngineBase::setScene(int scene)
@@ -62,17 +62,17 @@ bool EngineBase::getShowFPS()
     return mShowFPS;
 }
 
-void EngineBase::setObjectToFollow(DrawAbleObject *drawAble)
+void EngineBase::setObjectToFollow(DrawAbleObject* drawAble)
 {
     std::lock_guard<std::mutex> lock(mObjectToFollowLock);
 
     mObjectToFollow = drawAble;
+    TextureController::setObjectToFollow(mObjectToFollow);
 }
 
-DrawAbleObject *EngineBase::getObjectToFollow()
+DrawAbleObject* EngineBase::getObjectToFollow()
 {
     std::lock_guard<std::mutex> lock(mObjectToFollowLock);
-
     return mObjectToFollow;
 }
 

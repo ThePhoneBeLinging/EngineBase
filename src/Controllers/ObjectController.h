@@ -26,6 +26,7 @@ public:
     static bool isKeyUp(int key);
     static bool isKeyReleased(int key);
     static SceneManager mSceneManager;
+    static void offsetAllDrawAbles(int xOffset, int yOffset);
 
 private:
     static std::vector<std::list<DrawAbleObject*>> mAllDrawables;

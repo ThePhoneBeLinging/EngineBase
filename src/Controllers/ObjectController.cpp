@@ -176,3 +176,12 @@ bool ObjectController::isKeyReleased(int key)
 {
     return IsKeyReleased(key);
 }
+
+void ObjectController::offsetAllDrawAbles(int xOffset, int yOffset)
+{
+    for (auto drawAble : mAllDrawables[mSceneManager.getScene()])
+    {
+        drawAble->setX(drawAble->getX() + xOffset);
+        drawAble->setY(drawAble->getY() + yOffset);
+    }
+}

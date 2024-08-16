@@ -4,6 +4,9 @@
 
 
 #include "TextureController.h"
+
+#include <EngineBase/EngineBase.h>
+
 #include "ObjectController.h"
 
 std::vector<std::vector<Texture2D>> TextureController::mTextures;
@@ -98,4 +101,22 @@ void TextureController::initializeQueuedTextures()
     }
     mTexturesToLoad.clear();
     mHexColorsToLoad.clear();
+}
+
+void TextureController::setObjectToFollow(DrawAbleObject* drawAbleToFollow)
+{
+    //TODO Unsafe while loop :)
+
+    while (GetScreenHeight() == 0)
+    {
+    }
+
+    int targetX = (GetScreenWidth() / 2) - (drawAbleToFollow->getWidth() / 2);
+    int targetY = (GetScreenHeight() / 2) - (drawAbleToFollow->getHeight() / 2);
+
+    int xOffset = targetX - drawAbleToFollow->getX();
+    int yOffset = targetY - drawAbleToFollow->getY();
+
+
+    ObjectController::offsetAllDrawAbles(xOffset, yOffset);
 }
