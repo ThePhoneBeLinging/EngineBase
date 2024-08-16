@@ -29,34 +29,11 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width) :
 
 void DrawAbleObject::draw()
 {
-    auto drawAbleToFollow = EngineBase::getObjectToFollow();
     for (auto drawAble : mConnectionManager.getConnectedObjects())
     {
-        if (drawAble == drawAbleToFollow)
-        {
-            TextureController::draw((GetScreenWidth() / 2) - (mWidth / 2),
-                                    (GetScreenHeight() / 2) - (mHeight / 2),
-                                    drawAbleToFollow->mHeight, drawAbleToFollow->mWidth,
-                                    drawAbleToFollow->mTextureManager.getTextureIndex(),
-                                    drawAbleToFollow->mTextureManager.getSecondTextureIndex());
-            drawAbleToFollow->mTextureManager.advanceAnimation();
-            continue;
-        }
         if (drawAble->mVisibility.isVisisble())
         {
-            if (drawAbleToFollow != nullptr)
-            {
-                TextureController::draw(drawAble->x - drawAbleToFollow->x, drawAble->y - drawAbleToFollow->y,
-                                        drawAble->mHeight, drawAble->mWidth,
-                                        drawAble->mTextureManager.getTextureIndex(),
-                                        drawAble->mTextureManager.getSecondTextureIndex());
-            }
-            else
-            {
-                TextureController::draw(drawAble->x, drawAble->y, drawAble->mHeight, drawAble->mWidth,
-                                        drawAble->mTextureManager.getTextureIndex(),
-                                        drawAble->mTextureManager.getSecondTextureIndex());
-            }
+            TextureController::draw(this);
         }
         drawAble->mTextureManager.advanceAnimation();
     }

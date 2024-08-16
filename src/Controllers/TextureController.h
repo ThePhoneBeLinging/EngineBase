@@ -8,6 +8,7 @@
 #include <vector>
 #include <thread>
 #include <Components/TextureToLoad.h>
+#include <EngineBase/DrawAbleObject.h>
 
 #include "raylib.h"
 #include "Components/HexColorToLoad.h"
@@ -17,12 +18,11 @@ class TextureController
 {
 public:
     static void loadTexture(const std::string& texturePath, int firstIndex, int secondIndex);
-    static void draw(int x, int y, int height, int width, int firstIndex, int secondIndex);
+    static void draw(DrawAbleObject* drawAble);
     static void initWindow();
     static void addTextureToLoad(const std::string& texturePath, int firstIndex, int secondIndex);
     static void genColorFromHex(unsigned int hexValue, int primaryIndex, int secondaryIndex);
     static void initializeQueuedTextures();
-
 
 private:
     static std::vector<std::vector<Texture2D>> mTextures;

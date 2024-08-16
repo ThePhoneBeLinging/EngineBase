@@ -33,8 +33,12 @@ void TextureController::addTexture(Texture2D texture, int primaryIndex, int seco
     mTextures[primaryIndex][secondaryIndex] = texture;
 }
 
-void TextureController::draw(int x, int y, int height, int width, int firstIndex, int secondIndex)
+void TextureController::draw(DrawAbleObject* drawAble)
 {
+    int firstIndex = drawAble->mTextureManager.getTextureIndex();
+    int secondIndex = drawAble->mTextureManager.getSecondTextureIndex();
+    int height = drawAble->getHeight();
+    int width = drawAble->getWidth();
     if (mTextures.size() <= firstIndex)
     {
         return;
@@ -47,7 +51,7 @@ void TextureController::draw(int x, int y, int height, int width, int firstIndex
     texture.height = height;
     texture.width = width;
     float scaleFactor = (GetScreenWidth() / 1280);
-    Vector2 pos = {(float)x, (float)y};
+    Vector2 pos = {(float)drawAble->getX(), (float)drawAble->getY()};
     DrawTextureEx(texture, pos, 0, scaleFactor,WHITE);
 }
 
