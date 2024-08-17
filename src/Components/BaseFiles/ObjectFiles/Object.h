@@ -4,14 +4,15 @@
 
 #ifndef OBJECT_H
 #define OBJECT_H
+#include "CollisionManager.h"
 
 
 class Object
 {
 public:
     Object(int x, int y, int height, int width);
-    void setX(int x);
-    void setY(int y);
+    virtual void setX(int x);
+    virtual void setY(int y);
     void setHeight(int height);
     void setWidth(int width);
     int getX() const;

@@ -4,6 +4,8 @@
 
 #include "Object.h"
 
+#include <Controllers/ObjectController.h>
+
 #include "../ShapesPointChecker.h"
 
 Object::Object(int x, int y, int height, int width)

@@ -28,7 +28,8 @@ public:
     virtual void removeFromScene();
     bool isPointInside(int x, int y) override;
     std::list<DrawAbleObject*> getCollidingDrawAbles();
-
+    void setX(int x) override;
+    void setY(int y) override;
 
     TextureManager mTextureManager;
     Visibility mVisibility;
@@ -36,6 +37,7 @@ public:
     SceneManager mSceneManager;
     ConnectionManager mConnectionManager;
     Button mButton;
+    CollisionManager mCollisionManager;
 };
 
 

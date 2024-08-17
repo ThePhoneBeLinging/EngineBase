@@ -25,6 +25,7 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width) :
     mButton.setDrawAbleObject(this);
     this->mConnectionManager = ConnectionManager();
     mConnectionManager.connectDrawAble(this);
+    this->mCollisionManager = CollisionManager();
 }
 
 void DrawAbleObject::draw()
@@ -72,6 +73,41 @@ bool DrawAbleObject::isPointInside(int x, int y)
 std::list<DrawAbleObject*> DrawAbleObject::getCollidingDrawAbles()
 {
     return ObjectController::getCollidingDrawAbles(this);
+}
+
+void DrawAbleObject::setX(int x)
+{
+    int oldX = this->x;
+    Object::setX(x);
+    if (mCollisionManager.getCollisionMode() == Collide)
+    {
+        auto collidingObjects = ObjectController::getCollidingDrawAbles(this);
+        for (auto object : collidingObjects)
+        {
+            if (object->mCollisionManager.getCollisionMode() == Collide)
+            {
+                this->x = oldX;
+            }
+        }
+    }
+}
+
+void DrawAbleObject::setY(int y)
+{
+    int oldY = this->y;
+    Object::setY(y);
+    if (mCollisionManager.getCollisionMode() == Collide)
+    {
+        auto collidingObjects = ObjectController::getCollidingDrawAbles(this);
+        for (auto object : collidingObjects)
+        {
+            if (object->mCollisionManager.getCollisionMode() == Collide)
+            {
+                this->y = oldY;
+                break;
+            }
+        }
+    }
 }
 
 
