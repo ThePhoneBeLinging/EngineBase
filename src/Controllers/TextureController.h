@@ -34,6 +34,8 @@ private:
     static std::list<HexColorToLoad> mHexColorsToLoad;
     static std::mutex mHexColorsQueueLock;
     static void addTexture(Texture2D texture, int primaryIndex, int secondaryIndex);
+    static int mFollowAbleX;
+    static int mFollowAbleY;
 };
 
 

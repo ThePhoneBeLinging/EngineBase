@@ -16,6 +16,8 @@ std::list<TextureToLoad> TextureController::mTexturesToLoad;
 std::mutex TextureController::mTextureQueueLock;
 std::mutex TextureController::mHexColorsQueueLock;
 std::list<HexColorToLoad> TextureController::mHexColorsToLoad;
+int TextureController::mFollowAbleX;
+int TextureController::mFollowAbleY;
 
 //Used for loading a texture now
 void TextureController::loadTexture(const std::string& texturePath, int firstIndex, int secondIndex)
@@ -44,6 +46,13 @@ void TextureController::draw(DrawAbleObject* drawAble)
     int secondIndex = drawAble->mTextureManager.getSecondTextureIndex();
     int height = drawAble->getHeight();
     int width = drawAble->getWidth();
+
+    if (EngineBase::getObjectToFollow() != nullptr)
+    {
+        x -= EngineBase::getObjectToFollow()->getX() - mFollowAbleX;
+        y -= EngineBase::getObjectToFollow()->getY() - mFollowAbleY;
+    }
+
     if (mTextures.size() <= firstIndex)
     {
         return;
@@ -113,7 +122,8 @@ void TextureController::setObjectToFollow(DrawAbleObject* drawAbleToFollow)
 
     int targetX = (GetScreenWidth() / 2) - (drawAbleToFollow->getWidth() / 2);
     int targetY = (GetScreenHeight() / 2) - (drawAbleToFollow->getHeight() / 2);
-
+    mFollowAbleX = targetX;
+    mFollowAbleY = targetY;
     int xOffset = targetX - drawAbleToFollow->getX();
     int yOffset = targetY - drawAbleToFollow->getY();
 
