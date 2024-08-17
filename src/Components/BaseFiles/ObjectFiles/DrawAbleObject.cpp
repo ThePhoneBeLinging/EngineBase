@@ -71,25 +71,27 @@ bool DrawAbleObject::isPointInside(int x, int y)
     return false;
 }
 
-std::list<DrawAbleObject*> DrawAbleObject::getCollidingDrawAbles()
-{
-    return ObjectController::getCollidingDrawAbles(this);
-}
-
 void DrawAbleObject::setX(int x)
 {
     std::lock_guard<std::mutex> lock(mPositionLock);
+    bool reloadCollsions = false;
     int oldX = this->x;
     Object::setX(x);
     if (mCollisionManager.getCollisionMode() == Collide)
     {
-        auto collidingObjects = ObjectController::getCollidingDrawAbles(this);
-        for (auto object : collidingObjects)
+        mCollisionManager.setCollidingObjects(ObjectController::getCollidingDrawAbles(this));
+        for (auto object : mCollisionManager.getCollidingObjects())
         {
             if (object->mCollisionManager.getCollisionMode() == Collide)
             {
                 this->x = oldX;
+                reloadCollsions = true;
+                break;
             }
+        }
+        if (reloadCollsions)
+        {
+            mCollisionManager.setCollidingObjects(ObjectController::getCollidingDrawAbles(this));
         }
     }
 }

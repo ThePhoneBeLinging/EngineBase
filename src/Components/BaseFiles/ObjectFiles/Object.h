@@ -20,12 +20,15 @@ public:
     int getHeight() const;
     int getWidth() const;
     virtual bool isPointInside(int x, int y);
+    std::string getID();
+    void setID(std::string newID);
 
 protected:
     int x;
     int y;
     int mHeight;
     int mWidth;
+    std::string mID;
 };
 
 

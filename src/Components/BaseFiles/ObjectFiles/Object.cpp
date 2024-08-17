@@ -61,3 +61,13 @@ bool Object::isPointInside(int x, int y)
 {
     return ShapesPointChecker::rectanglePointInsideChecker(this, x, y);
 }
+
+std::string Object::getID()
+{
+    return mID;
+}
+
+void Object::setID(std::string newID)
+{
+    mID = newID;
+}

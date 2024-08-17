@@ -4,6 +4,8 @@
 
 #ifndef COLLISIONMANAGER_H
 #define COLLISIONMANAGER_H
+#include <list>
+class DrawAbleObject;
 
 typedef enum
 {
@@ -19,9 +21,13 @@ public:
 
     CollisionMode getCollisionMode();
     void setCollisionMode(CollisionMode collisionMode);
+    void setCollidingObjects(std::list<DrawAbleObject*> collidingObjects);
+    void addCollidingObject(DrawAbleObject* drawAble);
+    std::list<DrawAbleObject*>& getCollidingObjects();
 
 private:
     CollisionMode mCollisionMode;
+    std::list<DrawAbleObject*> mCollidingObjects;
 };
 
 

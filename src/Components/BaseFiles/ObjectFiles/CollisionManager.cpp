@@ -17,3 +17,18 @@ void CollisionManager::setCollisionMode(CollisionMode collisionMode)
 {
     mCollisionMode = collisionMode;
 }
+
+void CollisionManager::setCollidingObjects(std::list<DrawAbleObject*> collidingObjects)
+{
+    mCollidingObjects = collidingObjects;
+}
+
+void CollisionManager::addCollidingObject(DrawAbleObject* drawAble)
+{
+    mCollidingObjects.push_back(drawAble);
+}
+
+std::list<DrawAbleObject*>& CollisionManager::getCollidingObjects()
+{
+    return mCollidingObjects;
+}
