@@ -30,6 +30,7 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width) :
 
 void DrawAbleObject::draw()
 {
+    std::lock_guard<std::mutex> lock(mPositionLock);
     for (auto drawAble : mConnectionManager.getConnectedObjects())
     {
         if (drawAble->mVisibility.isVisisble())
@@ -77,6 +78,7 @@ std::list<DrawAbleObject*> DrawAbleObject::getCollidingDrawAbles()
 
 void DrawAbleObject::setX(int x)
 {
+    std::lock_guard<std::mutex> lock(mPositionLock);
     int oldX = this->x;
     Object::setX(x);
     if (mCollisionManager.getCollisionMode() == Collide)
@@ -94,6 +96,7 @@ void DrawAbleObject::setX(int x)
 
 void DrawAbleObject::setY(int y)
 {
+    std::lock_guard<std::mutex> lock(mPositionLock);
     int oldY = this->y;
     Object::setY(y);
     if (mCollisionManager.getCollisionMode() == Collide)

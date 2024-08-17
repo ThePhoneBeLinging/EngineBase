@@ -38,6 +38,7 @@ public:
     ConnectionManager mConnectionManager;
     Button mButton;
     CollisionManager mCollisionManager;
+    std::mutex mPositionLock;
 };
 
 

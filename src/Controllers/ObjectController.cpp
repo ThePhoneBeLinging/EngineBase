@@ -62,8 +62,9 @@ void ObjectController::keepDrawingObjects()
 
 void ObjectController::drawAllObjects()
 {
-    std::lock_guard<std::mutex> lock(mMutex);
+    std::unique_lock<std::mutex> lock(mMutex);
     auto localDrawAbles = mAllDrawables;
+    lock.unlock();
     BeginDrawing();
     ClearBackground(WHITE);
     if (mSceneManager.getScene() >= mAllDrawables.size())
