@@ -69,6 +69,11 @@ bool DrawAbleObject::isPointInside(int x, int y)
     return false;
 }
 
+std::list<DrawAbleObject*> DrawAbleObject::getCollidingDrawAbles()
+{
+    return ObjectController::getCollidingDrawAbles(this);
+}
+
 
 
 

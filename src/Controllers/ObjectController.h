@@ -27,6 +27,7 @@ public:
     static bool isKeyReleased(int key);
     static SceneManager mSceneManager;
     static void offsetAllDrawAbles(int xOffset, int yOffset);
+    static std::list<DrawAbleObject*> getCollidingDrawAbles(DrawAbleObject* drawAble);
 
 private:
     static std::vector<std::list<DrawAbleObject*>> mAllDrawables;

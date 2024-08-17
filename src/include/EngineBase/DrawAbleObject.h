@@ -27,6 +27,7 @@ public:
     virtual void addToScene(int scene);
     virtual void removeFromScene();
     bool isPointInside(int x, int y) override;
+    std::list<DrawAbleObject*> getCollidingDrawAbles();
 
 
     TextureManager mTextureManager;

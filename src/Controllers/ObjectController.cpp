@@ -6,6 +6,7 @@
 #include "EngineBase/HotKeyManager.h"
 #include <algorithm>
 #include <iostream>
+#include <Components/BaseFiles/ShapesPointChecker.h>
 #include <EngineBase/EngineBase.h>
 
 std::vector<std::list<DrawAbleObject*>> ObjectController::mAllDrawables;
@@ -179,9 +180,29 @@ bool ObjectController::isKeyReleased(int key)
 
 void ObjectController::offsetAllDrawAbles(int xOffset, int yOffset)
 {
-    for (auto drawAble : mAllDrawables[mSceneManager.getScene()])
+    std::unique_lock<std::mutex> lock(mMutex);
+    auto localDrawAbles = mAllDrawables[mSceneManager.getScene()];
+    lock.unlock();
+    for (auto drawAble : localDrawAbles)
     {
         drawAble->setX(drawAble->getX() + xOffset);
         drawAble->setY(drawAble->getY() + yOffset);
     }
+}
+
+std::list<DrawAbleObject*> ObjectController::getCollidingDrawAbles(DrawAbleObject* drawAble)
+{
+    std::list<DrawAbleObject*> collidingObjects;
+    std::unique_lock<std::mutex> lock(mMutex);
+    auto localDrawAbles = mAllDrawables[mSceneManager.getScene()];
+    lock.unlock();
+
+    for (auto drawAbleToCheck : localDrawAbles)
+    {
+        if (ShapesPointChecker::rectangleCollisionChecker(drawAbleToCheck, drawAble))
+        {
+            collidingObjects.push_back(drawAbleToCheck);
+        }
+    }
+    return collidingObjects;
 }
