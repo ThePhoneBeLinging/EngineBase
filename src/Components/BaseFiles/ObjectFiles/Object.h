@@ -5,6 +5,7 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 #include "CollisionManager.h"
+#include <string>
 
 
 class Object
