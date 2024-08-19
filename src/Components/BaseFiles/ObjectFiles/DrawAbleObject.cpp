@@ -25,38 +25,17 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width) :
     mButton.setDrawAbleObject(this);
     this->mConnectionManager = ConnectionManager();
     mConnectionManager.connectDrawAble(this);
+    this->mCollisionManager = CollisionManager();
 }
 
 void DrawAbleObject::draw()
 {
-    auto drawAbleToFollow = EngineBase::getObjectToFollow();
+    std::lock_guard<std::mutex> lock(mPositionLock);
     for (auto drawAble : mConnectionManager.getConnectedObjects())
     {
-        if (drawAble == drawAbleToFollow)
-        {
-            TextureController::draw((GetScreenWidth() / 2) - (mWidth / 2),
-                                    (GetScreenHeight() / 2) - (mHeight / 2),
-                                    drawAbleToFollow->mHeight, drawAbleToFollow->mWidth,
-                                    drawAbleToFollow->mTextureManager.getTextureIndex(),
-                                    drawAbleToFollow->mTextureManager.getSecondTextureIndex());
-            drawAbleToFollow->mTextureManager.advanceAnimation();
-            continue;
-        }
         if (drawAble->mVisibility.isVisisble())
         {
-            if (drawAbleToFollow != nullptr)
-            {
-                TextureController::draw(drawAble->x - drawAbleToFollow->x, drawAble->y - drawAbleToFollow->y,
-                                        drawAble->mHeight, drawAble->mWidth,
-                                        drawAble->mTextureManager.getTextureIndex(),
-                                        drawAble->mTextureManager.getSecondTextureIndex());
-            }
-            else
-            {
-                TextureController::draw(drawAble->x, drawAble->y, drawAble->mHeight, drawAble->mWidth,
-                                        drawAble->mTextureManager.getTextureIndex(),
-                                        drawAble->mTextureManager.getSecondTextureIndex());
-            }
+            TextureController::draw(this);
         }
         drawAble->mTextureManager.advanceAnimation();
     }
@@ -90,6 +69,50 @@ bool DrawAbleObject::isPointInside(int x, int y)
         }
     }
     return false;
+}
+
+void DrawAbleObject::setX(int x)
+{
+    std::lock_guard<std::mutex> lock(mPositionLock);
+    bool reloadCollsions = false;
+    int oldX = this->x;
+    Object::setX(x);
+    if (mCollisionManager.getCollisionMode() == Collide)
+    {
+        mCollisionManager.setCollidingObjects(ObjectController::getCollidingDrawAbles(this));
+        for (auto object : mCollisionManager.getCollidingObjects())
+        {
+            if (object->mCollisionManager.getCollisionMode() == Collide)
+            {
+                this->x = oldX;
+                reloadCollsions = true;
+                break;
+            }
+        }
+        if (reloadCollsions)
+        {
+            mCollisionManager.setCollidingObjects(ObjectController::getCollidingDrawAbles(this));
+        }
+    }
+}
+
+void DrawAbleObject::setY(int y)
+{
+    std::lock_guard<std::mutex> lock(mPositionLock);
+    int oldY = this->y;
+    Object::setY(y);
+    if (mCollisionManager.getCollisionMode() == Collide)
+    {
+        auto collidingObjects = ObjectController::getCollidingDrawAbles(this);
+        for (auto object : collidingObjects)
+        {
+            if (object->mCollisionManager.getCollisionMode() == Collide)
+            {
+                this->y = oldY;
+                break;
+            }
+        }
+    }
 }
 
 

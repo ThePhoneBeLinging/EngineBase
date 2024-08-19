@@ -4,6 +4,8 @@
 
 #include "Object.h"
 
+#include <Controllers/ObjectController.h>
+
 #include "../ShapesPointChecker.h"
 
 Object::Object(int x, int y, int height, int width)
@@ -58,4 +60,14 @@ int Object::getWidth() const
 bool Object::isPointInside(int x, int y)
 {
     return ShapesPointChecker::rectanglePointInsideChecker(this, x, y);
+}
+
+std::string Object::getID()
+{
+    return mID;
+}
+
+void Object::setID(std::string newID)
+{
+    mID = newID;
 }

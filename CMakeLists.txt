@@ -50,6 +50,8 @@ add_library(EngineBase
         src/Components/TextureToLoad.h
         src/Components/HexColorToLoad.cpp
         src/Components/HexColorToLoad.h
+        src/Components/BaseFiles/ObjectFiles/CollisionManager.cpp
+        src/Components/BaseFiles/ObjectFiles/CollisionManager.h
 )
 target_include_directories(EngineBase PUBLIC src/include)
 target_include_directories(EngineBase PUBLIC src)

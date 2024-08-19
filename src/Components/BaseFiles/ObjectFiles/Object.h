@@ -4,14 +4,16 @@
 
 #ifndef OBJECT_H
 #define OBJECT_H
+#include "CollisionManager.h"
+#include <string>
 
 
 class Object
 {
 public:
     Object(int x, int y, int height, int width);
-    void setX(int x);
-    void setY(int y);
+    virtual void setX(int x);
+    virtual void setY(int y);
     void setHeight(int height);
     void setWidth(int width);
     int getX() const;
@@ -19,12 +21,15 @@ public:
     int getHeight() const;
     int getWidth() const;
     virtual bool isPointInside(int x, int y);
+    std::string getID();
+    void setID(std::string newID);
 
 protected:
     int x;
     int y;
     int mHeight;
     int mWidth;
+    std::string mID;
 };
 
 

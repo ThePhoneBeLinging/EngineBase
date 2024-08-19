@@ -6,6 +6,7 @@
 #include "EngineBase/HotKeyManager.h"
 #include <algorithm>
 #include <iostream>
+#include <Components/BaseFiles/ShapesPointChecker.h>
 #include <EngineBase/EngineBase.h>
 
 std::vector<std::list<DrawAbleObject*>> ObjectController::mAllDrawables;
@@ -61,8 +62,9 @@ void ObjectController::keepDrawingObjects()
 
 void ObjectController::drawAllObjects()
 {
-    std::lock_guard<std::mutex> lock(mMutex);
+    std::unique_lock<std::mutex> lock(mMutex);
     auto localDrawAbles = mAllDrawables;
+    lock.unlock();
     BeginDrawing();
     ClearBackground(WHITE);
     if (mSceneManager.getScene() >= mAllDrawables.size())
@@ -175,4 +177,33 @@ bool ObjectController::isKeyUp(int key)
 bool ObjectController::isKeyReleased(int key)
 {
     return IsKeyReleased(key);
+}
+
+void ObjectController::offsetAllDrawAbles(int xOffset, int yOffset)
+{
+    std::unique_lock<std::mutex> lock(mMutex);
+    auto localDrawAbles = mAllDrawables[mSceneManager.getScene()];
+    lock.unlock();
+    for (auto drawAble : localDrawAbles)
+    {
+        drawAble->setX(drawAble->getX() + xOffset);
+        drawAble->setY(drawAble->getY() + yOffset);
+    }
+}
+
+std::list<DrawAbleObject*> ObjectController::getCollidingDrawAbles(DrawAbleObject* drawAble)
+{
+    std::list<DrawAbleObject*> collidingObjects;
+    std::unique_lock<std::mutex> lock(mMutex);
+    auto localDrawAbles = mAllDrawables[mSceneManager.getScene()];
+    lock.unlock();
+
+    for (auto drawAbleToCheck : localDrawAbles)
+    {
+        if (ShapesPointChecker::rectangleCollisionChecker(drawAbleToCheck, drawAble))
+        {
+            collidingObjects.push_back(drawAbleToCheck);
+        }
+    }
+    return collidingObjects;
 }
