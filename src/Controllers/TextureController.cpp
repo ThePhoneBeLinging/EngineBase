@@ -93,3 +93,28 @@ void TextureController::initializeQueuedTextures()
     mTexturesToLoad.clear();
     mHexColorsToLoad.clear();
 }
+
+void TextureController::loadTexturePart(const std::string& texturePath, int firstIndex, int secondIndex,
+                                        int width, int height)
+{
+    // Load the full texture
+    auto fullImage = LoadImage(texturePath.c_str());
+
+    // Create a sub-image from the full texture
+    int x = 0;
+    int y = 0;
+    while (y > fullImage.height)
+    {
+        while (x > fullImage.width)
+        {
+            Image subImage = ImageFromImage(fullImage, {(float)x, (float)y, (float)width, (float)height});
+            Texture2D subTexture = LoadTextureFromImage(subImage);
+            addTexture(subTexture, firstIndex, secondIndex);
+            x += width;
+            secondIndex++;
+        }
+    }
+
+    // Unload the full texture to free memory
+    UnloadImage(fullImage);
+}
