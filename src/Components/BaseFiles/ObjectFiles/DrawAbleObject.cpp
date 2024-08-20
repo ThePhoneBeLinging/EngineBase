@@ -74,23 +74,14 @@ bool DrawAbleObject::isPointInside(int x, int y)
 void DrawAbleObject::setX(int x)
 {
     std::lock_guard<std::mutex> lock(mPositionLock);
-    bool reloadCollsions = false;
     int oldX = this->x;
     Object::setX(x);
     if (mCollisionManager.getCollisionMode() == Collide)
     {
         mCollisionManager.setCollidingObjects(ObjectController::getCollidingDrawAbles(this));
-        for (auto object : mCollisionManager.getCollidingObjects())
+        if (isCollidingWithCollidable())
         {
-            if (object->mCollisionManager.getCollisionMode() == Collide)
-            {
-                this->x = oldX;
-                reloadCollsions = true;
-                break;
-            }
-        }
-        if (reloadCollsions)
-        {
+            this->x = oldX;
             mCollisionManager.setCollidingObjects(ObjectController::getCollidingDrawAbles(this));
         }
     }
@@ -99,26 +90,29 @@ void DrawAbleObject::setX(int x)
 void DrawAbleObject::setY(int y)
 {
     std::lock_guard<std::mutex> lock(mPositionLock);
-    bool reloadCollsions = false;
     int oldY = this->y;
     Object::setY(y);
     if (mCollisionManager.getCollisionMode() == Collide)
     {
         mCollisionManager.setCollidingObjects(ObjectController::getCollidingDrawAbles(this));
-        for (auto object : mCollisionManager.getCollidingObjects())
+        if (isCollidingWithCollidable())
         {
-            if (object->mCollisionManager.getCollisionMode() == Collide)
-            {
-                this->y = oldY;
-                reloadCollsions = true;
-                break;
-            }
-        }
-        if (reloadCollsions)
-        {
+            this->y = oldY;
             mCollisionManager.setCollidingObjects(ObjectController::getCollidingDrawAbles(this));
         }
     }
+}
+
+bool DrawAbleObject::isCollidingWithCollidable()
+{
+    for (auto object : mCollisionManager.getCollidingObjects())
+    {
+        if (object->mCollisionManager.getCollisionMode() == Collide)
+        {
+            return true;
+        }
+    }
+    return false;
 }
 
 
