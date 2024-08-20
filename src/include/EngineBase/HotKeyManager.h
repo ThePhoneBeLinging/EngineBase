@@ -6,6 +6,7 @@
 #define HOTKEYMANAGER_H
 
 #include <vector>
+#include <mutex>
 #include "Components/BaseFiles/OnKeyPress.h"
 
 
@@ -21,6 +22,7 @@ public:
 
 private:
     static std::list<OnKeyPress *> mOnKeyPresses;
+    static std::mutex mMutex;
 };
 
 
