@@ -39,11 +39,6 @@ void DrawAbleObject::addToScene(int scene)
     ObjectController::addDrawAbleObject(this);
 }
 
-void DrawAbleObject::removeFromScene()
-{
-    ObjectController::removeObject(this);
-}
-
 bool DrawAbleObject::isPointInside(int x, int y)
 {
     if (Object::isPointInside(x, y)) return true;
