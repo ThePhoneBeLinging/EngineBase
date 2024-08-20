@@ -47,6 +47,7 @@ void TextureManager::setTextureIndex(int textureIndex)
 
 void TextureManager::setTextureSecondIndex(int secondIndex)
 {
+    assert(secondIndex >= 0);
     this->mTextureSecondIndex = secondIndex;
 }
 
@@ -78,6 +79,7 @@ int TextureManager::getFramesPerAnimationFrame() const
 
 void TextureManager::setFramesPerAnimationFrame(int framesPerUpdate)
 {
+    assert(framesPerUpdate >= 0);
     this->mFramesPerAnimationFrame = framesPerUpdate;
 }
 

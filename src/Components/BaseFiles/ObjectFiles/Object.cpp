@@ -5,6 +5,8 @@
 #include "Object.h"
 
 #include <Controllers/ObjectController.h>
+#include <cassert>
+#include <utility>
 
 #include "../ShapesPointChecker.h"
 
@@ -28,11 +30,13 @@ void Object::setY(int y)
 
 void Object::setHeight(int height)
 {
+    assert(height >= 0);
     this->mHeight = height;
 }
 
 void Object::setWidth(int width)
 {
+    assert(width >= 0);
     this->mWidth = width;
 }
 
@@ -69,5 +73,5 @@ std::string Object::getID()
 
 void Object::setID(std::string newID)
 {
-    mID = newID;
+    mID = std::move(newID);
 }
