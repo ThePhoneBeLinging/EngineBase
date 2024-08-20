@@ -7,6 +7,11 @@
 
 #include "Controllers/ObjectController.h"
 
+TextureManager::TextureManager(DrawAbleObject *drawAble)
+{
+    this->mDrawAble = drawAble;
+}
+
 void TextureManager::advanceAnimation()
 {
     this->mCurrentFrames++;
@@ -21,11 +26,6 @@ void TextureManager::advanceAnimation()
         this->mFramesShown++;
         this->mTextureSecondIndex++;
     }
-}
-
-void TextureManager::setDrawAble(DrawAbleObject* drawAble)
-{
-    this->mDrawAble = drawAble;
 }
 
 int TextureManager::getZ() const
@@ -92,3 +92,5 @@ void TextureManager::setCurrentFrames(int currentFrames)
 {
     mCurrentFrames = currentFrames;
 }
+
+

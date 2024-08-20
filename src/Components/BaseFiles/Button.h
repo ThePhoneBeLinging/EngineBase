@@ -10,9 +10,8 @@ class DrawAbleObject;
 class Button
 {
 public:
+    Button(DrawAbleObject* drawAbleObject);
 	virtual ~Button() = default;
-	Button() = default;
-	void setDrawAbleObject(DrawAbleObject* drawAble);
 	virtual void onClick();
 	void setOnClick(std::function<void(DrawAbleObject*)> function);
 

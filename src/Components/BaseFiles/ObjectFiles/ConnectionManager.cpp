@@ -6,6 +6,10 @@
 
 #include "Controllers/ObjectController.h"
 
+ConnectionManager::ConnectionManager(DrawAbleObject *drawAbleObject)
+{
+    this->mConnectedObjects.push_back(drawAbleObject);
+}
 
 void ConnectionManager::connectDrawAble(DrawAbleObject* drawAble)
 {
@@ -31,3 +35,4 @@ void ConnectionManager::sortList()
         return a->mTextureManager.getZ() < b->mTextureManager.getZ();
     });
 }
+

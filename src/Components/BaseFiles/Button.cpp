@@ -4,11 +4,10 @@
 
 #include "Button.h"
 #include <utility>
-
-
-void Button::setDrawAbleObject(DrawAbleObject* drawAble)
+Button::Button(DrawAbleObject *drawAbleObject)
 {
-    this->mDrawAble = drawAble;
+    this->mDrawAble = drawAbleObject;
+    this->mFunction = nullptr;
 }
 
 void Button::onClick()
@@ -23,3 +22,5 @@ void Button::setOnClick(std::function<void(DrawAbleObject*)> function)
 {
     this->mFunction = std::move(function);
 }
+
+
