@@ -15,26 +15,26 @@ bool ShapesPointChecker::rectangleCollisionChecker(DrawAbleObject *drawAbleObjec
 {
 
     int x1 = drawAbleObject->getX();
-    int x2 = drawAbleObject->getX() + drawAbleObject->getWidth();
-
     int y1 = drawAbleObject->getY();
-    int y2 = drawAbleObject->getY() + drawAbleObject->getHeight();
+    int x2 = x1 + drawAbleObject->getWidth();
+    int y2 = y1 + drawAbleObject->getHeight();
 
-    for (int i = drawAbleObject->getY(); i < y2; i++)
-    {
-        if (otherObject->isPointInside(x1, i) || otherObject->isPointInside(x2, i))
-        {
-            return true;
-        }
-    }
-    for (int k = drawAbleObject->getX(); k < x2; k++)
-    {
-        if (otherObject->isPointInside(k, y1) || otherObject->isPointInside(k, y2))
-        {
-            return true;
-        }
-    }
+    int ox1 = otherObject->getX();
+    int oy1 = otherObject->getY();
+    int ox2 = ox1 + otherObject->getWidth();
+    int oy2 = oy1 + otherObject->getHeight();
 
 
-    return false;
+    bool collision = false;
+    collision |= otherObject->isPointInside(x1, y1);
+    collision |= otherObject->isPointInside(x1, y2);
+    collision |= otherObject->isPointInside(x2, y1);
+    collision |= otherObject->isPointInside(x2, y2);
+
+    collision |= drawAbleObject->isPointInside(ox1, oy1);
+    collision |= drawAbleObject->isPointInside(ox1, oy2);
+    collision |= drawAbleObject->isPointInside(ox2, oy1);
+    collision |= drawAbleObject->isPointInside(ox2, oy2);
+
+    return collision;
 }
