@@ -38,6 +38,8 @@ public:
     Button mButton;
     CollisionManager mCollisionManager;
     std::mutex mPositionLock;
+private:
+    bool isCollidingWithCollidable();
 };
 
 
