@@ -22,7 +22,9 @@ public:
     static void setObjectToFollow(DrawAbleObject* drawAble);
     static DrawAbleObject* getObjectToFollow();
     static void updatePositionOfObjects();
+
     static void attachUpdateFunction(const std::function<void()>& updateFunction, int updatesPerSecond);
+
 private:
     static bool mShouldAppClose;
     static bool mShowFPS;

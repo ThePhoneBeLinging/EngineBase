@@ -5,6 +5,7 @@
 #include "VelocityManager.h"
 #include "EngineBase/DrawAbleObject.h"
 
+
 VelocityManager::VelocityManager(DrawAbleObject *drawAbleObject) : mDrawAbleObject(drawAbleObject)
 {
     this->mXSpeed = 0;

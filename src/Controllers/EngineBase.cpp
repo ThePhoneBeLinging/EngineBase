@@ -83,6 +83,7 @@ void EngineBase::updatePositionOfObjects()
     ObjectController::updateVelocityOfAllObjects();
 }
 
+
 void EngineBase::attachUpdateFunction(const std::function<void()>& updateFunction, int updatesPerSecond)
 {
     int timeInMilliseconds = 1000 / updatesPerSecond;
@@ -100,3 +101,4 @@ void EngineBase::attachUpdateFunction(const std::function<void()>& updateFunctio
         updateFunction();
     }
 }
+
