@@ -14,6 +14,7 @@
 #include "Controllers/TextureController.h"
 #include "Components/BaseFiles/ObjectFiles/TextureManager.h"
 #include "Components/BaseFiles/ObjectFiles/Visibility.h"
+#include "Components/BaseFiles/ObjectFiles/VelocityManager.h"
 
 
 class DrawAbleObject : public Object
@@ -36,6 +37,7 @@ public:
     ConnectionManager mConnectionManager;
     Button mButton;
     CollisionManager mCollisionManager;
+    VelocityManager mVelocityManager;
     std::mutex mPositionLock;
 private:
     bool isCollidingWithCollidable();

@@ -10,7 +10,7 @@
 
 DrawAbleObject::DrawAbleObject(int x, int y, int height, int width) :
     Object(
-        x, y, height, width)
+        x, y, height, width), mTextureManager(), mVisibility(), mDragAble(), mSceneManager(), mButton(), mConnectionManager(), mCollisionManager(), mVelocityManager(this)
 {
     this->x = x;
     this->y = y;
@@ -26,6 +26,7 @@ DrawAbleObject::DrawAbleObject(int x, int y, int height, int width) :
     this->mConnectionManager = ConnectionManager();
     mConnectionManager.connectDrawAble(this);
     this->mCollisionManager = CollisionManager();
+    this->mVelocityManager = VelocityManager(this);
 }
 
 void DrawAbleObject::draw()
