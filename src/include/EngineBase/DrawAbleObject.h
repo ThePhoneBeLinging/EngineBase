@@ -7,7 +7,6 @@
 #include "../Components/BaseFiles/Button.h"
 #include <list>
 #include <memory>
-
 #include "Components/BaseFiles/ObjectFiles/ConnectionManager.h"
 #include "Components/BaseFiles/ObjectFiles/DragAble.h"
 #include "Components/BaseFiles/ObjectFiles/Object.h"

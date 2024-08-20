@@ -24,8 +24,7 @@ public:
     void setAnimationEndIndex(int animationFinalIndex);
     int getFramesPerAnimationFrame() const;
     void setFramesPerAnimationFrame(int framesPerUpdate);
-    int getCurrentFrames() const;
-    void setCurrentFrames(int currentFrames);
+
 
 private:
     int z = 0;
@@ -36,6 +35,8 @@ private:
     int mCurrentFrames = 0;
     int mFramesShown = 0;
     DrawAbleObject* mDrawAble;
+    int getCurrentFrames() const;
+    void setCurrentFrames(int currentFrames);
 };
 
 
