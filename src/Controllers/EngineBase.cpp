@@ -6,6 +6,8 @@
 
 #include "TextureController.h"
 #include "ObjectController.h"
+#include "Utility/Timer.h"
+#include "EngineBase/HotKeyManager.h"
 
 bool EngineBase::mShouldAppClose = false;
 bool EngineBase::mShowFPS = false;
@@ -79,5 +81,24 @@ DrawAbleObject* EngineBase::getObjectToFollow()
 void EngineBase::updatePositionOfObjects()
 {
     ObjectController::updateVelocityOfAllObjects();
+}
+
+
+void EngineBase::attachUpdateFunction(const std::function<void()>& updateFunction, int updatesPerSecond)
+{
+    int timeInMilliseconds = 1000 / updatesPerSecond;
+    auto loopManager = Timer(timeInMilliseconds);
+    loopManager.start();
+    while (!shouldAppClose())
+    {
+        if (loopManager.milliSecondsLeft() != 0)
+        {
+            continue;
+        }
+        loopManager.start();
+        EngineBase::updatePositionOfObjects();
+        HotKeyManager::handleHotKeys();
+        updateFunction();
+    }
 }
 

@@ -5,11 +5,12 @@
 #include "VelocityManager.h"
 #include "EngineBase/DrawAbleObject.h"
 
-VelocityManager::VelocityManager(DrawAbleObject *drawAbleObject)
-{
-    this->mDrawAbleObject = drawAbleObject;
-}
 
+VelocityManager::VelocityManager(DrawAbleObject *drawAbleObject) : mDrawAbleObject(drawAbleObject)
+{
+    this->mXSpeed = 0;
+    this->mYSpeed = 0;
+}
 void VelocityManager::setVelocity(int xSpeed, int ySpeed)
 {
     this->mXSpeed = xSpeed;
