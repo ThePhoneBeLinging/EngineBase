@@ -4,26 +4,20 @@
 
 #include "ShapesPointChecker.h"
 
+#include <iostream>
 
-bool ShapesPointChecker::rectanglePointInsideChecker(Object *object, int x, int y)
+
+bool ShapesPointChecker::rectanglePointInsideChecker(Object* object, int x, int y)
 {
-    return object->getX() < x && x < (object->getX() + object->getWidth()) && object->getY() < y && y < object->getY() +
-                                                                                                        object->getHeight();
+    return object->getX() <= x && x <= object->getX() + object->getWidth() && object->getY() <= y && y <= object->
+        getY() + object->getHeight();
 }
 
-bool ShapesPointChecker::rectangleCollisionChecker(DrawAbleObject *drawAbleObject, DrawAbleObject *otherObject)
+bool ShapesPointChecker::rectangleCollisionChecker(DrawAbleObject* drawAbleObject, DrawAbleObject* otherObject)
 {
-
     int x1 = drawAbleObject->getX();
-    int y1 = drawAbleObject->getY();
-    int x2 = x1 + drawAbleObject->getWidth();
-    int y2 = y1 + drawAbleObject->getHeight();
-
-    int ox1 = otherObject->getX();
-    int oy1 = otherObject->getY();
-    int ox2 = ox1 + otherObject->getWidth();
-    int oy2 = oy1 + otherObject->getHeight();
-
+    int x1 = drawAbleObject->getX();
+    int x2 = drawAbleObject->getX() + drawAbleObject->getWidth();
 
     bool collision = false;
     collision |= otherObject->isPointInside(x1, y1);
@@ -35,6 +29,5 @@ bool ShapesPointChecker::rectangleCollisionChecker(DrawAbleObject *drawAbleObjec
     collision |= drawAbleObject->isPointInside(ox1, oy2);
     collision |= drawAbleObject->isPointInside(ox2, oy1);
     collision |= drawAbleObject->isPointInside(ox2, oy2);
-
     return collision;
 }

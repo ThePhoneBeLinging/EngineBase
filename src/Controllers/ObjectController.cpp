@@ -200,6 +200,7 @@ std::list<DrawAbleObject*> ObjectController::getCollidingDrawAbles(DrawAbleObjec
 
     for (auto drawAbleToCheck : localDrawAbles)
     {
+        if (drawAbleToCheck == drawAble) continue;
         if (ShapesPointChecker::rectangleCollisionChecker(drawAbleToCheck, drawAble))
         {
             collidingObjects.push_back(drawAbleToCheck);

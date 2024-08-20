@@ -14,7 +14,7 @@ void TextureManager::advanceAnimation()
         this->mTextureSecondIndex -= this->mFramesShown;
         this->mFramesShown = 0;
     }
-    if (mCurrentFrames == mFramesPerAnimationFrame)
+    else if (mCurrentFrames == mFramesPerAnimationFrame)
     {
         this->mCurrentFrames = 0;
         this->mFramesShown++;
