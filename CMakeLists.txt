@@ -52,6 +52,8 @@ add_library(EngineBase
         src/Components/HexColorToLoad.h
         src/Components/BaseFiles/ObjectFiles/CollisionManager.cpp
         src/Components/BaseFiles/ObjectFiles/CollisionManager.h
+        src/Components/BaseFiles/ObjectFiles/VelocityManager.cpp
+        src/Components/BaseFiles/ObjectFiles/VelocityManager.h
 )
 target_include_directories(EngineBase PUBLIC src/include)
 target_include_directories(EngineBase PUBLIC src)

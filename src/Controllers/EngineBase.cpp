@@ -76,3 +76,8 @@ DrawAbleObject* EngineBase::getObjectToFollow()
     return mObjectToFollow;
 }
 
+void EngineBase::updatePositionOfObjects()
+{
+    ObjectController::updateVelocityOfAllObjects();
+}
+

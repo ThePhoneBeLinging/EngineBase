@@ -11,9 +11,8 @@ class DrawAbleObject;
 class TextureManager
 {
 public:
-    TextureManager() = default;
+    TextureManager(DrawAbleObject* drawAble);
     void advanceAnimation();
-    void setDrawAble(DrawAbleObject* drawAble);
     int getZ() const;
     void setZ(int z);
     void setTextureIndex(int textureIndex);

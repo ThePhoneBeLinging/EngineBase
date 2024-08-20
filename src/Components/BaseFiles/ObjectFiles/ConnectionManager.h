@@ -12,7 +12,7 @@ class DrawAbleObject;
 class ConnectionManager
 {
 public:
-    ConnectionManager() = default;
+    ConnectionManager(DrawAbleObject* drawAbleObject);
     void connectDrawAble(DrawAbleObject* drawAble);
     void disconnectDrawAble(DrawAbleObject* drawAble);
     std::list<DrawAbleObject*> getConnectedObjects();

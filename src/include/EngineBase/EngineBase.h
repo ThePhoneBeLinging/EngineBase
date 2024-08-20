@@ -21,6 +21,7 @@ public:
     static bool getShowFPS();
     static void setObjectToFollow(DrawAbleObject* drawAble);
     static DrawAbleObject* getObjectToFollow();
+    static void updatePositionOfObjects();
 private:
     static bool mShouldAppClose;
     static bool mShowFPS;
