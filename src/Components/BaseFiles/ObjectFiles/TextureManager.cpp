@@ -2,6 +2,7 @@
 // Created by Elias Aggergaard Larsen on 29/07/2024.
 //
 
+#include <cassert>
 #include "TextureManager.h"
 
 #include "Controllers/ObjectController.h"
@@ -40,6 +41,7 @@ void TextureManager::setZ(int z)
 
 void TextureManager::setTextureIndex(int textureIndex)
 {
+    assert(textureIndex >= 0);
     this->mTextureIndex = textureIndex;
 }
 
