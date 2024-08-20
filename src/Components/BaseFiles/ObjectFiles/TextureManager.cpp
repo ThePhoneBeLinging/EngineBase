@@ -2,6 +2,7 @@
 // Created by Elias Aggergaard Larsen on 29/07/2024.
 //
 
+#include <cassert>
 #include "TextureManager.h"
 
 #include "Controllers/ObjectController.h"
@@ -40,11 +41,13 @@ void TextureManager::setZ(int z)
 
 void TextureManager::setTextureIndex(int textureIndex)
 {
+    assert(textureIndex >= 0);
     this->mTextureIndex = textureIndex;
 }
 
 void TextureManager::setTextureSecondIndex(int secondIndex)
 {
+    assert(secondIndex >= 0);
     this->mTextureSecondIndex = secondIndex;
 }
 
@@ -76,6 +79,7 @@ int TextureManager::getFramesPerAnimationFrame() const
 
 void TextureManager::setFramesPerAnimationFrame(int framesPerUpdate)
 {
+    assert(framesPerUpdate >= 0);
     this->mFramesPerAnimationFrame = framesPerUpdate;
 }
 
