@@ -2,7 +2,9 @@
 
 ## About The Project
 
-The EngineBase provides a range of functionalities designed to facilitate the management and manipulation of
+EngineBase is currently based on raylib: https://www.raylib.com, loose coupling does, however, allow us to easily change that.
+
+EngineBase provides a range of functionalities designed to facilitate the management and manipulation of
 graphical elements within an application. At its core, EngineBase allows for the addition of textures and colors,
 enabling the customization and dynamic rendering of graphical assets. Developers can use the addTexture method to
 incorporate new textures by specifying file paths and categorization indices, while the addHexColor method enables the
