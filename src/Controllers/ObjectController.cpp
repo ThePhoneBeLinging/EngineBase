@@ -208,3 +208,14 @@ std::list<DrawAbleObject*> ObjectController::getCollidingDrawAbles(DrawAbleObjec
     }
     return collidingObjects;
 }
+
+void ObjectController::updateVelocityOfAllObjects()
+{
+    std::unique_lock<std::mutex> lock(mMutex);
+    auto localDrawAbles = mAllDrawables[mSceneManager.getScene()];
+    lock.unlock();
+    for (auto drawAble : localDrawAbles)
+    {
+        drawAble->mVelocityManager.updatePosition();
+    }
+}

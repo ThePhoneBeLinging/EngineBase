@@ -28,6 +28,7 @@ public:
     static SceneManager mSceneManager;
     static void offsetAllDrawAbles(int xOffset, int yOffset);
     static std::list<DrawAbleObject*> getCollidingDrawAbles(DrawAbleObject* drawAble);
+    static void updateVelocityOfAllObjects();
 
 private:
     static std::vector<std::list<DrawAbleObject*>> mAllDrawables;
