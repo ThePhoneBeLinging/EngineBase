@@ -11,8 +11,12 @@ class VelocityManager
 
 public:
     VelocityManager(DrawAbleObject* drawAbleObject);
+    void setVelocity(int xSpeed, int ySpeed);
+    void updatePosition();
 private:
     DrawAbleObject* mDrawAbleObject;
+    int mXSpeed;
+    int mYSpeed;
 };
 
 
