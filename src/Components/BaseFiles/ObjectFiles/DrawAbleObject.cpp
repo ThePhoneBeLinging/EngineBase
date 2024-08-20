@@ -99,18 +99,24 @@ void DrawAbleObject::setX(int x)
 void DrawAbleObject::setY(int y)
 {
     std::lock_guard<std::mutex> lock(mPositionLock);
+    bool reloadCollsions = false;
     int oldY = this->y;
     Object::setY(y);
     if (mCollisionManager.getCollisionMode() == Collide)
     {
-        auto collidingObjects = ObjectController::getCollidingDrawAbles(this);
-        for (auto object : collidingObjects)
+        mCollisionManager.setCollidingObjects(ObjectController::getCollidingDrawAbles(this));
+        for (auto object : mCollisionManager.getCollidingObjects())
         {
             if (object->mCollisionManager.getCollisionMode() == Collide)
             {
                 this->y = oldY;
+                reloadCollsions = true;
                 break;
             }
+        }
+        if (reloadCollsions)
+        {
+            mCollisionManager.setCollidingObjects(ObjectController::getCollidingDrawAbles(this));
         }
     }
 }
