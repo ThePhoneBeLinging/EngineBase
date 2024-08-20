@@ -91,7 +91,13 @@ void EngineBase::attachUpdateFunction(const std::function<void()>& updateFunctio
     loopManager.start();
     while (!shouldAppClose())
     {
-        if (loopManager.milliSecondsLeft() != 0)
+        int timeBeforeNextUpdate = loopManager.milliSecondsLeft();
+
+        if (timeBeforeNextUpdate > 3)
+        {
+            std::this_thread::sleep_for(std::chrono::milliseconds(timeBeforeNextUpdate - 3));
+        }
+        if (timeBeforeNextUpdate != 0)
         {
             continue;
         }
