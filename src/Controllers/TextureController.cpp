@@ -13,7 +13,7 @@ int TextureController::loadTexture(const std::string& path)
 
 void TextureController::drawTexture(DrawAble* object)
 {
-    auto texture = textures_[textures_.size() - object->texture_index() - 1];
+    auto texture = textures_[textures_.size() - object->textureIndex() - 1];
     Texture2D copiedTexture = *texture;
     copiedTexture.height = object->height();
     copiedTexture.width = object->width();

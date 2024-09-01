@@ -72,12 +72,12 @@ void DrawAble::height(int height)
     height_ = height;
 }
 
-int DrawAble::texture_index() const
+int DrawAble::textureIndex() const
 {
     return textureIndex_;
 }
 
-void DrawAble::texture_index(int texture_index)
+void DrawAble::textureIndex(int texture_index)
 {
     textureIndex_ = texture_index;
 }

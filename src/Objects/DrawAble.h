@@ -22,8 +22,8 @@ public:
     void width(int width);
     [[nodiscard]] int height() const;
     void height(int height);
-    [[nodiscard]] int texture_index() const;
-    void texture_index(int texture_index);
+    [[nodiscard]] int textureIndex() const;
+    void textureIndex(int texture_index);
 
 protected:
     float x_;
