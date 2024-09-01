@@ -36,6 +36,10 @@ add_library(EngineBase
         src/Objects/DrawAble.h
         src/Controllers/TextureController.cpp
         src/Controllers/TextureController.h
+        src/Controllers/ObjectController.cpp
+        src/Controllers/ObjectController.h
+        src/EngineBase.cpp
+        src/EngineBase.h
 )
 target_include_directories(EngineBase PUBLIC src/include)
 target_include_directories(EngineBase PUBLIC src)

@@ -4,10 +4,14 @@
 
 #include <iostream>
 
+#include "EngineBase.h"
 #include "SampleObject.h"
 
 int main()
 {
+    EngineBase::loadTexture("Textures/MissingTexture.png");
+    auto sampleObject = SampleObject();
+    EngineBase::startGUI();
     std::cout << "Hello world!" << std::endl;
     return 0;
 }
