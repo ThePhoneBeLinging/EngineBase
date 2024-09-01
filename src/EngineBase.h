@@ -15,6 +15,7 @@ public:
 
 private:
     static inline bool windowInitialized_ = false;
+    static void initializeWindow();
 };
 
 
