@@ -17,6 +17,11 @@ DrawAble::DrawAble() : x_(0), y_(0), z_(0), width_(0), height_(0), textureIndex_
 {
 }
 
+DrawAble::~DrawAble()
+{
+    ObjectController::removeDrawAble(this);
+}
+
 void DrawAble::draw()
 {
     TextureController::drawTexture(this);

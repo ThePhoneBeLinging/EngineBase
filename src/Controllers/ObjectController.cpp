@@ -16,6 +16,11 @@ void ObjectController::addDrawAble(DrawAble* drawAble)
     drawAbles_.push_back(drawAble);
 }
 
+void ObjectController::removeDrawAble(DrawAble* drawAble)
+{
+    drawAbles_.erase(std::ranges::remove(drawAbles_, drawAble).begin(), drawAbles_.end());
+}
+
 void ObjectController::drawObjects()
 {
     BeginDrawing();

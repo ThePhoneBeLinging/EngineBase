@@ -11,6 +11,7 @@ class DrawAble
 public:
     DrawAble(float x, float y, int z, int width, int height, int textureIndex = 0);
     DrawAble();
+    virtual ~DrawAble();
     void draw();
     [[nodiscard]] float x() const;
     void x(float x);

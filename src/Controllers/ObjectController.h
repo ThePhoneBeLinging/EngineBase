@@ -14,6 +14,7 @@ class ObjectController
 public:
     static void update();
     static void addDrawAble(DrawAble* drawAble);
+    static void removeDrawAble(DrawAble* drawAble);
 
 private:
     static void drawObjects();
