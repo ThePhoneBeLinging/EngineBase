@@ -86,3 +86,8 @@ void DrawAble::textureIndex(int texture_index)
 {
     textureIndex_ = texture_index;
 }
+
+bool DrawAble::isPointInside(float x, float y) const
+{
+    return x >= x_ && x <= x_ + static_cast<float>(width_) && y >= y_ && y <= y_ + static_cast<float>(height_);
+}

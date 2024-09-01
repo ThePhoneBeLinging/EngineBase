@@ -26,6 +26,8 @@ public:
     [[nodiscard]] int textureIndex() const;
     void textureIndex(int texture_index);
 
+    [[nodiscard]] bool isPointInside(float x, float y) const;
+
 protected:
     float x_;
     float y_;
