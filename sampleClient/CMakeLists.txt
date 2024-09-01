@@ -8,6 +8,8 @@ add_executable(sampleProject
         main.cpp
         SampleObject.cpp
         SampleObject.h
+        SampleClient.cpp
+        SampleClient.h
 )
 add_subdirectory(.. EngineBase_build)
 target_link_libraries(sampleProject PRIVATE EngineBase)
