@@ -9,6 +9,7 @@
 
 class SampleObject : public DrawAble
 {
+public:
     SampleObject();
 };
 

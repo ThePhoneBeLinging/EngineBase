@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+#include "SampleObject.h"
+
 int main()
 {
     std::cout << "Hello world!" << std::endl;

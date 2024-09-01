@@ -19,3 +19,9 @@ void TextureController::drawTexture(DrawAble* object)
     copiedTexture.width = object->width();
     DrawTexture(copiedTexture, (int)object->x(), (int)object->y(), WHITE);
 }
+
+void TextureController::initializeWindow()
+{
+    InitWindow(1200, 800, "M3");
+    loadTexture("Textures/MissingTexture.png");
+}

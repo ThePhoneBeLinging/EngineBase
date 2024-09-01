@@ -4,6 +4,6 @@
 
 #include "SampleObject.h"
 
-SampleObject::SampleObject() : DrawAble(0, 0, 0, 50, 50)
+SampleObject::SampleObject() : DrawAble(0, 0, 0, 50, 50, 0)
 {
 }

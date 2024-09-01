@@ -15,6 +15,7 @@ class TextureController
 public:
     static int loadTexture(const std::string& path);
     static void drawTexture(DrawAble* object);
+    static void initializeWindow();
 
 private:
     static inline std::vector<std::shared_ptr<Texture2D>> textures_ = {};

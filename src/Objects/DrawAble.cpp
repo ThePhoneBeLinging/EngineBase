@@ -6,7 +6,12 @@
 
 #include "Controllers/TextureController.h"
 
-DrawAble::DrawAble(float x, float y, int z, int width, int height) : x_(0), y_(0), z_(0), width_(0), height_(0)
+DrawAble::DrawAble(float x, float y, int z, int width, int height, int textureIndex) : x_(x), y_(y), z_(z),
+    width_(width), height_(height), textureIndex_(textureIndex)
+{
+}
+
+DrawAble::DrawAble() : x_(0), y_(0), z_(0), width_(0), height_(0), textureIndex_(0)
 {
 }
 
