@@ -40,6 +40,8 @@ add_library(EngineBase
         src/Controllers/ObjectController.h
         src/EngineBase.cpp
         src/EngineBase.h
+        src/Objects/DragAble.cpp
+        src/Objects/DragAble.h
 )
 target_include_directories(EngineBase PUBLIC src/include)
 target_include_directories(EngineBase PUBLIC src)
