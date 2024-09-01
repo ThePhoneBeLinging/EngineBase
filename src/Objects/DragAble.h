@@ -11,14 +11,18 @@ class DragAble
 {
 public:
     explicit DragAble(DrawAble* drawAble);
-    void startDrag();
+    ~DragAble();
+    void startDrag(float x, float y);
     void cancelDrag();
     void updateDrag(float x, float y);
+    DrawAble* getDrawAble();
 
 private:
     DrawAble* drawAble_;
     float oldX_;
     float oldY_;
+    float offsetX_;
+    float offsetY_;
 };
 
 

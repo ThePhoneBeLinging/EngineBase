@@ -4,14 +4,23 @@
 
 #include "DragAble.h"
 
-DragAble::DragAble(DrawAble* drawAble) : drawAble_(drawAble), oldX_(0), oldY_(0)
+#include "Controllers/ObjectController.h"
+
+DragAble::DragAble(DrawAble* drawAble) : drawAble_(drawAble), oldX_(0), oldY_(0), offsetX_(0), offsetY_(0)
 {
+    ObjectController::addDragAble(this);
 }
 
-void DragAble::startDrag()
+DragAble::~DragAble()
 {
-    this->oldX_ = this->drawAble_->x();
-    this->oldY_ = this->drawAble_->y();
+    ObjectController::removeDragAble(this);
+}
+
+void DragAble::startDrag(float x, float y)
+{
+    this->offsetX_ = this->drawAble_->x() - x;
+    this->offsetY_ = this->drawAble_->y() - y;
+    updateDrag(x, y);
 }
 
 void DragAble::cancelDrag()
@@ -22,6 +31,11 @@ void DragAble::cancelDrag()
 
 void DragAble::updateDrag(float x, float y)
 {
-    this->drawAble_->x(x);
-    this->drawAble_->y(y);
+    this->drawAble_->x(x + offsetX_);
+    this->drawAble_->y(y + offsetY_);
+}
+
+DrawAble* DragAble::getDrawAble()
+{
+    return drawAble_;
 }
