@@ -33,8 +33,8 @@ public:
     Visibility mVisibility;
     DragAble mDragAble;
     SceneManager mSceneManager;
-    ConnectionManager mConnectionManager;
     Button mButton;
+    ConnectionManager mConnectionManager;
     CollisionManager mCollisionManager;
     VelocityManager mVelocityManager;
     std::mutex mPositionLock;

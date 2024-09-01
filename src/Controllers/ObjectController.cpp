@@ -20,7 +20,7 @@ std::mutex ObjectController::mMutex;
 void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
 {
     std::unique_lock<std::mutex> lock(mMutex);
-    while (drawAble->mSceneManager.getScene() >= mAllDrawables.capacity())
+    while ((unsigned)drawAble->mSceneManager.getScene() >= mAllDrawables.capacity())
     {
         mAllDrawables.resize(mAllDrawables.size() + 1);
     }
@@ -67,7 +67,7 @@ void ObjectController::drawAllObjects()
     lock.unlock();
     BeginDrawing();
     ClearBackground(WHITE);
-    if (mSceneManager.getScene() >= mAllDrawables.size())
+    if ((unsigned)mSceneManager.getScene() >= mAllDrawables.size())
     {
         EndDrawing();
         return;
@@ -86,7 +86,7 @@ void ObjectController::handleClicks()
     std::lock_guard<std::mutex> lock(mMutex);
     int x = GetMouseX();
     int y = GetMouseY();
-    if (mSceneManager.getScene() >= mAllDrawables.size())
+    if ((unsigned)mSceneManager.getScene() >= mAllDrawables.size())
     {
         return;
     }

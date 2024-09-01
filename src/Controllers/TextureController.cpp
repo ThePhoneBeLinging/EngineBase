@@ -27,11 +27,11 @@ void TextureController::loadTexture(const std::string& texturePath, int firstInd
 
 void TextureController::addTexture(Texture2D texture, int primaryIndex, int secondaryIndex)
 {
-    while (mTextures.capacity() <= primaryIndex)
+    while (mTextures.capacity() <= (unsigned)primaryIndex)
     {
         mTextures.resize(mTextures.capacity() + spacesPerResize);
     }
-    while (mTextures[primaryIndex].capacity() <= secondaryIndex)
+    while (mTextures[primaryIndex].capacity() <= (unsigned)secondaryIndex)
     {
         mTextures[primaryIndex].resize(mTextures[primaryIndex].capacity() + spacesPerResize);
     }
@@ -53,11 +53,11 @@ void TextureController::draw(DrawAbleObject* drawAble)
         y -= EngineBase::getObjectToFollow()->getY() - mFollowAbleY;
     }
 
-    if (mTextures.size() <= firstIndex)
+    if (mTextures.size() <= (unsigned) firstIndex)
     {
         return;
     }
-    if (mTextures[firstIndex].size() <= secondIndex)
+    if (mTextures[firstIndex].size() <= (unsigned)secondIndex)
     {
         return;
     }
