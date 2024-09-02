@@ -4,17 +4,20 @@
 
 #ifndef TEXTURECONTROLLER_H
 #define TEXTURECONTROLLER_H
-#include <vector>
 
+#include <vector>
+#include <string>
+#include <memory>
 #include "raylib.h"
 #include "Objects/DrawAble.h"
 
 
-class TextureController
-{
+class TextureController {
 public:
-    static int loadTexture(const std::string& path);
-    static void drawTexture(DrawAble* object);
+    static int loadTexture(const std::string &path);
+
+    static void drawTexture(DrawAble *object);
+
     static void initializeWindow();
 
 private:
