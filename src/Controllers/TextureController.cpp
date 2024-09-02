@@ -25,3 +25,14 @@ void TextureController::initializeWindow()
     InitWindow(1200, 800, "M3");
     loadTexture("Textures/MissingTexture.png");
 }
+
+void TextureController::startDrawing()
+{
+    BeginDrawing();
+    ClearBackground(BLACK);
+}
+
+void TextureController::endDrawing()
+{
+    EndDrawing();
+}

@@ -12,13 +12,18 @@
 #include "EngineBase/DrawAble.h"
 
 
-class TextureController {
+class TextureController
+{
 public:
-    static int loadTexture(const std::string &path);
+    static int loadTexture(const std::string& path);
 
-    static void drawTexture(DrawAble *object);
+    static void drawTexture(DrawAble* object);
 
     static void initializeWindow();
+
+    static void startDrawing();
+
+    static void endDrawing();
 
 private:
     static inline std::vector<std::shared_ptr<Texture2D>> textures_ = {};
