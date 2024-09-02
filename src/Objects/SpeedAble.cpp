@@ -11,6 +11,11 @@ SpeedAble::SpeedAble(DrawAble* drawAble) : drawAble_(drawAble), xSpeed_(0), ySpe
     ObjectController::addSpeedAble(this);
 }
 
+SpeedAble::~SpeedAble()
+{
+    ObjectController::removeSpeedAble(this);
+}
+
 void SpeedAble::xSpeed(float xSpeed)
 {
     xSpeed_ = xSpeed;

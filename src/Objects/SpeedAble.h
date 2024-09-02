@@ -11,6 +11,7 @@ class SpeedAble
 {
 public:
     explicit SpeedAble(DrawAble* drawAble);
+    ~SpeedAble();
     void xSpeed(float xSpeed);
     void ySpeed(float ySpeed);
     [[nodiscard]] float xSpeed() const;
