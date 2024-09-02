@@ -3,13 +3,13 @@
 //
 
 #include "ObjectController.h"
-
 #include "raylib.h"
 
-void ObjectController::update()
+void ObjectController::update(float deltaTime)
 {
     drawObjects();
     handleClicks();
+    updateSpeedAbles(deltaTime);
 }
 
 void ObjectController::addDrawAble(DrawAble* drawAble)
@@ -30,6 +30,16 @@ void ObjectController::addDragAble(DragAble* dragAble)
 void ObjectController::removeDragAble(DragAble* dragAble)
 {
     dragAbles_.erase(std::ranges::remove(dragAbles_, dragAble).begin(), dragAbles_.end());
+}
+
+void ObjectController::addSpeedAble(SpeedAble* speedAble)
+{
+    speedAbles_.push_back(speedAble);
+}
+
+void ObjectController::removeSpeedAble(SpeedAble* speedAble)
+{
+    speedAbles_.erase(std::ranges::remove(speedAbles_, speedAble).begin(), speedAbles_.end());
 }
 
 void ObjectController::drawObjects()
@@ -68,5 +78,13 @@ void ObjectController::handleClicks()
     else
     {
         if (currentDragged_ != nullptr) currentDragged_ = nullptr;
+    }
+}
+
+void ObjectController::updateSpeedAbles(float deltaTime)
+{
+    for (const auto& speedAble : speedAbles_)
+    {
+        speedAble->update(deltaTime);
     }
 }

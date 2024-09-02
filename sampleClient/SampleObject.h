@@ -6,6 +6,7 @@
 #define SAMPLEOBJECT_H
 #include "Objects/DragAble.h"
 #include "Objects/DrawAble.h"
+#include "Objects/SpeedAble.h"
 
 
 class SampleObject : public DrawAble
@@ -15,6 +16,7 @@ public:
 
 private:
     DragAble dragAble_;
+    SpeedAble speedAble_;
 };
 
 

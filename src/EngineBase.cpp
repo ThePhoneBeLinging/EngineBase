@@ -3,7 +3,6 @@
 //
 
 #include "EngineBase.h"
-
 #include "Controllers/ObjectController.h"
 #include "Controllers/TextureController.h"
 
@@ -18,15 +17,15 @@ void EngineBase::startGUI(const std::function<void(float deltaTime)>& updateFunc
     initializeWindow();
     while (!WindowShouldClose())
     {
-        ObjectController::update();
-        updateFunction(GetFrameTime());
+        auto frameTime = GetFrameTime();
+        ObjectController::update(frameTime);
+        updateFunction(frameTime);
     }
 }
 
 void EngineBase::initializeWindow()
 {
     if (windowInitialized_) return;
-
 
     InitWindow(1200, 800, "M3");
     windowInitialized_ = true;
