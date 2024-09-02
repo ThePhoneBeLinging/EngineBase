@@ -8,11 +8,19 @@
 #include "SampleClient.h"
 #include "SampleObject.h"
 
+
+static void updateFunction(float deltaTime)
+{
+    std::cout << "Update Called" << std::endl;
+    std::cout << "Delta time: " << deltaTime << std::endl;
+}
+
 int main()
 {
     EngineBase::loadTexture("Textures/MissingTexture.png");
     auto sampleClient = std::make_shared<SampleClient>();
-    EngineBase::startGUI();
+    EngineBase::startGUI(updateFunction);
     std::cout << "Hello world!" << std::endl;
     return 0;
 }
+

@@ -4,6 +4,7 @@
 
 #ifndef ENGINEBASE_H
 #define ENGINEBASE_H
+#include <functional>
 #include <string>
 
 
@@ -11,7 +12,7 @@ class EngineBase
 {
 public:
     static int loadTexture(const std::string& path);
-    static void startGUI();
+    static void startGUI(const std::function<void(float deltaTime)>& update);
 
 private:
     static inline bool windowInitialized_ = false;

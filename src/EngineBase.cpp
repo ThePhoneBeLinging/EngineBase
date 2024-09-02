@@ -13,12 +13,13 @@ int EngineBase::loadTexture(const std::string& path)
     return TextureController::loadTexture(path);
 }
 
-void EngineBase::startGUI()
+void EngineBase::startGUI(const std::function<void(float deltaTime)>& updateFunction)
 {
     initializeWindow();
     while (!WindowShouldClose())
     {
         ObjectController::update();
+        updateFunction(GetFrameTime());
     }
 }
 
