@@ -42,6 +42,8 @@ add_library(EngineBase
         src/EngineBase.h
         src/Objects/DragAble.cpp
         src/Objects/DragAble.h
+        src/Objects/Collidable.cpp
+        src/Objects/Collidable.h
 )
 target_include_directories(EngineBase PUBLIC src/include)
 target_include_directories(EngineBase PUBLIC src)
