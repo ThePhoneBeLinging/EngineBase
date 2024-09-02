@@ -33,19 +33,19 @@ endif ()
 
 add_library(EngineBase
         src/Objects/DrawAble.cpp
-        src/Objects/DrawAble.h
+        src/include/EngineBase/DrawAble.h
         src/Controllers/TextureController.cpp
         src/Controllers/TextureController.h
         src/Controllers/ObjectController.cpp
         src/Controllers/ObjectController.h
         src/EngineBase.cpp
-        src/EngineBase.h
+        src/include/EngineBase/EngineBase.h
         src/Objects/DragAble.cpp
-        src/Objects/DragAble.h
+        src/include/EngineBase/DragAble.h
         src/Objects/Collidable.cpp
-        src/Objects/Collidable.h
+        src/include/EngineBase/Collidable.h
         src/Objects/SpeedAble.cpp
-        src/Objects/SpeedAble.h
+        src/include/EngineBase/SpeedAble.h
 )
 target_include_directories(EngineBase PUBLIC src/include)
 target_include_directories(EngineBase PUBLIC src)

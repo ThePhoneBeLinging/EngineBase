@@ -4,9 +4,9 @@
 
 #ifndef SAMPLEOBJECT_H
 #define SAMPLEOBJECT_H
-#include "Objects/DragAble.h"
-#include "Objects/DrawAble.h"
-#include "Objects/SpeedAble.h"
+#include "EngineBase/DragAble.h"
+#include "EngineBase/DrawAble.h"
+#include "EngineBase/SpeedAble.h"
 
 
 class SampleObject : public DrawAble

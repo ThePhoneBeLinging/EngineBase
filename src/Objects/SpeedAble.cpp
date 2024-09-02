@@ -2,7 +2,7 @@
 // Created by Elias Aggergaard Larsen on 02/09/2024.
 //
 
-#include "SpeedAble.h"
+#include "EngineBase/SpeedAble.h"
 
 #include "Controllers/ObjectController.h"
 

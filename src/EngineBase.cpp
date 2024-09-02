@@ -2,7 +2,7 @@
 // Created by Elias Aggergaard Larsen on 02/09/2024.
 //
 
-#include "EngineBase.h"
+#include "EngineBase/EngineBase.h"
 #include "Controllers/ObjectController.h"
 #include "Controllers/TextureController.h"
 

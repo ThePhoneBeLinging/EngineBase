@@ -6,9 +6,9 @@
 #define OBJECTCONTROLLER_H
 #include <vector>
 
-#include "Objects/DragAble.h"
-#include "Objects/DrawAble.h"
-#include "Objects/SpeedAble.h"
+#include "EngineBase/DragAble.h"
+#include "EngineBase/DrawAble.h"
+#include "EngineBase/SpeedAble.h"
 
 
 class ObjectController

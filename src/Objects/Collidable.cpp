@@ -2,7 +2,7 @@
 // Created by Elias Aggergaard Larsen on 02/09/2024.
 //
 
-#include "Collidable.h"
+#include "EngineBase/Collidable.h"
 
 Collidable::Collidable(DrawAble* drawAble) : drawAble_(drawAble)
 {
