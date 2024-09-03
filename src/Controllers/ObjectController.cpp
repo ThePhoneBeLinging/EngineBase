@@ -16,6 +16,7 @@ void ObjectController::update(float deltaTime)
 void ObjectController::addDrawAble(DrawAble* drawAble)
 {
     drawAbles_.push_back(drawAble);
+    sortDrawAbles();
 }
 
 void ObjectController::removeDrawAble(DrawAble* drawAble)
@@ -26,6 +27,7 @@ void ObjectController::removeDrawAble(DrawAble* drawAble)
 void ObjectController::addDragAble(DragAble* dragAble)
 {
     dragAbles_.push_back(dragAble);
+    sortDragAbles();
 }
 
 void ObjectController::removeDragAble(DragAble* dragAble)
@@ -87,4 +89,15 @@ void ObjectController::updateSpeedAbles(float deltaTime)
     {
         speedAble->update(deltaTime);
     }
+}
+
+void ObjectController::sortDrawAbles()
+{
+    std::ranges::sort(drawAbles_, [](DrawAble* a, DrawAble* b) { return a->z() <= b->z(); });
+}
+
+void ObjectController::sortDragAbles()
+{
+    std::ranges::sort(
+        dragAbles_, [](DragAble* a, DragAble* b) { return a->getDrawAble()->z() > b->getDrawAble()->z(); });
 }

@@ -17,7 +17,9 @@ static void updateFunction(float deltaTime)
 
 int main()
 {
-    EngineBase::loadTexture("Textures/MissingTexture.png");
+    EngineBase::loadTexture("Textures/zelda.png");
+    auto otherObject = std::make_shared<SampleObject>();
+    otherObject->textureIndex(1);
     auto sampleClient = std::make_shared<SampleClient>();
     EngineBase::startGUI(updateFunction);
     std::cout << "Hello world!" << std::endl;
