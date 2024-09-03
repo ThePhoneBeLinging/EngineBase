@@ -1,221 +1,103 @@
 //
-// Created by Elias Aggergaard Larsen on 25/07/2024.
+// Created by Elias Aggergaard Larsen on 02/09/2024.
 //
 
-#include "ObjectController.h"
-#include "EngineBase/HotKeyManager.h"
 #include <algorithm>
-#include <iostream>
-#include <Components/BaseFiles/ShapesPointChecker.h>
-#include <EngineBase/EngineBase.h>
+#include "ObjectController.h"
+#include "TextureController.h"
 
-std::vector<std::list<DrawAbleObject*>> ObjectController::mAllDrawables;
-
-std::list<DrawAbleObject*> ObjectController::mToBeDeleted;
-
-DrawAbleObject* ObjectController::mDraggedDrawAble;
-SceneManager ObjectController::mSceneManager = SceneManager();
-std::mutex ObjectController::mMutex;
-
-void ObjectController::addDrawAbleObject(DrawAbleObject* drawAble)
+void ObjectController::update(float deltaTime)
 {
-    std::unique_lock<std::mutex> lock(mMutex);
-    while ((unsigned)drawAble->mSceneManager.getScene() >= mAllDrawables.capacity())
-    {
-        mAllDrawables.resize(mAllDrawables.size() + 1);
-    }
-    mAllDrawables[drawAble->mSceneManager.getScene()].push_back(drawAble);
-    lock.unlock();
-    sortScene(drawAble->mSceneManager.getScene());
+    drawObjects();
+    handleClicks();
+    updateSpeedAbles(deltaTime);
 }
 
-void ObjectController::removeObject(DrawAbleObject* drawAble)
+void ObjectController::addDrawAble(DrawAble* drawAble)
 {
-    mToBeDeleted.push_back(drawAble);
+    drawAbles_.push_back(drawAble);
+    sortDrawAbles();
 }
 
-
-void ObjectController::keepDrawingObjects()
+void ObjectController::removeDrawAble(DrawAble* drawAble)
 {
-    int runThrough = 0;
-    while (!WindowShouldClose())
-    {
-        handleDeletions();
-        handleClicks();
-        drawAllObjects();
-        if (EngineBase::getShowFPS())
-        {
-            DrawFPS(0, 0);
-        }
-        if (runThrough == 0)
-        {
-            TextureController::initializeQueuedTextures();
-        }
-
-        if (runThrough == 1000)
-        {
-            runThrough = 0;
-        }
-        runThrough++;
-    }
+    drawAbles_.erase(std::ranges::remove(drawAbles_, drawAble).begin(), drawAbles_.end());
 }
 
-void ObjectController::drawAllObjects()
+void ObjectController::addDragAble(DragAble* dragAble)
 {
-    std::unique_lock<std::mutex> lock(mMutex);
-    auto localDrawAbles = mAllDrawables;
-    lock.unlock();
-    BeginDrawing();
-    ClearBackground(WHITE);
-    if ((unsigned)mSceneManager.getScene() >= mAllDrawables.size())
-    {
-        EndDrawing();
-        return;
-    }
-    int scene = mSceneManager.getScene();
-    for (auto drawAble : localDrawAbles[scene])
+    dragAbles_.push_back(dragAble);
+    sortDragAbles();
+}
+
+void ObjectController::removeDragAble(DragAble* dragAble)
+{
+    dragAbles_.erase(std::ranges::remove(dragAbles_, dragAble).begin(), dragAbles_.end());
+}
+
+void ObjectController::addSpeedAble(SpeedAble* speedAble)
+{
+    speedAbles_.push_back(speedAble);
+}
+
+void ObjectController::removeSpeedAble(SpeedAble* speedAble)
+{
+    speedAbles_.erase(std::ranges::remove(speedAbles_, speedAble).begin(), speedAbles_.end());
+}
+
+void ObjectController::drawObjects()
+{
+    TextureController::startDrawing();
+    for (const auto& drawAble : drawAbles_)
     {
         drawAble->draw();
     }
-
-    EndDrawing();
+    TextureController::endDrawing();
 }
 
 void ObjectController::handleClicks()
 {
-    std::lock_guard<std::mutex> lock(mMutex);
-    int x = GetMouseX();
-    int y = GetMouseY();
-    if ((unsigned)mSceneManager.getScene() >= mAllDrawables.size())
+    auto mousePos = GetMousePosition();
+    if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
     {
-        return;
-    }
-    auto drawAbleList = mAllDrawables[mSceneManager.getScene()];
-    if (mDraggedDrawAble != nullptr)
-    {
-        SetMouseCursor(MOUSE_CURSOR_RESIZE_ALL);
+        if (currentDragged_ != nullptr)
+        {
+            currentDragged_->updateDrag(mousePos.x, mousePos.y);
+        }
+        else
+        {
+            for (const auto& dragAble : dragAbles_)
+            {
+                if (dragAble->getDrawAble()->isPointInside(mousePos.x, mousePos.y))
+                {
+                    dragAble->startDrag(mousePos.x, mousePos.y);
+                    currentDragged_ = dragAble;
+                    break;
+                }
+            }
+        }
     }
     else
     {
-        SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+        if (currentDragged_ != nullptr) currentDragged_ = nullptr;
     }
+}
 
-    for (auto drawAble = drawAbleList.rbegin(); drawAble != drawAbleList.rend(); ++drawAble)
+void ObjectController::updateSpeedAbles(float deltaTime)
+{
+    for (const auto& speedAble : speedAbles_)
     {
-        DrawAbleObject* drawAbleObject = *drawAble;
-        if (drawAbleObject->isPointInside(x, y))
-        {
-            if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT))
-            {
-                if (mDraggedDrawAble == nullptr)
-                {
-                    drawAbleObject->mButton.onClick();
-                }
-            }
-            else if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT))
-            {
-                if (drawAbleObject->mDragAble.isDragable())
-                {
-                    mDraggedDrawAble = drawAbleObject;
-                    mDraggedDrawAble->mDragAble.startDrag(mDraggedDrawAble, x, y);
-                }
-            }
-            break;
-        }
-    }
-    if (mDraggedDrawAble != nullptr)
-    {
-        mDraggedDrawAble->mDragAble.updateDragPos(mDraggedDrawAble, x, y);
-        if (!IsMouseButtonDown(MOUSE_BUTTON_LEFT))
-        {
-            mDraggedDrawAble->mDragAble.stopDrag();
-            mDraggedDrawAble = nullptr;
-        }
+        speedAble->update(deltaTime);
     }
 }
 
-void ObjectController::handleDeletions()
+void ObjectController::sortDrawAbles()
 {
-    std::lock_guard<std::mutex> lock(mMutex);
-    std::list<DrawAbleObject*> toDelete = mToBeDeleted;
-    for (auto drawAble : toDelete)
-    {
-        mAllDrawables[drawAble->mSceneManager.getScene()].remove(drawAble);
-    }
-    mToBeDeleted.clear();
+    std::ranges::sort(drawAbles_, [](DrawAble* a, DrawAble* b) { return a->z() <= b->z(); });
 }
 
-void ObjectController::sortScene(int scene)
+void ObjectController::sortDragAbles()
 {
-    std::lock_guard<std::mutex> lock(mMutex);
-    //TODO Currently sorts everything again upon any change to z value of any object.
-    // TLDR ineffecient
-    if (mAllDrawables.capacity() != 0 && mAllDrawables[scene].size() >= 2)
-    {
-        mAllDrawables[scene].sort([](const DrawAbleObject* a, const DrawAbleObject* b)
-        {
-            return a->mTextureManager.getZ() < b->mTextureManager.getZ();
-        });
-    }
-}
-
-bool ObjectController::isKeyPressed(int key)
-{
-    return IsKeyPressed(key);
-}
-
-bool ObjectController::isKeyDown(int key)
-{
-    return IsKeyDown(key);
-}
-
-bool ObjectController::isKeyUp(int key)
-{
-    return IsKeyUp(key);
-}
-
-bool ObjectController::isKeyReleased(int key)
-{
-    return IsKeyReleased(key);
-}
-
-void ObjectController::offsetAllDrawAbles(int xOffset, int yOffset)
-{
-    std::unique_lock<std::mutex> lock(mMutex);
-    auto localDrawAbles = mAllDrawables[mSceneManager.getScene()];
-    lock.unlock();
-    for (auto drawAble : localDrawAbles)
-    {
-        drawAble->setX(drawAble->getX() + xOffset);
-        drawAble->setY(drawAble->getY() + yOffset);
-    }
-}
-
-std::list<DrawAbleObject*> ObjectController::getCollidingDrawAbles(DrawAbleObject* drawAble)
-{
-    std::list<DrawAbleObject*> collidingObjects;
-    std::unique_lock<std::mutex> lock(mMutex);
-    auto localDrawAbles = mAllDrawables[mSceneManager.getScene()];
-    lock.unlock();
-
-    for (auto drawAbleToCheck : localDrawAbles)
-    {
-        if (drawAbleToCheck == drawAble) continue;
-        if (ShapesPointChecker::rectangleCollisionChecker(drawAbleToCheck, drawAble))
-        {
-            collidingObjects.push_back(drawAbleToCheck);
-        }
-    }
-    return collidingObjects;
-}
-
-void ObjectController::updateVelocityOfAllObjects()
-{
-    std::unique_lock<std::mutex> lock(mMutex);
-    auto localDrawAbles = mAllDrawables[mSceneManager.getScene()];
-    lock.unlock();
-    for (auto drawAble : localDrawAbles)
-    {
-        drawAble->mVelocityManager.updatePosition();
-    }
+    std::ranges::sort(
+        dragAbles_, [](DragAble* a, DragAble* b) { return a->getDrawAble()->z() > b->getDrawAble()->z(); });
 }

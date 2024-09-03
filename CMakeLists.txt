@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 ### Add Raylib
 
-set(RESOURCE_FOLDER ${CMAKE_SOURCE_DIR}/dependencies/EngineBase/Textures)
+set(RESOURCE_FOLDER ${CMAKE_SOURCE_DIR}/../Textures)
 
 # Copy the resource folder
 file(COPY ${RESOURCE_FOLDER} DESTINATION ${CMAKE_BINARY_DIR})
@@ -32,32 +32,23 @@ endif ()
 
 
 add_library(EngineBase
+        src/Objects/DrawAble.cpp
+        src/include/EngineBase/DrawAble.h
         src/Controllers/TextureController.cpp
-        src/Components/BaseFiles/ObjectFiles/DrawAbleObject.cpp
+        src/Controllers/TextureController.h
         src/Controllers/ObjectController.cpp
-        src/Components/BaseFiles/Button.cpp
-        src/Components/BaseFiles/ShapesPointChecker.cpp
-        src/Controllers/EngineBase.cpp
-        src/Components/BaseFiles/ObjectFiles/Object.cpp
-        src/Components/BaseFiles/ObjectFiles/Visibility.cpp
-        src/Components/BaseFiles/ObjectFiles/DragAble.cpp
-        src/Components/BaseFiles/ObjectFiles/SceneManager.cpp
-        src/Components/BaseFiles/ObjectFiles/ConnectionManager.cpp
-        src/Components/BaseFiles/ObjectFiles/TextureManager.cpp
-        src/Components/BaseFiles/OnKeyPress.cpp
-        src/Components/BaseFiles/HotKeyManager.cpp
-        src/Components/TextureToLoad.cpp
-        src/Components/TextureToLoad.h
-        src/Components/HexColorToLoad.cpp
-        src/Components/HexColorToLoad.h
-        src/Components/BaseFiles/ObjectFiles/CollisionManager.cpp
-        src/Components/BaseFiles/ObjectFiles/CollisionManager.h
-        src/Components/BaseFiles/ObjectFiles/VelocityManager.cpp
-        src/Components/BaseFiles/ObjectFiles/VelocityManager.h
+        src/Controllers/ObjectController.h
+        src/EngineBase.cpp
+        src/include/EngineBase/EngineBase.h
+        src/Objects/DragAble.cpp
+        src/include/EngineBase/DragAble.h
+        src/Objects/Collidable.cpp
+        src/include/EngineBase/Collidable.h
+        src/Objects/SpeedAble.cpp
+        src/include/EngineBase/SpeedAble.h
 )
 target_include_directories(EngineBase PUBLIC src/include)
 target_include_directories(EngineBase PUBLIC src)
 target_link_libraries(${PROJECT_NAME} PUBLIC
         raylib
-        Utility
 )

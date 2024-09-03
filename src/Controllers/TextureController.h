@@ -1,44 +1,32 @@
 //
-// Created by Elias Aggergaard Larsen on 25/07/2024.
+// Created by Elias Aggergaard Larsen on 01/09/2024.
 //
 
 #ifndef TEXTURECONTROLLER_H
 #define TEXTURECONTROLLER_H
-#include <list>
-#include <vector>
-#include <thread>
-#include <Components/TextureToLoad.h>
-#include <EngineBase/DrawAbleObject.h>
 
+#include <vector>
+#include <string>
+#include <memory>
 #include "raylib.h"
-#include "Components/HexColorToLoad.h"
+#include "EngineBase/DrawAble.h"
 
 
 class TextureController
 {
 public:
-    static void loadTexture(const std::string& texturePath, int firstIndex, int secondIndex);
-    static void draw(DrawAbleObject* drawAble);
-    static void initWindow();
-    static void addTextureToLoad(const std::string& texturePath, int firstIndex, int secondIndex);
-    static void genColorFromHex(unsigned int hexValue, int primaryIndex, int secondaryIndex);
-    static void initializeQueuedTextures();
-    static void loadTexturePart(const std::string& texturePath, int firstIndex, int secondIndex,
-                                int width,
-                                int height);
-    static void setObjectToFollow(DrawAbleObject* drawAbleToFollow);
+    static int loadTexture(const std::string& path);
+
+    static void drawTexture(DrawAble* object);
+
+    static void initializeWindow();
+
+    static void startDrawing();
+
+    static void endDrawing();
 
 private:
-    static std::vector<std::vector<Texture2D>> mTextures;
-    static int spacesPerResize;
-    static bool mWindowInitialized;
-    static std::list<TextureToLoad> mTexturesToLoad;
-    static std::mutex mTextureQueueLock;
-    static std::list<HexColorToLoad> mHexColorsToLoad;
-    static std::mutex mHexColorsQueueLock;
-    static void addTexture(Texture2D texture, int primaryIndex, int secondaryIndex);
-    static int mFollowAbleX;
-    static int mFollowAbleY;
+    static inline std::vector<std::shared_ptr<Texture2D>> textures_ = {};
 };
 
 
