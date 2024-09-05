@@ -18,7 +18,7 @@ SampleClient::SampleClient()
 void SampleClient::update(float deltaTime)
 {
     sampleObject_->speedAble_.update(deltaTime);
-    if (EngineBase::keyPressed(KeyboardKey::KEY_A))
+    if (EngineBase::keyPressed(ENGINEBASE_KEY_S))
     {
         sampleObject_->speedAble_.xSpeed(100);
     }
