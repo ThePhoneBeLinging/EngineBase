@@ -23,6 +23,16 @@ void EngineBase::startGUI(const std::function<void(float deltaTime)>& updateFunc
     }
 }
 
+bool EngineBase::keyPressed(int key)
+{
+    return IsKeyDown(key);
+}
+
+bool EngineBase::keyReleased(int key)
+{
+    return IsKeyReleased(key);
+}
+
 void EngineBase::initializeWindow()
 {
     if (windowInitialized_) return;

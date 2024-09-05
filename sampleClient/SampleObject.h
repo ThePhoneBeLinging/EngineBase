@@ -14,9 +14,10 @@ class SampleObject : public DrawAble
 public:
     SampleObject();
 
+    SpeedAble speedAble_;
+
 private:
     DragAble dragAble_;
-    SpeedAble speedAble_;
 };
 
 

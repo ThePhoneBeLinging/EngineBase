@@ -7,12 +7,13 @@
 #include <functional>
 #include <string>
 
-
 class EngineBase
 {
 public:
     static int loadTexture(const std::string& path);
     static void startGUI(const std::function<void(float deltaTime)>& update);
+    static bool keyPressed(int key);
+    static bool keyReleased(int key);
 
 private:
     static inline bool windowInitialized_ = false;
