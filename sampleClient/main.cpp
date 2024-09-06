@@ -9,19 +9,12 @@
 #include "SampleObject.h"
 
 
-static void updateFunction(float deltaTime)
-{
-    std::cout << "Update Called" << std::endl;
-    std::cout << "Delta time: " << deltaTime << std::endl;
-}
-
 int main()
 {
     EngineBase::loadTexture("Textures/zelda.png");
-    auto otherObject = std::make_shared<SampleObject>();
-    otherObject->textureIndex(1);
     auto sampleClient = std::make_shared<SampleClient>();
-    EngineBase::startGUI(updateFunction);
+    EngineBase::startGUI(SampleClient::update);
+
     std::cout << "Hello world!" << std::endl;
     return 0;
 }

@@ -6,6 +6,9 @@
 #define OBJECTCONTROLLER_H
 #include <vector>
 
+
+#include "EngineBase/ClickAble.h"
+
 #include "EngineBase/DragAble.h"
 #include "EngineBase/DrawAble.h"
 #include "EngineBase/SpeedAble.h"
@@ -22,15 +25,23 @@ public:
     static void addSpeedAble(SpeedAble* speedAble);
     static void removeSpeedAble(SpeedAble* speedAble);
 
+    static void addClickAble(ClickAble* clickAble);
+    static void removeClickAble(ClickAble* clickAble);
+
+
 private:
     static void drawObjects();
     static void handleClicks();
     static void updateSpeedAbles(float deltaTime);
     static void sortDrawAbles();
     static void sortDragAbles();
+
+    static void sortClickAbles();
     static inline std::vector<DrawAble*> drawAbles_;
     static inline std::vector<DragAble*> dragAbles_;
     static inline std::vector<SpeedAble*> speedAbles_;
+    static inline std::vector<ClickAble*> clickAbles_;
+
     static inline DragAble* currentDragged_ = nullptr;
 };
 

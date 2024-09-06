@@ -13,9 +13,11 @@ class SampleClient
 {
 public:
     SampleClient();
+    static void update(float deltaTime);
 
 private:
-    std::shared_ptr<SampleObject> sampleObject_;
+    static inline std::shared_ptr<SampleObject> sampleObject_;
+
 };
 
 

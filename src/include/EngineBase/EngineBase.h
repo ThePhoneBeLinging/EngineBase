@@ -8,11 +8,20 @@
 #include <string>
 
 
+#include "KeyBoardKeys.h"
+
+
 class EngineBase
 {
 public:
     static int loadTexture(const std::string& path);
     static void startGUI(const std::function<void(float deltaTime)>& update);
+
+    static bool keyPressed(Key key);
+    static bool keyReleased(Key key);
+    static bool mouseButtonPressed(Button mouseButton);
+    static bool mouseButtonReleased(Button mouseButton);
+
 
 private:
     static inline bool windowInitialized_ = false;
