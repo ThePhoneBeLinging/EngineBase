@@ -49,6 +49,7 @@ void ObjectController::removeSpeedAble(SpeedAble* speedAble)
 void ObjectController::addClickAble(ClickAble* clickAble)
 {
     clickAbles_.push_back(clickAble);
+    sortClickAbles();
 }
 
 void ObjectController::removeClickAble(ClickAble* clickAble)
@@ -120,4 +121,9 @@ void ObjectController::sortDragAbles()
 {
     std::ranges::sort(
         dragAbles_, [](DragAble* a, DragAble* b) { return a->getDrawAble()->z() > b->getDrawAble()->z(); });
+}
+
+void ObjectController::sortClickAbles()
+{
+    std::ranges::sort(clickAbles_, [](ClickAble* a, ClickAble* b) { return a->drawAble()->z() > b->drawAble()->z(); });
 }

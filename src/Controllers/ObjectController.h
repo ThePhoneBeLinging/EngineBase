@@ -31,6 +31,7 @@ private:
     static void updateSpeedAbles(float deltaTime);
     static void sortDrawAbles();
     static void sortDragAbles();
+    static void sortClickAbles();
     static inline std::vector<DrawAble*> drawAbles_;
     static inline std::vector<DragAble*> dragAbles_;
     static inline std::vector<SpeedAble*> speedAbles_;
