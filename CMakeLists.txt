@@ -47,6 +47,8 @@ add_library(EngineBase
         src/Objects/SpeedAble.cpp
         src/include/EngineBase/SpeedAble.h
         src/include/EngineBase/KeyBoardKeys.h
+        src/Objects/ClickAble.cpp
+        src/include/EngineBase/ClickAble.h
 )
 target_include_directories(EngineBase PUBLIC src/include)
 target_include_directories(EngineBase PUBLIC src)

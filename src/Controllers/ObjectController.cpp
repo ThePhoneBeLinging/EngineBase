@@ -45,6 +45,16 @@ void ObjectController::removeSpeedAble(SpeedAble* speedAble)
     speedAbles_.erase(std::ranges::remove(speedAbles_, speedAble).begin(), speedAbles_.end());
 }
 
+void ObjectController::addClickAble(ClickAble* clickAble)
+{
+    clickAbles_.push_back(clickAble);
+}
+
+void ObjectController::removeClickAble(ClickAble* clickAble)
+{
+    clickAbles_.erase(std::ranges::remove(clickAbles_, clickAble).begin(), clickAbles_.end());
+}
+
 void ObjectController::drawObjects()
 {
     TextureController::startDrawing();
