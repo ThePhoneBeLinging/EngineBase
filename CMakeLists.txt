@@ -5,7 +5,8 @@ set(CMAKE_CXX_STANDARD 20)
 
 ### Add Raylib
 
-set(RESOURCE_FOLDER ${CMAKE_SOURCE_DIR}/../Textures)
+
+set(RESOURCE_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/Textures)
 
 # Copy the resource folder
 file(COPY ${RESOURCE_FOLDER} DESTINATION ${CMAKE_BINARY_DIR})
@@ -46,9 +47,11 @@ add_library(EngineBase
         src/include/EngineBase/Collidable.h
         src/Objects/SpeedAble.cpp
         src/include/EngineBase/SpeedAble.h
+
         src/include/EngineBase/KeyBoardKeys.h
         src/Objects/ClickAble.cpp
         src/include/EngineBase/ClickAble.h
+
 )
 target_include_directories(EngineBase PUBLIC src/include)
 target_include_directories(EngineBase PUBLIC src)

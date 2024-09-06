@@ -43,6 +43,7 @@ bool EngineBase::mouseButtonReleased(Button mouseButton)
     return IsMouseButtonReleased(mouseButton);
 }
 
+
 void EngineBase::initializeWindow()
 {
     if (windowInitialized_) return;

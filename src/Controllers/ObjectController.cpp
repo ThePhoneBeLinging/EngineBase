@@ -5,6 +5,7 @@
 #include <algorithm>
 #include "ObjectController.h"
 #include "TextureController.h"
+
 #include "EngineBase/EngineBase.h"
 
 void ObjectController::update(float deltaTime)
@@ -59,6 +60,7 @@ void ObjectController::removeClickAble(ClickAble* clickAble)
 
 void ObjectController::drawObjects()
 {
+
     TextureController::startDrawing();
     for (const auto& drawAble : drawAbles_)
     {
@@ -69,9 +71,11 @@ void ObjectController::drawObjects()
 
 void ObjectController::handleClicks()
 {
+
     //TODO Extract this to an interface
     auto mousePos = GetMousePosition();
     if (EngineBase::mouseButtonPressed(ENGINEBASE_BUTTON_LEFT))
+
     {
         if (currentDragged_ != nullptr)
         {
@@ -89,6 +93,7 @@ void ObjectController::handleClicks()
                 }
             }
         }
+
         for (const auto& clickAble : clickAbles_)
         {
             if (clickAble->drawAble()->isPointInside(mousePos.x, mousePos.y))
@@ -97,6 +102,7 @@ void ObjectController::handleClicks()
                 break;
             }
         }
+
     }
     else
     {
@@ -121,9 +127,11 @@ void ObjectController::sortDragAbles()
 {
     std::ranges::sort(
         dragAbles_, [](DragAble* a, DragAble* b) { return a->getDrawAble()->z() > b->getDrawAble()->z(); });
+
 }
 
 void ObjectController::sortClickAbles()
 {
     std::ranges::sort(clickAbles_, [](ClickAble* a, ClickAble* b) { return a->drawAble()->z() > b->drawAble()->z(); });
+
 }

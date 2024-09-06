@@ -4,7 +4,9 @@
 
 #ifndef SAMPLEOBJECT_H
 #define SAMPLEOBJECT_H
+
 #include "EngineBase/ClickAble.h"
+
 #include "EngineBase/DragAble.h"
 #include "EngineBase/DrawAble.h"
 #include "EngineBase/SpeedAble.h"
@@ -17,6 +19,7 @@ public:
 
     SpeedAble speedAble_;
     ClickAble clickAble_;
+
 };
 
 

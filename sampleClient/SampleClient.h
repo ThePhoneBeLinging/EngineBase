@@ -17,6 +17,7 @@ public:
 
 private:
     static inline std::shared_ptr<SampleObject> sampleObject_;
+
 };
 
 

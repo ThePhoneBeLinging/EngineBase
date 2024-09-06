@@ -8,11 +8,13 @@
 #include "SampleClient.h"
 #include "SampleObject.h"
 
+
 int main()
 {
     EngineBase::loadTexture("Textures/zelda.png");
     auto sampleClient = std::make_shared<SampleClient>();
     EngineBase::startGUI(SampleClient::update);
+
     std::cout << "Hello world!" << std::endl;
     return 0;
 }
