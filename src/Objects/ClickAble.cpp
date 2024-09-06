@@ -5,17 +5,25 @@
 #include "EngineBase/ClickAble.h"
 #include <utility>
 
+#include "Controllers/ObjectController.h"
+
 ClickAble::ClickAble(DrawAble* drawAble)
 {
     drawAble_ = drawAble;
+    ObjectController::addClickAble(this);
 }
 
-void ClickAble::setOnClick(std::function<void(DrawAble*)> function)
+void ClickAble::setOnClick(std::function<void()> function)
 {
     onClickFunction_ = std::move(function);
 }
 
 void ClickAble::onClick()
 {
-    onClickFunction_(drawAble_);
+    onClickFunction_();
+}
+
+DrawAble* ClickAble::drawAble()
+{
+    return drawAble_;
 }

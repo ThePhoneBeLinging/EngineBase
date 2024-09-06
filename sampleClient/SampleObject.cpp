@@ -4,6 +4,6 @@
 
 #include "SampleObject.h"
 
-SampleObject::SampleObject() : DrawAble(0, 0, 0, 50, 50, 0), speedAble_(this), dragAble_(this)
+SampleObject::SampleObject() : DrawAble(0, 0, 0, 50, 50, 0), speedAble_(this), clickAble_(this)
 {
 }

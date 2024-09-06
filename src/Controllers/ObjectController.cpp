@@ -5,6 +5,7 @@
 #include <algorithm>
 #include "ObjectController.h"
 #include "TextureController.h"
+#include "EngineBase/EngineBase.h"
 
 void ObjectController::update(float deltaTime)
 {
@@ -67,8 +68,9 @@ void ObjectController::drawObjects()
 
 void ObjectController::handleClicks()
 {
+    //TODO Extract this to an interface
     auto mousePos = GetMousePosition();
-    if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
+    if (EngineBase::mouseButtonPressed(ENGINEBASE_BUTTON_LEFT))
     {
         if (currentDragged_ != nullptr)
         {
@@ -84,6 +86,14 @@ void ObjectController::handleClicks()
                     currentDragged_ = dragAble;
                     break;
                 }
+            }
+        }
+        for (const auto& clickAble : clickAbles_)
+        {
+            if (clickAble->drawAble()->isPointInside(mousePos.x, mousePos.y))
+            {
+                clickAble->onClick();
+                break;
             }
         }
     }

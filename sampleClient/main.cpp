@@ -11,8 +11,6 @@
 int main()
 {
     EngineBase::loadTexture("Textures/zelda.png");
-    auto otherObject = std::make_shared<SampleObject>();
-    otherObject->textureIndex(1);
     auto sampleClient = std::make_shared<SampleClient>();
     EngineBase::startGUI(SampleClient::update);
     std::cout << "Hello world!" << std::endl;
