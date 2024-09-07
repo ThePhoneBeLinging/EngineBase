@@ -7,6 +7,11 @@
 int TextureController::loadTexture(const std::string& path)
 {
     auto texture = std::make_shared<Texture2D>(LoadTexture(path.c_str()));
+    if (texture->id == 0)
+    {
+        auto newPath = "../" + path;
+        texture = std::make_shared<Texture2D>(LoadTexture(newPath.c_str()));
+    }
     textures_.push_back(texture);
     return (int)textures_.size() - 1;
 }
