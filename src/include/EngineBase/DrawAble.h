@@ -13,20 +13,20 @@ public:
     DrawAble();
     virtual ~DrawAble();
     void draw();
-    [[nodiscard]] float x() const;
-    void x(float x);
-    [[nodiscard]] float y() const;
-    void y(float y);
-    [[nodiscard]] int z() const;
-    void z(int z);
-    [[nodiscard]] int width() const;
-    void width(int width);
-    [[nodiscard]] int height() const;
-    void height(int height);
-    [[nodiscard]] int textureIndex() const;
-    void textureIndex(int texture_index);
+    [[nodiscard]] virtual float x() const;
+    virtual void x(float x);
+    [[nodiscard]] virtual float y() const;
+    virtual void y(float y);
+    [[nodiscard]] virtual int z() const;
+    virtual void z(int z);
+    [[nodiscard]] virtual int width() const;
+    virtual void width(int width);
+    [[nodiscard]] virtual int height() const;
+    virtual void height(int height);
+    [[nodiscard]] virtual int textureIndex() const;
+    virtual void textureIndex(int texture_index);
 
-    [[nodiscard]] bool isPointInside(float x, float y) const;
+    [[nodiscard]] virtual bool isPointInside(float x, float y) const;
 
 protected:
     float x_;
