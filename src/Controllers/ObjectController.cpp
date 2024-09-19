@@ -21,36 +21,22 @@ void ObjectController::addDrawAble(const std::weak_ptr<DrawAble>& drawAble)
     sortDrawAbles();
 }
 
-void ObjectController::addDragAble(DragAble* dragAble)
+void ObjectController::addDragAble(const std::weak_ptr<DragAble>& dragAble)
 {
     dragAbles_.push_back(dragAble);
     sortDragAbles();
 }
 
-void ObjectController::removeDragAble(DragAble* dragAble)
-{
-    dragAbles_.erase(std::ranges::remove(dragAbles_, dragAble).begin(), dragAbles_.end());
-}
-
-void ObjectController::addSpeedAble(SpeedAble* speedAble)
+void ObjectController::addSpeedAble(const std::weak_ptr<SpeedAble>& speedAble)
 {
     speedAbles_.push_back(speedAble);
 }
 
-void ObjectController::removeSpeedAble(SpeedAble* speedAble)
-{
-    speedAbles_.erase(std::ranges::remove(speedAbles_, speedAble).begin(), speedAbles_.end());
-}
 
-void ObjectController::addClickAble(ClickAble* clickAble)
+void ObjectController::addClickAble(const std::weak_ptr<ClickAble>& clickAble)
 {
     clickAbles_.push_back(clickAble);
     sortClickAbles();
-}
-
-void ObjectController::removeClickAble(ClickAble* clickAble)
-{
-    clickAbles_.erase(std::ranges::remove(clickAbles_, clickAble).begin(), clickAbles_.end());
 }
 
 void ObjectController::drawObjects()
@@ -58,7 +44,10 @@ void ObjectController::drawObjects()
     TextureController::startDrawing();
     for (const auto& drawAble : drawAbles_)
     {
-        drawAble.lock()->draw();
+        if (auto objectToDraw = drawAble.lock())
+        {
+            objectToDraw->draw();
+        }
     }
     TextureController::endDrawing();
 }
@@ -68,20 +57,19 @@ void ObjectController::handleClicks()
     //TODO Extract this to an interface
     auto mousePos = GetMousePosition();
     if (EngineBase::mouseButtonPressed(ENGINEBASE_BUTTON_LEFT))
-
     {
         if (currentDragged_ != nullptr)
         {
-            currentDragged_->updateDrag(mousePos.x, mousePos.y);
+            currentDragged_->lock()->updateDrag(mousePos.x, mousePos.y);
         }
         else
         {
-            for (const auto& dragAble : dragAbles_)
+            for (auto& dragAble : dragAbles_)
             {
-                if (dragAble->getDrawAble()->isPointInside(mousePos.x, mousePos.y))
+                if (dragAble.lock()->getDrawAble()->isPointInside(mousePos.x, mousePos.y))
                 {
-                    dragAble->startDrag(mousePos.x, mousePos.y);
-                    currentDragged_ = dragAble;
+                    dragAble.lock()->startDrag(mousePos.x, mousePos.y);
+                    currentDragged_ = &dragAble;
                     break;
                 }
             }
@@ -89,9 +77,9 @@ void ObjectController::handleClicks()
 
         for (const auto& clickAble : clickAbles_)
         {
-            if (clickAble->drawAble()->isPointInside(mousePos.x, mousePos.y))
+            if (clickAble.lock()->drawAble()->isPointInside(mousePos.x, mousePos.y))
             {
-                clickAble->onClick();
+                clickAble.lock()->onClick();
                 break;
             }
         }
@@ -106,7 +94,7 @@ void ObjectController::updateSpeedAbles(float deltaTime)
 {
     for (const auto& speedAble : speedAbles_)
     {
-        speedAble->update(deltaTime);
+        speedAble.lock()->update(deltaTime);
     }
 }
 
@@ -121,10 +109,16 @@ void ObjectController::sortDrawAbles()
 void ObjectController::sortDragAbles()
 {
     std::ranges::sort(
-        dragAbles_, [](DragAble* a, DragAble* b) { return a->getDrawAble()->z() > b->getDrawAble()->z(); });
+        dragAbles_, [](const std::weak_ptr<DragAble>& a, const std::weak_ptr<DragAble>& b)
+        {
+            return a.lock()->getDrawAble()->z() > b.lock()->getDrawAble()->z();
+        });
 }
 
 void ObjectController::sortClickAbles()
 {
-    std::ranges::sort(clickAbles_, [](ClickAble* a, ClickAble* b) { return a->drawAble()->z() > b->drawAble()->z(); });
+    std::ranges::sort(clickAbles_, [](const std::weak_ptr<ClickAble>& a, const std::weak_ptr<ClickAble>& b)
+    {
+        return a.lock()->drawAble()->z() > b.lock()->drawAble()->z();
+    });
 }

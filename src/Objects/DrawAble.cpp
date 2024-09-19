@@ -12,6 +12,10 @@ DrawAble::DrawAble(float x, float y, int z, int width, int height, int textureIn
 {
 }
 
+DrawAble::~DrawAble()
+{
+}
+
 void DrawAble::draw()
 {
     TextureController::drawTexture(this);

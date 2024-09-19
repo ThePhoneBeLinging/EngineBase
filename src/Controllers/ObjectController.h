@@ -19,13 +19,9 @@ class ObjectController
 public:
     static void update(float deltaTime);
     static void addDrawAble(const std::weak_ptr<DrawAble>& drawAble);
-    static void addDragAble(DragAble* dragAble);
-    static void removeDragAble(DragAble* dragAble);
-    static void addSpeedAble(SpeedAble* speedAble);
-    static void removeSpeedAble(SpeedAble* speedAble);
-
-    static void addClickAble(ClickAble* clickAble);
-    static void removeClickAble(ClickAble* clickAble);
+    static void addDragAble(const std::weak_ptr<DragAble>& dragAble);
+    static void addSpeedAble(const std::weak_ptr<SpeedAble>& speedAble);
+    static void addClickAble(const std::weak_ptr<ClickAble>& clickAble);
 
 private:
     static void drawObjects();
@@ -36,11 +32,11 @@ private:
 
     static void sortClickAbles();
     static inline std::vector<std::weak_ptr<DrawAble>> drawAbles_;
-    static inline std::vector<DragAble*> dragAbles_;
-    static inline std::vector<SpeedAble*> speedAbles_;
-    static inline std::vector<ClickAble*> clickAbles_;
+    static inline std::vector<std::weak_ptr<DragAble>> dragAbles_;
+    static inline std::vector<std::weak_ptr<SpeedAble>> speedAbles_;
+    static inline std::vector<std::weak_ptr<ClickAble>> clickAbles_;
 
-    static inline DragAble* currentDragged_ = nullptr;
+    static inline std::weak_ptr<DragAble>* currentDragged_ = nullptr;
 };
 
 

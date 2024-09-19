@@ -8,12 +8,10 @@
 
 DragAble::DragAble(DrawAble* drawAble) : drawAble_(drawAble), oldX_(0), oldY_(0), offsetX_(0), offsetY_(0)
 {
-    ObjectController::addDragAble(this);
 }
 
 DragAble::~DragAble()
 {
-    ObjectController::removeDragAble(this);
 }
 
 void DragAble::startDrag(float x, float y)
