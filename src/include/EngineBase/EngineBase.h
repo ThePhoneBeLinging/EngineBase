@@ -8,6 +8,7 @@
 #include <string>
 
 
+#include "DrawAble.h"
 #include "KeyBoardKeys.h"
 
 
@@ -21,7 +22,7 @@ public:
     static bool keyReleased(Key key);
     static bool mouseButtonPressed(Button mouseButton);
     static bool mouseButtonReleased(Button mouseButton);
-
+    static void addDrawAble(const std::weak_ptr<DrawAble>&);
 
 private:
     static inline bool windowInitialized_ = false;

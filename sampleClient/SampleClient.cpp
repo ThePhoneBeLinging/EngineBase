@@ -15,6 +15,7 @@
 SampleClient::SampleClient()
 {
     sampleObject_ = std::make_shared<SampleObject>();
+    EngineBase::addDrawAble(std::weak_ptr<SampleObject>(sampleObject_));
 
     auto lamda = []() { sampleObject_->speedAble_.xSpeed(100); };
     sampleObject_->clickAble_.setOnClick(lamda);
@@ -27,5 +28,4 @@ void SampleClient::update(float deltaTime)
     {
         sampleObject_->speedAble_.xSpeed(100);
     }
-
 }

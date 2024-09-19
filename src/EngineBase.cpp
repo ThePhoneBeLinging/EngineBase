@@ -43,6 +43,11 @@ bool EngineBase::mouseButtonReleased(Button mouseButton)
     return IsMouseButtonReleased(mouseButton);
 }
 
+void EngineBase::addDrawAble(const std::weak_ptr<DrawAble>& drawAble)
+{
+    ObjectController::addDrawAble(drawAble);
+}
+
 
 void EngineBase::initializeWindow()
 {

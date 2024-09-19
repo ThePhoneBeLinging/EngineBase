@@ -18,8 +18,7 @@ class ObjectController
 {
 public:
     static void update(float deltaTime);
-    static void addDrawAble(DrawAble* drawAble);
-    static void removeDrawAble(DrawAble* drawAble);
+    static void addDrawAble(const std::weak_ptr<DrawAble>& drawAble);
     static void addDragAble(DragAble* dragAble);
     static void removeDragAble(DragAble* dragAble);
     static void addSpeedAble(SpeedAble* speedAble);
@@ -27,7 +26,6 @@ public:
 
     static void addClickAble(ClickAble* clickAble);
     static void removeClickAble(ClickAble* clickAble);
-
 
 private:
     static void drawObjects();
@@ -37,7 +35,7 @@ private:
     static void sortDragAbles();
 
     static void sortClickAbles();
-    static inline std::vector<DrawAble*> drawAbles_;
+    static inline std::vector<std::weak_ptr<DrawAble>> drawAbles_;
     static inline std::vector<DragAble*> dragAbles_;
     static inline std::vector<SpeedAble*> speedAbles_;
     static inline std::vector<ClickAble*> clickAbles_;
