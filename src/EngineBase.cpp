@@ -48,6 +48,16 @@ void EngineBase::addDrawAble(const std::weak_ptr<DrawAble>& drawAble)
     ObjectController::addDrawAble(drawAble);
 }
 
+void EngineBase::addSpeedAble(const std::weak_ptr<SpeedAble>& speedAble)
+{
+    ObjectController::addSpeedAble(speedAble);
+}
+
+void EngineBase::addDragAble(const std::weak_ptr<DragAble>& dragAble)
+{
+    ObjectController::addDragAble(dragAble);
+}
+
 
 void EngineBase::initializeWindow()
 {
