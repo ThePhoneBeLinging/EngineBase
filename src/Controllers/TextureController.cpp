@@ -7,13 +7,18 @@
 int TextureController::loadTexture(const std::string& path)
 {
     auto texture = std::make_shared<Texture2D>(LoadTexture(path.c_str()));
+    if (texture->id == 0)
+    {
+        auto newPath = "../" + path;
+        texture = std::make_shared<Texture2D>(LoadTexture(newPath.c_str()));
+    }
     textures_.push_back(texture);
     return (int)textures_.size() - 1;
 }
 
 void TextureController::drawTexture(DrawAble* object)
 {
-    auto texture = textures_[textures_.size() - object->textureIndex() - 1];
+    auto texture = textures_[object->textureIndex()];
     Texture2D copiedTexture = *texture;
     copiedTexture.height = object->height();
     copiedTexture.width = object->width();
