@@ -29,7 +29,6 @@ private:
     static void updateSpeedAbles(float deltaTime);
     static void sortDrawAbles();
     static void sortDragAbles();
-
     static void sortClickAbles();
     static inline std::vector<std::weak_ptr<DrawAble>> drawAbles_;
     static inline std::vector<std::weak_ptr<DragAble>> dragAbles_;

@@ -44,9 +44,10 @@ void ObjectController::drawObjects()
     TextureController::startDrawing();
     for (const auto& drawAble : drawAbles_)
     {
-        if (auto objectToDraw = drawAble.lock())
+        auto drawAblePtr = drawAble.lock();
+        if (drawAblePtr != nullptr)
         {
-            objectToDraw->draw();
+            drawAblePtr->draw();
         }
     }
     TextureController::endDrawing();
@@ -60,15 +61,21 @@ void ObjectController::handleClicks()
     {
         if (currentDragged_ != nullptr)
         {
-            currentDragged_->lock()->updateDrag(mousePos.x, mousePos.y);
+            auto currentDraggedPtr = currentDragged_->lock();
+            if (currentDraggedPtr != nullptr)
+            {
+                currentDraggedPtr->updateDrag(mousePos.x, mousePos.y);
+            }
         }
         else
         {
             for (auto& dragAble : dragAbles_)
             {
-                if (dragAble.lock()->getDrawAble()->isPointInside(mousePos.x, mousePos.y))
+                auto dragAblePtr = dragAble.lock();
+                if (dragAblePtr == nullptr) continue;
+                if (dragAblePtr->getDrawAble()->isPointInside(mousePos.x, mousePos.y))
                 {
-                    dragAble.lock()->startDrag(mousePos.x, mousePos.y);
+                    dragAblePtr->startDrag(mousePos.x, mousePos.y);
                     currentDragged_ = &dragAble;
                     break;
                 }
@@ -77,9 +84,11 @@ void ObjectController::handleClicks()
 
         for (const auto& clickAble : clickAbles_)
         {
-            if (clickAble.lock()->drawAble()->isPointInside(mousePos.x, mousePos.y))
+            auto clickAblePtr = clickAble.lock();
+            if (clickAblePtr == nullptr) continue;
+            if (clickAblePtr->drawAble()->isPointInside(mousePos.x, mousePos.y))
             {
-                clickAble.lock()->onClick();
+                clickAblePtr->onClick();
                 break;
             }
         }
@@ -94,31 +103,46 @@ void ObjectController::updateSpeedAbles(float deltaTime)
 {
     for (const auto& speedAble : speedAbles_)
     {
-        speedAble.lock()->update(deltaTime);
+        auto speedAblePtr = speedAble.lock();
+        if (speedAblePtr != nullptr)
+        {
+            speedAblePtr->update(deltaTime);
+        }
     }
 }
 
 void ObjectController::sortDrawAbles()
 {
+    std::erase_if(drawAbles_, [](const std::weak_ptr<DrawAble>& ptr) { return ptr.expired(); });
     std::ranges::sort(drawAbles_, [](const std::weak_ptr<DrawAble>& a, const std::weak_ptr<DrawAble>& b)
     {
-        return a.lock()->z() <= b.lock()->z();
+        auto aPtr = a.lock();
+        auto bPtr = b.lock();
+        if (aPtr == nullptr || bPtr == nullptr) return false;
+        return aPtr->z() <= bPtr->z();
     });
 }
 
 void ObjectController::sortDragAbles()
 {
-    std::ranges::sort(
-        dragAbles_, [](const std::weak_ptr<DragAble>& a, const std::weak_ptr<DragAble>& b)
-        {
-            return a.lock()->getDrawAble()->z() > b.lock()->getDrawAble()->z();
-        });
+    std::erase_if(dragAbles_, [](const std::weak_ptr<DragAble>& ptr) { return ptr.expired(); });
+    std::ranges::sort(dragAbles_, [](const std::weak_ptr<DragAble>& a, const std::weak_ptr<DragAble>& b)
+    {
+        auto aPtr = a.lock();
+        auto bPtr = b.lock();
+        if (aPtr == nullptr || bPtr == nullptr) return false;
+        return aPtr->getDrawAble()->z() > bPtr->getDrawAble()->z();
+    });
 }
 
 void ObjectController::sortClickAbles()
 {
+    std::erase_if(clickAbles_, [](const std::weak_ptr<ClickAble>& ptr) { return ptr.expired(); });
     std::ranges::sort(clickAbles_, [](const std::weak_ptr<ClickAble>& a, const std::weak_ptr<ClickAble>& b)
     {
-        return a.lock()->drawAble()->z() > b.lock()->drawAble()->z();
+        auto aPtr = a.lock();
+        auto bPtr = b.lock();
+        if (aPtr == nullptr || bPtr == nullptr) return false;
+        return aPtr->drawAble()->z() > bPtr->drawAble()->z();
     });
 }
