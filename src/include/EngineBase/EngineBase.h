@@ -5,6 +5,7 @@
 #ifndef ENGINEBASE_H
 #define ENGINEBASE_H
 #include <functional>
+#include <list>
 #include <string>
 
 
@@ -25,7 +26,7 @@ public:
     static bool mouseButtonPressed(Button mouseButton);
     static bool mouseButtonReleased(Button mouseButton);
     static void addDrawAble(const std::weak_ptr<DrawAble>&);
-    static void addDrawAbles(const std::vector<std::weak_ptr<DrawAble>>&);
+    static void addDrawAbles(const std::list<std::weak_ptr<DrawAble>>&);
     static void addSpeedAble(const std::weak_ptr<SpeedAble>&);
     static void addDragAble(const std::weak_ptr<DragAble>&);
 

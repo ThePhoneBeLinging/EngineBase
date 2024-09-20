@@ -21,7 +21,7 @@ void ObjectController::addDrawAble(const std::weak_ptr<DrawAble>& drawAble)
     sortDrawAbles();
 }
 
-void ObjectController::addDrawAbles(const std::vector<std::weak_ptr<DrawAble>>& drawAbles)
+void ObjectController::addDrawAbles(const std::list<std::weak_ptr<DrawAble>>& drawAbles)
 {
     for (const auto& drawAble : drawAbles)
     {

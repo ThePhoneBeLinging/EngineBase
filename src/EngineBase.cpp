@@ -48,7 +48,7 @@ void EngineBase::addDrawAble(const std::weak_ptr<DrawAble>& drawAble)
     ObjectController::addDrawAble(drawAble);
 }
 
-void EngineBase::addDrawAbles(const std::vector<std::weak_ptr<DrawAble>>& drawAbles)
+void EngineBase::addDrawAbles(const std::list<std::weak_ptr<DrawAble>>& drawAbles)
 {
     ObjectController::addDrawAbles(drawAbles);
 }
