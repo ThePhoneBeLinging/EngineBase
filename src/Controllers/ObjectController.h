@@ -19,6 +19,7 @@ class ObjectController
 public:
     static void update(float deltaTime);
     static void addDrawAble(const std::weak_ptr<DrawAble>& drawAble);
+    static void addDrawAbles(const std::vector<std::weak_ptr<DrawAble>>&);
     static void addDragAble(const std::weak_ptr<DragAble>& dragAble);
     static void addSpeedAble(const std::weak_ptr<SpeedAble>& speedAble);
     static void addClickAble(const std::weak_ptr<ClickAble>& clickAble);

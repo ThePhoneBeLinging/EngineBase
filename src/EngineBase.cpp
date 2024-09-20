@@ -48,6 +48,11 @@ void EngineBase::addDrawAble(const std::weak_ptr<DrawAble>& drawAble)
     ObjectController::addDrawAble(drawAble);
 }
 
+void EngineBase::addDrawAbles(const std::vector<std::weak_ptr<DrawAble>>& drawAbles)
+{
+    ObjectController::addDrawAbles(drawAbles);
+}
+
 void EngineBase::addSpeedAble(const std::weak_ptr<SpeedAble>& speedAble)
 {
     ObjectController::addSpeedAble(speedAble);
