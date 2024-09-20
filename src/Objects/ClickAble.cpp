@@ -10,7 +10,6 @@
 ClickAble::ClickAble(DrawAble* drawAble)
 {
     drawAble_ = drawAble;
-    ObjectController::addClickAble(this);
 }
 
 void ClickAble::setOnClick(std::function<void()> function)

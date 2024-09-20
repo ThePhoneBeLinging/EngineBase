@@ -10,16 +10,10 @@
 DrawAble::DrawAble(float x, float y, int z, int width, int height, int textureIndex) : x_(x), y_(y), z_(z),
     width_(width), height_(height), textureIndex_(textureIndex)
 {
-    ObjectController::addDrawAble(this);
-}
-
-DrawAble::DrawAble() : x_(0), y_(0), z_(0), width_(0), height_(0), textureIndex_(0)
-{
 }
 
 DrawAble::~DrawAble()
 {
-    ObjectController::removeDrawAble(this);
 }
 
 void DrawAble::draw()
