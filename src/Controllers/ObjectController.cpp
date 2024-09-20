@@ -113,14 +113,16 @@ void ObjectController::updateSpeedAbles(float deltaTime)
 
 void ObjectController::sortDrawAbles()
 {
-    std::erase_if(drawAbles_, [](const std::weak_ptr<DrawAble>& ptr) { return ptr.expired(); });
-    std::ranges::sort(drawAbles_, [](const std::weak_ptr<DrawAble>& a, const std::weak_ptr<DrawAble>& b)
+    std::vector<std::weak_ptr<DrawAble>> newDrawAbleList;
+    for (const auto& drawAble : drawAbles_)
     {
-        auto aPtr = a.lock();
-        auto bPtr = b.lock();
-        if (aPtr == nullptr || bPtr == nullptr) return false;
-        return aPtr->z() <= bPtr->z();
-    });
+        auto drawAblePtr = drawAble.lock();
+        if (drawAblePtr != nullptr)
+        {
+            newDrawAbleList.push_back(drawAble);
+        }
+    }
+    drawAbles_ = newDrawAbleList;
 }
 
 void ObjectController::sortDragAbles()
