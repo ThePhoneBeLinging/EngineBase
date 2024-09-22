@@ -24,8 +24,8 @@ public:
 
     void update(float deltaTime);
 
-private:
     DrawAble* drawAble_;
+private:
     float xSpeed_;
     float ySpeed_;
     float xTarget_;
