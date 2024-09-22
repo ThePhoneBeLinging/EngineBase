@@ -6,7 +6,7 @@
 
 #include "Controllers/ObjectController.h"
 
-SpeedAble::SpeedAble(DrawAble* drawAble) : drawAble_(drawAble), xSpeed_(0), ySpeed_(0), xTarget_(0), yTarget_(0)
+SpeedAble::SpeedAble(DrawAble* drawAble) : drawAble_(drawAble), xSpeed_(0), ySpeed_(0), xTarget_(-1), yTarget_(-1)
 {
 }
 
@@ -55,38 +55,43 @@ float SpeedAble::ySpeed() const
 
 void SpeedAble::update(float deltaTime)
 {
+    if (xTarget_ != -1)
+    {
+        if (xSpeed_ > 0)
+        {
+            if (xTarget_ < drawAble_->x())
+            {
+                drawAble_->x(xTarget_);
+                xSpeed_ = 0;
+            }
+        }
+        else if (xSpeed_ < 0)
+        {
+            if (xTarget_ > drawAble_->x())
+            {
+                drawAble_->x(xTarget_);
+                xSpeed_ = 0;
+            }
+        }
+    }
 
-    if (xSpeed_ > 0)
+    if (yTarget_ != -1)
     {
-        if (xTarget_ < drawAble_->x())
+        if (ySpeed_ > 0)
         {
-            drawAble_->x(xTarget_);
-            xSpeed_ = 0;
+            if (yTarget_ < drawAble_->y())
+            {
+                drawAble_->y(yTarget_);
+                ySpeed_ = 0;
+            }
         }
-    }
-    else if (xSpeed_ < 0)
-    {
-        if (xTarget_ > drawAble_->x())
+        else if (ySpeed_ < 0)
         {
-            drawAble_->x(xTarget_);
-            xSpeed_ = 0;
-        }
-    }
-
-    if (ySpeed_ > 0)
-    {
-        if (yTarget_ < drawAble_->y())
-        {
-            drawAble_->y(yTarget_);
-            ySpeed_ = 0;
-        }
-    }
-    else if (ySpeed_ < 0)
-    {
-        if (yTarget_ > drawAble_->y())
-        {
-            drawAble_->y(yTarget_);
-            ySpeed_ = 0;
+            if (yTarget_ > drawAble_->y())
+            {
+                drawAble_->y(yTarget_);
+                ySpeed_ = 0;
+            }
         }
     }
 
