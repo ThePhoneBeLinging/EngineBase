@@ -56,6 +56,8 @@ add_library(EngineBase
         src/Command/Command.cpp
         src/include/EngineBase/Command.h
         src/Command/CommandEnums.h
+        src/Controllers/ObjectKeeper.cpp
+        src/Controllers/ObjectKeeper.h
 
 )
 target_include_directories(EngineBase PUBLIC src/include)

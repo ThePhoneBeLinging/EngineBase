@@ -16,6 +16,8 @@ public:
 
     DrawAble();
 
+    DrawAble(const DrawAble &);
+
     virtual ~DrawAble();
 
     void draw();

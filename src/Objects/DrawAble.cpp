@@ -8,6 +8,10 @@ DrawAble::DrawAble(float x, float y, int z, int width, int height, int textureIn
 DrawAble::DrawAble() : x_(0), y_(0), z_(0), width_(0), height_(0), textureIndex_(0), id_(-1)
 {}
 
+
+DrawAble::DrawAble(const DrawAble &other) : x_(other.x_), y_(other.y_), z_(other.z_), width_(other.width_), height_(other.height_), textureIndex_(other.textureIndex_), id_(other.id_)
+{}
+
 DrawAble::~DrawAble() = default;
 
 void DrawAble::draw()
@@ -105,3 +109,4 @@ int DrawAble::id()
     std::shared_lock lock(drawAbleMutex_);
     return id_;
 }
+

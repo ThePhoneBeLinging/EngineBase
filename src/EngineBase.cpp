@@ -3,6 +3,7 @@
 //
 
 #include <Controllers/CommandHandler.h>
+#include <Controllers/ObjectKeeper.h>
 #include "EngineBase/EngineBase.h"
 #include "Controllers/ObjectController.h"
 #include "Controllers/TextureController.h"
@@ -46,7 +47,7 @@ bool EngineBase::mouseButtonReleased(Button mouseButton)
 
 int EngineBase::addDrawAble()
 {
-    auto drawAble = CommandHandler::addDrawAble();
+    auto drawAble = ObjectKeeper::addDrawAble();
     ObjectController::addDrawAble(drawAble);
     return drawAble.lock()->id();
 }
