@@ -7,6 +7,7 @@
 
 
 #include <shared_mutex>
+#include <mutex>
 
 class DrawAble
 {
@@ -19,35 +20,35 @@ public:
 
     void draw();
 
-    [[nodiscard]] virtual float x() const;
+    [[nodiscard]] virtual float x();
 
     virtual void x(float x);
 
-    [[nodiscard]] virtual float y() const;
+    [[nodiscard]] virtual float y();
 
     virtual void y(float y);
 
-    [[nodiscard]] virtual int z() const;
+    [[nodiscard]] virtual int z();
 
     virtual void z(int z);
 
-    [[nodiscard]] virtual int width() const;
+    [[nodiscard]] virtual int width();
 
     virtual void width(int width);
 
-    [[nodiscard]] virtual int height() const;
+    [[nodiscard]] virtual int height();
 
     virtual void height(int height);
 
-    [[nodiscard]] virtual int textureIndex() const;
+    [[nodiscard]] virtual int textureIndex();
 
     virtual void textureIndex(int texture_index);
 
-    [[nodiscard]] virtual bool isPointInside(float x, float y) const;
+    [[nodiscard]] virtual bool isPointInside(float x, float y);
 
     virtual void id(int id);
 
-    [[nodiscard]] virtual int id() const;
+    [[nodiscard]] virtual int id();
 
 protected:
     std::shared_mutex drawAbleMutex_;
