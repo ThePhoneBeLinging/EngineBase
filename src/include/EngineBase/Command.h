@@ -14,9 +14,9 @@ public:
     Command(PrimaryCMD cmd, ObjectType objecttype, int id, SecondaryCMD secondarycmd);
 
     PrimaryCMD primaryCmd_;
-    SecondaryCMD secondaryCmd_;
-    int id_;
     ObjectType objectType_;
+    int id_;
+    SecondaryCMD secondaryCmd_;
 
 };
 
