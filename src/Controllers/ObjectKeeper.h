@@ -39,6 +39,8 @@ private:
     static inline std::atomic<std::vector<std::shared_ptr<DrawAble>> *> writeVector = &otherDrawAbles_;
     static inline std::vector<int> changedDrawAbles_;
     static inline std::vector<std::shared_ptr<DrawAble>> addedDrawAbles_;
+    static inline std::mutex addedDrawAblesMutex;
+    static inline std::mutex changedDrawAblesMutex;
 
 
 };

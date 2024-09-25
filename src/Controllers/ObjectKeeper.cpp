@@ -8,7 +8,10 @@
 std::weak_ptr<DrawAble> ObjectKeeper::addDrawAble()
 {
     auto drawAble = std::make_shared<DrawAble>();
-    appendToWriteVector(drawAble);
+    std::unique_lock lock(addedDrawAblesMutex);
+    lock.lock();
+    addedDrawAbles_.push_back(drawAble);
+    lock.unlock();
     switchVectors();
     return {drawAble};
 }
@@ -20,8 +23,8 @@ std::weak_ptr<DrawAble> ObjectKeeper::getDrawAbleForReading(int id)
 
 std::weak_ptr<DrawAble> ObjectKeeper::getDrawAbleForWriting(int id)
 {
-    std::shared_lock lock(vectorResizeMutex);
     switchVectors();
+    std::lock_guard lock(changedDrawAblesMutex);
     changedDrawAbles_.push_back(id);
     return (*writeVector)[id];
 }
@@ -36,6 +39,7 @@ void ObjectKeeper::switchVectors()
 
 void ObjectKeeper::copyReadToWriteDrawAbles()
 {
+    std::lock_guard lock(changedDrawAblesMutex);
     for (auto changedDrawAble: changedDrawAbles_)
     {
         (*writeVector)[changedDrawAble] = std::make_shared<DrawAble>(*(*readVector)[changedDrawAble]);
@@ -48,7 +52,5 @@ void ObjectKeeper::copyReadToWriteDrawAbles()
 
 void ObjectKeeper::appendToWriteVector(const std::shared_ptr<DrawAble> &drawAble)
 {
-    std::unique_lock lock(vectorResizeMutex);
     writeVector.load()->emplace_back(drawAble);
-    addedDrawAbles_.emplace_back(drawAble);
 }
