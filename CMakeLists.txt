@@ -34,7 +34,7 @@ endif ()
 
 add_library(EngineBase
         src/Objects/DrawAble.cpp
-        src/include/EngineBase/DrawAble.h
+        src/Objects/DrawAble.h
         src/Controllers/TextureController.cpp
         src/Controllers/TextureController.h
         src/Controllers/ObjectController.cpp
@@ -42,17 +42,20 @@ add_library(EngineBase
         src/EngineBase.cpp
         src/include/EngineBase/EngineBase.h
         src/Objects/DragAble.cpp
-        src/include/EngineBase/DragAble.h
+        src/Objects/DragAble.h
         src/Objects/Collidable.cpp
-        src/include/EngineBase/Collidable.h
+        src/Objects/Collidable.h
         src/Objects/SpeedAble.cpp
-        src/include/EngineBase/SpeedAble.h
+        src/Objects/SpeedAble.h
 
         src/include/EngineBase/KeyBoardKeys.h
         src/Objects/ClickAble.cpp
-        src/include/EngineBase/ClickAble.h
+        src/Objects/ClickAble.h
         src/Controllers/CommandHandler.cpp
         src/Controllers/CommandHandler.h
+        src/Command/Command.cpp
+        src/include/EngineBase/Command.h
+        src/Command/CommandEnums.h
 
 )
 target_include_directories(EngineBase PUBLIC src/include)

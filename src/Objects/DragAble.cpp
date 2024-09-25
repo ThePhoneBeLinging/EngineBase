@@ -2,11 +2,11 @@
 // Created by Elias Aggergaard Larsen on 02/09/2024.
 //
 
-#include "EngineBase/DragAble.h"
+#include "DragAble.h"
 
 #include "Controllers/ObjectController.h"
 
-DragAble::DragAble(DrawAble* drawAble) : drawAble_(drawAble), oldX_(0), oldY_(0), offsetX_(0), offsetY_(0)
+DragAble::DragAble(DrawAble *drawAble) : drawAble_(drawAble), oldX_(0), oldY_(0), offsetX_(0), offsetY_(0)
 {
 }
 
@@ -33,7 +33,7 @@ void DragAble::updateDrag(float x, float y)
     this->drawAble_->y(y + offsetY_);
 }
 
-DrawAble* DragAble::getDrawAble()
+DrawAble *DragAble::getDrawAble()
 {
     return drawAble_;
 }

@@ -4,27 +4,36 @@
 
 #ifndef SPEEDABLE_H
 #define SPEEDABLE_H
-#include "DrawAble.h"
+
+#include "Objects/DrawAble.h"
 
 
 class SpeedAble
 {
 public:
-    explicit SpeedAble(DrawAble* drawAble);
+    explicit SpeedAble(DrawAble *drawAble);
+
     ~SpeedAble();
+
     void xSpeed(float xSpeed);
+
     void ySpeed(float ySpeed);
+
     void x_target(float x_target);
+
     void y_target(float y_target);
 
     [[nodiscard]] float xSpeed() const;
+
     [[nodiscard]] float ySpeed() const;
+
     [[nodiscard]] float x_target() const;
+
     [[nodiscard]] float y_target() const;
 
     void update(float deltaTime);
 
-    DrawAble* drawAble_;
+    DrawAble *drawAble_;
 private:
     float xSpeed_;
     float ySpeed_;

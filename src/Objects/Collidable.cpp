@@ -2,13 +2,13 @@
 // Created by Elias Aggergaard Larsen on 02/09/2024.
 //
 
-#include "EngineBase/Collidable.h"
+#include "Collidable.h"
 
-Collidable::Collidable(DrawAble* drawAble) : drawAble_(drawAble)
+Collidable::Collidable(DrawAble *drawAble) : drawAble_(drawAble)
 {
 }
 
-bool Collidable::isColliding(Collidable* collidable)
+bool Collidable::isColliding(Collidable *collidable)
 {
     auto x1 = drawAble_->x();
     auto x2 = drawAble_->x() + drawAble_->width();

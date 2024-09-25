@@ -5,11 +5,11 @@
 #ifndef SAMPLEOBJECT_H
 #define SAMPLEOBJECT_H
 
-#include "EngineBase/ClickAble.h"
+#include "Objects/ClickAble.h"
 
-#include "EngineBase/DragAble.h"
-#include "EngineBase/DrawAble.h"
-#include "EngineBase/SpeedAble.h"
+#include "Objects/DragAble.h"
+#include "Objects/DrawAble.h"
+#include "Objects/SpeedAble.h"
 
 
 class SampleObject : public DrawAble

@@ -2,11 +2,11 @@
 // Created by Elias Aggergaard Larsen on 02/09/2024.
 //
 
-#include "EngineBase/SpeedAble.h"
+#include "SpeedAble.h"
 
 #include "Controllers/ObjectController.h"
 
-SpeedAble::SpeedAble(DrawAble* drawAble) : drawAble_(drawAble), xSpeed_(0), ySpeed_(0), xTarget_(-1), yTarget_(-1)
+SpeedAble::SpeedAble(DrawAble *drawAble) : drawAble_(drawAble), xSpeed_(0), ySpeed_(0), xTarget_(-1), yTarget_(-1)
 {
 }
 
@@ -64,8 +64,7 @@ void SpeedAble::update(float deltaTime)
                 drawAble_->x(xTarget_);
                 xSpeed_ = 0;
             }
-        }
-        else if (xSpeed_ < 0)
+        } else if (xSpeed_ < 0)
         {
             if (xTarget_ > drawAble_->x())
             {
@@ -84,8 +83,7 @@ void SpeedAble::update(float deltaTime)
                 drawAble_->y(yTarget_);
                 ySpeed_ = 0;
             }
-        }
-        else if (ySpeed_ < 0)
+        } else if (ySpeed_ < 0)
         {
             if (yTarget_ > drawAble_->y())
             {

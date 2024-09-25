@@ -11,10 +11,10 @@
 #include <memory>
 
 
-#include "DragAble.h"
-#include "DrawAble.h"
+#include "Objects/DragAble.h"
+#include "Objects/DrawAble.h"
 #include "KeyBoardKeys.h"
-#include "SpeedAble.h"
+#include "Objects/SpeedAble.h"
 
 
 class EngineBase

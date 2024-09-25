@@ -10,10 +10,10 @@
 #include <memory>
 #include <vector>
 #include <shared_mutex>
-#include <EngineBase/DragAble.h>
-#include <EngineBase/SpeedAble.h>
-#include <EngineBase/ClickAble.h>
-#include "EngineBase/DrawAble.h"
+#include <Objects/DragAble.h>
+#include <Objects/SpeedAble.h>
+#include <Objects/ClickAble.h>
+#include "Objects/DrawAble.h"
 
 class CommandHandler
 {
