@@ -8,10 +8,8 @@
 std::weak_ptr<DrawAble> ObjectKeeper::addDrawAble()
 {
     auto drawAble = std::make_shared<DrawAble>();
-    std::unique_lock lock(addedDrawAblesMutex);
-    lock.lock();
+    std::lock_guard lock(addedDrawAblesMutex);
     addedDrawAbles_.push_back(drawAble);
-    lock.unlock();
     switchVectors();
     return {drawAble};
 }

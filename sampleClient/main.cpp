@@ -5,15 +5,17 @@
 #include <iostream>
 
 #include "EngineBase/EngineBase.h"
-#include "SampleClient.h"
-#include "SampleObject.h"
 
+void update(float delta)
+{
+    std::cout << "Delta: " << delta << std::endl;
+}
 
 int main()
 {
-    EngineBase::loadTexture("Textures/zelda.png");
-    auto sampleClient = std::make_shared<SampleClient>();
-    EngineBase::startGUI(SampleClient::update);
+    EngineBase::addDrawAble();
+    //EngineBase::loadTexture("Textures/zelda.png");
+    //EngineBase::startGUI(update);
 
     std::cout << "Hello world!" << std::endl;
     return 0;
