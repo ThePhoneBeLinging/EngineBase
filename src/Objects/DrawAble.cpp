@@ -24,7 +24,7 @@ float DrawAble::x()
 
 void DrawAble::x(float x)
 {
-    std::unique_lock<std::shared_mutex> lock(drawAbleMutex_);
+    std::lock_guard<std::shared_mutex> lock(drawAbleMutex_);
     x_ = x;
 }
 
@@ -36,7 +36,7 @@ float DrawAble::y()
 
 void DrawAble::y(float y)
 {
-    std::unique_lock lock(drawAbleMutex_);
+    std::lock_guard lock(drawAbleMutex_);
     y_ = y;
 }
 
@@ -48,7 +48,7 @@ int DrawAble::z()
 
 void DrawAble::z(int z)
 {
-    std::unique_lock lock(drawAbleMutex_);
+    std::lock_guard lock(drawAbleMutex_);
     z_ = z;
 }
 
@@ -60,7 +60,7 @@ int DrawAble::width()
 
 void DrawAble::width(int width)
 {
-    std::unique_lock lock(drawAbleMutex_);
+    std::lock_guard lock(drawAbleMutex_);
     width_ = width;
 }
 
@@ -72,7 +72,7 @@ int DrawAble::height()
 
 void DrawAble::height(int height)
 {
-    std::unique_lock lock(drawAbleMutex_);
+    std::lock_guard lock(drawAbleMutex_);
     height_ = height;
 }
 
@@ -84,7 +84,7 @@ int DrawAble::textureIndex()
 
 void DrawAble::textureIndex(int texture_index)
 {
-    std::unique_lock lock(drawAbleMutex_);
+    std::lock_guard lock(drawAbleMutex_);
     textureIndex_ = texture_index;
 }
 
@@ -96,7 +96,7 @@ bool DrawAble::isPointInside(float x, float y)
 
 void DrawAble::id(int id)
 {
-    std::unique_lock lock(drawAbleMutex_);
+    std::lock_guard lock(drawAbleMutex_);
     id_ = id;
 }
 
