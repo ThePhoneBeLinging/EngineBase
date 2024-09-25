@@ -6,13 +6,13 @@
 #include "Controllers/ObjectController.h"
 #include "Controllers/TextureController.h"
 
-int EngineBase::loadTexture(const std::string& path)
+int EngineBase::loadTexture(const std::string &path)
 {
     initializeWindow();
     return TextureController::loadTexture(path);
 }
 
-void EngineBase::startGUI(const std::function<void(float deltaTime)>& updateFunction)
+void EngineBase::startGUI(const std::function<void(float deltaTime)> &updateFunction)
 {
     initializeWindow();
     while (!WindowShouldClose())
@@ -43,22 +43,17 @@ bool EngineBase::mouseButtonReleased(Button mouseButton)
     return IsMouseButtonReleased(mouseButton);
 }
 
-void EngineBase::addDrawAble(const std::weak_ptr<DrawAble>& drawAble)
+void EngineBase::addDrawAble(const std::weak_ptr<DrawAble> &drawAble)
 {
     ObjectController::addDrawAble(drawAble);
 }
 
-void EngineBase::addDrawAbles(const std::list<std::weak_ptr<DrawAble>>& drawAbles)
-{
-    ObjectController::addDrawAbles(drawAbles);
-}
-
-void EngineBase::addSpeedAble(const std::weak_ptr<SpeedAble>& speedAble)
+void EngineBase::addSpeedAble(const std::weak_ptr<SpeedAble> &speedAble)
 {
     ObjectController::addSpeedAble(speedAble);
 }
 
-void EngineBase::addDragAble(const std::weak_ptr<DragAble>& dragAble)
+void EngineBase::addDragAble(const std::weak_ptr<DragAble> &dragAble)
 {
     ObjectController::addDragAble(dragAble);
 }
