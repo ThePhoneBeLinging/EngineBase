@@ -13,9 +13,10 @@ void update(float delta)
 
 int main()
 {
-    EngineBase::addDrawAble();
-    //EngineBase::loadTexture("Textures/zelda.png");
-    //EngineBase::startGUI(update);
+    int drawAbleIndex = EngineBase::addDrawAble();
+    std::cout << drawAbleIndex << std::endl;
+    EngineBase::loadTexture("Textures/zelda.png");
+    EngineBase::startGUI(update);
 
     std::cout << "Hello world!" << std::endl;
     return 0;

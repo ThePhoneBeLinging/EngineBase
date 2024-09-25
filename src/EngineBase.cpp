@@ -48,8 +48,7 @@ bool EngineBase::mouseButtonReleased(Button mouseButton)
 int EngineBase::addDrawAble()
 {
     auto drawAble = ObjectKeeper::addDrawAble();
-    ObjectController::addDrawAble(drawAble);
-    return drawAble.lock()->id();
+    return drawAble;
 }
 
 int EngineBase::addSpeedAble()
@@ -67,9 +66,15 @@ int EngineBase::addDragAble()
 
 void EngineBase::initializeWindow()
 {
-    if (windowInitialized_) return;
+    if (windowInitialized_)
+    { return; }
 
     InitWindow(1200, 800, "M3");
     windowInitialized_ = true;
     TextureController::loadTexture("Textures/MissingTexture.png");
+}
+
+void EngineBase::executeCommand()
+{
+    ObjectKeeper::executeCommand();
 }

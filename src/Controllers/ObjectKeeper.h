@@ -13,16 +13,19 @@
 #include <Objects/SpeedAble.h>
 #include <Objects/ClickAble.h>
 #include <atomic>
+#include <EngineBase/Command.h>
 #include "Objects/DrawAble.h"
 
 class ObjectKeeper
 {
 public:
-    static std::weak_ptr<DrawAble> addDrawAble();
+    static int addDrawAble();
 
-    static std::weak_ptr<DrawAble> getDrawAbleForReading(int id);
+    static std::shared_ptr<DrawAble> getDrawAbleForReading(int id);
 
-    static std::weak_ptr<DrawAble> getDrawAbleForWriting(int id);
+    static std::shared_ptr<DrawAble> getDrawAbleForWriting(int id);
+
+    static void executeCommand(Command command);
 
 
 private:

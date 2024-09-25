@@ -51,8 +51,6 @@ add_library(EngineBase
         src/include/EngineBase/KeyBoardKeys.h
         src/Objects/ClickAble.cpp
         src/Objects/ClickAble.h
-        src/Controllers/CommandHandler.cpp
-        src/Controllers/CommandHandler.h
         src/Command/Command.cpp
         src/include/EngineBase/Command.h
         src/Command/CommandEnums.h

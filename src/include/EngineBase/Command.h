@@ -11,12 +11,13 @@
 class Command
 {
 public:
-    Command(PrimaryCMD cmd, ObjectType objecttype, int id, SecondaryCMD secondarycmd);
+    Command(PrimaryCMD cmd, ObjectType objecttype, int id, SecondaryCMD secondarycmd, float value);
 
     PrimaryCMD primaryCmd_;
     ObjectType objectType_;
     int id_;
     SecondaryCMD secondaryCmd_;
+    float value_;
 
 };
 
