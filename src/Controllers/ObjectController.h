@@ -13,6 +13,7 @@
 #include "EngineBase/DragAble.h"
 #include "EngineBase/DrawAble.h"
 #include "EngineBase/SpeedAble.h"
+#include <memory>
 
 
 class ObjectController

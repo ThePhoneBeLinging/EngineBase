@@ -7,6 +7,7 @@
 #include <functional>
 #include <list>
 #include <string>
+#include <memory>
 
 
 #include "DragAble.h"
