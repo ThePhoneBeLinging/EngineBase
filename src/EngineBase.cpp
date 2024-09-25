@@ -2,6 +2,7 @@
 // Created by Elias Aggergaard Larsen on 02/09/2024.
 //
 
+#include <Controllers/CommandHandler.h>
 #include "EngineBase/EngineBase.h"
 #include "Controllers/ObjectController.h"
 #include "Controllers/TextureController.h"
@@ -43,19 +44,23 @@ bool EngineBase::mouseButtonReleased(Button mouseButton)
     return IsMouseButtonReleased(mouseButton);
 }
 
-void EngineBase::addDrawAble(const std::weak_ptr<DrawAble> &drawAble)
+int EngineBase::addDrawAble()
 {
+    auto drawAble = CommandHandler::addDrawAble();
     ObjectController::addDrawAble(drawAble);
+    return drawAble.lock()->id();
 }
 
-void EngineBase::addSpeedAble(const std::weak_ptr<SpeedAble> &speedAble)
+int EngineBase::addSpeedAble()
 {
-    ObjectController::addSpeedAble(speedAble);
+    //ObjectController::addSpeedAble(speedAble);
+    return 0;
 }
 
-void EngineBase::addDragAble(const std::weak_ptr<DragAble> &dragAble)
+int EngineBase::addDragAble()
 {
-    ObjectController::addDragAble(dragAble);
+    //ObjectController::addDragAble(dragAble);
+    return 0;
 }
 
 

@@ -5,6 +5,7 @@
 #include "SampleClient.h"
 
 #include <memory>
+#include <iostream>
 
 #include "SampleObject.h"
 
@@ -15,9 +16,10 @@
 SampleClient::SampleClient()
 {
     sampleObject_ = std::make_shared<SampleObject>();
-    EngineBase::addDrawAble(std::weak_ptr<SampleObject>(sampleObject_));
-
-    auto lamda = []() { sampleObject_->speedAble_.xSpeed(100); };
+    int thing = EngineBase::addDrawAble();
+    std::cout << thing << std::endl;
+    auto lamda = []()
+    { sampleObject_->speedAble_.xSpeed(100); };
     sampleObject_->clickAble_.setOnClick(lamda);
 }
 

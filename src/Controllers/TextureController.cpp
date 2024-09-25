@@ -4,7 +4,7 @@
 
 #include "TextureController.h"
 
-int TextureController::loadTexture(const std::string& path)
+int TextureController::loadTexture(const std::string &path)
 {
     auto texture = std::make_shared<Texture2D>(LoadTexture(path.c_str()));
     if (texture->id == 0)
@@ -13,16 +13,16 @@ int TextureController::loadTexture(const std::string& path)
         texture = std::make_shared<Texture2D>(LoadTexture(newPath.c_str()));
     }
     textures_.push_back(texture);
-    return (int)textures_.size() - 1;
+    return (int) textures_.size() - 1;
 }
 
-void TextureController::drawTexture(DrawAble* object)
+void TextureController::drawTexture(float x, float y, int width, int height, int textureIndex)
 {
-    auto texture = textures_[object->textureIndex()];
+    auto texture = textures_[textureIndex];
     Texture2D copiedTexture = *texture;
-    copiedTexture.height = object->height();
-    copiedTexture.width = object->width();
-    DrawTexture(copiedTexture, (int)object->x(), (int)object->y(), WHITE);
+    copiedTexture.height = height;
+    copiedTexture.width = width;
+    DrawTexture(copiedTexture, (int) x, (int) y, WHITE);
 }
 
 void TextureController::initializeWindow()

@@ -51,6 +51,8 @@ add_library(EngineBase
         src/include/EngineBase/KeyBoardKeys.h
         src/Objects/ClickAble.cpp
         src/include/EngineBase/ClickAble.h
+        src/Controllers/CommandHandler.cpp
+        src/Controllers/CommandHandler.h
 
 )
 target_include_directories(EngineBase PUBLIC src/include)

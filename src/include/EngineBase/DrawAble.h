@@ -6,35 +6,58 @@
 #define DRAWABLE_H
 
 
+#include <shared_mutex>
+
 class DrawAble
 {
 public:
     DrawAble(float x, float y, int z, int width, int height, int textureIndex = 0);
+
     DrawAble();
+
     virtual ~DrawAble();
+
     void draw();
+
     [[nodiscard]] virtual float x() const;
+
     virtual void x(float x);
+
     [[nodiscard]] virtual float y() const;
+
     virtual void y(float y);
+
     [[nodiscard]] virtual int z() const;
+
     virtual void z(int z);
+
     [[nodiscard]] virtual int width() const;
+
     virtual void width(int width);
+
     [[nodiscard]] virtual int height() const;
+
     virtual void height(int height);
+
     [[nodiscard]] virtual int textureIndex() const;
+
     virtual void textureIndex(int texture_index);
 
     [[nodiscard]] virtual bool isPointInside(float x, float y) const;
 
+    virtual void id(int id);
+
+    [[nodiscard]] virtual int id() const;
+
 protected:
+    std::shared_mutex drawAbleMutex_;
     float x_;
     float y_;
     int z_;
     int width_;
     int height_;
     int textureIndex_;
+    int id_;
 };
 
 

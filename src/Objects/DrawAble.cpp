@@ -2,13 +2,18 @@
 // Created by Elias Aggergaard Larsen on 01/09/2024.
 //
 
+#include <Controllers/CommandHandler.h>
 #include "EngineBase/DrawAble.h"
 
 #include "Controllers/ObjectController.h"
 #include "Controllers/TextureController.h"
 
 DrawAble::DrawAble(float x, float y, int z, int width, int height, int textureIndex) : x_(x), y_(y), z_(z),
-    width_(width), height_(height), textureIndex_(textureIndex)
+                                                                                       width_(width), height_(height), textureIndex_(textureIndex), id_(0)
+{
+}
+
+DrawAble::DrawAble() : DrawAble(0, 0, 0, 0, 0, 0)
 {
 }
 
@@ -18,7 +23,8 @@ DrawAble::~DrawAble()
 
 void DrawAble::draw()
 {
-    TextureController::drawTexture(this);
+    std::shared_lock lock(drawAbleMutex_);
+    TextureController::drawTexture(x_, y_, width_, height_, textureIndex_);
 }
 
 float DrawAble::x() const
@@ -84,4 +90,14 @@ void DrawAble::textureIndex(int texture_index)
 bool DrawAble::isPointInside(float x, float y) const
 {
     return x >= x_ && x <= x_ + static_cast<float>(width_) && y >= y_ && y <= y_ + static_cast<float>(height_);
+}
+
+int DrawAble::id() const
+{
+    return id_;
+}
+
+void DrawAble::id(int id)
+{
+    id_ = id;
 }

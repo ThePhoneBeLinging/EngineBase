@@ -32,11 +32,11 @@ public:
 
     static bool mouseButtonReleased(Button mouseButton);
 
-    static void addDrawAble(const std::weak_ptr<DrawAble> &);
+    static int addDrawAble();
 
-    static void addSpeedAble(const std::weak_ptr<SpeedAble> &);
+    static int addSpeedAble();
 
-    static void addDragAble(const std::weak_ptr<DragAble> &);
+    static int addDragAble();
 
 private:
     static inline bool windowInitialized_ = false;

@@ -15,9 +15,9 @@
 class TextureController
 {
 public:
-    static int loadTexture(const std::string& path);
+    static int loadTexture(const std::string &path);
 
-    static void drawTexture(DrawAble* object);
+    static void drawTexture(float x, float y, int width, int height, int textureIndex);
 
     static void initializeWindow();
 
