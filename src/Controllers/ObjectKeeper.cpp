@@ -28,8 +28,8 @@ std::weak_ptr<DrawAble> ObjectKeeper::getDrawAbleForWriting(int id)
 
 void ObjectKeeper::switchVectors()
 {
-    auto temp = readVector.load();
-    readVector.store(writeVector);
+    std::unique_lock lock(vectorResizeMutex);
+    auto temp = std::atomic_exchange(&readVector, writeVector.load());
     writeVector.store(temp);
     copyReadToWriteDrawAbles();
 }
