@@ -15,7 +15,8 @@ void update(float delta)
 int main()
 {
     int drawAbleIndex = EngineBase::addDrawAble();
-    EngineBase::executeCommand({PrimaryCMD::UPDATE, ObjectType::DRAWABLE, drawAbleIndex, SecondaryCMD::X, 25});
+    EngineBase::executeCommand({PrimaryCMD::UPDATE, ObjectType::DRAWABLE, drawAbleIndex, SecondaryCMD::WIDTH, 50});
+    EngineBase::executeCommand({PrimaryCMD::UPDATE, ObjectType::DRAWABLE, drawAbleIndex, SecondaryCMD::HEIGHT, 50});
     std::cout << drawAbleIndex << std::endl;
     EngineBase::loadTexture("Textures/zelda.png");
     EngineBase::startGUI(update);

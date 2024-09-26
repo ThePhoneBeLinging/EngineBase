@@ -77,23 +77,39 @@ void ObjectKeeper::executeCommand(Command command)
                             break;
                         }
                         case SecondaryCMD::Y:
+                        {
+                            auto drawAble = getDrawAbleForWriting(command.id_);
+                            drawAble->y(command.value_);
                             break;
+                        }
                         case SecondaryCMD::Z:
+                        {
+                            auto drawAble = getDrawAbleForWriting(command.id_);
+                            drawAble->z((int) command.value_);
                             break;
+                        }
                         case SecondaryCMD::WIDTH:
+                        {
+                            auto drawAble = getDrawAbleForWriting(command.id_);
+                            drawAble->width((int) command.value_);
                             break;
+                        }
                         case SecondaryCMD::HEIGHT:
+                        {
+                            auto drawAble = getDrawAbleForWriting(command.id_);
+                            drawAble->height((int) command.value_);
                             break;
+                        }
                         case SecondaryCMD::TEXTUREINDEX:
+                        {
+                            auto drawAble = getDrawAbleForWriting(command.id_);
+                            drawAble->textureIndex((int) command.value_);
                             break;
-                        case SecondaryCMD::XSPEED:
-                            break;
-                        case SecondaryCMD::YSPEED:
-                            break;
-                        case SecondaryCMD::XTARGET:
-                            break;
-                        case SecondaryCMD::YTARGET:
-                            break;
+                        }
+                        default:
+                        {
+                            throw std::invalid_argument("Invalid secondary command");
+                        }
                     }
                 case ObjectType::SPEEDABLE:
                     break;

@@ -46,8 +46,8 @@ bool EngineBase::mouseButtonReleased(Button mouseButton)
 
 int EngineBase::addDrawAble()
 {
-    auto drawAble = ObjectKeeper::addDrawAble();
-    return drawAble;
+    auto drawAbleIndex = ObjectKeeper::addDrawAble();
+    return drawAbleIndex;
 }
 
 int EngineBase::addSpeedAble()
