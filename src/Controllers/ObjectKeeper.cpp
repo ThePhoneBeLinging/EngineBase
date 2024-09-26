@@ -20,11 +20,17 @@ int ObjectKeeper::addDrawAble()
 
 std::shared_ptr<DrawAble> ObjectKeeper::getDrawAbleForReading(int id)
 {
+    if (shouldSwitch)
+    {
+        shouldSwitch = false;
+        switchVectors();
+    }
     return (*readVector)[id];
 }
 
 std::shared_ptr<DrawAble> ObjectKeeper::getDrawAbleForWriting(int id)
 {
+    shouldSwitch = true;
     switchVectors();
     std::lock_guard lock(changedDrawAblesMutex);
     changedDrawAbles_.push_back(id);

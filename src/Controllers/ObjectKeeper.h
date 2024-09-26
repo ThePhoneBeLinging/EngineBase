@@ -35,6 +35,7 @@ private:
 
     static void appendToWriteVector(const std::shared_ptr<DrawAble> &drawAble);
 
+    static inline std::atomic_bool shouldSwitch = false;
     static inline std::shared_mutex vectorResizeMutex;
     static inline std::vector<std::shared_ptr<DrawAble>> drawAbles_;
     static inline std::vector<std::shared_ptr<DrawAble>> otherDrawAbles_;
