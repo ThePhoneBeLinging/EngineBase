@@ -2,7 +2,6 @@
 // Created by Elias Aggergaard Larsen on 02/09/2024.
 //
 
-#include <Controllers/CommandHandler.h>
 #include <Controllers/ObjectKeeper.h>
 #include "EngineBase/EngineBase.h"
 #include "Controllers/ObjectController.h"
@@ -74,7 +73,7 @@ void EngineBase::initializeWindow()
     TextureController::loadTexture("Textures/MissingTexture.png");
 }
 
-void EngineBase::executeCommand()
+void EngineBase::executeCommand(Command command)
 {
-    ObjectKeeper::executeCommand();
+    ObjectKeeper::executeCommand(command);
 }

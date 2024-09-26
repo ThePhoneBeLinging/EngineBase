@@ -3,7 +3,8 @@
 //
 
 #include <iostream>
-
+#include <Command/CommandEnums.h>
+#include "EngineBase/Command.h"
 #include "EngineBase/EngineBase.h"
 
 void update(float delta)
@@ -14,6 +15,7 @@ void update(float delta)
 int main()
 {
     int drawAbleIndex = EngineBase::addDrawAble();
+    EngineBase::executeCommand({PrimaryCMD::UPDATE, ObjectType::DRAWABLE, drawAbleIndex, SecondaryCMD::X, 25});
     std::cout << drawAbleIndex << std::endl;
     EngineBase::loadTexture("Textures/zelda.png");
     EngineBase::startGUI(update);

@@ -10,6 +10,7 @@ int ObjectKeeper::addDrawAble()
     auto drawAble = std::make_shared<DrawAble>();
     std::unique_lock vectorLock(vectorResizeMutex);
     writeVector.load()->push_back(drawAble);
+    drawAble->id(writeVector.load()->size() - 1);
     vectorLock.unlock();
     std::lock_guard lock(addedDrawAblesMutex);
     addedDrawAbles_.push_back(drawAble);
@@ -62,7 +63,7 @@ void ObjectKeeper::executeCommand(Command command)
     {
 
         case PrimaryCMD::UPDATE:
-            //TODO Not yet implemented
+
             switch (command.objectType_)
             {
 
@@ -71,7 +72,6 @@ void ObjectKeeper::executeCommand(Command command)
                     {
                         case SecondaryCMD::X:
                         {
-
                             auto drawAble = getDrawAbleForWriting(command.id_);
                             drawAble->x(command.value_);
                             break;

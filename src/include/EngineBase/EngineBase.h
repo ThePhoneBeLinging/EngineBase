@@ -38,7 +38,7 @@ public:
 
     static int addDragAble();
 
-    static void executeCommand();
+    static void executeCommand(Command command);
 
 private:
     static inline bool windowInitialized_ = false;
