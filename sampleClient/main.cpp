@@ -10,13 +10,13 @@
 void update(float delta)
 {
     std::cout << "Delta: " << delta << std::endl;
+    EngineBase::executeCommand({PrimaryCMD::UPDATE, ObjectType::DRAWABLE, 0, SecondaryCMD::WIDTH, 50});
+    EngineBase::executeCommand({PrimaryCMD::UPDATE, ObjectType::DRAWABLE, 0, SecondaryCMD::HEIGHT, 50});
 }
 
 int main()
 {
-    int drawAbleIndex = EngineBase::addDrawAble();
-    EngineBase::executeCommand({PrimaryCMD::UPDATE, ObjectType::DRAWABLE, drawAbleIndex, SecondaryCMD::WIDTH, 50});
-    EngineBase::executeCommand({PrimaryCMD::UPDATE, ObjectType::DRAWABLE, drawAbleIndex, SecondaryCMD::HEIGHT, 50});
+    EngineBase::addDrawAble();
     EngineBase::loadTexture("Textures/zelda.png");
     EngineBase::startGUI(update);
 
