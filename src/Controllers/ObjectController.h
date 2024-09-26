@@ -45,6 +45,8 @@ private:
 
     static void sortClickAbles();
 
+    static inline std::mutex drawAblesMutex;
+
     static inline std::vector<int> drawAbles_;
     static inline std::vector<std::weak_ptr<DragAble>> dragAbles_;
     static inline std::vector<std::weak_ptr<SpeedAble>> speedAbles_;

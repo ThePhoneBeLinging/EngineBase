@@ -17,6 +17,7 @@ void ObjectController::update(float deltaTime)
 
 void ObjectController::addDrawAble(int id)
 {
+    std::lock_guard<std::mutex> lock(drawAblesMutex);
     drawAbles_.push_back(id);
     sortDrawAbles();
 }
@@ -41,6 +42,7 @@ void ObjectController::addClickAble(const std::weak_ptr<ClickAble> &clickAble)
 
 void ObjectController::drawObjects()
 {
+    std::lock_guard<std::mutex> lock(drawAblesMutex);
     TextureController::startDrawing();
     for (const auto &drawAble: drawAbles_)
     {
