@@ -15,18 +15,9 @@ void ObjectController::update(float deltaTime)
     updateSpeedAbles(deltaTime);
 }
 
-void ObjectController::addDrawAble(const std::weak_ptr<DrawAble> &drawAble)
+void ObjectController::addDrawAble(int id)
 {
-    drawAbles_.push_back(drawAble);
-    sortDrawAbles();
-}
-
-void ObjectController::addDrawAbles(const std::list<std::weak_ptr<DrawAble>> &drawAbles)
-{
-    for (const auto &drawAble: drawAbles)
-    {
-        drawAbles_.push_back(drawAble);
-    }
+    drawAbles_.push_back(id);
     sortDrawAbles();
 }
 
@@ -53,7 +44,7 @@ void ObjectController::drawObjects()
     TextureController::startDrawing();
     for (const auto &drawAble: drawAbles_)
     {
-        auto drawAblePtr = drawAble.lock();
+        auto drawAblePtr = ObjectKeeper::getDrawAbleForReading(drawAble);
         if (drawAblePtr != nullptr)
         {
             drawAblePtr->draw();
@@ -125,15 +116,10 @@ void ObjectController::updateSpeedAbles(float deltaTime)
 
 void ObjectController::sortDrawAbles()
 {
-    std::erase_if(drawAbles_, [](const std::weak_ptr<DrawAble> &ptr)
-    { return ptr.expired(); });
-
-    std::ranges::sort(drawAbles_, [](const std::weak_ptr<DrawAble> &a, const std::weak_ptr<DrawAble> &b)
+    std::ranges::sort(drawAbles_, [](const int &a, const int &b)
     {
-        auto aPtr = a.lock();
-        auto bPtr = b.lock();
-        if (aPtr == nullptr || bPtr == nullptr)
-        { return false; }
+        auto aPtr = ObjectKeeper::getDrawAbleForReading(a);
+        auto bPtr = ObjectKeeper::getDrawAbleForReading(b);
         return aPtr->z() < bPtr->z();
     });
 }
@@ -165,3 +151,4 @@ void ObjectController::sortClickAbles()
         return aPtr->drawAble()->z() > bPtr->drawAble()->z();
     });
 }
+

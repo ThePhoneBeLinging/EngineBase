@@ -7,7 +7,7 @@
 
 #include <list>
 #include <vector>
-
+#include "ObjectKeeper.h"
 
 #include "Objects/ClickAble.h"
 
@@ -22,9 +22,8 @@ class ObjectController
 public:
     static void update(float deltaTime);
 
-    static void addDrawAble(const std::weak_ptr<DrawAble> &drawAble);
-
-    static void addDrawAbles(const std::list<std::weak_ptr<DrawAble>> &);
+    static void addDrawAble(int id);
+    
 
     static void addDragAble(const std::weak_ptr<DragAble> &dragAble);
 
@@ -45,7 +44,7 @@ private:
 
     static void sortClickAbles();
 
-    static inline std::vector<std::weak_ptr<DrawAble>> drawAbles_;
+    static inline std::vector<int> drawAbles_;
     static inline std::vector<std::weak_ptr<DragAble>> dragAbles_;
     static inline std::vector<std::weak_ptr<SpeedAble>> speedAbles_;
     static inline std::vector<std::weak_ptr<ClickAble>> clickAbles_;

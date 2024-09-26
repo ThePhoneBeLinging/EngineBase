@@ -47,6 +47,7 @@ bool EngineBase::mouseButtonReleased(Button mouseButton)
 int EngineBase::addDrawAble()
 {
     auto drawAbleIndex = ObjectKeeper::addDrawAble();
+    ObjectController::addDrawAble(drawAbleIndex);
     return drawAbleIndex;
 }
 
