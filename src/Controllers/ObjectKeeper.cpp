@@ -12,8 +12,9 @@ int ObjectKeeper::addDrawAble()
     writeVector.load()->push_back(drawAble);
     drawAble->id(writeVector.load()->size() - 1);
     vectorLock.unlock();
-    std::lock_guard lock(addedDrawAblesMutex);
+    std::unique_lock lock(addedDrawAblesMutex);
     addedDrawAbles_.push_back(drawAble);
+    lock.unlock();
     switchVectors();
     return drawAble->id();
 }
@@ -47,15 +48,18 @@ void ObjectKeeper::switchVectors()
 
 void ObjectKeeper::copyReadToWriteDrawAbles()
 {
-    std::lock_guard lock(changedDrawAblesMutex);
+    std::lock_guard changeLock(changedDrawAblesMutex);
     for (auto changedDrawAble: changedDrawAbles_)
     {
         (*writeVector)[changedDrawAble] = std::make_shared<DrawAble>(*(*readVector)[changedDrawAble]);
     }
+    changedDrawAbles_.clear();
+    std::lock_guard addedLock(addedDrawAblesMutex);
     for (const auto &addedDrawAble: addedDrawAbles_)
     {
         appendToWriteVector(std::make_shared<DrawAble>(*addedDrawAble));
     }
+    addedDrawAbles_.clear();
 }
 
 void ObjectKeeper::appendToWriteVector(const std::shared_ptr<DrawAble> &drawAble)
