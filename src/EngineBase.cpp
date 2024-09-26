@@ -6,6 +6,7 @@
 #include "EngineBase/EngineBase.h"
 #include "Controllers/ObjectController.h"
 #include "Controllers/TextureController.h"
+#include <thread>
 
 int EngineBase::loadTexture(const std::string &path)
 {
@@ -13,15 +14,12 @@ int EngineBase::loadTexture(const std::string &path)
     return TextureController::loadTexture(path);
 }
 
-void EngineBase::startGUI(const std::function<void(float deltaTime)> &updateFunction)
+void EngineBase::startGUI(const std::function<void(float deltaTime)> &externalUpdateFunction)
 {
     initializeWindow();
-    while (!WindowShouldClose())
-    {
-        auto frameTime = GetFrameTime();
-        ObjectController::update(frameTime);
-        updateFunction(frameTime);
-    }
+    std::thread updateThread(updateFunction, externalUpdateFunction);
+    ObjectController::keepDrawing();
+    updateThread.join();
 }
 
 bool EngineBase::keyPressed(Key key)
@@ -77,4 +75,14 @@ void EngineBase::initializeWindow()
 void EngineBase::executeCommand(Command command)
 {
     ObjectKeeper::executeCommand(command);
+}
+
+void EngineBase::updateFunction(const std::function<void(float deltaTime)> &externalUpdateFunction)
+{
+    while (!WindowShouldClose())
+    {
+        auto frameTime = GetFrameTime();
+        ObjectController::update(frameTime);
+        externalUpdateFunction(frameTime);
+    }
 }

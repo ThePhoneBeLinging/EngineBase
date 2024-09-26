@@ -22,7 +22,7 @@ class EngineBase
 public:
     static int loadTexture(const std::string &path);
 
-    static void startGUI(const std::function<void(float deltaTime)> &update);
+    static void startGUI(const std::function<void(float deltaTime)> &externalUpdateFunction);
 
     static bool keyPressed(Key key);
 
@@ -44,6 +44,8 @@ private:
     static inline bool windowInitialized_ = false;
 
     static void initializeWindow();
+
+    static void updateFunction(const std::function<void(float deltaTime)> &);
 };
 
 

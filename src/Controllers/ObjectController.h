@@ -23,7 +23,8 @@ public:
     static void update(float deltaTime);
 
     static void addDrawAble(int id);
-    
+
+    static void keepDrawing();
 
     static void addDragAble(const std::weak_ptr<DragAble> &dragAble);
 

@@ -10,7 +10,7 @@
 
 void ObjectController::update(float deltaTime)
 {
-    drawObjects();
+
     handleClicks();
     updateSpeedAbles(deltaTime);
 }
@@ -150,5 +150,13 @@ void ObjectController::sortClickAbles()
         { return false; }
         return aPtr->drawAble()->z() > bPtr->drawAble()->z();
     });
+}
+
+void ObjectController::keepDrawing()
+{
+    while (!WindowShouldClose())
+    {
+        drawObjects();
+    }
 }
 
