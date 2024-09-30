@@ -3,6 +3,7 @@
 //
 
 #include "ObjectKeeper.h"
+#include "ObjectController.h"
 
 
 int ObjectKeeper::addDrawAble()
@@ -12,35 +13,27 @@ int ObjectKeeper::addDrawAble()
     writeVector.load()->push_back(drawAble);
     drawAble->id(writeVector.load()->size() - 1);
     vectorLock.unlock();
-    std::unique_lock lock(addedDrawAblesMutex);
+    std::lock_guard lock(addedDrawAblesMutex);
     addedDrawAbles_.push_back(drawAble);
-    lock.unlock();
-    switchVectors();
     return drawAble->id();
 }
 
 std::shared_ptr<DrawAble> ObjectKeeper::getDrawAbleForReading(int id)
 {
-    if (shouldSwitch)
-    {
-        shouldSwitch = false;
-        switchVectors();
-    }
     return (*readVector)[id];
 }
 
 std::shared_ptr<DrawAble> ObjectKeeper::getDrawAbleForWriting(int id)
 {
-    shouldSwitch = true;
-    switchVectors();
     std::lock_guard lock(changedDrawAblesMutex);
+    std::lock_guard addedDrawAblesLock(addedDrawAblesMutex);
     changedDrawAbles_.push_back(id);
     return (*writeVector)[id];
 }
 
 void ObjectKeeper::switchVectors()
 {
-    std::unique_lock lock(vectorResizeMutex);
+    std::lock_guard lock(vectorResizeMutex);
     auto temp = std::atomic_exchange(&readVector, writeVector.load());
     writeVector.store(temp);
     copyReadToWriteDrawAbles();
@@ -48,18 +41,19 @@ void ObjectKeeper::switchVectors()
 
 void ObjectKeeper::copyReadToWriteDrawAbles()
 {
-    std::lock_guard changeLock(changedDrawAblesMutex);
-    for (auto changedDrawAble: changedDrawAbles_)
-    {
-        (*writeVector)[changedDrawAble] = std::make_shared<DrawAble>(*(*readVector)[changedDrawAble]);
-    }
-    changedDrawAbles_.clear();
     std::lock_guard addedLock(addedDrawAblesMutex);
     for (const auto &addedDrawAble: addedDrawAbles_)
     {
         appendToWriteVector(std::make_shared<DrawAble>(*addedDrawAble));
     }
     addedDrawAbles_.clear();
+    std::lock_guard changeLock(changedDrawAblesMutex);
+    for (auto changedDrawAble: changedDrawAbles_)
+    {
+        (*writeVector)[changedDrawAble] = std::make_shared<DrawAble>(*(*readVector)[changedDrawAble]);
+    }
+    changedDrawAbles_.clear();
+
 }
 
 void ObjectKeeper::appendToWriteVector(const std::shared_ptr<DrawAble> &drawAble)
@@ -73,11 +67,11 @@ void ObjectKeeper::executeCommand(Command command)
     {
 
         case PrimaryCMD::UPDATE:
-
+        {
             switch (command.objectType_)
             {
-
                 case ObjectType::DRAWABLE:
+                {
                     switch (command.secondaryCmd_)
                     {
                         case SecondaryCMD::X:
@@ -121,6 +115,8 @@ void ObjectKeeper::executeCommand(Command command)
                             throw std::invalid_argument("Invalid secondary command");
                         }
                     }
+                    break;
+                }
                 case ObjectType::SPEEDABLE:
                     break;
                 case ObjectType::COLLIDABLE:
@@ -129,8 +125,24 @@ void ObjectKeeper::executeCommand(Command command)
                     break;
             }
             break;
+        }
         case PrimaryCMD::DELETE:
             //TODO Not yet implemented
             break;
+        case PrimaryCMD::DONEWRITING:
+        {
+            doneWriting();
+            break;
+        }
+        case PrimaryCMD::SORTDRAWABLES:
+        {
+            ObjectController::sortDrawAbles();
+            break;
+        }
     }
+}
+
+void ObjectKeeper::doneWriting()
+{
+    switchVectors();
 }

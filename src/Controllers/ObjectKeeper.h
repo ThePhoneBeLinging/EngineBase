@@ -27,6 +27,7 @@ public:
 
     static void executeCommand(Command command);
 
+    static void doneWriting();
 
 private:
     static void switchVectors();

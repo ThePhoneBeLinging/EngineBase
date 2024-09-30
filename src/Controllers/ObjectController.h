@@ -32,14 +32,15 @@ public:
 
     static void addClickAble(const std::weak_ptr<ClickAble> &clickAble);
 
+    static void sortDrawAbles();
+
 private:
+
     static void drawObjects();
 
     static void handleClicks();
 
     static void updateSpeedAbles(float deltaTime);
-
-    static void sortDrawAbles();
 
     static void sortDragAbles();
 

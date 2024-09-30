@@ -8,7 +8,9 @@
 enum class PrimaryCMD
 {
     UPDATE,
-    DELETE
+    DELETE,
+    DONEWRITING,
+    SORTDRAWABLES,
 };
 
 enum class SecondaryCMD
