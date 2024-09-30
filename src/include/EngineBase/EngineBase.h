@@ -21,9 +21,9 @@
 class EngineBase
 {
 public:
-    static int loadTexture(const std::string& path);
+    static int loadTexture(const std::string &path);
 
-    static void startGUI(const std::function<void(float deltaTime)>& externalUpdateFunction);
+    static void startGUI(const std::function<void(float deltaTime)> &externalUpdateFunction);
 
     static bool keyPressed(Key key);
 
@@ -41,12 +41,14 @@ public:
 
     static void executeCommand(Command command);
 
+    static std::pair<int, int> getMousePosition();
+
 private:
     static inline bool windowInitialized_ = false;
 
     static void initializeWindow();
 
-    static void updateFunction(const std::function<void(float deltaTime)>&);
+    static void updateFunction(const std::function<void(float deltaTime)> &);
 };
 
 

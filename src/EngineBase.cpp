@@ -86,3 +86,8 @@ void EngineBase::updateFunction(const std::function<void(float deltaTime)> &exte
         externalUpdateFunction(frameTime);
     }
 }
+
+std::pair<int, int> EngineBase::getMousePosition()
+{
+    return std::make_pair(GetMouseX(), GetMouseY());
+}
