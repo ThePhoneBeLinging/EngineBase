@@ -9,21 +9,17 @@
 #include <list>
 #include <string>
 #include <memory>
-
-
-#include "Objects/DragAble.h"
 #include "Objects/DrawAble.h"
 #include "KeyBoardKeys.h"
-#include "Objects/SpeedAble.h"
 #include "EngineBase/Command.h"
 
 
 class EngineBase
 {
 public:
-    static int loadTexture(const std::string &path);
+    static int loadTexture(const std::string& path);
 
-    static void startGUI(const std::function<void(float deltaTime)> &externalUpdateFunction);
+    static void startGUI(const std::function<void(float deltaTime)>& externalUpdateFunction);
 
     static bool keyPressed(Key key);
 
@@ -48,7 +44,7 @@ private:
 
     static void initializeWindow();
 
-    static void updateFunction(const std::function<void(float deltaTime)> &);
+    static void updateFunction(const std::function<void(float deltaTime)>&);
 };
 
 

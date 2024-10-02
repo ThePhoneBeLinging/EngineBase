@@ -41,16 +41,8 @@ add_library(EngineBase
         src/Controllers/ObjectController.h
         src/EngineBase.cpp
         src/include/EngineBase/EngineBase.h
-        src/Objects/DragAble.cpp
-        src/Objects/DragAble.h
-        src/Objects/Collidable.cpp
-        src/Objects/Collidable.h
-        src/Objects/SpeedAble.cpp
-        src/Objects/SpeedAble.h
 
         src/include/EngineBase/KeyBoardKeys.h
-        src/Objects/ClickAble.cpp
-        src/Objects/ClickAble.h
         src/Command/Command.cpp
         src/include/EngineBase/Command.h
         src/Command/CommandEnums.h
