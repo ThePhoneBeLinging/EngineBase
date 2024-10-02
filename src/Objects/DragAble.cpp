@@ -4,9 +4,9 @@
 
 #include "DragAble.h"
 
-#include "Controllers/ObjectController.h"
+#include <utility>
 
-DragAble::DragAble(DrawAble *drawAble) : drawAble_(drawAble), oldX_(0), oldY_(0), offsetX_(0), offsetY_(0)
+DragAble::DragAble(int drawAbleID) : drawAbleID_(drawAbleID), oldX_(0), oldY_(0), offsetX_(0), offsetY_(0)
 {
 }
 
@@ -14,26 +14,31 @@ DragAble::~DragAble()
 {
 }
 
-void DragAble::startDrag(float x, float y)
+void DragAble::startDrag(float x, float y, std::function<void(int, int)>& callbackFunction)
 {
-    this->offsetX_ = this->drawAble_->x() - x;
-    this->offsetY_ = this->drawAble_->y() - y;
+    callbackFunction_ = std::move(callbackFunction);
+    auto drawAble = ObjectKeeper::getDrawAbleForReading(drawAbleID_);
+    this->offsetX_ = drawAble->x() - x;
+    this->offsetY_ = drawAble->y() - y;
     updateDrag(x, y);
 }
 
 void DragAble::cancelDrag()
 {
-    this->drawAble_->x(oldX_);
-    this->drawAble_->y(oldY_);
+    auto drawAble = ObjectKeeper::getDrawAbleForWriting(drawAbleID_);
+    drawAble->x(oldX_);
+    drawAble->y(oldY_);
+    ObjectKeeper::executeCommand(Command(PrimaryCMD::DONEWRITING));
 }
 
 void DragAble::updateDrag(float x, float y)
 {
-    this->drawAble_->x(x + offsetX_);
-    this->drawAble_->y(y + offsetY_);
+    auto drawAble = ObjectKeeper::getDrawAbleForWriting(drawAbleID_);
+    drawAble->x(x + offsetX_);
+    drawAble->y(y + offsetY_);
 }
 
-DrawAble *DragAble::getDrawAble()
+int DragAble::getDrawAble() const
 {
-    return drawAble_;
+    return drawAbleID_;
 }
