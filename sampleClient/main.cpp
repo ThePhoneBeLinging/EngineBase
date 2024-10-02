@@ -7,16 +7,19 @@
 #include "EngineBase/Command.h"
 #include "EngineBase/EngineBase.h"
 
+
 void update(float delta)
 {
     std::cout << "Delta: " << delta << std::endl;
     EngineBase::executeCommand({PrimaryCMD::UPDATE, ObjectType::DRAWABLE, 0, SecondaryCMD::WIDTH, 50});
     EngineBase::executeCommand({PrimaryCMD::UPDATE, ObjectType::DRAWABLE, 0, SecondaryCMD::HEIGHT, 50});
+    EngineBase::executeCommand(Command(PrimaryCMD::DONEWRITING));
 }
 
 int main()
 {
     EngineBase::addDrawAble();
+    EngineBase::executeCommand(Command(PrimaryCMD::DONEWRITING));
     EngineBase::loadTexture("Textures/zelda.png");
     EngineBase::startGUI(update);
 

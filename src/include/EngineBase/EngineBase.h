@@ -12,7 +12,10 @@
 #include "Objects/DrawAble.h"
 #include "KeyBoardKeys.h"
 #include "EngineBase/Command.h"
-
+#include <Controllers/ObjectKeeper.h>
+#include "Controllers/ObjectController.h"
+#include "Controllers/TextureController.h"
+#include <thread>
 
 class EngineBase
 {
@@ -30,10 +33,6 @@ public:
     static bool mouseButtonReleased(Button mouseButton);
 
     static int addDrawAble();
-
-    static int addSpeedAble();
-
-    static int addDragAble();
 
     static void executeCommand(Command command);
 

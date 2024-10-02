@@ -2,19 +2,16 @@
 // Created by Elias Aggergaard Larsen on 02/09/2024.
 //
 
-#include <Controllers/ObjectKeeper.h>
-#include "EngineBase/EngineBase.h"
-#include "Controllers/ObjectController.h"
-#include "Controllers/TextureController.h"
-#include <thread>
 
-int EngineBase::loadTexture(const std::string &path)
+#include "EngineBase/EngineBase.h"
+
+int EngineBase::loadTexture(const std::string& path)
 {
     initializeWindow();
     return TextureController::loadTexture(path);
 }
 
-void EngineBase::startGUI(const std::function<void(float deltaTime)> &externalUpdateFunction)
+void EngineBase::startGUI(const std::function<void(float deltaTime)>& externalUpdateFunction)
 {
     initializeWindow();
     std::thread updateThread(updateFunction, externalUpdateFunction);
@@ -49,23 +46,12 @@ int EngineBase::addDrawAble()
     return drawAbleIndex;
 }
 
-int EngineBase::addSpeedAble()
-{
-    //ObjectController::addSpeedAble(speedAble);
-    return 0;
-}
-
-int EngineBase::addDragAble()
-{
-    //ObjectController::addDragAble(dragAble);
-    return 0;
-}
-
-
 void EngineBase::initializeWindow()
 {
     if (windowInitialized_)
-    { return; }
+    {
+        return;
+    }
 
     InitWindow(1200, 800, "M3");
     windowInitialized_ = true;
@@ -77,7 +63,7 @@ void EngineBase::executeCommand(Command command)
     ObjectKeeper::executeCommand(command);
 }
 
-void EngineBase::updateFunction(const std::function<void(float deltaTime)> &externalUpdateFunction)
+void EngineBase::updateFunction(const std::function<void(float deltaTime)>& externalUpdateFunction)
 {
     while (!WindowShouldClose())
     {
