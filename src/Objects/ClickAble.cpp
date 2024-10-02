@@ -7,9 +7,9 @@
 
 #include "Controllers/ObjectController.h"
 
-ClickAble::ClickAble(DrawAble *drawAble)
+ClickAble::ClickAble(int drawAbleID)
 {
-    drawAble_ = drawAble;
+    drawAbleID_ = drawAbleID;
 }
 
 void ClickAble::setOnClick(std::function<void()> function)
@@ -22,7 +22,7 @@ void ClickAble::onClick()
     onClickFunction_();
 }
 
-DrawAble *ClickAble::drawAble()
+int ClickAble::drawAble()
 {
-    return drawAble_;
+    return drawAbleID_;
 }

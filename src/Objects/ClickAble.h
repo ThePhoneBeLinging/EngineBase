@@ -10,13 +10,13 @@
 class ClickAble
 {
 public:
-    explicit ClickAble(DrawAble* drawAble);
+    explicit ClickAble(int drawAbleID);
     void setOnClick(std::function<void()>);
     void onClick();
-    DrawAble* drawAble();
+    int drawAble();
 
 private:
-    DrawAble* drawAble_;
+    int drawAbleID_;
     std::function<void()> onClickFunction_;
 };
 
