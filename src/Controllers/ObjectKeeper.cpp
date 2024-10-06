@@ -42,21 +42,20 @@ void ObjectKeeper::switchVectors()
 void ObjectKeeper::copyReadToWriteDrawAbles()
 {
     std::lock_guard addedLock(addedDrawAblesMutex);
-    for (const auto &addedDrawAble: addedDrawAbles_)
+    for (const auto& addedDrawAble : addedDrawAbles_)
     {
         appendToWriteVector(std::make_shared<DrawAble>(*addedDrawAble));
     }
     addedDrawAbles_.clear();
     std::lock_guard changeLock(changedDrawAblesMutex);
-    for (auto changedDrawAble: changedDrawAbles_)
+    for (auto changedDrawAble : changedDrawAbles_)
     {
-        (*writeVector)[changedDrawAble] = std::make_shared<DrawAble>(*(*readVector)[changedDrawAble]);
+        (*writeVector)[changedDrawAble] = (*readVector)[changedDrawAble];
     }
     changedDrawAbles_.clear();
-
 }
 
-void ObjectKeeper::appendToWriteVector(const std::shared_ptr<DrawAble> &drawAble)
+void ObjectKeeper::appendToWriteVector(const std::shared_ptr<DrawAble>& drawAble)
 {
     writeVector.load()->emplace_back(drawAble);
 }
@@ -65,76 +64,75 @@ void ObjectKeeper::executeCommand(Command command)
 {
     switch (command.primaryCmd_)
     {
-
-        case PrimaryCMD::UPDATE:
+    case PrimaryCMD::UPDATE:
         {
             switch (command.objectType_)
             {
-                case ObjectType::DRAWABLE:
+            case ObjectType::DRAWABLE:
                 {
                     switch (command.secondaryCmd_)
                     {
-                        case SecondaryCMD::X:
+                    case SecondaryCMD::X:
                         {
                             auto drawAble = getDrawAbleForWriting(command.id_);
                             drawAble->x(command.value_);
                             break;
                         }
-                        case SecondaryCMD::Y:
+                    case SecondaryCMD::Y:
                         {
                             auto drawAble = getDrawAbleForWriting(command.id_);
                             drawAble->y(command.value_);
                             break;
                         }
-                        case SecondaryCMD::Z:
+                    case SecondaryCMD::Z:
                         {
                             auto drawAble = getDrawAbleForWriting(command.id_);
                             drawAble->z(static_cast<int>(command.value_));
                             break;
                         }
-                        case SecondaryCMD::WIDTH:
+                    case SecondaryCMD::WIDTH:
                         {
                             auto drawAble = getDrawAbleForWriting(command.id_);
                             drawAble->width(static_cast<int>(command.value_));
                             break;
                         }
-                        case SecondaryCMD::HEIGHT:
+                    case SecondaryCMD::HEIGHT:
                         {
                             auto drawAble = getDrawAbleForWriting(command.id_);
                             drawAble->height(static_cast<int>(command.value_));
                             break;
                         }
-                        case SecondaryCMD::TEXTUREINDEX:
+                    case SecondaryCMD::TEXTUREINDEX:
                         {
                             auto drawAble = getDrawAbleForWriting(command.id_);
                             drawAble->textureIndex(static_cast<int>(command.value_));
                             break;
                         }
-                        default:
+                    default:
                         {
                             throw std::invalid_argument("Invalid secondary command");
                         }
                     }
                     break;
                 }
-                case ObjectType::SPEEDABLE:
-                    break;
-                case ObjectType::COLLIDABLE:
-                    break;
-                case ObjectType::DRAGABLE:
-                    break;
+            case ObjectType::SPEEDABLE:
+                break;
+            case ObjectType::COLLIDABLE:
+                break;
+            case ObjectType::DRAGABLE:
+                break;
             }
             break;
         }
-        case PrimaryCMD::DELETE:
-            //TODO Not yet implemented
-            break;
-        case PrimaryCMD::DONEWRITING:
+    case PrimaryCMD::DELETE:
+        //TODO Not yet implemented
+        break;
+    case PrimaryCMD::DONEWRITING:
         {
             doneWriting();
             break;
         }
-        case PrimaryCMD::SORTDRAWABLES:
+    case PrimaryCMD::SORTDRAWABLES:
         {
             ObjectController::sortDrawAbles();
             break;
