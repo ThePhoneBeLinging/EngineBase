@@ -89,25 +89,25 @@ void ObjectKeeper::executeCommand(Command command)
                         case SecondaryCMD::Z:
                         {
                             auto drawAble = getDrawAbleForWriting(command.id_);
-                            drawAble->z((int) command.value_);
+                            drawAble->z(static_cast<int>(command.value_));
                             break;
                         }
                         case SecondaryCMD::WIDTH:
                         {
                             auto drawAble = getDrawAbleForWriting(command.id_);
-                            drawAble->width((int) command.value_);
+                            drawAble->width(static_cast<int>(command.value_));
                             break;
                         }
                         case SecondaryCMD::HEIGHT:
                         {
                             auto drawAble = getDrawAbleForWriting(command.id_);
-                            drawAble->height((int) command.value_);
+                            drawAble->height(static_cast<int>(command.value_));
                             break;
                         }
                         case SecondaryCMD::TEXTUREINDEX:
                         {
                             auto drawAble = getDrawAbleForWriting(command.id_);
-                            drawAble->textureIndex((int) command.value_);
+                            drawAble->textureIndex(static_cast<int>(command.value_));
                             break;
                         }
                         default:

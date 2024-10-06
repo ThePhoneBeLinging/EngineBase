@@ -13,7 +13,7 @@ int TextureController::loadTexture(const std::string &path)
         texture = std::make_shared<Texture2D>(LoadTexture(newPath.c_str()));
     }
     textures_.push_back(texture);
-    return (int) textures_.size() - 1;
+    return static_cast<int>(textures_.size()) - 1;
 }
 
 void TextureController::drawTexture(float x, float y, int width, int height, int textureIndex)
@@ -22,7 +22,7 @@ void TextureController::drawTexture(float x, float y, int width, int height, int
     Texture2D copiedTexture = *texture;
     copiedTexture.height = height;
     copiedTexture.width = width;
-    DrawTexture(copiedTexture, (int) x, (int) y, WHITE);
+    DrawTexture(copiedTexture, static_cast<int>(x), static_cast<int>(y), WHITE);
 }
 
 void TextureController::initializeWindow()
