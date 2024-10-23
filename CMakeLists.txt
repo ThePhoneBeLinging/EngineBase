@@ -48,6 +48,8 @@ add_library(EngineBase
         src/Command/CommandEnums.h
         src/Controllers/ObjectKeeper.cpp
         src/Controllers/ObjectKeeper.h
+        src/Objects/SpeedAble.cpp
+        src/Objects/SpeedAble.h
 
 )
 target_include_directories(EngineBase PUBLIC src/include)
