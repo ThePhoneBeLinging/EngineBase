@@ -51,6 +51,11 @@ std::shared_ptr<DrawAble> EngineBase::getDrawAble(int id)
     return ObjectKeeper::getDrawAbleForWriting(id);
 }
 
+void EngineBase::doneWriting()
+{
+    ObjectKeeper::doneWriting();
+}
+
 void EngineBase::initializeWindow()
 {
     if (windowInitialized_)

@@ -36,6 +36,8 @@ public:
 
     static std::shared_ptr<DrawAble> getDrawAble(int id);
 
+    static void doneWriting();
+
     static void executeCommand(Command command);
 
     static std::pair<int, int> getMousePosition();
