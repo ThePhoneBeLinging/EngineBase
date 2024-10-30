@@ -16,6 +16,7 @@ public:
     static int loadTexture(const std::string& texturePath);
     static void addDrawAble(const std::shared_ptr<DrawAble>& drawAble);
     static std::pair<int, int> getWindowSize();
+    static bool toCloseWindow();
 
 private:
     static inline IGraphicsLibrary* graphicsInterface_;

@@ -35,3 +35,8 @@ std::pair<int, int> RayLibImplementation::getWindowSize()
     //TODO Actually do smth here, currently hardcoded because of init()
     return {1200, 800};
 }
+
+bool RayLibImplementation::toCloseWindow()
+{
+    return WindowShouldClose();
+}

@@ -17,5 +17,6 @@ public:
     virtual void draw(std::shared_ptr<DrawAble> drawAble) = 0;
     virtual int loadTexture(const std::string& texturePath) = 0;
     virtual std::pair<int, int> getWindowSize() = 0;
+    virtual bool toCloseWindow() = 0;
 };
 #endif //IGRAPHICSLIBRARY_H

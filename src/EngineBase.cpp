@@ -32,3 +32,8 @@ std::pair<int, int> EngineBase::getWindowSize()
 {
     return graphicsInterface_->getWindowSize();
 }
+
+bool EngineBase::toCloseWindow()
+{
+    return graphicsInterface_->toCloseWindow();
+}

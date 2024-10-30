@@ -20,6 +20,7 @@ public:
     void draw(std::shared_ptr<DrawAble> drawAble) override;
     int loadTexture(const std::string& texturePath) override;
     std::pair<int, int> getWindowSize() override;
+    bool toCloseWindow() override;
 
 private:
     std::vector<Texture2D> textures;
