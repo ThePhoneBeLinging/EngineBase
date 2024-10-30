@@ -27,3 +27,8 @@ void EngineBase::addDrawAble(const std::shared_ptr<DrawAble>& drawAble)
 {
     DrawAbleObjects::addDrawAble(drawAble);
 }
+
+std::pair<int, int> EngineBase::getWindowSize()
+{
+    return graphicsInterface_->getWindowSize();
+}
