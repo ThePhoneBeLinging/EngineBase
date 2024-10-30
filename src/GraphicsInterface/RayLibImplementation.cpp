@@ -12,7 +12,7 @@ void RayLibImplementation::init()
 
 std::pair<int, int> RayLibImplementation::getMousePos()
 {
-    return { GetMouseX(), GetMouseY() };
+    return {GetMouseX(), GetMouseY()};
 }
 
 void RayLibImplementation::draw(std::shared_ptr<DrawAble> drawAble)
@@ -21,11 +21,17 @@ void RayLibImplementation::draw(std::shared_ptr<DrawAble> drawAble)
     texture.height = drawAble->getHeight();
     texture.width = drawAble->getWidth();
 
-    DrawTexture(texture,drawAble->getX(),drawAble->getY(),Color(0,0,0));
+    DrawTexture(texture, drawAble->getX(), drawAble->getY(), Color(0, 0, 0));
 }
 
 int RayLibImplementation::loadTexture(const std::string& texturePath)
 {
     textures.push_back(LoadTexture(texturePath.c_str()));
     return static_cast<int>(textures.size()) - 1;
+}
+
+std::pair<int, int> RayLibImplementation::getWindowSize()
+{
+    //TODO Actually do smth here, currently hardcoded because of init()
+    return {1200, 800};
 }

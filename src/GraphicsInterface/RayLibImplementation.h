@@ -19,10 +19,11 @@ public:
     std::pair<int, int> getMousePos() override;
     void draw(std::shared_ptr<DrawAble> drawAble) override;
     int loadTexture(const std::string& texturePath) override;
+    std::pair<int, int> getWindowSize() override;
+
 private:
     std::vector<Texture2D> textures;
 };
-
 
 
 #endif //RAYLIBIMPLEMENTATION_H
