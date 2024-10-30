@@ -4,8 +4,7 @@
 
 #ifndef DRAWABLE_H
 #define DRAWABLE_H
-#include <functional>
-#include <vector>
+#include <mutex>
 
 
 class DrawAble
@@ -33,6 +32,8 @@ private:
     int height_;
     int textureIndex_;
     int* id_;
+    //TODO Upgrade dataStructure to not have this be necessary
+    mutable std::mutex mutex_;
 };
 
 

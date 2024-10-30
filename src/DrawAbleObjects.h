@@ -6,6 +6,7 @@
 #define DRAWABLEOBJECTS_H
 #include <list>
 #include <memory>
+#include <vector>
 
 #include "EngineBase/DrawAble.h"
 
