@@ -12,12 +12,13 @@ class EngineBase
 {
 public:
     static void init();
-    static std::pair<int,int> getMousePos();
+    static std::pair<int, int> getMousePos();
     static int loadTexture(const std::string& texturePath);
+    static std::shared_ptr<DrawAble> createDrawAble();
+
 private:
     static inline IGraphicsLibrary* graphicsInterface_;
 };
-
 
 
 #endif //ENGINEBASE_H

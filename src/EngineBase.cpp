@@ -4,6 +4,7 @@
 
 #include "EngineBase/EngineBase.h"
 
+#include "DrawAbleObjects.h"
 #include "GraphicsInterface/RayLibImplementation.h"
 
 void EngineBase::init()
@@ -20,4 +21,11 @@ std::pair<int, int> EngineBase::getMousePos()
 int EngineBase::loadTexture(const std::string& texturePath)
 {
     return graphicsInterface_->loadTexture(texturePath);
+}
+
+std::shared_ptr<DrawAble> EngineBase::createDrawAble()
+{
+    auto drawAble = std::make_shared<DrawAble>();
+    DrawAbleObjects::addDrawAble(drawAble);
+    return drawAble;
 }
