@@ -7,6 +7,7 @@
 #include <thread>
 
 #include "DrawAbleObjects.h"
+#include "EngineBase/EngineBase.h"
 
 void RayLibImplementation::init()
 {
@@ -17,13 +18,13 @@ void RayLibImplementation::init()
 
 void RayLibImplementation::drawFunction()
 {
-    while (not toCloseWindow())
+    while (not EngineBase::getGraphicsLibrary()->toCloseWindow())
     {
         BeginDrawing();
         ClearBackground(BLACK);
         for (const auto& drawAble : DrawAbleObjects::getActiveDrawAbles())
         {
-            draw(drawAble);
+            EngineBase::getGraphicsLibrary()->draw(drawAble);
         }
         EndDrawing();
     }

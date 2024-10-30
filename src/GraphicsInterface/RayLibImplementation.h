@@ -16,7 +16,7 @@ class RayLibImplementation : public IGraphicsLibrary
 public:
     RayLibImplementation() = default;
     void init() override;
-    void drawFunction();
+    static void drawFunction();
     std::pair<int, int> getMousePos() override;
     void draw(std::shared_ptr<DrawAble> drawAble) override;
     int loadTexture(const std::string& texturePath) override;
