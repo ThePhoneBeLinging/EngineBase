@@ -1,89 +1,23 @@
 //
-// Created by Elias Aggergaard Larsen on 02/09/2024.
+// Created by eal on 10/24/24.
 //
-
 
 #include "EngineBase/EngineBase.h"
 
-int EngineBase::loadTexture(const std::string& path)
+#include "GraphicsInterface/RayLibImplementation.h"
+
+void EngineBase::init()
 {
-    initializeWindow();
-    return TextureController::loadTexture(path);
+    graphicsInterface_ = new RayLibImplementation();
+    graphicsInterface_->init();
 }
 
-void EngineBase::startGUI(const std::function<void(float deltaTime)>& externalUpdateFunction)
+std::pair<int, int> EngineBase::getMousePos()
 {
-    initializeWindow();
-    std::thread updateThread(updateFunction, externalUpdateFunction);
-    ObjectController::keepDrawing();
-    updateThread.join();
+    return graphicsInterface_->getMousePos();
 }
 
-bool EngineBase::keyPressed(Key key)
+int EngineBase::loadTexture(const std::string& texturePath)
 {
-    return IsKeyDown(key);
-}
-
-bool EngineBase::keyReleased(Key key)
-{
-    return IsKeyReleased(key);
-}
-
-bool EngineBase::mouseButtonPressed(Button mouseButton)
-{
-    return IsMouseButtonDown(mouseButton);
-}
-
-bool EngineBase::mouseButtonReleased(Button mouseButton)
-{
-    return IsMouseButtonReleased(mouseButton);
-}
-
-int EngineBase::addDrawAble()
-{
-    auto drawAbleIndex = ObjectKeeper::addDrawAble();
-    ObjectController::addDrawAble(drawAbleIndex);
-    return drawAbleIndex;
-}
-
-std::shared_ptr<DrawAble> EngineBase::getDrawAble(int id)
-{
-    return ObjectKeeper::getDrawAbleForWriting(id);
-}
-
-void EngineBase::doneWriting()
-{
-    ObjectKeeper::doneWriting();
-}
-
-void EngineBase::initializeWindow()
-{
-    if (windowInitialized_)
-    {
-        return;
-    }
-
-    InitWindow(1200, 800, "M3");
-    windowInitialized_ = true;
-    TextureController::loadTexture("Textures/MissingTexture.png");
-}
-
-void EngineBase::executeCommand(Command command)
-{
-    ObjectKeeper::executeCommand(command);
-}
-
-void EngineBase::updateFunction(const std::function<void(float deltaTime)>& externalUpdateFunction)
-{
-    while (!WindowShouldClose())
-    {
-        auto frameTime = GetFrameTime();
-        ObjectController::update(frameTime);
-        externalUpdateFunction(frameTime);
-    }
-}
-
-std::pair<int, int> EngineBase::getMousePosition()
-{
-    return std::make_pair(GetMouseX(), GetMouseY());
+    return graphicsInterface_->loadTexture(texturePath);
 }

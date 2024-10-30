@@ -33,27 +33,19 @@ endif ()
 
 
 add_library(EngineBase
-        src/Objects/DrawAble.cpp
-        src/Objects/DrawAble.h
-        src/Controllers/TextureController.cpp
-        src/Controllers/TextureController.h
-        src/Controllers/ObjectController.cpp
-        src/Controllers/ObjectController.h
         src/EngineBase.cpp
         src/include/EngineBase/EngineBase.h
-
-        src/include/EngineBase/KeyBoardKeys.h
-        src/Command/Command.cpp
-        src/include/EngineBase/Command.h
-        src/Command/CommandEnums.h
-        src/Controllers/ObjectKeeper.cpp
-        src/Controllers/ObjectKeeper.h
-        src/Objects/SpeedAble.cpp
-        src/Objects/SpeedAble.h
-
+        src/GraphicsInterface/IGraphicsLibrary.h
+        src/DrawAble.cpp
+        src/DrawAble.h
+        src/GraphicsInterface/RayLibImplementation.cpp
+        src/GraphicsInterface/RayLibImplementation.h
+        src/DrawAbleObjects.cpp
+        src/DrawAbleObjects.h
 )
+
 target_include_directories(EngineBase PUBLIC src/include)
 target_include_directories(EngineBase PUBLIC src)
-target_link_libraries(${PROJECT_NAME} PUBLIC
+target_link_libraries(${PROJECT_NAME} PRIVATE
         raylib
 )
