@@ -15,6 +15,12 @@ void DrawAbleObjects::markDrawAbleAsOnScreen(const std::shared_ptr<DrawAble>& dr
     activeDrawAbles_.push_back(drawAble);
 }
 
+void DrawAbleObjects::markDrawAbleAsOffScreen(const std::shared_ptr<DrawAble>& drawAble)
+{
+    activeDrawAbles_.remove(drawAble);
+    offScreenDrawAbles_.push_back(drawAble);
+}
+
 void DrawAbleObjects::removeDrawAble(const std::shared_ptr<DrawAble>& drawAble)
 {
     activeDrawAbles_.remove(drawAble);
@@ -22,8 +28,4 @@ void DrawAbleObjects::removeDrawAble(const std::shared_ptr<DrawAble>& drawAble)
     drawAbles_.remove(drawAble);
 }
 
-void DrawAbleObjects::markDrawAbleAsOffScreen(const std::shared_ptr<DrawAble>& drawAble)
-{
-    activeDrawAbles_.remove(drawAble);
-    offScreenDrawAbles_.push_back(drawAble);
-}
+

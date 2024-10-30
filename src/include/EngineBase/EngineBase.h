@@ -14,7 +14,7 @@ public:
     static void init();
     static std::pair<int, int> getMousePos();
     static int loadTexture(const std::string& texturePath);
-    static std::shared_ptr<DrawAble> createDrawAble();
+    static void addDrawAble(const std::shared_ptr<DrawAble>& drawAble);
 
 private:
     static inline IGraphicsLibrary* graphicsInterface_;

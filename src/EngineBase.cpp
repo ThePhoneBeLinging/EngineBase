@@ -23,9 +23,7 @@ int EngineBase::loadTexture(const std::string& texturePath)
     return graphicsInterface_->loadTexture(texturePath);
 }
 
-std::shared_ptr<DrawAble> EngineBase::createDrawAble()
+void EngineBase::addDrawAble(const std::shared_ptr<DrawAble>& drawAble)
 {
-    auto drawAble = std::make_shared<DrawAble>();
     DrawAbleObjects::addDrawAble(drawAble);
-    return drawAble;
 }
