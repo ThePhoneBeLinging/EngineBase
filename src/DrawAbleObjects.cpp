@@ -4,12 +4,12 @@
 
 #include "DrawAbleObjects.h"
 
-int* DrawAbleObjects::addDrawAble(const std::shared_ptr<DrawAble>& drawAble)
+void DrawAbleObjects::addDrawAble(const std::shared_ptr<DrawAble>& drawAble)
 {
     drawAbles_.push_back(drawAble);
     drawAbleIds_.push_back(static_cast<int>(drawAbles_.size()) - 1);
     activeDrawAbles_.push_back(drawAble);
-    return &drawAbleIds_.back();
+    drawAble->setID(&drawAbleIds_.back());
 }
 
 void DrawAbleObjects::markDrawAbleAsOnScreen(const int id)

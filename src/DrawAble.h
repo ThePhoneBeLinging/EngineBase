@@ -23,6 +23,8 @@ public:
     void setHeight(int height);
     [[nodiscard]] int getTextureIndex() const;
     void setTextureIndex(int texture_index);
+    [[nodiscard]] int* getID() const;
+    void setID(int* id);
     void subscribe(const std::function<void()>& callback);
 
 private:
@@ -31,9 +33,9 @@ private:
     int width_;
     int height_;
     int textureIndex_;
+    int* id_;
     std::vector<std::function<void()>> statusSubscribedFunctions_;
 };
-
 
 
 #endif //DRAWABLE_H

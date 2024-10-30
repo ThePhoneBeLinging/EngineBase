@@ -13,7 +13,7 @@
 class DrawAbleObjects
 {
 public:
-    static int* addDrawAble(const std::shared_ptr<DrawAble>& drawAble);
+    static void addDrawAble(const std::shared_ptr<DrawAble>& drawAble);
     static void removeDrawAble(int id);
     static void markDrawAbleAsOnScreen(int id);
     static void markDrawAbleAsOffScreen(int id);
