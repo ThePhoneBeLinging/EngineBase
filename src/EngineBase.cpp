@@ -13,27 +13,12 @@ void EngineBase::init()
     graphicsInterface_->init();
 }
 
-std::pair<int, int> EngineBase::getMousePos()
-{
-    return graphicsInterface_->getMousePos();
-}
-
-int EngineBase::loadTexture(const std::string& texturePath)
-{
-    return graphicsInterface_->loadTexture(texturePath);
-}
-
 void EngineBase::addDrawAble(const std::shared_ptr<DrawAble>& drawAble)
 {
     DrawAbleObjects::addDrawAble(drawAble);
 }
 
-std::pair<int, int> EngineBase::getWindowSize()
+IGraphicsLibrary* EngineBase::getGraphicsLibrary()
 {
-    return graphicsInterface_->getWindowSize();
-}
-
-bool EngineBase::toCloseWindow()
-{
-    return graphicsInterface_->toCloseWindow();
+    return graphicsInterface_;
 }

@@ -4,10 +4,28 @@
 
 #include "RayLibImplementation.h"
 
+#include <thread>
+
+#include "DrawAbleObjects.h"
+
 void RayLibImplementation::init()
 {
     InitWindow(1200, 800, "M3");
+    std::thread (drawFunction);
     textures.resize(1024);
+}
+
+void RayLibImplementation::drawFunction()
+{
+    while (not toCloseWindow())
+    {
+        BeginDrawing();
+        for (const auto& drawAble : DrawAbleObjects::getActiveDrawAbles())
+        {
+            draw(drawAble);
+        }
+        EndDrawing();
+    }
 }
 
 std::pair<int, int> RayLibImplementation::getMousePos()
@@ -15,7 +33,7 @@ std::pair<int, int> RayLibImplementation::getMousePos()
     return {GetMouseX(), GetMouseY()};
 }
 
-void RayLibImplementation::draw(std::shared_ptr<DrawAble> drawAble)
+void RayLibImplementation::draw(const std::shared_ptr<DrawAble> drawAble)
 {
     Texture2D texture = textures[drawAble->getTextureIndex()];
     texture.height = drawAble->getHeight();

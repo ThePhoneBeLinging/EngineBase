@@ -18,8 +18,10 @@ public:
     static void removeDrawAble(int id);
     static void markDrawAbleAsOnScreen(int id);
     static void markDrawAbleAsOffScreen(int id);
+    static std::list<std::shared_ptr<DrawAble>>& getActiveDrawAbles();
 
 private:
+    static inline std::mutex activeDrawAbleMutex_;
     static inline std::list<int> drawAbleIds_;
     static inline std::vector<std::shared_ptr<DrawAble>> drawAbles_;
     static inline std::list<std::shared_ptr<DrawAble>> activeDrawAbles_;

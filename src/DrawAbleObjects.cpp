@@ -22,6 +22,11 @@ void DrawAbleObjects::markDrawAbleAsOffScreen(const int id)
     activeDrawAbles_.remove(drawAbles_.at(id));
 }
 
+std::list<std::shared_ptr<DrawAble>>& DrawAbleObjects::getActiveDrawAbles()
+{
+    return activeDrawAbles_;
+}
+
 void DrawAbleObjects::removeDrawAble(const int id)
 {
     // TODO Remove from DrawAbles list, and use a first-fit when adding drawAbles
