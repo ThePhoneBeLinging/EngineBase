@@ -13,13 +13,15 @@
 class DrawAbleObjects
 {
 public:
-    static void activateDrawAble(std::shared_ptr<DrawAble>);
+    static void addDrawAble(const std::shared_ptr<DrawAble>& drawAble);
+    static void markDrawAbleAsOnScreen(const std::shared_ptr<DrawAble>& drawAble);
+    static void removeDrawAble(const std::shared_ptr<DrawAble>& drawAble);
+    static void markDrawAbleAsOffScreen(const std::shared_ptr<DrawAble>& drawAble);
 
 private:
     static inline std::list<std::shared_ptr<DrawAble>> drawAbles_;
     static inline std::list<std::shared_ptr<DrawAble>> activeDrawAbles_;
     static inline std::list<std::shared_ptr<DrawAble>> offScreenDrawAbles_;
-    static inline std::list<std::shared_ptr<DrawAble>> inactiveDrawAbles_;
 };
 
 
