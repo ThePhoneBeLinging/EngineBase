@@ -11,7 +11,7 @@
 void RayLibImplementation::init()
 {
     InitWindow(1200, 800, "M3");
-    std::thread (drawFunction);
+    std::thread thread(drawFunction);
     textures.resize(1024);
 }
 
