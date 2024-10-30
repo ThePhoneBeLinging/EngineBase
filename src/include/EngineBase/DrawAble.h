@@ -25,7 +25,6 @@ public:
     void setTextureIndex(int texture_index);
     [[nodiscard]] int* getID() const;
     void setID(int* id);
-    void subscribe(const std::function<void()>& callback);
 
 private:
     int x_;
@@ -34,7 +33,6 @@ private:
     int height_;
     int textureIndex_;
     int* id_;
-    std::vector<std::function<void()>> statusSubscribedFunctions_;
 };
 
 
