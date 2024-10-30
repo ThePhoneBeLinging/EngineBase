@@ -2,7 +2,7 @@
 // Created by eal on 10/30/24.
 //
 
-#include "DrawAble.h"
+#include "EngineBase/DrawAble.h"
 
 DrawAble::DrawAble() : x_(0), y_(0), width_(0), height_(0), textureIndex_(0), id_(nullptr)
 {

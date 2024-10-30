@@ -37,7 +37,6 @@ add_library(EngineBase
         src/include/EngineBase/EngineBase.h
         src/GraphicsInterface/IGraphicsLibrary.h
         src/DrawAble.cpp
-        src/DrawAble.h
         src/GraphicsInterface/RayLibImplementation.cpp
         src/GraphicsInterface/RayLibImplementation.h
         src/DrawAbleObjects.cpp
