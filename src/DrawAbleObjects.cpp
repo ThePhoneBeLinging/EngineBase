@@ -24,8 +24,8 @@ void DrawAbleObjects::markDrawAbleAsOffScreen(const int id)
 
 void DrawAbleObjects::removeDrawAble(const int id)
 {
+    // TODO Remove from DrawAbles list, and use a first-fit when adding drawAbles
     activeDrawAbles_.remove(drawAbles_.at(id));
-    drawAbles_.erase(drawAbles_.begin() + id);
 }
 
 
