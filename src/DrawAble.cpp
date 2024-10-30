@@ -67,8 +67,3 @@ void DrawAble::setID(int* id)
 {
     id_ = id;
 }
-
-void DrawAble::subscribe(const std::function<void()>& callback)
-{
-    statusSubscribedFunctions_.push_back(callback);
-}
