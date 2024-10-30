@@ -20,6 +20,7 @@ void RayLibImplementation::drawFunction()
     while (not toCloseWindow())
     {
         BeginDrawing();
+        ClearBackground(BLACK);
         for (const auto& drawAble : DrawAbleObjects::getActiveDrawAbles())
         {
             draw(drawAble);
