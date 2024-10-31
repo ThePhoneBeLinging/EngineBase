@@ -4,6 +4,7 @@
 
 #ifndef ENGINEBASE_H
 #define ENGINEBASE_H
+#include <functional>
 #include <utility>
 #include "GraphicsInterface/IGraphicsLibrary.h"
 

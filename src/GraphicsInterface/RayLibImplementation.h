@@ -10,7 +10,6 @@
 #include "IGraphicsLibrary.h"
 #include "raylib.h"
 
-
 class RayLibImplementation : public IGraphicsLibrary
 {
 public:

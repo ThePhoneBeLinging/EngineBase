@@ -4,7 +4,6 @@
 
 #ifndef IGRAPHICSLIBRARY_H
 #define IGRAPHICSLIBRARY_H
-#include <functional>
 #include <memory>
 
 #include "EngineBase/DrawAble.h"
