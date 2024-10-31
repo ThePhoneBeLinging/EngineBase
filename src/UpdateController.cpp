@@ -28,7 +28,6 @@ void UpdateController::beginUpdateLoop()
         lock.unlock();
         for (int i = 0; i < updateTimePoints_.size(); i++)
         {
-            //TODO Measure time since last update;
             updateFunctions_[i](std::chrono::duration<double>(updateTimePoints_[i] - std::chrono::high_resolution_clock::now()).count());
             updateTimePoints_[i] = std::chrono::high_resolution_clock::now();
         }
