@@ -13,11 +13,12 @@ class UpdateController
 {
 public:
     static void beginUpdateLoop();
-    static void registerUpdateFunction(const std::function<void(float deltaTime)>& updateFunction);
+    static void registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction);
 private:
     static inline std::mutex mutex_;
-    static inline std::vector<std::function<void(float deltaTime)>> updateFunctions_;
-    static inline std::vector<std::function<void(float deltaTime)>> updateFunctionsToAdd_;
+    static inline std::vector<std::function<void(double deltaTime)>> updateFunctions_;
+    static inline std::vector<std::function<void(double deltaTime)>> updateFunctionsToAdd_;
+    static inline std::vector<std::chrono::time_point<std::chrono::system_clock>> updateTimePoints_;
 };
 
 
