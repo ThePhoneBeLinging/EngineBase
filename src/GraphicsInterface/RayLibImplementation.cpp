@@ -7,6 +7,7 @@
 #include <thread>
 
 #include "DrawAbleObjects.h"
+#include "UpdateController.h"
 #include "EngineBase/EngineBase.h"
 
 void RayLibImplementation::init()
@@ -58,9 +59,9 @@ bool RayLibImplementation::toCloseWindow()
     return WindowShouldClose();
 }
 
-void RayLibImplementation::startWindow(std::function<void(float deltaTime)> updateFunction)
+void RayLibImplementation::startWindow()
 {
-    std::thread thread(updateFunction,GetFrameTime());
+    std::thread thread(UpdateController::beginUpdateLoop);
     drawFunction();
     thread.join();
 }

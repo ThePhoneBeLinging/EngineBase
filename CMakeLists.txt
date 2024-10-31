@@ -41,6 +41,8 @@ add_library(EngineBase
         src/GraphicsInterface/RayLibImplementation.h
         src/DrawAbleObjects.cpp
         src/DrawAbleObjects.h
+        src/UpdateController.cpp
+        src/UpdateController.h
 )
 
 target_include_directories(EngineBase PUBLIC src/include)

@@ -21,7 +21,7 @@ public:
     int loadTexture(const std::string& texturePath) override;
     std::pair<int, int> getWindowSize() override;
     bool toCloseWindow() override;
-    void startWindow(std::function<void(float deltaTime)> updateFunction) override;
+    void startWindow() override;
 
 private:
     static void drawFunction();

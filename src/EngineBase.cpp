@@ -5,6 +5,7 @@
 #include "EngineBase/EngineBase.h"
 
 #include "DrawAbleObjects.h"
+#include "UpdateController.h"
 #include "GraphicsInterface/RayLibImplementation.h"
 
 void EngineBase::init()
@@ -16,6 +17,11 @@ void EngineBase::init()
 void EngineBase::addDrawAble(const std::shared_ptr<DrawAble>& drawAble)
 {
     DrawAbleObjects::addDrawAble(drawAble);
+}
+
+void EngineBase::registerUpdateFunction(const std::function<void(float deltaTime)>& updateFunction)
+{
+    UpdateController::registerUpdateFunction(updateFunction);
 }
 
 IGraphicsLibrary* EngineBase::getGraphicsLibrary()
