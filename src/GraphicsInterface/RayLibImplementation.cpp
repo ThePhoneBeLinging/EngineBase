@@ -12,8 +12,6 @@
 void RayLibImplementation::init()
 {
     InitWindow(1200, 800, "M3");
-    std::thread thread(drawFunction);
-    textures.resize(1024);
 }
 
 void RayLibImplementation::drawFunction()
@@ -37,16 +35,15 @@ std::pair<int, int> RayLibImplementation::getMousePos()
 
 void RayLibImplementation::draw(const std::shared_ptr<DrawAble> drawAble)
 {
-    Texture2D texture = textures[drawAble->getTextureIndex()];
-    texture.height = drawAble->getHeight();
-    texture.width = drawAble->getWidth();
-
-    DrawTexture(texture, drawAble->getX(), drawAble->getY(), Color(0, 0, 0));
+    std::unique_ptr<Texture2D>* texture = &textures[drawAble->getTextureIndex()];
+    (*texture)->height = drawAble->getHeight();
+    (*texture)->width = drawAble->getWidth();
+    DrawTexture(**texture, drawAble->getX(), drawAble->getY(), Color(255, 255, 255,255));
 }
 
 int RayLibImplementation::loadTexture(const std::string& texturePath)
 {
-    textures.push_back(LoadTexture(texturePath.c_str()));
+    textures.push_back(std::make_unique<Texture2D>(LoadTexture(texturePath.c_str())));
     return static_cast<int>(textures.size()) - 1;
 }
 
@@ -59,4 +56,11 @@ std::pair<int, int> RayLibImplementation::getWindowSize()
 bool RayLibImplementation::toCloseWindow()
 {
     return WindowShouldClose();
+}
+
+void RayLibImplementation::startWindow(std::function<void(float deltaTime)> updateFunction)
+{
+    std::thread thread(updateFunction,GetFrameTime());
+    drawFunction();
+    thread.join();
 }

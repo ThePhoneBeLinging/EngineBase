@@ -4,6 +4,7 @@
 
 #ifndef IGRAPHICSLIBRARY_H
 #define IGRAPHICSLIBRARY_H
+#include <functional>
 #include <memory>
 
 #include "EngineBase/DrawAble.h"
@@ -18,5 +19,6 @@ public:
     virtual int loadTexture(const std::string& texturePath) = 0;
     virtual std::pair<int, int> getWindowSize() = 0;
     virtual bool toCloseWindow() = 0;
+    virtual void startWindow(std::function<void(float deltaTime)> updateFunction) = 0;
 };
 #endif //IGRAPHICSLIBRARY_H

@@ -16,15 +16,16 @@ class RayLibImplementation : public IGraphicsLibrary
 public:
     RayLibImplementation() = default;
     void init() override;
-    static void drawFunction();
     std::pair<int, int> getMousePos() override;
     void draw(std::shared_ptr<DrawAble> drawAble) override;
     int loadTexture(const std::string& texturePath) override;
     std::pair<int, int> getWindowSize() override;
     bool toCloseWindow() override;
+    void startWindow(std::function<void(float deltaTime)> updateFunction) override;
 
 private:
-    std::vector<Texture2D> textures;
+    static void drawFunction();
+    std::vector<std::unique_ptr<Texture2D>> textures;
 };
 
 
