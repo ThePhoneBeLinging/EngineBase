@@ -12,7 +12,7 @@ void UpdateController::beginUpdateLoop()
 {
     for (auto& timePoint : updateTimePoints_)
     {
-        timePoint = std::chrono::system_clock::now();
+        timePoint = std::chrono::high_resolution_clock::now();
     }
 
     while (not EngineBase::getGraphicsLibrary()->toCloseWindow())
@@ -21,7 +21,7 @@ void UpdateController::beginUpdateLoop()
         for (const auto& function : updateFunctionsToAdd_)
         {
             updateFunctions_.push_back(function);
-            updateTimePoints_.push_back(std::chrono::system_clock::now());
+            updateTimePoints_.push_back(std::chrono::high_resolution_clock::now());
         }
 
         updateFunctionsToAdd_.clear();
@@ -29,7 +29,8 @@ void UpdateController::beginUpdateLoop()
         for (int i = 0; i < updateTimePoints_.size(); i++)
         {
             //TODO Measure time since last update;
-            updateFunctions_[i](std::chrono::duration<double>(updateTimePoints_[i] - std::chrono::system_clock::now()).count());
+            updateFunctions_[i](std::chrono::duration<double>(updateTimePoints_[i] - std::chrono::high_resolution_clock::now()).count());
+            updateTimePoints_[i] = std::chrono::high_resolution_clock::now();
         }
     }
 }

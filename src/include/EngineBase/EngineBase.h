@@ -13,7 +13,7 @@ class EngineBase
 public:
     static void init();
     static void addDrawAble(const std::shared_ptr<DrawAble>& drawAble);
-    static void registerUpdateFunction(const std::function<void(float deltaTime)>& updateFunction);
+    static void registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction);
     static IGraphicsLibrary* getGraphicsLibrary();
 
 private:

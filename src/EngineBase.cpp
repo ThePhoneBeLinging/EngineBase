@@ -19,7 +19,7 @@ void EngineBase::addDrawAble(const std::shared_ptr<DrawAble>& drawAble)
     DrawAbleObjects::addDrawAble(drawAble);
 }
 
-void EngineBase::registerUpdateFunction(const std::function<void(float deltaTime)>& updateFunction)
+void EngineBase::registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction)
 {
     UpdateController::registerUpdateFunction(updateFunction);
 }
