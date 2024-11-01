@@ -21,6 +21,11 @@ public:
     std::pair<int, int> getWindowSize() override;
     bool toCloseWindow() override;
     void startWindow() override;
+    bool isKeyPressed(Key key) override;
+    bool isKeyDown(Key key) override;
+    bool isMouseButtonDown(Button button) override;
+    bool isMouseButtonReleased(Button button) override;
+    bool isMouseButtonPressed(Button button) override;
 
 private:
     static void drawFunction();

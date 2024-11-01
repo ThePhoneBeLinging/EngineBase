@@ -33,12 +33,13 @@ endif ()
 
 
 add_library(EngineBase
-        src/EngineBase.cpp
         src/include/EngineBase/EngineBase.h
+        src/include/EngineBase/KeyBoardKeys.h
         src/GraphicsInterface/IGraphicsLibrary.h
-        src/DrawAble.cpp
         src/GraphicsInterface/RayLibImplementation.cpp
         src/GraphicsInterface/RayLibImplementation.h
+        src/EngineBase.cpp
+        src/DrawAble.cpp
         src/DrawAbleObjects.cpp
         src/DrawAbleObjects.h
         src/UpdateController.cpp

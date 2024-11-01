@@ -7,6 +7,7 @@
 #include <memory>
 
 #include "EngineBase/DrawAble.h"
+#include "EngineBase/KeyBoardKeys.h"
 
 class IGraphicsLibrary
 {
@@ -19,5 +20,10 @@ public:
     virtual std::pair<int, int> getWindowSize() = 0;
     virtual bool toCloseWindow() = 0;
     virtual void startWindow() = 0;
+    virtual bool isKeyPressed(Key key) = 0;
+    virtual bool isKeyDown(Key key) = 0;
+    virtual bool isMouseButtonDown(Button button) = 0;
+    virtual bool isMouseButtonReleased(Button button) = 0;
+    virtual bool isMouseButtonPressed(Button button) = 0;
 };
 #endif //IGRAPHICSLIBRARY_H

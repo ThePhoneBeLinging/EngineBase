@@ -65,3 +65,28 @@ void RayLibImplementation::startWindow()
     drawFunction();
     thread.join();
 }
+
+bool RayLibImplementation::isKeyPressed(const Key key)
+{
+    return IsKeyPressed(key);
+}
+
+bool RayLibImplementation::isKeyDown(const Key key)
+{
+    return IsKeyDown(key);
+}
+
+bool RayLibImplementation::isMouseButtonDown(const Button button)
+{
+    return IsMouseButtonDown(button);
+}
+
+bool RayLibImplementation::isMouseButtonReleased(const Button button)
+{
+    return IsMouseButtonReleased(button);
+}
+
+bool RayLibImplementation::isMouseButtonPressed(const Button button)
+{
+    return IsMouseButtonPressed(button);
+}
