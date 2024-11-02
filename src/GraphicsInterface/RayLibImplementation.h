@@ -23,6 +23,7 @@ public:
     void startWindow() override;
     bool isKeyPressed(Key key) override;
     bool isKeyDown(Key key) override;
+    bool isKeyReleased(Key key) override;
     bool isMouseButtonDown(Button button) override;
     bool isMouseButtonReleased(Button button) override;
     bool isMouseButtonPressed(Button button) override;

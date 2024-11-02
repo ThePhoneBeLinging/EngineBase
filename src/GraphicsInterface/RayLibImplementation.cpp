@@ -76,6 +76,11 @@ bool RayLibImplementation::isKeyDown(const Key key)
     return IsKeyDown(key);
 }
 
+bool RayLibImplementation::isKeyReleased(Key key)
+{
+    return IsKeyReleased(key);
+}
+
 bool RayLibImplementation::isMouseButtonDown(const Button button)
 {
     return IsMouseButtonDown(button);
