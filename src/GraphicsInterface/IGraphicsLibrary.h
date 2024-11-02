@@ -22,7 +22,7 @@ public:
     virtual void startWindow() = 0;
     virtual bool isKeyPressed(Key key) = 0;
     virtual bool isKeyDown(Key key) = 0;
-    virtual bool isKeyReleased(Key key);
+    virtual bool isKeyReleased(Key key) = 0;
     virtual bool isMouseButtonDown(Button button) = 0;
     virtual bool isMouseButtonReleased(Button button) = 0;
     virtual bool isMouseButtonPressed(Button button) = 0;
