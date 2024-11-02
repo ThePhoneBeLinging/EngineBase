@@ -15,6 +15,7 @@ void DrawAbleObjects::addDrawAble(const std::shared_ptr<DrawAble>& drawAble)
 void DrawAbleObjects::markDrawAbleAsOnScreen(const int id)
 {
     activeDrawAbles_.push_back(drawAbles_.at(id));
+    sortActiveDrawAbles();
 }
 
 void DrawAbleObjects::markDrawAbleAsOffScreen(const int id)
@@ -31,6 +32,11 @@ void DrawAbleObjects::removeDrawAble(const int id)
 {
     // TODO Remove from DrawAbles list, and use a first-fit when adding drawAbles
     activeDrawAbles_.remove(drawAbles_.at(id));
+}
+
+void DrawAbleObjects::sortActiveDrawAbles()
+{
+    activeDrawAbles_.sort([] (const std::shared_ptr<DrawAble> &firstDrawAble, const std::shared_ptr<DrawAble> &secondDrawAble) {return firstDrawAble->getZ() >= secondDrawAble->getZ();});
 }
 
 

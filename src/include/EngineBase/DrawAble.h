@@ -16,6 +16,8 @@ public:
     void setX(int x);
     [[nodiscard]] int getY() const;
     void setY(int y);
+    [[nodiscard]] int getZ() const;
+    void setZ(int z);
     [[nodiscard]] int getWidth() const;
     void setWidth(int width);
     [[nodiscard]] int getHeight() const;
@@ -25,9 +27,13 @@ public:
     [[nodiscard]] int* getID() const;
     void setID(int* id);
 
+    void markAsOffScreen() const;
+    void markAsOnScreen() const;
+
 private:
     int x_;
     int y_;
+    int z_;
     int width_;
     int height_;
     int textureIndex_;

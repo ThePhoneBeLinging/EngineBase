@@ -16,6 +16,7 @@ class DrawAbleObjects
 public:
     static void addDrawAble(const std::shared_ptr<DrawAble>& drawAble);
     static void removeDrawAble(int id);
+    static void sortActiveDrawAbles();
     static void markDrawAbleAsOnScreen(int id);
     static void markDrawAbleAsOffScreen(int id);
     static std::list<std::shared_ptr<DrawAble>>& getActiveDrawAbles();

@@ -3,6 +3,8 @@
 //
 
 #include "EngineBase/DrawAble.h"
+
+#include "DrawAbleObjects.h"
 #include "mutex"
 
 DrawAble::DrawAble() : x_(0), y_(0), width_(0), height_(0), textureIndex_(0), id_(nullptr)
@@ -31,6 +33,22 @@ void DrawAble::setY(int y)
 {
     std::lock_guard lock(mutex_);
     y_ = y;
+}
+
+int DrawAble::getZ() const
+{
+    std::lock_guard lock(mutex_);
+    return z_;
+}
+
+void DrawAble::setZ(int z)
+{
+    std::lock_guard lock(mutex_);
+    if (z_ != z)
+    {
+        z_ = z;
+        DrawAbleObjects::sortActiveDrawAbles();
+    }
 }
 
 int DrawAble::getWidth() const
@@ -79,4 +97,14 @@ void DrawAble::setID(int* id)
 {
     std::lock_guard lock(mutex_);
     id_ = id;
+}
+
+void DrawAble::markAsOffScreen() const
+{
+    DrawAbleObjects::markDrawAbleAsOffScreen(*id_);
+}
+
+void DrawAble::markAsOnScreen() const
+{
+    DrawAbleObjects::markDrawAbleAsOnScreen(*id_);
 }
