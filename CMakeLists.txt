@@ -44,6 +44,8 @@ add_library(EngineBase
         src/DrawAbleObjects.h
         src/UpdateController.cpp
         src/UpdateController.h
+        src/CollisionChecker.cpp
+        src/CollisionChecker.h
 )
 
 target_include_directories(EngineBase PUBLIC src/include)
