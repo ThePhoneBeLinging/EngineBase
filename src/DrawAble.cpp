@@ -11,25 +11,25 @@ DrawAble::DrawAble() : x_(0), y_(0), width_(0), height_(0), textureIndex_(0), id
 {
 }
 
-int DrawAble::getX() const
+double DrawAble::getX() const
 {
     std::lock_guard lock(mutex_);
     return x_;
 }
 
-void DrawAble::setX(int x)
+void DrawAble::setX(double x)
 {
     std::lock_guard lock(mutex_);
     x_ = x;
 }
 
-int DrawAble::getY() const
+double DrawAble::getY() const
 {
     std::lock_guard lock(mutex_);
     return y_;
 }
 
-void DrawAble::setY(int y)
+void DrawAble::setY(double y)
 {
     std::lock_guard lock(mutex_);
     y_ = y;

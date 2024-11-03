@@ -12,10 +12,10 @@ class DrawAble
 public:
     DrawAble();
     virtual ~DrawAble() = default;
-    [[nodiscard]] int getX() const;
-    void setX(int x);
-    [[nodiscard]] int getY() const;
-    void setY(int y);
+    [[nodiscard]] double getX() const;
+    void setX(double x);
+    [[nodiscard]] double getY() const;
+    void setY(double y);
     [[nodiscard]] int getZ() const;
     void setZ(int z);
     [[nodiscard]] int getWidth() const;
@@ -31,8 +31,8 @@ public:
     void markAsOnScreen() const;
 
 private:
-    int x_;
-    int y_;
+    double x_;
+    double y_;
     int z_;
     int width_;
     int height_;
