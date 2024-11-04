@@ -43,10 +43,11 @@ int DrawAble::getZ() const
 
 void DrawAble::setZ(int z)
 {
-    std::lock_guard lock(mutex_);
+    std::unique_lock lock(mutex_);
     if (z_ != z)
     {
         z_ = z;
+        lock.unlock();
         DrawAbleObjects::sortActiveDrawAbles();
     }
 }
