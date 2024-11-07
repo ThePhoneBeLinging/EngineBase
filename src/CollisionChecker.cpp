@@ -18,5 +18,15 @@ bool CollisionChecker::checkSquareCollision(const std::shared_ptr<DrawAble>& fir
         return false;
     }
 
+    if (secondDrawAble->getX() + secondDrawAble->getWidth() < firstDrawAble->getX())
+    {
+        return false;
+    }
+
+    if (secondDrawAble->getY() + secondDrawAble->getHeight() < firstDrawAble->getY())
+    {
+        return false;
+    }
+
     return true;
 }
