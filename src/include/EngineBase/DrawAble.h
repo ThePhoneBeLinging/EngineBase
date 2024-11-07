@@ -24,8 +24,8 @@ public:
     void setHeight(int height);
     [[nodiscard]] int getTextureIndex() const;
     void setTextureIndex(int texture_index);
-    [[nodiscard]] int* getID() const;
-    void setID(int* id);
+    [[nodiscard]] int getID() const;
+    void setID(int id);
 
     void markAsOffScreen() const;
     void markAsOnScreen() const;
@@ -37,9 +37,9 @@ private:
     int width_;
     int height_;
     int textureIndex_;
-    int* id_;
-    //TODO Upgrade dataStructure to not have this be necessary
-    mutable std::mutex mutex_;
+    int id_;
+    //TODO Upgrade dataStructure to not have mutex be necessary
+    static inline std::mutex mutex_;
 };
 
 

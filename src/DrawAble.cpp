@@ -5,9 +5,8 @@
 #include "EngineBase/DrawAble.h"
 
 #include "DrawAbleObjects.h"
-#include "mutex"
 
-DrawAble::DrawAble() : x_(0), y_(0), width_(0), height_(0), textureIndex_(0), id_(nullptr)
+DrawAble::DrawAble() : x_(0), y_(0),z_(0), width_(0), height_(0), textureIndex_(0), id_(-1)
 {
 }
 
@@ -47,9 +46,11 @@ void DrawAble::setZ(int z)
     if (z_ != z)
     {
         z_ = z;
-        lock.unlock();
-        DrawAbleObjects::sortActiveDrawAbles();
+        //lock.unlock();
+        //DrawAbleObjects::sortActiveDrawAbles();
+        //lock.lock();
     }
+    lock.unlock();
 }
 
 int DrawAble::getWidth() const
@@ -82,19 +83,19 @@ int DrawAble::getTextureIndex() const
     return textureIndex_;
 }
 
-void DrawAble::setTextureIndex(int texture_index)
+void DrawAble::setTextureIndex(int textureIndex)
 {
     std::lock_guard lock(mutex_);
-    textureIndex_ = texture_index;
+    textureIndex_ = textureIndex;
 }
 
-int* DrawAble::getID() const
+int DrawAble::getID() const
 {
     std::lock_guard lock(mutex_);
     return id_;
 }
 
-void DrawAble::setID(int* id)
+void DrawAble::setID(int id)
 {
     std::lock_guard lock(mutex_);
     id_ = id;
@@ -102,10 +103,10 @@ void DrawAble::setID(int* id)
 
 void DrawAble::markAsOffScreen() const
 {
-    DrawAbleObjects::markDrawAbleAsOffScreen(*id_);
+    DrawAbleObjects::markDrawAbleAsOffScreen(id_);
 }
 
 void DrawAble::markAsOnScreen() const
 {
-    DrawAbleObjects::markDrawAbleAsOnScreen(*id_);
+    DrawAbleObjects::markDrawAbleAsOnScreen(id_);
 }

@@ -10,7 +10,6 @@
 
 #include "EngineBase/DrawAble.h"
 
-
 class DrawAbleObjects
 {
 public:
@@ -22,10 +21,8 @@ public:
     static std::list<std::shared_ptr<DrawAble>>& getActiveDrawAbles();
 
 private:
-    static inline std::mutex activeDrawAbleMutex_;
-    static inline std::list<int> drawAbleIds_;
-    static inline std::vector<std::shared_ptr<DrawAble>> drawAbles_;
-    static inline std::list<std::shared_ptr<DrawAble>> activeDrawAbles_;
+    static inline std::list<std::weak_ptr<DrawAble>> drawAbles_;
+    static inline std::list<std::weak_ptr<DrawAble>> activeDrawAbles_;
 };
 
 
