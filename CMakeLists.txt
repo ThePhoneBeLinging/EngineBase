@@ -40,8 +40,6 @@ add_library(EngineBase
         src/GraphicsInterface/RayLibImplementation.h
         src/EngineBase.cpp
         src/DrawAble.cpp
-        src/DrawAbleObjects.cpp
-        src/DrawAbleObjects.h
         src/UpdateController.cpp
         src/UpdateController.h
         src/CollisionChecker.cpp

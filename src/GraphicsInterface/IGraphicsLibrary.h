@@ -13,6 +13,7 @@ class IGraphicsLibrary
 {
 public:
     virtual ~IGraphicsLibrary() = default;
+    virtual void addDrawAble(std::shared_ptr<DrawAble> drawAble) = 0;
     virtual std::pair<int, int> getMousePos() = 0;
     virtual void draw(std::shared_ptr<DrawAble> drawAble) = 0;
     virtual int loadTexture(const std::string& texturePath) = 0;

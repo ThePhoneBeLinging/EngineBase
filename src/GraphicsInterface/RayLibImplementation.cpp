@@ -3,10 +3,7 @@
 //
 
 #include "RayLibImplementation.h"
-
 #include <thread>
-
-#include "DrawAbleObjects.h"
 #include "UpdateController.h"
 #include "EngineBase/EngineBase.h"
 
@@ -15,13 +12,18 @@ RayLibImplementation::RayLibImplementation()
     InitWindow(1200, 800, "M3");
 }
 
+void RayLibImplementation::addDrawAble(std::shared_ptr<DrawAble> drawAble)
+{
+    drawAbles_.push_back(drawAble);
+}
+
 void RayLibImplementation::drawFunction()
 {
     while (not this->toCloseWindow())
     {
         BeginDrawing();
         ClearBackground(BLACK);
-        for (const auto& drawAble : DrawAbleObjects::getActiveDrawAbles())
+        for (const auto& drawAble : drawAbles_)
         {
             this->draw(drawAble);
         }
@@ -36,7 +38,7 @@ std::pair<int, int> RayLibImplementation::getMousePos()
 
 void RayLibImplementation::draw(const std::shared_ptr<DrawAble> drawAble)
 {
-    std::unique_ptr<Texture2D>* texture = &textures[drawAble->getTextureIndex()];
+    std::unique_ptr<Texture2D>* texture = &textures_[drawAble->getTextureIndex()];
     (*texture)->height = drawAble->getHeight();
     (*texture)->width = drawAble->getWidth();
     DrawTexture(**texture, drawAble->getX(), drawAble->getY(), Color(255, 255, 255,255));
@@ -44,8 +46,8 @@ void RayLibImplementation::draw(const std::shared_ptr<DrawAble> drawAble)
 
 int RayLibImplementation::loadTexture(const std::string& texturePath)
 {
-    textures.push_back(std::make_unique<Texture2D>(LoadTexture(texturePath.c_str())));
-    return static_cast<int>(textures.size()) - 1;
+    textures_.push_back(std::make_unique<Texture2D>(LoadTexture(texturePath.c_str())));
+    return static_cast<int>(textures_.size()) - 1;
 }
 
 std::pair<int, int> RayLibImplementation::getWindowSize()

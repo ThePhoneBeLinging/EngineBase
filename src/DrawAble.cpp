@@ -4,8 +4,6 @@
 
 #include "EngineBase/DrawAble.h"
 
-#include "DrawAbleObjects.h"
-
 DrawAble::DrawAble() : x_(0), y_(0),z_(0), width_(0), height_(0), textureIndex_(0), id_(-1)
 {
 }
@@ -99,14 +97,4 @@ void DrawAble::setID(int id)
 {
     std::lock_guard lock(mutex_);
     id_ = id;
-}
-
-void DrawAble::markAsOffScreen() const
-{
-    DrawAbleObjects::markDrawAbleAsOffScreen(id_);
-}
-
-void DrawAble::markAsOnScreen() const
-{
-    DrawAbleObjects::markDrawAbleAsOnScreen(id_);
 }
