@@ -64,6 +64,7 @@ bool RayLibImplementation::toCloseWindow()
 void RayLibImplementation::startWindow()
 {
     drawFunction();
+    CloseWindow();
 }
 
 bool RayLibImplementation::isKeyPressed(const Key key)

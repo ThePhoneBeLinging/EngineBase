@@ -11,6 +11,7 @@ class DrawAble
 {
 public:
     DrawAble();
+    DrawAble(const DrawAble* drawAble);
     virtual ~DrawAble() = default;
     [[nodiscard]] double getX() const;
     void setX(double x);
@@ -27,10 +28,8 @@ public:
     [[nodiscard]] int getID() const;
     void setID(int id);
 
-    void markAsOffScreen() const;
-    void markAsOnScreen() const;
-
 private:
+    std::shared_ptr<DrawAble> drawAble_;
     double x_;
     double y_;
     int z_;
