@@ -8,14 +8,19 @@
 
 #include "EngineBase/EngineBase.h"
 
-void UpdateController::beginUpdateLoop()
+UpdateController::UpdateController(const std::shared_ptr<IGraphicsLibrary>& graphicsLibrary)
+{
+    graphicsLibrary_ = graphicsLibrary;
+}
+
+void UpdateController::startUpdateLoop()
 {
     for (auto& timePoint : updateTimePoints_)
     {
         timePoint = std::chrono::high_resolution_clock::now();
     }
 
-    while (not EngineBase::getGraphicsLibrary()->toCloseWindow())
+    while (not graphicsLibrary_->toCloseWindow())
     {
         std::unique_lock lock(mutex_);
         for (const auto& function : updateFunctionsToAdd_)

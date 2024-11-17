@@ -6,20 +6,22 @@
 #define ENGINEBASE_H
 #include <functional>
 #include <utility>
+
+#include "UpdateController.h"
 #include "GraphicsInterface/IGraphicsLibrary.h"
 
 
 class EngineBase
 {
 public:
-    static void init();
-    static void addDrawAble(const std::shared_ptr<DrawAble>& drawAble);
-    static void removeDrawAble(int drawAbleID);
-    static void registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction);
-    static IGraphicsLibrary* getGraphicsLibrary();
-
+    EngineBase();
+    void launch();
+    void registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction);
+    std::shared_ptr<IGraphicsLibrary> getGraphicsLibrary();
+    std::shared_ptr<UpdateController> getUpdateController();
 private:
-    static inline IGraphicsLibrary* graphicsInterface_;
+    std::shared_ptr<IGraphicsLibrary> graphicsInterface_;
+    std::shared_ptr<UpdateController> updateController_;
 };
 
 

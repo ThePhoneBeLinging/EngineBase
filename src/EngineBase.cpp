@@ -3,33 +3,34 @@
 //
 
 #include "EngineBase/EngineBase.h"
-
-#include "DrawAbleObjects.h"
+#include <thread>
 #include "UpdateController.h"
 #include "GraphicsInterface/RayLibImplementation.h"
 
-void EngineBase::init()
+EngineBase::EngineBase()
 {
-    graphicsInterface_ = new RayLibImplementation();
-    graphicsInterface_->init();
+    graphicsInterface_ = std::make_shared<RayLibImplementation>();
+    updateController_ = std::make_shared<UpdateController>(graphicsInterface_);
 }
 
-void EngineBase::addDrawAble(const std::shared_ptr<DrawAble>& drawAble)
+void EngineBase::launch()
 {
-    DrawAbleObjects::addDrawAble(drawAble);
-}
-
-void EngineBase::removeDrawAble(int drawAbleID)
-{
-    DrawAbleObjects::removeDrawAble(drawAbleID);
+    std::thread thread(&UpdateController::startUpdateLoop,updateController_);
+    graphicsInterface_->startWindow();
+    thread.join();
 }
 
 void EngineBase::registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction)
 {
-    UpdateController::registerUpdateFunction(updateFunction);
+    updateController_->registerUpdateFunction(updateFunction);
 }
 
-IGraphicsLibrary* EngineBase::getGraphicsLibrary()
+std::shared_ptr<IGraphicsLibrary> EngineBase::getGraphicsLibrary()
 {
     return graphicsInterface_;
+}
+
+std::shared_ptr<UpdateController> EngineBase::getUpdateController()
+{
+    return updateController_;
 }

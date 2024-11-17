@@ -10,20 +10,20 @@
 #include "UpdateController.h"
 #include "EngineBase/EngineBase.h"
 
-void RayLibImplementation::init()
+RayLibImplementation::RayLibImplementation()
 {
     InitWindow(1200, 800, "M3");
 }
 
 void RayLibImplementation::drawFunction()
 {
-    while (not EngineBase::getGraphicsLibrary()->toCloseWindow())
+    while (not this->toCloseWindow())
     {
         BeginDrawing();
         ClearBackground(BLACK);
         for (const auto& drawAble : DrawAbleObjects::getActiveDrawAbles())
         {
-            EngineBase::getGraphicsLibrary()->draw(drawAble);
+            this->draw(drawAble);
         }
         EndDrawing();
     }
@@ -61,9 +61,7 @@ bool RayLibImplementation::toCloseWindow()
 
 void RayLibImplementation::startWindow()
 {
-    std::thread thread(UpdateController::beginUpdateLoop);
     drawFunction();
-    thread.join();
 }
 
 bool RayLibImplementation::isKeyPressed(const Key key)
