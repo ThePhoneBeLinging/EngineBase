@@ -20,6 +20,13 @@ void EngineBase::launch()
     thread.join();
 }
 
+void EngineBase::addDrawAble(std::shared_ptr<DrawAble>& drawAble)
+{
+    auto newDrawAble = std::make_shared<DrawAble>(drawAble);
+    drawAble->setDrawAble(newDrawAble);
+    graphicsInterface_->addDrawAble(newDrawAble);
+}
+
 void EngineBase::registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction)
 {
     updateController_->registerUpdateFunction(updateFunction);

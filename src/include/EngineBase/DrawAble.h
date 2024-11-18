@@ -11,7 +11,7 @@ class DrawAble
 {
 public:
     DrawAble();
-    DrawAble(const DrawAble* drawAble);
+    DrawAble(const std::shared_ptr<DrawAble>& drawAble);
     virtual ~DrawAble() = default;
     [[nodiscard]] double getX() const;
     void setX(double x);
@@ -27,6 +27,7 @@ public:
     void setTextureIndex(int texture_index);
     [[nodiscard]] int getID() const;
     void setID(int id);
+    void setDrawAble(const std::shared_ptr<DrawAble>& drawAble);
 
 private:
     std::shared_ptr<DrawAble> drawAble_;

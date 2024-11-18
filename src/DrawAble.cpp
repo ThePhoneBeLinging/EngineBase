@@ -4,15 +4,21 @@
 
 #include "EngineBase/DrawAble.h"
 
-DrawAble::DrawAble() : x_(0), y_(0),z_(0), width_(0), height_(0), textureIndex_(0), id_(-1)
+DrawAble::DrawAble() : x_(0), y_(0),z_(0), width_(0), height_(0), textureIndex_(0), id_(-1), drawAble_(nullptr)
 {
-    drawAble_ = std::make_shared<DrawAble>(this);
 }
 
-DrawAble::DrawAble(const DrawAble* drawAble)
-: x_(drawAble->getX()), y_(drawAble->getY()),z_(drawAble->getZ()), width_(drawAble->getWidth()),
-height_(drawAble->getHeight()), textureIndex_(drawAble->getTextureIndex()), id_(-1), drawAble_(nullptr)
-{}
+DrawAble::DrawAble(const std::shared_ptr<DrawAble>& drawAble)
+{
+    x_ = drawAble->getX();
+    y_ = drawAble->getY();
+    z_ = drawAble->getZ();
+    width_ = drawAble->getWidth();
+    height_ = drawAble->getHeight();
+    textureIndex_ = drawAble->getTextureIndex();
+    id_ = drawAble->getID();
+    drawAble_ = nullptr;
+}
 
 double DrawAble::getX() const
 {
@@ -127,4 +133,9 @@ void DrawAble::setID(int id)
     {
         drawAble_->setID(id);
     }
+}
+
+void DrawAble::setDrawAble(const std::shared_ptr<DrawAble>& drawAble)
+{
+    drawAble_ = drawAble;
 }
