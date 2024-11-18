@@ -10,6 +10,7 @@
 RayLibImplementation::RayLibImplementation()
 {
     InitWindow(1200, 800, "M3");
+    loadTexture("../Textures/MissingTexture.png");
 }
 
 void RayLibImplementation::addDrawAble(std::shared_ptr<DrawAble> drawAble)
