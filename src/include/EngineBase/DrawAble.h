@@ -4,6 +4,7 @@
 
 #ifndef DRAWABLE_H
 #define DRAWABLE_H
+#include <memory>
 #include <mutex>
 
 
@@ -11,7 +12,7 @@ class DrawAble
 {
 public:
     DrawAble();
-    DrawAble(const std::shared_ptr<DrawAble>& drawAble);
+    explicit DrawAble(const std::shared_ptr<DrawAble>& drawAble);
     virtual ~DrawAble() = default;
     [[nodiscard]] double getX() const;
     void setX(double x);
