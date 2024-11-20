@@ -21,9 +21,10 @@ public:
     std::shared_ptr<UpdateController> getUpdateController();
 
 private:
+    std::mutex mutex_;
     std::shared_ptr<IGraphicsLibrary> graphicsInterface_;
     std::shared_ptr<UpdateController> updateController_;
-    std::vector<std::weak_ptr<DrawAble>> drawAble_;
+    std::vector<std::weak_ptr<DrawAble>> drawAbles_;
 };
 
 
