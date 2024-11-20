@@ -18,7 +18,7 @@ public:
     virtual int loadTexture(const std::string& texturePath) = 0;
     virtual std::pair<int, int> getWindowSize() = 0;
     virtual bool toCloseWindow() = 0;
-    virtual void startWindow() = 0;
+    virtual void closeWindow() = 0;
     virtual bool isKeyPressed(Key key) = 0;
     virtual bool isKeyDown(Key key) = 0;
     virtual bool isKeyReleased(Key key) = 0;

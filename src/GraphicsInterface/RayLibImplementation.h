@@ -19,7 +19,7 @@ public:
     int loadTexture(const std::string& texturePath) override;
     std::pair<int, int> getWindowSize() override;
     bool toCloseWindow() override;
-    void startWindow() override;
+    void closeWindow() override;
     bool isKeyPressed(Key key) override;
     bool isKeyDown(Key key) override;
     bool isKeyReleased(Key key) override;

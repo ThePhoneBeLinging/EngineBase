@@ -13,25 +13,6 @@ RayLibImplementation::RayLibImplementation()
     loadTexture("../Textures/MissingTexture.png");
 }
 
-void RayLibImplementation::addDrawAble(std::shared_ptr<DrawAble> drawAble)
-{
-    drawAbles_.push_back(drawAble);
-}
-
-void RayLibImplementation::drawFunction()
-{
-    while (not this->toCloseWindow())
-    {
-        BeginDrawing();
-        ClearBackground(BLACK);
-        for (const auto& drawAble : drawAbles_)
-        {
-            this->draw(drawAble);
-        }
-        EndDrawing();
-    }
-}
-
 std::pair<int, int> RayLibImplementation::getMousePos()
 {
     return {GetMouseX(), GetMouseY()};
@@ -42,7 +23,7 @@ void RayLibImplementation::draw(const std::shared_ptr<DrawAble> drawAble)
     std::unique_ptr<Texture2D>* texture = &textures_[drawAble->getTextureIndex()];
     (*texture)->height = drawAble->getHeight();
     (*texture)->width = drawAble->getWidth();
-    DrawTexture(**texture, drawAble->getX(), drawAble->getY(), Color(255, 255, 255,255));
+    DrawTexture(**texture, drawAble->getX(), drawAble->getY(), Color(255, 255, 255, 255));
 }
 
 int RayLibImplementation::loadTexture(const std::string& texturePath)
@@ -62,9 +43,8 @@ bool RayLibImplementation::toCloseWindow()
     return WindowShouldClose();
 }
 
-void RayLibImplementation::startWindow()
+void RayLibImplementation::closeWindow()
 {
-    drawFunction();
     CloseWindow();
 }
 
