@@ -12,7 +12,7 @@ class DrawAble
 {
 public:
     DrawAble();
-    explicit DrawAble(const std::shared_ptr<DrawAble>& drawAble);
+    explicit DrawAble(DrawAble* drawAble);
     virtual ~DrawAble() = default;
     [[nodiscard]] double getX() const;
     void setX(double x);
