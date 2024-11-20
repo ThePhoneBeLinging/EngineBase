@@ -4,20 +4,20 @@
 
 #include "EngineBase/DrawAble.h"
 
-DrawAble::DrawAble() : x_(0), y_(0), z_(0), width_(0), height_(0), textureIndex_(0), id_(-1),
-                       drawAble_(std::make_shared<DrawAble>(this))
+DrawAble::DrawAble() : x_(0), y_(0), z_(0), width_(0), height_(0), textureIndex_(0), id_(-1)
+,drawAble_(std::make_shared<DrawAble>(nullptr))
 {
 }
 
-DrawAble::DrawAble(const DrawAble* drawAble)
+DrawAble::DrawAble(DrawAble* drawAble)
 {
-    x_ = drawAble->getX();
-    y_ = drawAble->getY();
-    z_ = drawAble->getZ();
-    width_ = drawAble->getWidth();
-    height_ = drawAble->getHeight();
-    textureIndex_ = drawAble->getTextureIndex();
-    id_ = drawAble->getID();
+    x_ = 0;
+    y_ = 0;
+    z_ = 0;
+    width_ = 0;
+    height_ = 0;
+    textureIndex_ = 0;
+    id_ = 0;
     drawAble_ = nullptr;
 }
 
