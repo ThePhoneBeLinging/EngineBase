@@ -5,7 +5,6 @@
 #ifndef ENGINEBASE_H
 #define ENGINEBASE_H
 #include <functional>
-#include <utility>
 
 #include "UpdateController.h"
 #include "GraphicsInterface/IGraphicsLibrary.h"
@@ -17,7 +16,7 @@ public:
     EngineBase();
     void launch();
     void registerDrawAble(const std::shared_ptr<DrawAble>& drawAble);
-    void registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction);
+    void registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction) const;
     std::shared_ptr<IGraphicsLibrary> getGraphicsLibrary();
     std::shared_ptr<UpdateController> getUpdateController();
 

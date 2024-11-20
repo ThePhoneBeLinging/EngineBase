@@ -25,7 +25,7 @@ void EngineBase::registerDrawAble(const std::shared_ptr<DrawAble>& drawAble)
     drawAble_.push_back(drawAble->getDrawAblePtr());
 }
 
-void EngineBase::registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction)
+void EngineBase::registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction) const
 {
     updateController_->registerUpdateFunction(updateFunction);
 }
