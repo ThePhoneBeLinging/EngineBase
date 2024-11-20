@@ -16,8 +16,8 @@ EngineBase::EngineBase()
 void EngineBase::launch()
 {
     std::thread thread(&UpdateController::startUpdateLoop, updateController_);
-    graphicsInterface_->startWindow();
     thread.join();
+    graphicsInterface_->closeWindow();
 }
 
 void EngineBase::registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction)
