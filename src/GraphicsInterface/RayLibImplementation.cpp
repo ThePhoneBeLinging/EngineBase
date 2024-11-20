@@ -21,7 +21,7 @@ std::pair<int, int> RayLibImplementation::getMousePos()
 void RayLibImplementation::draw(const std::vector<std::shared_ptr<DrawAble>>& drawAbles)
 {
     BeginDrawing();
-    ClearBackground(BLACK);
+    ClearBackground(DARKGRAY);
     for (const auto& drawAble : drawAbles)
     {
         if (drawAble == nullptr)
