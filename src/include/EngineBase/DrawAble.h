@@ -12,7 +12,7 @@ class DrawAble
 {
 public:
     DrawAble();
-    explicit DrawAble(DrawAble* drawAble);
+    explicit DrawAble(const DrawAble* drawAble);
     virtual ~DrawAble() = default;
     [[nodiscard]] double getX() const;
     void setX(double x);

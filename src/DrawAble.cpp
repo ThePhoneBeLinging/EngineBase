@@ -9,7 +9,7 @@ DrawAble::DrawAble() : x_(0), y_(0), z_(0), width_(0), height_(0), textureIndex_
 {
 }
 
-DrawAble::DrawAble(DrawAble* drawAble)
+DrawAble::DrawAble(const DrawAble* drawAble)
 {
     x_ = drawAble->getX();
     y_ = drawAble->getY();
