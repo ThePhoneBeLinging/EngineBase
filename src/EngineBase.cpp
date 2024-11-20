@@ -18,7 +18,6 @@ void EngineBase::launch()
     std::thread thread(&UpdateController::startUpdateLoop, updateController_);
     while (not graphicsInterface_->toCloseWindow())
     {
-        std::this_thread::sleep_for(std::chrono::milliseconds(750));
         std::unique_lock lock(mutex_);
         std::vector<std::shared_ptr<DrawAble>> drawables;
         std::vector<std::weak_ptr<DrawAble>> expiredDrawAbles;
@@ -28,6 +27,7 @@ void EngineBase::launch()
         }
         lock.unlock();
         graphicsInterface_->draw(drawables);
+        std::this_thread::sleep_for(std::chrono::milliseconds(750));
     }
     thread.join();
     graphicsInterface_->closeWindow();
