@@ -29,6 +29,7 @@ public:
     [[nodiscard]] int getID() const;
     void setID(int id);
     void setDrawAble(const std::shared_ptr<DrawAble>& drawAble);
+    [[nodiscard]] std::weak_ptr<DrawAble> getDrawAblePtr() const;
 
 private:
     std::shared_ptr<DrawAble> drawAble_;

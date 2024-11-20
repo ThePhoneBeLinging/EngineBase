@@ -16,6 +16,7 @@ class EngineBase
 public:
     EngineBase();
     void launch();
+    void registerDrawAble(const std::shared_ptr<DrawAble>& drawAble);
     void registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction);
     std::shared_ptr<IGraphicsLibrary> getGraphicsLibrary();
     std::shared_ptr<UpdateController> getUpdateController();
@@ -23,6 +24,7 @@ public:
 private:
     std::shared_ptr<IGraphicsLibrary> graphicsInterface_;
     std::shared_ptr<UpdateController> updateController_;
+    std::vector<std::weak_ptr<DrawAble>> drawAble_;
 };
 
 

@@ -140,3 +140,8 @@ void DrawAble::setDrawAble(const std::shared_ptr<DrawAble>& drawAble)
 {
     drawAble_ = drawAble;
 }
+
+std::weak_ptr<DrawAble> DrawAble::getDrawAblePtr() const
+{
+    return drawAble_;
+}
