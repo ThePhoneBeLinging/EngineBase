@@ -14,7 +14,6 @@ class RayLibImplementation : public IGraphicsLibrary
 {
 public:
     RayLibImplementation();
-    void addDrawAble(std::shared_ptr<DrawAble> drawAble) override;
     std::pair<int, int> getMousePos() override;
     void draw(std::shared_ptr<DrawAble> drawAble) override;
     int loadTexture(const std::string& texturePath) override;
@@ -29,9 +28,7 @@ public:
     bool isMouseButtonPressed(Button button) override;
 
 private:
-    void drawFunction();
     std::vector<std::unique_ptr<Texture2D>> textures_;
-    std::list<std::shared_ptr<DrawAble>> drawAbles_;
 };
 
 

@@ -16,10 +16,10 @@ class EngineBase
 public:
     EngineBase();
     void launch();
-    void addDrawAble(std::shared_ptr<DrawAble>& drawAble);
     void registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction);
     std::shared_ptr<IGraphicsLibrary> getGraphicsLibrary();
     std::shared_ptr<UpdateController> getUpdateController();
+
 private:
     std::shared_ptr<IGraphicsLibrary> graphicsInterface_;
     std::shared_ptr<UpdateController> updateController_;

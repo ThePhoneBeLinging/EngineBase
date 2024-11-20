@@ -15,16 +15,9 @@ EngineBase::EngineBase()
 
 void EngineBase::launch()
 {
-    std::thread thread(&UpdateController::startUpdateLoop,updateController_);
+    std::thread thread(&UpdateController::startUpdateLoop, updateController_);
     graphicsInterface_->startWindow();
     thread.join();
-}
-
-void EngineBase::addDrawAble(std::shared_ptr<DrawAble>& drawAble)
-{
-    auto newDrawAble = std::make_shared<DrawAble>(drawAble);
-    drawAble->setDrawAble(newDrawAble);
-    graphicsInterface_->addDrawAble(newDrawAble);
 }
 
 void EngineBase::registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction)
