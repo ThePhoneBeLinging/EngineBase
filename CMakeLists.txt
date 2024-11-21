@@ -45,7 +45,6 @@ add_library(EngineBase
         src/CollisionChecker.cpp
         src/include/EngineBase/CollisionChecker.h
         src/Text.cpp
-        src/Text.h
 )
 
 target_include_directories(EngineBase PUBLIC src/include)
