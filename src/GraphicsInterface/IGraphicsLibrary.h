@@ -8,13 +8,14 @@
 
 #include "EngineBase/DrawAble.h"
 #include "EngineBase/KeyBoardKeys.h"
+#include "EngineBase/Text.h"
 
 class IGraphicsLibrary
 {
 public:
     virtual ~IGraphicsLibrary() = default;
     virtual std::pair<int, int> getMousePos() = 0;
-    virtual void draw(const std::vector<std::shared_ptr<DrawAble>>& drawAble) = 0;
+    virtual void draw(const std::vector<std::shared_ptr<DrawAble>>& drawAble, const std::vector<std::shared_ptr<Text>>& texts) = 0;
     virtual int loadTexture(const std::string& texturePath) = 0;
     virtual std::pair<int, int> getWindowSize() = 0;
     virtual bool toCloseWindow() = 0;

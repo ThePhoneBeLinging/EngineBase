@@ -15,7 +15,7 @@ class RayLibImplementation : public IGraphicsLibrary
 public:
     RayLibImplementation();
     std::pair<int, int> getMousePos() override;
-    void draw(const std::vector<std::shared_ptr<DrawAble>>& drawAbles) override;
+    void draw(const std::vector<std::shared_ptr<DrawAble>>& drawAbles, const std::vector<std::shared_ptr<Text>>& texts) override;
     int loadTexture(const std::string& texturePath) override;
     std::pair<int, int> getWindowSize() override;
     bool toCloseWindow() override;

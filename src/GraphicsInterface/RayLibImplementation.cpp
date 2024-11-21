@@ -18,7 +18,7 @@ std::pair<int, int> RayLibImplementation::getMousePos()
     return {GetMouseX(), GetMouseY()};
 }
 
-void RayLibImplementation::draw(const std::vector<std::shared_ptr<DrawAble>>& drawAbles)
+void RayLibImplementation::draw(const std::vector<std::shared_ptr<DrawAble>>& drawAbles, const std::vector<std::shared_ptr<Text>>& texts)
 {
     BeginDrawing();
     ClearBackground(DARKGRAY);
@@ -32,6 +32,14 @@ void RayLibImplementation::draw(const std::vector<std::shared_ptr<DrawAble>>& dr
         (*texture)->height = drawAble->getHeight();
         (*texture)->width = drawAble->getWidth();
         DrawTexture(**texture, drawAble->getX(), drawAble->getY(), Color(255, 255, 255, 255));
+    }
+    for (const auto& text : texts)
+    {
+        if (text == nullptr)
+        {
+            continue;
+        }
+        DrawText(text->getText().c_str(),text->getX(),text->getY(),text->getFontSize(),WHITE);
     }
     EndDrawing();
 }
