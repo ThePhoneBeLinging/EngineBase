@@ -4,7 +4,6 @@
 
 #include "RayLibImplementation.h"
 #include <thread>
-#include "UpdateController.h"
 #include "EngineBase/EngineBase.h"
 
 RayLibImplementation::RayLibImplementation()

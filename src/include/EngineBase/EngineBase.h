@@ -7,7 +7,6 @@
 #include <functional>
 
 #include "Text.h"
-#include "UpdateController.h"
 #include "GraphicsInterface/IGraphicsLibrary.h"
 
 
@@ -18,15 +17,12 @@ public:
     void launch();
     void registerDrawAble(const std::shared_ptr<DrawAble>& drawAble);
     void registerText(const std::shared_ptr<Text>& text);
-    void registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction) const;
     std::shared_ptr<IGraphicsLibrary> getGraphicsLibrary();
-    std::shared_ptr<UpdateController> getUpdateController();
 
 private:
     std::mutex drawAbleMutex_;
     std::mutex textsMutex_;
     std::shared_ptr<IGraphicsLibrary> graphicsInterface_;
-    std::shared_ptr<UpdateController> updateController_;
     std::vector<std::weak_ptr<DrawAble>> drawAbles_;
     std::vector<std::weak_ptr<Text>> texts_;
 };
