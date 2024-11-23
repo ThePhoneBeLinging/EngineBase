@@ -32,7 +32,7 @@ void EngineBase::launch()
         }
         guard.unlock();
         graphicsInterface_->draw(drawables,texts);
-        std::this_thread::sleep_for(std::chrono::milliseconds(750));
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
     graphicsInterface_->closeWindow();
 }
