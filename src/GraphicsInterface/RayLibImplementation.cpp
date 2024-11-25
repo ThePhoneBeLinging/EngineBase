@@ -18,11 +18,11 @@ std::pair<int, int> RayLibImplementation::getMousePos()
     return {GetMouseX(), GetMouseY()};
 }
 
-void RayLibImplementation::draw(const std::vector<std::shared_ptr<DrawAble>>& drawAbles)
+void RayLibImplementation::draw(const std::shared_ptr<Scene> scene)
 {
     BeginDrawing();
     ClearBackground(BLACK);
-    for (const auto& drawAble : drawAbles)
+    for (const auto& drawAble : scene->getDrawables())
     {
         if (drawAble == nullptr)
         {

@@ -6,6 +6,7 @@
 #define IGRAPHICSLIBRARY_H
 #include <memory>
 
+#include "Scene.h"
 #include "EngineBase/DrawAble.h"
 #include "EngineBase/KeyBoardKeys.h"
 
@@ -14,7 +15,7 @@ class IGraphicsLibrary
 public:
     virtual ~IGraphicsLibrary() = default;
     virtual std::pair<int, int> getMousePos() = 0;
-    virtual void draw(const std::vector<std::shared_ptr<DrawAble>>& drawAble) = 0;
+    virtual void draw(std::shared_ptr<Scene> scene) = 0;
     virtual int loadTexture(const std::string& texturePath) = 0;
     virtual std::pair<int, int> getWindowSize() = 0;
     virtual bool toCloseWindow() = 0;
