@@ -4,7 +4,7 @@
 
 #include "Scene.h"
 
-void Scene::addToScene(const std::weak_ptr<DrawAble>& drawAble)
+void Scene::addDrawAbleToScene(const std::weak_ptr<DrawAble>& drawAble)
 {
     drawAbles_.push_back(drawAble);
 }

@@ -3,39 +3,28 @@
 //
 
 #include "EngineBase/EngineBase.h"
+
 #include <thread>
+
 #include "UpdateController.h"
 #include "GraphicsInterface/RayLibImplementation.h"
 
 EngineBase::EngineBase()
 {
     graphicsInterface_ = std::make_shared<RayLibImplementation>();
-    updateController_ = std::make_shared<UpdateController>(graphicsInterface_);
+    updateController_ = std::make_unique<UpdateController>(graphicsInterface_);
+    sceneController_ = std::make_unique<SceneController>(graphicsInterface_);
 }
 
-void EngineBase::launch()
+void EngineBase::launch() const
 {
-    std::thread thread(&UpdateController::startUpdateLoop, updateController_);
-    while (not graphicsInterface_->toCloseWindow())
-    {
-        std::unique_lock lock(mutex_);
-        std::vector<std::shared_ptr<DrawAble>> drawables;
-        std::vector<std::weak_ptr<DrawAble>> expiredDrawAbles;
-        for (const auto& drawAble : drawAbles_)
-        {
-            drawables.push_back(drawAble.lock());
-        }
-        lock.unlock();
-        graphicsInterface_->draw(drawables);
-    }
-    thread.join();
-    graphicsInterface_->closeWindow();
+    //std::thread thread(&UpdateController::startUpdateLoop, updateController_);
+    sceneController_->startDrawing();
 }
 
 void EngineBase::registerDrawAble(const std::shared_ptr<DrawAble>& drawAble)
 {
-    std::lock_guard guard(mutex_);
-    drawAbles_.push_back(drawAble->getDrawAblePtr());
+    sceneController_->getScene(0)->addDrawAbleToScene(drawAble);
 }
 
 void EngineBase::registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction) const
@@ -46,9 +35,4 @@ void EngineBase::registerUpdateFunction(const std::function<void(double deltaTim
 std::shared_ptr<IGraphicsLibrary> EngineBase::getGraphicsLibrary()
 {
     return graphicsInterface_;
-}
-
-std::shared_ptr<UpdateController> EngineBase::getUpdateController()
-{
-    return updateController_;
 }

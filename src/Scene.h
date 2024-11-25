@@ -12,7 +12,7 @@ class Scene
 {
 public:
     Scene() = default;
-    void addToScene(const std::weak_ptr<DrawAble>& drawAble);
+    void addDrawAbleToScene(const std::weak_ptr<DrawAble>& drawAble);
     [[nodiscard]] std::vector<std::shared_ptr<DrawAble>> getDrawables() const;
 
 private:

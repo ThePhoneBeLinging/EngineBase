@@ -46,6 +46,8 @@ add_library(EngineBase
         src/include/EngineBase/CollisionChecker.h
         src/Scene.cpp
         src/Scene.h
+        src/SceneController.cpp
+        src/SceneController.h
 )
 
 target_include_directories(EngineBase PUBLIC src/include)
