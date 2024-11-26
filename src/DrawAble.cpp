@@ -5,8 +5,9 @@
 #include "EngineBase/DrawAble.h"
 
 DrawAble::DrawAble() : x_(0), y_(0), z_(0), width_(0), height_(0), textureIndex_(0), id_(-1),
-                       drawAble_(std::make_shared<DrawAble>(this))
+                       mutex_(std::make_unique<std::mutex>())
 {
+    drawAble_ = std::make_shared<DrawAble>(this);
 }
 
 DrawAble::DrawAble(const DrawAble* drawAble)
@@ -19,17 +20,18 @@ DrawAble::DrawAble(const DrawAble* drawAble)
     textureIndex_ = drawAble->getTextureIndex();
     id_ = drawAble->getID();
     drawAble_ = nullptr;
+    mutex_ = std::make_unique<std::mutex>();
 }
 
 double DrawAble::getX() const
 {
-    std::lock_guard lock(mutex_);
+    std::lock_guard lock(*mutex_);
     return x_;
 }
 
 void DrawAble::setX(double x)
 {
-    std::lock_guard lock(mutex_);
+    std::lock_guard lock(*mutex_);
     x_ = x;
     if (drawAble_ != nullptr)
     {
@@ -39,13 +41,13 @@ void DrawAble::setX(double x)
 
 double DrawAble::getY() const
 {
-    std::lock_guard lock(mutex_);
+    std::lock_guard lock(*mutex_);
     return y_;
 }
 
 void DrawAble::setY(double y)
 {
-    std::lock_guard lock(mutex_);
+    std::lock_guard lock(*mutex_);
     y_ = y;
     if (drawAble_ != nullptr)
     {
@@ -55,13 +57,13 @@ void DrawAble::setY(double y)
 
 int DrawAble::getZ() const
 {
-    std::lock_guard lock(mutex_);
+    std::lock_guard lock(*mutex_);
     return z_;
 }
 
 void DrawAble::setZ(int z)
 {
-    std::lock_guard lock(mutex_);
+    std::lock_guard lock(*mutex_);
     if (z_ != z)
     {
         z_ = z;
@@ -74,13 +76,13 @@ void DrawAble::setZ(int z)
 
 int DrawAble::getWidth() const
 {
-    std::lock_guard lock(mutex_);
+    std::lock_guard lock(*mutex_);
     return width_;
 }
 
 void DrawAble::setWidth(int width)
 {
-    std::lock_guard lock(mutex_);
+    std::lock_guard lock(*mutex_);
     width_ = width;
     if (drawAble_ != nullptr)
     {
@@ -90,13 +92,13 @@ void DrawAble::setWidth(int width)
 
 int DrawAble::getHeight() const
 {
-    std::lock_guard lock(mutex_);
+    std::lock_guard lock(*mutex_);
     return height_;
 }
 
 void DrawAble::setHeight(int height)
 {
-    std::lock_guard lock(mutex_);
+    std::lock_guard lock(*mutex_);
     if (drawAble_ != nullptr)
     {
         drawAble_->setHeight(height);
@@ -106,13 +108,13 @@ void DrawAble::setHeight(int height)
 
 int DrawAble::getTextureIndex() const
 {
-    std::lock_guard lock(mutex_);
+    std::lock_guard lock(*mutex_);
     return textureIndex_;
 }
 
 void DrawAble::setTextureIndex(int textureIndex)
 {
-    std::lock_guard lock(mutex_);
+    std::lock_guard lock(*mutex_);
     if (drawAble_ != nullptr)
     {
         drawAble_->setTextureIndex(textureIndex);
@@ -122,13 +124,13 @@ void DrawAble::setTextureIndex(int textureIndex)
 
 int DrawAble::getID() const
 {
-    std::lock_guard lock(mutex_);
+    std::lock_guard lock(*mutex_);
     return id_;
 }
 
 void DrawAble::setID(int id)
 {
-    std::lock_guard lock(mutex_);
+    std::lock_guard lock(*mutex_);
     id_ = id;
     if (drawAble_ != nullptr)
     {

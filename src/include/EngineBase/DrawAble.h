@@ -41,7 +41,7 @@ private:
     int textureIndex_;
     int id_;
     //TODO Upgrade dataStructure to not have mutex be necessary
-    mutable std::mutex mutex_;
+    std::unique_ptr<std::mutex> mutex_;
 };
 
 
