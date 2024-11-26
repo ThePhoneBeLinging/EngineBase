@@ -5,6 +5,7 @@
 #ifndef SCENECONTROLLER_H
 #define SCENECONTROLLER_H
 #include "GraphicsInterface/IGraphicsLibrary.h"
+#include "Scene.h"
 
 
 class SceneController

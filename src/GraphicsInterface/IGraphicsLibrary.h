@@ -6,7 +6,7 @@
 #define IGRAPHICSLIBRARY_H
 #include <memory>
 
-#include "Scene.h"
+class Scene;
 #include "EngineBase/DrawAble.h"
 #include "EngineBase/KeyBoardKeys.h"
 
