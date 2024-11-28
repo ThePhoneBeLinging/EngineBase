@@ -18,8 +18,9 @@ EngineBase::EngineBase()
 
 void EngineBase::launch() const
 {
-    //std::thread thread(&UpdateController::startUpdateLoop, updateController_);
+    std::thread thread(&UpdateController::startUpdateLoop, updateController_.get());
     sceneController_->startDrawing();
+    thread.join();
 }
 
 void EngineBase::registerDrawAble(const std::shared_ptr<DrawAble>& drawAble)
