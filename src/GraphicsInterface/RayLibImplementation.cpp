@@ -33,6 +33,10 @@ void RayLibImplementation::draw(const std::shared_ptr<Scene> scene)
             loadTexture(drawAble->getTextureLocation());
         }
         auto texture = textureMap_[drawAble->getTextureLocation()];
+        if (texture.id == 0)
+        {
+            texture = textureMap_["../Textures/MissingTexture.png"];
+        }
         (texture).height = drawAble->getHeight();
         (texture).width = drawAble->getWidth();
         DrawTexture(texture, drawAble->getX(), drawAble->getY(), Color(255, 255, 255, 255));
@@ -42,7 +46,7 @@ void RayLibImplementation::draw(const std::shared_ptr<Scene> scene)
 
 void RayLibImplementation::loadTexture(const std::string& texturePath)
 {
-    textureMap_.emplace(texturePath,LoadTexture(texturePath.c_str()));
+    textureMap_.emplace(texturePath, LoadTexture(texturePath.c_str()));
 }
 
 std::pair<int, int> RayLibImplementation::getWindowSize()
