@@ -10,7 +10,7 @@
 RayLibImplementation::RayLibImplementation()
 {
     InitWindow(1200, 800, "M3");
-    loadTexture("../Textures/MissingTexture.png");
+    RayLibImplementation::loadTexture("../Textures/MissingTexture.png");
 }
 
 std::pair<int, int> RayLibImplementation::getMousePos()
@@ -28,18 +28,21 @@ void RayLibImplementation::draw(const std::shared_ptr<Scene> scene)
         {
             continue;
         }
-        std::unique_ptr<Texture2D>* texture = &textures_[drawAble->getTextureIndex()];
-        (*texture)->height = drawAble->getHeight();
-        (*texture)->width = drawAble->getWidth();
-        DrawTexture(**texture, drawAble->getX(), drawAble->getY(), Color(255, 255, 255, 255));
+        if (not textureMap_.contains(drawAble->getTextureLocation()))
+        {
+            loadTexture(drawAble->getTextureLocation());
+        }
+        auto texture = textureMap_[drawAble->getTextureLocation()];
+        (texture).height = drawAble->getHeight();
+        (texture).width = drawAble->getWidth();
+        DrawTexture(texture, drawAble->getX(), drawAble->getY(), Color(255, 255, 255, 255));
     }
     EndDrawing();
 }
 
-int RayLibImplementation::loadTexture(const std::string& texturePath)
+void RayLibImplementation::loadTexture(const std::string& texturePath)
 {
-    textures_.push_back(std::make_unique<Texture2D>(LoadTexture(texturePath.c_str())));
-    return static_cast<int>(textures_.size()) - 1;
+    textureMap_.emplace(texturePath,LoadTexture(texturePath.c_str()));
 }
 
 std::pair<int, int> RayLibImplementation::getWindowSize()

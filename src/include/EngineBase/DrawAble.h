@@ -24,8 +24,8 @@ public:
     void setWidth(int width);
     [[nodiscard]] int getHeight() const;
     void setHeight(int height);
-    [[nodiscard]] int getTextureIndex() const;
-    void setTextureIndex(int texture_index);
+    [[nodiscard]] std::string getTextureLocation() const;
+    void setTextureLocation(std::string texture_index);
     [[nodiscard]] int getID() const;
     void setID(int id);
     void setDrawAble(const std::shared_ptr<DrawAble>& drawAble);
@@ -38,7 +38,7 @@ protected:
     int z_;
     int width_;
     int height_;
-    int textureIndex_;
+    std::string textureLocation_;
     int id_;
     //TODO Upgrade dataStructure to not have mutex be necessary
     std::unique_ptr<std::mutex> mutex_;

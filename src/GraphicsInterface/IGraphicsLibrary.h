@@ -16,7 +16,7 @@ public:
     virtual ~IGraphicsLibrary() = default;
     virtual std::pair<int, int> getMousePos() = 0;
     virtual void draw(std::shared_ptr<Scene> scene) = 0;
-    virtual int loadTexture(const std::string& texturePath) = 0;
+    virtual void loadTexture(const std::string& texturePath) = 0;
     virtual std::pair<int, int> getWindowSize() = 0;
     virtual bool toCloseWindow() = 0;
     virtual void closeWindow() = 0;

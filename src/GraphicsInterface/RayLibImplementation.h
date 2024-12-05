@@ -5,6 +5,7 @@
 #ifndef RAYLIBIMPLEMENTATION_H
 #define RAYLIBIMPLEMENTATION_H
 #include <list>
+#include <unordered_map>
 #include <vector>
 
 #include "IGraphicsLibrary.h"
@@ -16,7 +17,7 @@ public:
     RayLibImplementation();
     std::pair<int, int> getMousePos() override;
     void draw(std::shared_ptr<Scene> scene) override;
-    int loadTexture(const std::string& texturePath) override;
+    void loadTexture(const std::string& texturePath) override;
     std::pair<int, int> getWindowSize() override;
     bool toCloseWindow() override;
     void closeWindow() override;
@@ -28,7 +29,7 @@ public:
     bool isMouseButtonPressed(Button button) override;
 
 private:
-    std::vector<std::unique_ptr<Texture2D>> textures_;
+    std::unordered_map<std::string,Texture2D> textureMap_;
 };
 
 

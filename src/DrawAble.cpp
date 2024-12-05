@@ -2,9 +2,11 @@
 // Created by eal on 10/30/24.
 //
 
+#include <utility>
+
 #include "EngineBase/DrawAble.h"
 
-DrawAble::DrawAble() : x_(0), y_(0), z_(0), width_(0), height_(0), textureIndex_(0), id_(-1),
+DrawAble::DrawAble() : x_(0), y_(0), z_(0), width_(0), height_(0), id_(-1),
                        mutex_(std::make_unique<std::mutex>())
 {
     drawAble_ = std::make_shared<DrawAble>(this);
@@ -17,7 +19,7 @@ DrawAble::DrawAble(const DrawAble* drawAble)
     z_ = drawAble->getZ();
     width_ = drawAble->getWidth();
     height_ = drawAble->getHeight();
-    textureIndex_ = drawAble->getTextureIndex();
+    textureLocation_ = drawAble->getTextureLocation();
     id_ = drawAble->getID();
     drawAble_ = nullptr;
     mutex_ = std::make_unique<std::mutex>();
@@ -106,20 +108,20 @@ void DrawAble::setHeight(int height)
     height_ = height;
 }
 
-int DrawAble::getTextureIndex() const
+std::string DrawAble::getTextureLocation() const
 {
     std::lock_guard lock(*mutex_);
-    return textureIndex_;
+    return textureLocation_;
 }
 
-void DrawAble::setTextureIndex(int textureIndex)
+void DrawAble::setTextureLocation(std::string textureLocation)
 {
     std::lock_guard lock(*mutex_);
     if (drawAble_ != nullptr)
     {
-        drawAble_->setTextureIndex(textureIndex);
+        drawAble_->setTextureLocation(std::move(textureLocation));
     }
-    textureIndex_ = textureIndex;
+    textureLocation_ = textureLocation;
 }
 
 int DrawAble::getID() const
