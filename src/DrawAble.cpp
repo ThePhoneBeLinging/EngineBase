@@ -25,6 +25,28 @@ DrawAble::DrawAble(const DrawAble* drawAble)
     mutex_ = std::make_unique<std::mutex>();
 }
 
+void DrawAble::setPosition(double x, double y)
+{
+    std::lock_guard<std::mutex> lock(*mutex_);
+    x_ = x;
+    y_ = y;
+    if (drawAble_ != nullptr)
+    {
+        drawAble_->setPosition(x, y);
+    }
+}
+
+void DrawAble::updatePosition(double deltaX, double deltaY)
+{
+    std::lock_guard<std::mutex> lock(*mutex_);
+    x_ += deltaX;
+    y_ += deltaY;
+    if (drawAble_ != nullptr)
+    {
+        drawAble_->setPosition(x_, y_);
+    }
+}
+
 double DrawAble::getX() const
 {
     std::lock_guard lock(*mutex_);
