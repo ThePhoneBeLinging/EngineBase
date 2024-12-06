@@ -16,6 +16,9 @@ public:
     virtual ~DrawAble() = default;
     void setPosition(double x, double y);
     void updatePosition(double deltaX, double deltaY);
+    void setSize(int width, int height);
+    void setHeightPreserveAspectRatio(int height);
+    void setWidthPreserveAspectRatio(int width);
     [[nodiscard]] double getX() const;
     void setX(double x);
     [[nodiscard]] double getY() const;

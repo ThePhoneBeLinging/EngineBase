@@ -38,7 +38,7 @@ void DrawAble::setPosition(double x, double y)
 
 void DrawAble::updatePosition(double deltaX, double deltaY)
 {
-    std::lock_guard<std::mutex> lock(*mutex_);
+    std::lock_guard lock(*mutex_);
     x_ += deltaX;
     y_ += deltaY;
     if (drawAble_ != nullptr)
@@ -46,6 +46,42 @@ void DrawAble::updatePosition(double deltaX, double deltaY)
         drawAble_->setPosition(x_, y_);
     }
 }
+
+void DrawAble::setSize(int width, int height)
+{
+    std::lock_guard lock(*mutex_);
+    width_ = width;
+    height_ = height;
+    if (drawAble_ != nullptr)
+    {
+        drawAble_->setSize(width_, height_);
+    }
+}
+
+void DrawAble::setHeightPreserveAspectRatio(const int height)
+{
+    std::lock_guard lock(*mutex_);
+    height_ = height;
+    double aspectRatio = height / width_;
+    width_ *= aspectRatio;
+    if (drawAble_ != nullptr)
+    {
+        drawAble_->setSize(width_, height_);
+    }
+}
+
+void DrawAble::setWidthPreserveAspectRatio(const int width)
+{
+    std::lock_guard lock(*mutex_);
+    width_ = width;
+    double aspectRatio = width / height_;
+    height_ *= aspectRatio;
+    if (drawAble_ != nullptr)
+    {
+        drawAble_->setSize(width_, height_);
+    }
+}
+
 
 double DrawAble::getX() const
 {
