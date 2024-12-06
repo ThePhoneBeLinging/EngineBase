@@ -33,7 +33,7 @@ public:
     void setDrawAble(const std::shared_ptr<DrawAble>& drawAble);
     [[nodiscard]] std::weak_ptr<DrawAble> getDrawAblePtr() const;
 
-protected:
+private:
     std::shared_ptr<DrawAble> drawAble_;
     double x_;
     double y_;
