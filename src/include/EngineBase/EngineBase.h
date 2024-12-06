@@ -6,7 +6,7 @@
 #define ENGINEBASE_H
 #include <functional>
 
-#include "SceneController.h"
+#include "Scene/SceneController.h"
 #include "UpdateController.h"
 #include "GraphicsInterface/IGraphicsLibrary.h"
 

@@ -33,21 +33,14 @@ endif ()
 
 
 add_library(EngineBase
-        src/include/EngineBase/EngineBase.h
-        src/include/EngineBase/KeyBoardKeys.h
-        src/GraphicsInterface/IGraphicsLibrary.h
         src/GraphicsInterface/RayLibImplementation.cpp
-        src/GraphicsInterface/RayLibImplementation.h
         src/EngineBase.cpp
         src/DrawAble.cpp
         src/UpdateController.cpp
-        src/UpdateController.h
         src/CollisionChecker.cpp
         src/include/EngineBase/CollisionChecker.h
-        src/Scene.cpp
-        src/Scene.h
-        src/SceneController.cpp
-        src/SceneController.h
+        src/Scene/Scene.cpp
+        src/Scene/SceneController.cpp
 )
 
 target_include_directories(EngineBase PUBLIC src/include)
