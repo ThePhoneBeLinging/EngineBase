@@ -23,7 +23,7 @@ void Scene::updateDone()
     drawAbleController_->updateLoopDone();
 }
 
-std::vector<std::shared_ptr<DrawAble>>& Scene::getDrawables() const
+std::vector<std::unique_ptr<DrawAble>>& Scene::getDrawables() const
 {
     return drawAbleController_->getDrawAbles();
 }

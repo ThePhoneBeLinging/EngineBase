@@ -36,7 +36,7 @@ void DrawAbleController::updateLoopDone()
             {
                 continue;
             }
-            sharedDrawAbles_[updatingIndex_].push_back(drawAble.lock());
+            sharedDrawAbles_[updatingIndex_].emplace_back(std::make_unique<DrawAble>(drawAble.lock().get()));
         }
     }
     std::unique_lock lock(mutex_);
@@ -55,7 +55,7 @@ void DrawAbleController::drawingLoopDone()
     activeDrawingIndex_ = nextDrawingIndex_;
 }
 
-std::vector<std::shared_ptr<DrawAble>>& DrawAbleController::getDrawAbles()
+std::vector<std::unique_ptr<DrawAble>>& DrawAbleController::getDrawAbles()
 {
     return sharedDrawAbles_[activeDrawingIndex_];
 }

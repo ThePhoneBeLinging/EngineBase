@@ -17,7 +17,7 @@ public:
     void addDrawAbleToScene(const std::weak_ptr<DrawAble>& drawAble);
     void drawingDone();
     void updateDone();
-    [[nodiscard]] std::vector<std::shared_ptr<DrawAble>>& getDrawables() const;
+    [[nodiscard]] std::vector<std::unique_ptr<DrawAble>>& getDrawables() const;
 
 private:
     std::unique_ptr<DrawAbleController> drawAbleController_;

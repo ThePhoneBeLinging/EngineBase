@@ -16,14 +16,14 @@ public:
     void addDrawAble(const std::weak_ptr<DrawAble>& drawAble);
     void updateLoopDone();
     void drawingLoopDone();
-    std::vector<std::shared_ptr<DrawAble>>& getDrawAbles();
+    std::vector<std::unique_ptr<DrawAble>>& getDrawAbles();
 
 private:
     std::mutex mutex_;
     int activeDrawingIndex_;
     int nextDrawingIndex_;
     int updatingIndex_;
-    std::vector<std::vector<std::shared_ptr<DrawAble>>> sharedDrawAbles_;
+    std::vector<std::vector<std::unique_ptr<DrawAble>>> sharedDrawAbles_;
     std::vector<std::weak_ptr<DrawAble>> weakDrawAbles_;
 };
 
