@@ -17,8 +17,19 @@ void SceneController::startDrawing() const
     while (not graphicsInterface_->toCloseWindow())
     {
         graphicsInterface_->draw(scenes_[0]);
+        scenes_[0]->drawingDone();
     }
     graphicsInterface_->closeWindow();
+}
+
+void SceneController::drawingDone()
+{
+    scenes_[0]->drawingDone();
+}
+
+void SceneController::updateDone()
+{
+    scenes_[0]->updateDone();
 }
 
 std::shared_ptr<Scene> SceneController::getScene(const int scene)

@@ -24,7 +24,7 @@ private:
     std::mutex mutex_;
     std::shared_ptr<IGraphicsLibrary> graphicsInterface_;
     std::unique_ptr<UpdateController> updateController_;
-    std::unique_ptr<SceneController> sceneController_;
+    std::shared_ptr<SceneController> sceneController_;
 };
 
 

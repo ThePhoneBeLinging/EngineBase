@@ -12,8 +12,8 @@
 EngineBase::EngineBase()
 {
     graphicsInterface_ = std::make_shared<RayLibImplementation>();
-    updateController_ = std::make_unique<UpdateController>(graphicsInterface_);
-    sceneController_ = std::make_unique<SceneController>(graphicsInterface_);
+    sceneController_ = std::make_shared<SceneController>(graphicsInterface_);
+    updateController_ = std::make_unique<UpdateController>(graphicsInterface_,sceneController_);
 }
 
 void EngineBase::launch() const

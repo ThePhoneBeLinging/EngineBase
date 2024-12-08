@@ -8,15 +8,19 @@
 #include <vector>
 #include <EngineBase/DrawAble.h>
 
+#include "DrawAbleController.h"
+
 class Scene
 {
 public:
-    Scene() = default;
+    Scene();
     void addDrawAbleToScene(const std::weak_ptr<DrawAble>& drawAble);
-    [[nodiscard]] std::vector<std::shared_ptr<DrawAble>> getDrawables() const;
+    void drawingDone();
+    void updateDone();
+    [[nodiscard]] std::vector<std::shared_ptr<DrawAble>>& getDrawables() const;
 
 private:
-    std::vector<std::weak_ptr<DrawAble>> drawAbles_;
+    std::unique_ptr<DrawAbleController> drawAbleController_;
 };
 
 

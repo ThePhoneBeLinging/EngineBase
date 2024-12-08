@@ -13,6 +13,8 @@ class SceneController
 public:
     explicit SceneController(std::shared_ptr<IGraphicsLibrary> graphicsLibrary);
     void startDrawing() const;
+    void drawingDone();
+    void updateDone();
     std::shared_ptr<Scene> getScene(int scene);
 
 private:

@@ -8,9 +8,10 @@
 
 #include "EngineBase/EngineBase.h"
 
-UpdateController::UpdateController(const std::shared_ptr<IGraphicsLibrary>& graphicsLibrary)
+UpdateController::UpdateController(const std::shared_ptr<IGraphicsLibrary>& graphicsLibrary,std::shared_ptr<SceneController>& sceneController)
+    : graphicsLibrary_(graphicsLibrary), sceneController_(sceneController)
+
 {
-    graphicsLibrary_ = graphicsLibrary;
 }
 
 void UpdateController::startUpdateLoop()
@@ -38,6 +39,7 @@ void UpdateController::startUpdateLoop()
                     std::chrono::high_resolution_clock::now() - updateTimePoints_[i]).count());
             updateTimePoints_[i] = std::chrono::high_resolution_clock::now();
         }
+        sceneController_->updateDone();
     }
 }
 

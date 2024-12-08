@@ -4,20 +4,26 @@
 
 #include "Scene.h"
 
-void Scene::addDrawAbleToScene(const std::weak_ptr<DrawAble>& drawAble)
+Scene::Scene() : drawAbleController_(std::make_unique<DrawAbleController>())
 {
-    drawAbles_.push_back(drawAble);
 }
 
-std::vector<std::shared_ptr<DrawAble>> Scene::getDrawables() const
+void Scene::addDrawAbleToScene(const std::weak_ptr<DrawAble>& drawAble)
 {
-    std::vector<std::shared_ptr<DrawAble>> drawables;
-    for (const auto& drawable : drawAbles_)
-    {
-        if (not drawable.expired())
-        {
-            drawables.push_back(drawable.lock());
-        }
-    }
-    return drawables;
+    drawAbleController_->addDrawAble(drawAble);
+}
+
+void Scene::drawingDone()
+{
+    drawAbleController_->drawingLoopDone();
+}
+
+void Scene::updateDone()
+{
+    drawAbleController_->updateLoopDone();
+}
+
+std::vector<std::shared_ptr<DrawAble>>& Scene::getDrawables() const
+{
+    return drawAbleController_->getDrawAbles();
 }
