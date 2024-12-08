@@ -19,6 +19,7 @@ public:
     std::vector<std::shared_ptr<DrawAble>>& getDrawAbles();
 
 private:
+    std::mutex mutex_;
     int activeDrawingIndex_;
     int nextDrawingIndex_;
     int updatingIndex_;
