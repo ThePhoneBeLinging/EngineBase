@@ -11,6 +11,7 @@
 
 #include "DrawAbleController.h"
 
+// TODO Should this class even exist? Currently 0 functionality
 class Scene
 {
 public:
