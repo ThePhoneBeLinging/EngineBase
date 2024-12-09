@@ -13,7 +13,7 @@ EngineBase::EngineBase()
 {
     graphicsInterface_ = std::make_shared<RayLibImplementation>();
     sceneController_ = std::make_shared<SceneController>(graphicsInterface_);
-    updateController_ = std::make_unique<UpdateController>(graphicsInterface_,sceneController_);
+    updateController_ = std::make_unique<UpdateController>(graphicsInterface_, sceneController_);
 }
 
 void EngineBase::launch() const
@@ -23,12 +23,12 @@ void EngineBase::launch() const
     thread.join();
 }
 
-void EngineBase::registerDrawAble(const std::shared_ptr<DrawAble>& drawAble)
+void EngineBase::registerDrawAble(const std::shared_ptr<DrawAble> &drawAble)
 {
     sceneController_->getScene(0)->addDrawAbleToScene(drawAble->getDrawAblePtr());
 }
 
-void EngineBase::registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction) const
+void EngineBase::registerUpdateFunction(const std::function<void(double deltaTime)> &updateFunction) const
 {
     updateController_->registerUpdateFunction(updateFunction);
 }
@@ -36,4 +36,9 @@ void EngineBase::registerUpdateFunction(const std::function<void(double deltaTim
 std::shared_ptr<IGraphicsLibrary> EngineBase::getGraphicsLibrary()
 {
     return graphicsInterface_;
+}
+
+std::shared_ptr<SceneController> EngineBase::getSceneController()
+{
+    return sceneController_;
 }

@@ -4,6 +4,7 @@
 
 #ifndef ENGINEBASE_H
 #define ENGINEBASE_H
+
 #include <functional>
 
 #include "Scene/SceneController.h"
@@ -15,10 +16,16 @@ class EngineBase
 {
 public:
     EngineBase();
+
     void launch() const;
-    void registerDrawAble(const std::shared_ptr<DrawAble>& drawAble);
-    void registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction) const;
+
+    void registerDrawAble(const std::shared_ptr<DrawAble> &drawAble);
+
+    void registerUpdateFunction(const std::function<void(double deltaTime)> &updateFunction) const;
+
     std::shared_ptr<IGraphicsLibrary> getGraphicsLibrary();
+
+    std::shared_ptr<SceneController> getSceneController();
 
 private:
     std::mutex mutex_;
