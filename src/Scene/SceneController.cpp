@@ -16,7 +16,7 @@ void SceneController::startDrawing() const
 {
     while (not graphicsInterface_->toCloseWindow())
     {
-        graphicsInterface_->draw(scenes_[0]);
+        graphicsInterface_->draw(scenes_[0]->getDrawables());
         scenes_[0]->drawingDone();
     }
     graphicsInterface_->closeWindow();

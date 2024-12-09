@@ -4,39 +4,36 @@
 
 #include "DrawAbleController.h"
 
-DrawAbleController::DrawAbleController() : activeDrawingIndex_(0), nextDrawingIndex_(0) ,updatingIndex_(1)
+DrawAbleController::DrawAbleController() : activeDrawingIndex_(0), nextDrawingIndex_(0), updatingIndex_(1),
+                                           updateOffset_(0, 0)
 {
     // initialise one list for drawing and one for the updateLoop
     for (int i = 0; i < 3; i++)
     {
         sharedDrawAbles_.emplace_back();
+        offsets_.emplace_back(0, 0);
     }
 }
 
-void DrawAbleController::addDrawAble(const std::weak_ptr<DrawAble>& drawAble)
+void DrawAbleController::addDrawAble(const std::weak_ptr<DrawAble> &drawAble)
 {
     weakDrawAbles_.push_back(drawAble);
 }
 
 void DrawAbleController::updateLoopDone()
 {
-
     sharedDrawAbles_[updatingIndex_].clear();
     sharedDrawAbles_[updatingIndex_].reserve(weakDrawAbles_.size());
-    for (const auto& drawAble : weakDrawAbles_)
+
+    for (const auto &drawAble: weakDrawAbles_)
     {
         if (not drawAble.expired())
         {
-            const auto sDrawAble =  drawAble.lock();
-            if (sDrawAble->getX() < -100 && sDrawAble->getX() + sDrawAble->getWidth() < 2000)
+            const auto sDrawAble = drawAble.lock();
+            if (drawAbleOnScreen(sDrawAble))
             {
-                continue;
+                sharedDrawAbles_[updatingIndex_].emplace_back(std::make_unique<DrawAble>(drawAble.lock().get()));
             }
-            if (sDrawAble->getY() < -100 && sDrawAble->getY() + sDrawAble->getHeight() < 1000)
-            {
-                continue;
-            }
-            sharedDrawAbles_[updatingIndex_].emplace_back(std::make_unique<DrawAble>(drawAble.lock().get()));
         }
     }
     std::unique_lock lock(mutex_);
@@ -55,7 +52,31 @@ void DrawAbleController::drawingLoopDone()
     activeDrawingIndex_ = nextDrawingIndex_;
 }
 
-std::vector<std::unique_ptr<DrawAble>>& DrawAbleController::getDrawAbles()
+std::vector<std::unique_ptr<DrawAble>> &DrawAbleController::getDrawAbles()
 {
     return sharedDrawAbles_[activeDrawingIndex_];
+}
+
+bool DrawAbleController::drawAbleOnScreen(const std::shared_ptr<DrawAble> &drawAble)
+{
+    //TODO be dynamic
+    int screenHeight = 800;
+    int screenWidth = 1200;
+
+    if (not drawAble->getPositionIsAffectedByOffset())
+    {
+    }
+    else
+    {
+        if (drawAble->getX() + drawAble->getWidth() < 0 || screenWidth < drawAble->getX())
+        {
+            return false;
+        }
+        if (drawAble->getY() + drawAble->getHeight() < 0 || screenHeight < drawAble->getY())
+        {
+            return false;
+        }
+        return true;
+    }
+    return false;
 }

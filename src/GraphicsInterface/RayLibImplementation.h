@@ -16,7 +16,7 @@ class RayLibImplementation : public IGraphicsLibrary
 public:
     RayLibImplementation();
     std::pair<int, int> getMousePos() override;
-    void draw(std::shared_ptr<Scene> scene) override;
+    void draw(const std::vector<std::unique_ptr<DrawAble>>& drawAbles) override;
     void loadTexture(const std::string& texturePath) override;
     std::pair<int, int> getWindowSize() override;
     bool toCloseWindow() override;
@@ -29,7 +29,7 @@ public:
     bool isMouseButtonPressed(Button button) override;
 
 private:
-    std::unordered_map<std::string,Texture2D> textureMap_;
+    std::unordered_map<std::string, Texture2D> textureMap_;
 };
 
 

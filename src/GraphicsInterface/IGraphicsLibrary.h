@@ -9,13 +9,14 @@
 class Scene;
 #include "EngineBase/DrawAble.h"
 #include "EngineBase/KeyBoardKeys.h"
+#include <vector>
 
 class IGraphicsLibrary
 {
 public:
     virtual ~IGraphicsLibrary() = default;
     virtual std::pair<int, int> getMousePos() = 0;
-    virtual void draw(std::shared_ptr<Scene> scene) = 0;
+    virtual void draw(const std::vector<std::unique_ptr<DrawAble>>& drawAbles) = 0;
     virtual void loadTexture(const std::string& texturePath) = 0;
     virtual std::pair<int, int> getWindowSize() = 0;
     virtual bool toCloseWindow() = 0;

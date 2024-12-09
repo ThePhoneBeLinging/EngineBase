@@ -6,13 +6,13 @@
 
 #include "EngineBase/DrawAble.h"
 
-DrawAble::DrawAble() : x_(0), y_(0), z_(0), width_(0), height_(0), id_(-1),
+DrawAble::DrawAble() : x_(0), y_(0), z_(0), width_(0), height_(0), id_(-1), positionIsAffectedByOffset_(true),
                        mutex_(std::make_unique<std::mutex>())
 {
     drawAble_ = std::make_shared<DrawAble>(this);
 }
 
-DrawAble::DrawAble(const DrawAble* drawAble)
+DrawAble::DrawAble(const DrawAble *drawAble)
 {
     x_ = drawAble->getX();
     y_ = drawAble->getY();
@@ -21,6 +21,7 @@ DrawAble::DrawAble(const DrawAble* drawAble)
     height_ = drawAble->getHeight();
     textureLocation_ = drawAble->getTextureLocation();
     id_ = drawAble->getID();
+    positionIsAffectedByOffset_ = drawAble->getPositionIsAffectedByOffset();
     drawAble_ = nullptr;
     mutex_ = std::make_unique<std::mutex>();
 }
@@ -198,7 +199,7 @@ void DrawAble::setID(int id)
     }
 }
 
-void DrawAble::setDrawAble(const std::shared_ptr<DrawAble>& drawAble)
+void DrawAble::setDrawAble(const std::shared_ptr<DrawAble> &drawAble)
 {
     drawAble_ = drawAble;
 }
@@ -206,4 +207,14 @@ void DrawAble::setDrawAble(const std::shared_ptr<DrawAble>& drawAble)
 std::weak_ptr<DrawAble> DrawAble::getDrawAblePtr() const
 {
     return drawAble_;
+}
+
+void DrawAble::setPositionIsAffectedByOffset(bool positionIsAffectedByOffset)
+{
+    positionIsAffectedByOffset_ = positionIsAffectedByOffset;
+}
+
+bool DrawAble::getPositionIsAffectedByOffset() const
+{
+    return positionIsAffectedByOffset_;
 }
