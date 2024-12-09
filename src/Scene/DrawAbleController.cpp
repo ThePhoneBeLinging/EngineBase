@@ -80,3 +80,8 @@ bool DrawAbleController::drawAbleOnScreen(const std::shared_ptr<DrawAble> &drawA
     }
     return true;
 }
+
+std::pair<int, int> DrawAbleController::getOffsetForDrawing()
+{
+    return offsets_[activeDrawingIndex_];
+}

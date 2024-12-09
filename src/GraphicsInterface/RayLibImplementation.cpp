@@ -18,11 +18,11 @@ std::pair<int, int> RayLibImplementation::getMousePos()
     return {GetMouseX(), GetMouseY()};
 }
 
-void RayLibImplementation::draw(const std::vector<std::unique_ptr<DrawAble>>& drawAbles)
+void RayLibImplementation::draw(const std::vector<std::unique_ptr<DrawAble>> &drawAbles, int offsetX, int offsetY)
 {
     BeginDrawing();
     ClearBackground(BLACK);
-    for (const auto& drawAble : drawAbles)
+    for (const auto &drawAble: drawAbles)
     {
         if (drawAble == nullptr)
         {
@@ -39,12 +39,12 @@ void RayLibImplementation::draw(const std::vector<std::unique_ptr<DrawAble>>& dr
         }
         (texture).height = drawAble->getHeight();
         (texture).width = drawAble->getWidth();
-        DrawTexture(texture, drawAble->getX(), drawAble->getY(), Color(255, 255, 255, 255));
+        DrawTexture(texture, drawAble->getX() + offsetX, drawAble->getY() + offsetY, Color(255, 255, 255, 255));
     }
     EndDrawing();
 }
 
-void RayLibImplementation::loadTexture(const std::string& texturePath)
+void RayLibImplementation::loadTexture(const std::string &texturePath)
 {
     textureMap_.emplace(texturePath, LoadTexture(texturePath.c_str()));
 }

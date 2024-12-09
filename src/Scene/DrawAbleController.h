@@ -10,7 +10,8 @@
 #include <EngineBase/DrawAble.h>
 
 
-class DrawAbleController {
+class DrawAbleController
+{
 public:
     DrawAbleController();
 
@@ -20,10 +21,13 @@ public:
 
     void drawingLoopDone();
 
+    std::pair<int, int> getOffsetForDrawing();
+
     std::vector<std::unique_ptr<DrawAble>> &getDrawAbles();
 
 private:
-    bool drawAbleOnScreen(const std::shared_ptr<DrawAble>& drawAble);
+    bool drawAbleOnScreen(const std::shared_ptr<DrawAble> &drawAble);
+
     std::mutex mutex_;
     int activeDrawingIndex_;
     int nextDrawingIndex_;
