@@ -63,19 +63,22 @@ bool DrawAbleController::isDrawAbleOnScreen(const std::shared_ptr<DrawAble> &dra
     //TODO be dynamic
     int screenHeight = 800;
     int screenWidth = 1200;
-    std::pair<int, int> screenLocation = std::pair(0, 0);
+    int drawAbleX = drawAble->getX();
+    int drawAbleY = drawAble->getY();
+
     if (drawAble->getPositionIsAffectedByOffset())
     {
-        screenLocation = updateOffset_;
+        drawAbleX += updateOffset_.first;
+        drawAbleY += updateOffset_.second;
     }
 
-    if (drawAble->getX() + drawAble->getWidth() < screenLocation.first ||
-        (screenWidth + screenLocation.first) < drawAble->getX())
+    if (drawAbleX + drawAble->getWidth() < 0 ||
+        screenWidth < drawAbleX)
     {
         return false;
     }
-    if (drawAble->getY() + drawAble->getHeight() < screenLocation.second ||
-        (screenHeight + screenLocation.second) < drawAble->getY())
+    if (drawAbleY + drawAble->getHeight() < 0 ||
+        screenHeight < drawAbleY)
     {
         return false;
     }
