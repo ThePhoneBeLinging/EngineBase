@@ -30,7 +30,7 @@ void DrawAbleController::updateLoopDone()
         if (not drawAble.expired())
         {
             const auto sDrawAble = drawAble.lock();
-            if (drawAbleOnScreen(sDrawAble))
+            if (isDrawAbleOnScreen(sDrawAble))
             {
                 sharedDrawAbles_[updatingIndex_].emplace_back(std::make_unique<DrawAble>(drawAble.lock().get()));
             }
@@ -57,7 +57,7 @@ std::vector<std::unique_ptr<DrawAble>> &DrawAbleController::getDrawAbles()
     return sharedDrawAbles_[activeDrawingIndex_];
 }
 
-bool DrawAbleController::drawAbleOnScreen(const std::shared_ptr<DrawAble> &drawAble)
+bool DrawAbleController::isDrawAbleOnScreen(const std::shared_ptr<DrawAble> &drawAble)
 {
     //TODO be dynamic
     int screenHeight = 800;
