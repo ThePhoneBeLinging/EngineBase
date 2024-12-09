@@ -23,7 +23,7 @@ public:
 
     void setOffset(int offsetX, int offsetY);
 
-    void updateOffset(int deltaOffsetX, int deltaOffsetY);
+    void updateOffset(double deltaOffsetX, double deltaOffsetY);
 
     std::pair<int, int> getOffsetForDrawing();
 
@@ -36,7 +36,7 @@ private:
     int activeDrawingIndex_;
     int nextDrawingIndex_;
     int updatingIndex_;
-    std::pair<int, int> updateOffset_;
+    std::pair<double, double> updateOffset_;
     std::vector<std::pair<int, int>> offsets_;
     std::vector<std::vector<std::unique_ptr<DrawAble>>> sharedDrawAbles_;
     std::vector<std::weak_ptr<DrawAble>> weakDrawAbles_;

@@ -93,7 +93,7 @@ void DrawAbleController::setOffset(int offsetX, int offsetY)
     updateOffset_.second = offsetY;
 }
 
-void DrawAbleController::updateOffset(int deltaOffsetX, int deltaOffsetY)
+void DrawAbleController::updateOffset(double deltaOffsetX, double deltaOffsetY)
 {
     updateOffset_.first += deltaOffsetX;
     updateOffset_.second += deltaOffsetY;

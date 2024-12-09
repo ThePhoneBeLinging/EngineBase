@@ -39,7 +39,14 @@ void RayLibImplementation::draw(const std::vector<std::unique_ptr<DrawAble>> &dr
         }
         (texture).height = drawAble->getHeight();
         (texture).width = drawAble->getWidth();
-        DrawTexture(texture, drawAble->getX() + offsetX, drawAble->getY() + offsetY, Color(255, 255, 255, 255));
+        int drawX = drawAble->getX();
+        int drawY = drawAble->getY();
+        if (drawAble->getPositionIsAffectedByOffset())
+        {
+            drawX += offsetX;
+            drawY += offsetY;
+        }
+        DrawTexture(texture, drawX, drawY, Color(255, 255, 255, 255));
     }
     EndDrawing();
 }

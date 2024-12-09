@@ -212,6 +212,10 @@ std::weak_ptr<DrawAble> DrawAble::getDrawAblePtr() const
 void DrawAble::setPositionIsAffectedByOffset(bool positionIsAffectedByOffset)
 {
     positionIsAffectedByOffset_ = positionIsAffectedByOffset;
+    if (drawAble_ != nullptr)
+    {
+        drawAble_->setPositionIsAffectedByOffset(positionIsAffectedByOffset);
+    }
 }
 
 bool DrawAble::getPositionIsAffectedByOffset() const
