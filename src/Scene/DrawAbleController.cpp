@@ -24,6 +24,7 @@ void DrawAbleController::updateLoopDone()
 {
     sharedDrawAbles_[updatingIndex_].clear();
     sharedDrawAbles_[updatingIndex_].reserve(weakDrawAbles_.size());
+    offsets_[updatingIndex_] = std::pair(updateOffset_);
 
     for (const auto &drawAble: weakDrawAbles_)
     {
