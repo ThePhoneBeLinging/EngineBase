@@ -25,7 +25,7 @@ void EngineBase::launch() const
 
 void EngineBase::registerDrawAble(const std::shared_ptr<DrawAble> &drawAble)
 {
-    sceneController_->getScene(0)->addDrawAbleToScene(drawAble->getDrawAblePtr());
+    sceneController_->getCurrentDrawAbleController()->addDrawAble(drawAble->getDrawAblePtr());
 }
 
 void EngineBase::registerUpdateFunction(const std::function<void(double deltaTime)> &updateFunction) const

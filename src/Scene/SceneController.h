@@ -4,21 +4,24 @@
 
 #ifndef SCENECONTROLLER_H
 #define SCENECONTROLLER_H
+
 #include "GraphicsInterface/IGraphicsLibrary.h"
-#include "Scene.h"
+#include "DrawAbleController.h"
 
 
 class SceneController
 {
 public:
     explicit SceneController(std::shared_ptr<IGraphicsLibrary> graphicsLibrary);
+
     void startDrawing() const;
-    void drawingDone();
+
     void updateDone();
-    std::shared_ptr<Scene> getScene(int scene);
+
+    std::shared_ptr<DrawAbleController> &getCurrentDrawAbleController();
 
 private:
-    std::vector<std::shared_ptr<Scene>> scenes_;
+    std::vector<std::shared_ptr<DrawAbleController>> drawAbleControllers_;
     std::shared_ptr<IGraphicsLibrary> graphicsInterface_;
 };
 

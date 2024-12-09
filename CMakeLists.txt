@@ -39,10 +39,8 @@ add_library(EngineBase
         src/UpdateController.cpp
         src/CollisionChecker.cpp
         src/include/EngineBase/CollisionChecker.h
-        src/Scene/Scene.cpp
         src/Scene/SceneController.cpp
         src/Scene/DrawAbleController.cpp
-        src/Scene/DrawAbleController.h
 )
 
 target_include_directories(EngineBase PUBLIC src/include)

@@ -9,31 +9,26 @@
 SceneController::SceneController(std::shared_ptr<IGraphicsLibrary> graphicsLibrary) : graphicsInterface_(
         std::move(graphicsLibrary))
 {
-    scenes_.emplace_back(std::make_shared<Scene>());
+    drawAbleControllers_.emplace_back(std::make_shared<DrawAbleController>());
 }
 
 void SceneController::startDrawing() const
 {
     while (not graphicsInterface_->toCloseWindow())
     {
-        auto offset = scenes_[0]->getOffsetForDrawing();
-        graphicsInterface_->draw(scenes_[0]->getDrawables(), offset.first, offset.second);
-        scenes_[0]->drawingDone();
+        auto offset = drawAbleControllers_[0]->getOffsetForDrawing();
+        graphicsInterface_->draw(drawAbleControllers_[0]->getDrawAbles(), offset.first, offset.second);
+        drawAbleControllers_[0]->drawingLoopDone();
     }
     graphicsInterface_->closeWindow();
 }
 
-void SceneController::drawingDone()
-{
-    scenes_[0]->drawingDone();
-}
-
 void SceneController::updateDone()
 {
-    scenes_[0]->updateDone();
+    drawAbleControllers_[0]->updateLoopDone();
 }
 
-std::shared_ptr<Scene> SceneController::getScene(const int scene)
+std::shared_ptr<DrawAbleController> &SceneController::getCurrentDrawAbleController()
 {
-    return scenes_[scene];
+    return drawAbleControllers_[0];
 }
