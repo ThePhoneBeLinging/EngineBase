@@ -14,7 +14,7 @@ class DrawAble
 public:
     DrawAble();
 
-    explicit DrawAble(const DrawAble *drawAble);
+    explicit DrawAble(const DrawAble* drawAble);
 
     virtual ~DrawAble() = default;
 
@@ -56,7 +56,7 @@ public:
 
     void setID(int id);
 
-    void setDrawAble(const std::shared_ptr<DrawAble> &drawAble);
+    void setDrawAble(const std::shared_ptr<DrawAble>& drawAble);
 
     [[nodiscard]] std::weak_ptr<DrawAble> getDrawAblePtr() const;
 
@@ -75,7 +75,6 @@ private:
     int id_;
     bool positionIsAffectedByOffset_;
     //TODO Upgrade dataStructure to not have mutex be necessary
-    std::unique_ptr<std::mutex> mutex_;
 };
 
 
