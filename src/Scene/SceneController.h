@@ -18,8 +18,6 @@ public:
 
     void updateDone();
 
-    std::pair<double, double> getOffset();
-
     std::shared_ptr<DrawAbleController>& getCurrentDrawAbleController();
 
 private:

@@ -88,7 +88,7 @@ std::pair<int, int> DrawAbleController::getOffsetForDrawing()
     return offsets_[activeDrawingIndex_];
 }
 
-void DrawAbleController::setOffset(int offsetX, int offsetY)
+void DrawAbleController::setOffset(double offsetX, double offsetY)
 {
     updateOffset_.first = offsetX;
     updateOffset_.second = offsetY;
@@ -100,7 +100,7 @@ void DrawAbleController::updateOffset(double deltaOffsetX, double deltaOffsetY)
     updateOffset_.second += deltaOffsetY;
 }
 
-std::pair<int, int> DrawAbleController::getCurrentUpdateOffset()
+std::pair<double, double> DrawAbleController::getCurrentUpdateOffset()
 {
     return updateOffset_;
 }

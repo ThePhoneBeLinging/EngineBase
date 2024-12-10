@@ -21,13 +21,13 @@ public:
 
     void drawingLoopDone();
 
-    void setOffset(int offsetX, int offsetY);
+    void setOffset(double offsetX, double offsetY);
 
     void updateOffset(double deltaOffsetX, double deltaOffsetY);
 
     std::pair<int, int> getOffsetForDrawing();
 
-    std::pair<int, int> getCurrentUpdateOffset();
+    std::pair<double, double> getCurrentUpdateOffset();
 
     std::vector<std::unique_ptr<DrawAble>>& getDrawAbles();
 

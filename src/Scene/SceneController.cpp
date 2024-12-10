@@ -32,8 +32,3 @@ std::shared_ptr<DrawAbleController>& SceneController::getCurrentDrawAbleControll
 {
     return drawAbleControllers_[0];
 }
-
-std::pair<double, double> SceneController::getOffset()
-{
-    return drawAbleControllers_[0]->getCurrentUpdateOffset();
-}
