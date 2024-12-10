@@ -17,7 +17,7 @@ public:
 
     void addDrawAble(const std::weak_ptr<DrawAble>& drawAble);
 
-    void updateLoopDone();
+    void updateLoopDone(std::pair<int, int> windowSize);
 
     void drawingLoopDone();
 
@@ -32,7 +32,7 @@ public:
     std::vector<std::unique_ptr<DrawAble>>& getDrawAbles();
 
 private:
-    bool isDrawAbleOnScreen(const std::shared_ptr<DrawAble>& drawAble);
+    bool isDrawAbleOnScreen(const std::shared_ptr<DrawAble>& drawAble, int screenWidth, int screenHeight);
 
     std::mutex mutex_;
     int activeDrawingIndex_;

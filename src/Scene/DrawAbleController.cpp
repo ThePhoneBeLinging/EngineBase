@@ -20,7 +20,7 @@ void DrawAbleController::addDrawAble(const std::weak_ptr<DrawAble>& drawAble)
     weakDrawAbles_.push_back(drawAble);
 }
 
-void DrawAbleController::updateLoopDone()
+void DrawAbleController::updateLoopDone(std::pair<int, int> windowSize)
 {
     sharedDrawAbles_[updatingIndex_].clear();
     sharedDrawAbles_[updatingIndex_].reserve(weakDrawAbles_.size());
@@ -31,7 +31,7 @@ void DrawAbleController::updateLoopDone()
         if (not drawAble.expired())
         {
             const auto sDrawAble = drawAble.lock();
-            if (isDrawAbleOnScreen(sDrawAble))
+            if (isDrawAbleOnScreen(sDrawAble, windowSize.first, windowSize.second))
             {
                 sharedDrawAbles_[updatingIndex_].emplace_back(std::make_unique<DrawAble>(drawAble.lock().get()));
             }
@@ -58,11 +58,9 @@ std::vector<std::unique_ptr<DrawAble>>& DrawAbleController::getDrawAbles()
     return sharedDrawAbles_[activeDrawingIndex_];
 }
 
-bool DrawAbleController::isDrawAbleOnScreen(const std::shared_ptr<DrawAble>& drawAble)
+bool
+DrawAbleController::isDrawAbleOnScreen(const std::shared_ptr<DrawAble>& drawAble, int screenWidth, int screenHeight)
 {
-    //TODO be dynamic
-    int screenHeight = 800;
-    int screenWidth = 1200;
     int drawAbleX = drawAble->getX();
     int drawAbleY = drawAble->getY();
 

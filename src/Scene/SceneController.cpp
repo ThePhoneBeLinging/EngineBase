@@ -25,7 +25,7 @@ void SceneController::startDrawing() const
 
 void SceneController::updateDone()
 {
-    drawAbleControllers_[0]->updateLoopDone();
+    drawAbleControllers_[0]->updateLoopDone(graphicsInterface_->getWindowSize());
 }
 
 std::shared_ptr<DrawAbleController>& SceneController::getCurrentDrawAbleController()

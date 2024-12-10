@@ -9,6 +9,7 @@
 
 RayLibImplementation::RayLibImplementation()
 {
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(1200, 800, "M3");
     RayLibImplementation::loadTexture("../Textures/MissingTexture.png");
 }
@@ -18,11 +19,11 @@ std::pair<int, int> RayLibImplementation::getMousePos()
     return {GetMouseX(), GetMouseY()};
 }
 
-void RayLibImplementation::draw(const std::vector<std::unique_ptr<DrawAble>> &drawAbles, int offsetX, int offsetY)
+void RayLibImplementation::draw(const std::vector<std::unique_ptr<DrawAble>>& drawAbles, int offsetX, int offsetY)
 {
     BeginDrawing();
     ClearBackground(BLACK);
-    for (const auto &drawAble: drawAbles)
+    for (const auto& drawAble: drawAbles)
     {
         if (drawAble == nullptr)
         {
@@ -51,15 +52,14 @@ void RayLibImplementation::draw(const std::vector<std::unique_ptr<DrawAble>> &dr
     EndDrawing();
 }
 
-void RayLibImplementation::loadTexture(const std::string &texturePath)
+void RayLibImplementation::loadTexture(const std::string& texturePath)
 {
     textureMap_.emplace(texturePath, LoadTexture(texturePath.c_str()));
 }
 
 std::pair<int, int> RayLibImplementation::getWindowSize()
 {
-    //TODO Actually do smth here, currently hardcoded because of init()
-    return {1200, 800};
+    return {GetScreenWidth(), GetScreenHeight()};
 }
 
 bool RayLibImplementation::toCloseWindow()
