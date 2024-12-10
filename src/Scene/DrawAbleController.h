@@ -15,7 +15,7 @@ class DrawAbleController
 public:
     DrawAbleController();
 
-    void addDrawAble(const std::weak_ptr<DrawAble> &drawAble);
+    void addDrawAble(const std::weak_ptr<DrawAble>& drawAble);
 
     void updateLoopDone();
 
@@ -27,10 +27,12 @@ public:
 
     std::pair<int, int> getOffsetForDrawing();
 
-    std::vector<std::unique_ptr<DrawAble>> &getDrawAbles();
+    std::pair<int, int> getCurrentUpdateOffset();
+
+    std::vector<std::unique_ptr<DrawAble>>& getDrawAbles();
 
 private:
-    bool isDrawAbleOnScreen(const std::shared_ptr<DrawAble> &drawAble);
+    bool isDrawAbleOnScreen(const std::shared_ptr<DrawAble>& drawAble);
 
     std::mutex mutex_;
     int activeDrawingIndex_;

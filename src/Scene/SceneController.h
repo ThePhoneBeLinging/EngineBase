@@ -18,7 +18,9 @@ public:
 
     void updateDone();
 
-    std::shared_ptr<DrawAbleController> &getCurrentDrawAbleController();
+    std::pair<double, double> getOffset();
+
+    std::shared_ptr<DrawAbleController>& getCurrentDrawAbleController();
 
 private:
     std::vector<std::shared_ptr<DrawAbleController>> drawAbleControllers_;

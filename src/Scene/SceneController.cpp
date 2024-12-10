@@ -28,7 +28,12 @@ void SceneController::updateDone()
     drawAbleControllers_[0]->updateLoopDone();
 }
 
-std::shared_ptr<DrawAbleController> &SceneController::getCurrentDrawAbleController()
+std::shared_ptr<DrawAbleController>& SceneController::getCurrentDrawAbleController()
 {
     return drawAbleControllers_[0];
+}
+
+std::pair<double, double> SceneController::getOffset()
+{
+    return drawAbleControllers_[0]->getCurrentUpdateOffset();
 }

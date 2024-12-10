@@ -15,7 +15,7 @@ DrawAbleController::DrawAbleController() : activeDrawingIndex_(0), nextDrawingIn
     }
 }
 
-void DrawAbleController::addDrawAble(const std::weak_ptr<DrawAble> &drawAble)
+void DrawAbleController::addDrawAble(const std::weak_ptr<DrawAble>& drawAble)
 {
     weakDrawAbles_.push_back(drawAble);
 }
@@ -26,7 +26,7 @@ void DrawAbleController::updateLoopDone()
     sharedDrawAbles_[updatingIndex_].reserve(weakDrawAbles_.size());
     offsets_[updatingIndex_] = std::pair(updateOffset_);
 
-    for (const auto &drawAble: weakDrawAbles_)
+    for (const auto& drawAble: weakDrawAbles_)
     {
         if (not drawAble.expired())
         {
@@ -53,12 +53,12 @@ void DrawAbleController::drawingLoopDone()
     activeDrawingIndex_ = nextDrawingIndex_;
 }
 
-std::vector<std::unique_ptr<DrawAble>> &DrawAbleController::getDrawAbles()
+std::vector<std::unique_ptr<DrawAble>>& DrawAbleController::getDrawAbles()
 {
     return sharedDrawAbles_[activeDrawingIndex_];
 }
 
-bool DrawAbleController::isDrawAbleOnScreen(const std::shared_ptr<DrawAble> &drawAble)
+bool DrawAbleController::isDrawAbleOnScreen(const std::shared_ptr<DrawAble>& drawAble)
 {
     //TODO be dynamic
     int screenHeight = 800;
@@ -100,4 +100,9 @@ void DrawAbleController::updateOffset(double deltaOffsetX, double deltaOffsetY)
 {
     updateOffset_.first += deltaOffsetX;
     updateOffset_.second += deltaOffsetY;
+}
+
+std::pair<int, int> DrawAbleController::getCurrentUpdateOffset()
+{
+    return updateOffset_;
 }
