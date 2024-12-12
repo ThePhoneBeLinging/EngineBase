@@ -25,15 +25,16 @@ void RayLibImplementation::draw(const std::vector<std::unique_ptr<DrawAble>>& dr
     ClearBackground(BLACK);
     for (const auto& drawAble: drawAbles)
     {
-        if (drawAble == nullptr)
+        if (drawAble == nullptr || drawAble->getTextureLocation() == nullptr)
         {
             continue;
         }
-        if (not textureMap_.contains(drawAble->getTextureLocation()))
+        const std::string* texturePath = drawAble->getTextureLocation();
+        if (not textureMap_.contains(*texturePath))
         {
-            loadTexture(drawAble->getTextureLocation());
+            loadTexture(*texturePath);
         }
-        auto texture = textureMap_[drawAble->getTextureLocation()];
+        auto texture = textureMap_[*texturePath];
         if (texture.id == 0)
         {
             texture = textureMap_["../Textures/MissingTexture.png"];
@@ -49,6 +50,7 @@ void RayLibImplementation::draw(const std::vector<std::unique_ptr<DrawAble>>& dr
         }
         DrawTexture(texture, drawX, drawY, Color(255, 255, 255, 255));
     }
+    DrawFPS(0, 0);
     EndDrawing();
 }
 

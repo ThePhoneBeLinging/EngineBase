@@ -6,7 +6,8 @@
 
 #include "EngineBase/DrawAble.h"
 
-DrawAble::DrawAble() : x_(0), y_(0), z_(0), width_(0), height_(0), id_(-1), positionIsAffectedByOffset_(true)
+DrawAble::DrawAble() : x_(0), y_(0), z_(0), width_(0), height_(0), textureLocation_(nullptr), id_(-1),
+                       positionIsAffectedByOffset_(true)
 {
     drawAble_ = std::make_shared<DrawAble>(this);
 }
@@ -150,12 +151,12 @@ void DrawAble::setHeight(int height)
     height_ = height;
 }
 
-std::string DrawAble::getTextureLocation() const
+const std::string* DrawAble::getTextureLocation() const
 {
     return textureLocation_;
 }
 
-void DrawAble::setTextureLocation(std::string textureLocation)
+void DrawAble::setTextureLocation(const std::string* textureLocation)
 {
     if (drawAble_ != nullptr)
     {

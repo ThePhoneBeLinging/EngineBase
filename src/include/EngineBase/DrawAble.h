@@ -48,9 +48,9 @@ public:
 
     void setHeight(int height);
 
-    [[nodiscard]] std::string getTextureLocation() const;
+    [[nodiscard]] const std::string* getTextureLocation() const;
 
-    void setTextureLocation(std::string texture_index);
+    void setTextureLocation(const std::string* texture_index);
 
     [[nodiscard]] int getID() const;
 
@@ -71,7 +71,7 @@ private:
     int z_;
     int width_;
     int height_;
-    std::string textureLocation_;
+    const std::string* textureLocation_;
     int id_;
     bool positionIsAffectedByOffset_;
 };
