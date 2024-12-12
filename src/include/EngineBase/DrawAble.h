@@ -74,7 +74,6 @@ private:
     std::string textureLocation_;
     int id_;
     bool positionIsAffectedByOffset_;
-    //TODO Upgrade dataStructure to not have mutex be necessary
 };
 
 
