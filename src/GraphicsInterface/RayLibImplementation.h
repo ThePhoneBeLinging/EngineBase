@@ -19,9 +19,10 @@ public:
 
     std::pair<int, int> getMousePos() override;
 
-    void draw(const std::vector<std::unique_ptr<DrawAble>> &drawAbles, int offsetX, int offsetY) override;
+    void draw(const std::vector<std::unique_ptr<DrawAble>>& drawAbles, int offsetX, int offsetY,
+              double updatesLastSecond) override;
 
-    void loadTexture(const std::string &texturePath) override;
+    void loadTexture(const std::string& texturePath) override;
 
     std::pair<int, int> getWindowSize() override;
 

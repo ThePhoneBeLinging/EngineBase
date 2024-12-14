@@ -5,6 +5,7 @@
 #ifndef DRAWABLECONTROLLER_H
 #define DRAWABLECONTROLLER_H
 
+#include <atomic>
 #include <memory>
 #include <vector>
 #include <EngineBase/DrawAble.h>
@@ -33,7 +34,6 @@ public:
 
 private:
     bool isDrawAbleOnScreen(const std::shared_ptr<DrawAble>& drawAble, int screenWidth, int screenHeight);
-
     std::mutex mutex_;
     int activeDrawingIndex_;
     int nextDrawingIndex_;

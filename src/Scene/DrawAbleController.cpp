@@ -4,7 +4,8 @@
 
 #include "DrawAbleController.h"
 
-DrawAbleController::DrawAbleController() : activeDrawingIndex_(0), nextDrawingIndex_(0), updatingIndex_(1),
+DrawAbleController::DrawAbleController() : activeDrawingIndex_(0), nextDrawingIndex_(0),
+                                           updatingIndex_(1),
                                            updateOffset_(0, 0)
 {
     // initialise one list for drawing and one for the updateLoop
@@ -26,7 +27,7 @@ void DrawAbleController::updateLoopDone(std::pair<int, int> windowSize)
     sharedDrawAbles_[updatingIndex_].reserve(weakDrawAbles_.size());
     offsets_[updatingIndex_] = std::pair(updateOffset_);
 
-    for (const auto& drawAble: weakDrawAbles_)
+    for (const auto& drawAble : weakDrawAbles_)
     {
         if (not drawAble.expired())
         {

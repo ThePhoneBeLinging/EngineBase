@@ -23,6 +23,9 @@ public:
 private:
     std::vector<std::shared_ptr<DrawAbleController>> drawAbleControllers_;
     std::shared_ptr<IGraphicsLibrary> graphicsInterface_;
+    double currentDeltaTime_;
+    int updates_;
+    std::atomic<double> updatesLastSecond_;
 };
 
 

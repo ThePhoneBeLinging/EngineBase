@@ -20,9 +20,10 @@ public:
 
     virtual std::pair<int, int> getMousePos() = 0;
 
-    virtual void draw(const std::vector<std::unique_ptr<DrawAble>> &drawAbles, int offsetX, int offsetY) = 0;
+    virtual void draw(const std::vector<std::unique_ptr<DrawAble>>& drawAbles, int offsetX, int offsetY,
+                      double updatesLastSecond) = 0;
 
-    virtual void loadTexture(const std::string &texturePath) = 0;
+    virtual void loadTexture(const std::string& texturePath) = 0;
 
     virtual std::pair<int, int> getWindowSize() = 0;
 
