@@ -29,7 +29,6 @@ void SceneController::updateDone(double deltaTime)
 {
     drawAbleControllers_[0]->updateLoopDone(graphicsInterface_->getWindowSize());
     currentDeltaTime_ += deltaTime;
-    std::cout << currentDeltaTime_ << std::endl;
     updates_++;
     if (currentDeltaTime_ > 1)
     {
