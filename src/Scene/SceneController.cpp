@@ -32,7 +32,7 @@ void SceneController::updateDone(double deltaTime)
     updates_++;
     if (currentDeltaTime_ > 1)
     {
-        updatesLastSecond_ = updates_ * currentDeltaTime_;
+        updatesLastSecond_.store(updates_ * currentDeltaTime_);
         currentDeltaTime_ = 0;
         updates_ = 0;
     }
