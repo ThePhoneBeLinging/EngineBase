@@ -16,7 +16,7 @@ public:
 
     void startDrawing() const;
 
-    void updateDone();
+    void updateDone(double deltaTime);
 
     std::shared_ptr<DrawAbleController>& getCurrentDrawAbleController();
 

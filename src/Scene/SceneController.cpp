@@ -23,7 +23,7 @@ void SceneController::startDrawing() const
     graphicsInterface_->closeWindow();
 }
 
-void SceneController::updateDone()
+void SceneController::updateDone(double deltaTime)
 {
     drawAbleControllers_[0]->updateLoopDone(graphicsInterface_->getWindowSize());
 }

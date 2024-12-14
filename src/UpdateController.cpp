@@ -16,6 +16,11 @@ UpdateController::UpdateController(const std::shared_ptr<IGraphicsLibrary>& grap
 
 void UpdateController::startUpdateLoop()
 {
+    auto func = [this](double deltaTime)
+    {
+        this->sceneController_->updateDone(deltaTime);
+    };
+    registerUpdateFunction(std::move(func));
     for (auto& timePoint : updateTimePoints_)
     {
         timePoint = std::chrono::high_resolution_clock::now();
@@ -39,7 +44,7 @@ void UpdateController::startUpdateLoop()
                     std::chrono::high_resolution_clock::now() - updateTimePoints_[i]).count());
             updateTimePoints_[i] = std::chrono::high_resolution_clock::now();
         }
-        sceneController_->updateDone();
+
     }
 }
 
