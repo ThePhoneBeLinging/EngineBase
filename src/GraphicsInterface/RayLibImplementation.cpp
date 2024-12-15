@@ -52,7 +52,7 @@ void RayLibImplementation::draw(const std::vector<std::unique_ptr<DrawAble>>& dr
         DrawTexture(texture, drawX, drawY, Color(255, 255, 255, 255));
     }
     DrawFPS(0, 0);
-    DrawText(TextFormat("%f", updatesLastSecond), 0, 50, 24,GREEN);
+    DrawText(TextFormat("%.2f", updatesLastSecond), 0, 50, 24, GREEN);
     EndDrawing();
 }
 
