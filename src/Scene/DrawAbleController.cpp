@@ -29,6 +29,16 @@ void DrawAbleController::updateLoopDone(std::pair<int, int> windowSize)
     sharedDrawAbles_[updatingIndex_].reserve(weakDrawAbles_.size());
     offsets_[updatingIndex_] = std::pair(updateOffset_);
 
+    //
+    //TODO Optimize when occuring performance issues:
+    //
+    auto removeExpiredDrawAbles = [](const std::weak_ptr<DrawAble>& drawAble) { return drawAble.expired(); };
+    weakDrawAbles_.erase(std::remove_if(weakDrawAbles_.begin(), weakDrawAbles_.end(), removeExpiredDrawAbles), weakDrawAbles_.end());
+
+    //
+    //
+    //
+
     for (const auto& drawAble : weakDrawAbles_)
     {
         if (not drawAble.expired())
