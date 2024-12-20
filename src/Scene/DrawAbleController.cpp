@@ -4,6 +4,8 @@
 
 #include "DrawAbleController.h"
 
+#include <algorithm>
+
 DrawAbleController::DrawAbleController() : activeDrawingIndex_(0), nextDrawingIndex_(0),
                                            updatingIndex_(1),
                                            updateOffset_(0, 0)
@@ -56,6 +58,11 @@ void DrawAbleController::drawingLoopDone()
 
 std::vector<std::unique_ptr<DrawAble>>& DrawAbleController::getDrawAbles()
 {
+    auto comparator = [](const std::unique_ptr<DrawAble>& lhs, const std::unique_ptr<DrawAble>& rhs) {
+        return lhs->getZ() < rhs->getZ();
+    };
+
+    std::sort(sharedDrawAbles_[activeDrawingIndex_].begin(), sharedDrawAbles_[activeDrawingIndex_].end(), comparator);
     return sharedDrawAbles_[activeDrawingIndex_];
 }
 
