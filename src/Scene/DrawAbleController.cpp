@@ -61,7 +61,8 @@ std::vector<std::unique_ptr<DrawAble>>& DrawAbleController::getDrawAbles()
     auto comparator = [](const std::unique_ptr<DrawAble>& lhs, const std::unique_ptr<DrawAble>& rhs) {
         return lhs->getZ() < rhs->getZ();
     };
-
+    // The code below brought me from 3k fps to 2k, also, no reason to sort unless changes have been made to z-values.
+    // TODO TLDR, update code below if performance issues...
     std::sort(sharedDrawAbles_[activeDrawingIndex_].begin(), sharedDrawAbles_[activeDrawingIndex_].end(), comparator);
     return sharedDrawAbles_[activeDrawingIndex_];
 }
