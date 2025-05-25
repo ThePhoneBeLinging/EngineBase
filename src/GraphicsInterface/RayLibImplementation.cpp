@@ -105,3 +105,8 @@ bool RayLibImplementation::isMouseButtonPressed(const Button button)
 {
     return IsMouseButtonPressed(button);
 }
+
+void RayLibImplementation::setTargetFPS(int targetFPS)
+{
+    SetTargetFPS(targetFPS);
+}

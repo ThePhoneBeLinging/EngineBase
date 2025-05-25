@@ -15,35 +15,37 @@
 class RayLibImplementation : public IGraphicsLibrary
 {
 public:
-    RayLibImplementation();
+  RayLibImplementation();
 
-    std::pair<int, int> getMousePos() override;
+  std::pair<int, int> getMousePos() override;
 
-    void draw(const std::vector<std::unique_ptr<DrawAble>>& drawAbles, int offsetX, int offsetY,
-              double updatesLastSecond) override;
+  void draw(const std::vector<std::unique_ptr<DrawAble>>& drawAbles, int offsetX, int offsetY,
+            double updatesLastSecond) override;
 
-    void loadTexture(const std::string& texturePath) override;
+  void loadTexture(const std::string& texturePath) override;
 
-    std::pair<int, int> getWindowSize() override;
+  std::pair<int, int> getWindowSize() override;
 
-    bool toCloseWindow() override;
+  bool toCloseWindow() override;
 
-    void closeWindow() override;
+  void closeWindow() override;
 
-    bool isKeyPressed(Key key) override;
+  bool isKeyPressed(Key key) override;
 
-    bool isKeyDown(Key key) override;
+  bool isKeyDown(Key key) override;
 
-    bool isKeyReleased(Key key) override;
+  bool isKeyReleased(Key key) override;
 
-    bool isMouseButtonDown(Button button) override;
+  bool isMouseButtonDown(Button button) override;
 
-    bool isMouseButtonReleased(Button button) override;
+  bool isMouseButtonReleased(Button button) override;
 
-    bool isMouseButtonPressed(Button button) override;
+  bool isMouseButtonPressed(Button button) override;
+
+  void setTargetFPS(int targetFPS) override;
 
 private:
-    std::unordered_map<std::string, Texture2D> textureMap_;
+  std::unordered_map<std::string, Texture2D> textureMap_;
 };
 
 
