@@ -30,6 +30,8 @@ public:
 
   void closeWindow() override;
 
+  void cleanUpContext() override;
+
   bool isKeyPressed(Key key) override;
 
   bool isKeyDown(Key key) override;
@@ -46,6 +48,7 @@ public:
 
 private:
   std::unordered_map<std::string, Texture2D> textureMap_;
+  bool toCloseWindow_ = false;
 };
 
 

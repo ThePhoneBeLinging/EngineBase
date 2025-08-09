@@ -22,7 +22,7 @@ void SceneController::startDrawing() const
                                  updatesLastSecond_.load());
         drawAbleControllers_[0]->drawingLoopDone();
     }
-    graphicsInterface_->closeWindow();
+    graphicsInterface_->cleanUpContext();
 }
 
 void SceneController::updateDone(double deltaTime)

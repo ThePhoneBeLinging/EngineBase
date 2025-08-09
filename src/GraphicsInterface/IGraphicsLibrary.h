@@ -31,6 +31,8 @@ public:
 
   virtual void closeWindow() = 0;
 
+  virtual void cleanUpContext() = 0;
+
   virtual bool isKeyPressed(Key key) = 0;
 
   virtual bool isKeyDown(Key key) = 0;

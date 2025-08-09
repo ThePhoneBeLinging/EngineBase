@@ -68,10 +68,15 @@ std::pair<int, int> RayLibImplementation::getWindowSize()
 
 bool RayLibImplementation::toCloseWindow()
 {
-    return WindowShouldClose();
+    return toCloseWindow_ || WindowShouldClose();
 }
 
 void RayLibImplementation::closeWindow()
+{
+    toCloseWindow_ = true;
+}
+
+void RayLibImplementation::cleanUpContext()
 {
     CloseWindow();
 }
