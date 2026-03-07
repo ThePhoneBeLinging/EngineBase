@@ -17,6 +17,7 @@ public:
     explicit UpdateController(const std::shared_ptr<IGraphicsLibrary>& graphicsLibrary, std::shared_ptr<SceneController>& sceneController);
     void startUpdateLoop();
     void registerUpdateFunction(const std::function<void(double deltaTime)>& updateFunction);
+    void registerUpdateFunction(const std::function<void()>& updateFunction);
 private:
     std::shared_ptr<IGraphicsLibrary> graphicsLibrary_;
     std::shared_ptr<SceneController>& sceneController_;

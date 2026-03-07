@@ -53,3 +53,8 @@ void UpdateController::registerUpdateFunction(const std::function<void(double de
     std::lock_guard lock(mutex_);
     updateFunctionsToAdd_.push_back(updateFunction);
 }
+
+void UpdateController::registerUpdateFunction(const std::function<void()>& updateFunction)
+{
+    registerUpdateFunction([updateFunction](double deltaTime) {updateFunction();});
+}

@@ -22,6 +22,7 @@ public:
     void registerDrawAble(const std::shared_ptr<DrawAble> &drawAble);
 
     void registerUpdateFunction(const std::function<void(double deltaTime)> &updateFunction) const;
+    void registerUpdateFunction(const std::function<void()> &updateFunction) const;
 
     std::shared_ptr<IGraphicsLibrary> getGraphicsLibrary();
 

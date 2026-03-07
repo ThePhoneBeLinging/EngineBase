@@ -33,6 +33,11 @@ void EngineBase::registerUpdateFunction(const std::function<void(double deltaTim
     updateController_->registerUpdateFunction(updateFunction);
 }
 
+void EngineBase::registerUpdateFunction(const std::function<void()>& updateFunction) const
+{
+    updateController_->registerUpdateFunction(updateFunction);
+}
+
 std::shared_ptr<IGraphicsLibrary> EngineBase::getGraphicsLibrary()
 {
     return graphicsInterface_;
