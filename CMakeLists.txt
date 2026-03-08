@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 ### Add Raylib
 
-
+# TODO Add missing texture to this repo and remove this hard coded path
 set(RESOURCE_FOLDER ${CMAKE_CURRENT_SOURCE_DIR}/Textures)
 
 # Copy the resource folder

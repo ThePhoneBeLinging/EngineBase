@@ -71,6 +71,7 @@ private:
     int z_;
     int width_;
     int height_;
+    // TODO Make this a reference
     const std::string* textureLocation_;
     int id_;
     bool positionIsAffectedByOffset_;
