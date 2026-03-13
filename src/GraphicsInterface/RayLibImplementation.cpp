@@ -38,7 +38,7 @@ void RayLibImplementation::draw(const std::vector<std::unique_ptr<DrawAble>>& dr
         auto texture = textureMap_[*texturePath];
         if (texture.id == 0)
         {
-            texture = textureMap_["../Textures/MissingTexture.png"];
+            texture = textureMap_["Textures/MissingTexture.png"];
         }
         (texture).height = drawAble->getHeight();
         (texture).width = drawAble->getWidth();
