@@ -11,7 +11,7 @@ RayLibImplementation::RayLibImplementation()
 {
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(1200, 800, "M3");
-    RayLibImplementation::loadTexture("../Textures/MissingTexture.png");
+    RayLibImplementation::loadTexture("Textures/MissingTexture.png");
 }
 
 std::pair<int, int> RayLibImplementation::getMousePos()
@@ -26,16 +26,24 @@ void RayLibImplementation::draw(const std::vector<std::unique_ptr<DrawAble>>& dr
     ClearBackground(BLACK);
     for (const auto& drawAble : drawAbles)
     {
-        if (drawAble == nullptr || drawAble->getTextureLocation() == nullptr)
+        if (drawAble == nullptr)
         {
             continue;
         }
-        const std::string* texturePath = drawAble->getTextureLocation();
-        if (not textureMap_.contains(*texturePath))
+        std::string texturePath;
+        if (drawAble->getTextureLocation() == nullptr)
         {
-            loadTexture(*texturePath);
+            texturePath = "Textures/MissingTexture.png";
         }
-        auto texture = textureMap_[*texturePath];
+        else
+        {
+            texturePath = *drawAble->getTextureLocation();
+        }
+        if (not textureMap_.contains(texturePath))
+        {
+            loadTexture(texturePath);
+        }
+        auto texture = textureMap_[texturePath];
         if (texture.id == 0)
         {
             texture = textureMap_["Textures/MissingTexture.png"];
